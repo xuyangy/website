@@ -1,0 +1,21 @@
+---
+project:
+    type: website
+website:
+    title: "PlaygroundXY"
+    navbar:
+        search: true
+        left:
+            - href: index.qmd
+              text: Home
+            - text: About
+              href: about.qmd
+            - text: "Projects"
+              menu:
+                  - text: "WGS Upcaling"
+                    href: projects/wgs_upscaling.qmd
+format:
+    html:
+        theme: Quartz
+        css: styles.css
+        toc: true
