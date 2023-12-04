@@ -231,10 +231,11 @@ py_df = pd.read_csv("data.csv",
                     parse_dates=["datetime"],
                     date_format="%Y-%m-%d %H:%M:%S.%f")
 py_df["speed"] = py_df["speed"].apply(deHumanReadable)
-fig = px.scatter(py_df, x="bytes", y="speed", opacity=0.5)
+py_df["project_type"] = py_df["project"].apply(lambda x: re.match(r"[a-zA-Z]+", x).group())
+fig = px.scatter(py_df, x="bytes", y="speed", opacity=0.3, color="project_type")
 fig.show()
 
-fig_time = px.scatter(py_df, x="bytes", y="seconds", opacity=0.5)
+fig_time = px.scatter(py_df, x="bytes", y="seconds", opacity=0.3, color="project_type")
 fig_time.show()
 ```
 
@@ -244,10 +245,10 @@ fig_time.show()
 #| echo: false
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 300000]
-fig_sf = px.scatter(small_files, x="bytes", y="speed", opacity=0.5)
+fig_sf = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type")
 fig_sf.show()
 
-fig_sf_time = px.scatter(small_files, x="bytes", y="seconds", opacity=0.5)
+fig_sf_time = px.scatter(small_files, x="bytes", y="seconds", opacity=0.3, color="project_type")
 fig_sf_time.show()
 ```
 
@@ -258,7 +259,7 @@ fig_sf_time.show()
 #| echo: false
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 500000000]
-fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.5)
+fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type")
 fig_200MB.show()
 ```
 
