@@ -78,20 +78,21 @@ transform_bandwidth <- function(bandwidth) {
 # load data from csv file
 library(readr)               
 library(dplyr)               
-data <- read_csv("small.csv", col_names = TRUE, col_types = "cccddc")
+data <- read_csv("data.csv", col_names = TRUE, col_types = "cccddc")
 data <- mutate(data, speed = sapply(speed, recognize_bandwidth))
 ```
 
 
-:::{.panel-tabset}
 
-## [Data Collection]{style="font-family:Chalkboard; font-size:20px;"}
-
+### Data Collection
 
 To evaluate the data transfer speed, we collected the transfer time for each file transferred from NSC to TSD between [`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} and [`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"}.
 
+::: {.callout-note collapse="true"}
 
-## [Examples]{style="font-family:Chalkboard; font-size:20px;"}
+
+## examples of collected data
+
 
 ```{r}
 #| echo: false
@@ -99,16 +100,105 @@ To evaluate the data transfer speed, we collected the transfer time for each fil
 #| warning: false
 library(dplyr)
 library(stringr)
-t(data |> filter(str_ends(data$filename, ".vcf")) |> slice_sample(n = 1))
-t(data |> filter(str_ends(data$filename, ".fastq.gz")) |> slice_sample(n = 1))
-t(data |> filter(str_ends(data$filename, ".bam")) |> slice_sample(n = 1))
+for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
+  print(t(data |> filter(str_ends(data$filename, extension)) |> slice_sample(n = 1)))
+}
+```
+
+:::
+
+
+### Overview
+::: {.panel-tabset}
+## file size
+:::: {.columns}
+::: {.column width="30%"}
+```{r} 
+#| echo: false
+#| message: false
+#| warning: false
+library(gdata)
+setNames(as.data.frame(sapply(summary(data$bytes), humanReadable)), "filesize")
 ```
 :::
-                             
-::: {.callout-note collapse="true"}
-### This is an info callout.
-some other
+::: {.column width="70%"}
+```{r} 
+#| echo: false
+#| message: false
+#| warning: false
+library(ggplot2)
+ggplot(
+    data,
+    aes(x = bytes)
+) +
+    geom_histogram(fill = "#677487", bins = 200) +
+    labs(x = "bytes", y = "count", title = "filesize")
+```
 :::
+::::
+## transfer speed
+:::: {.columns}
+::: {.column width="30%"}
+```{r} 
+#| echo: false
+setNames(as.data.frame(sapply(summary(data$speed), humanReadable)), "speed(/s)")
+```
+:::
+::: {.column width="70%"}
+```{r} 
+#| echo: false
+#| message: false
+#| warning: false
+library(ggplot2)
+ggplot(
+    data,
+    aes(x = speed)
+) + 
+    geom_histogram(bins=200, fill="#677487") + 
+    labs(x = "bytes/s", y = "count", title = "transfer speed")
+```
+:::
+::::
+## time used (seconds)
+:::: {.columns}
+::: {.column width="30%"}
+```{r} 
+#| echo: false
+summary(data %>% select(seconds))
+```
+:::
+::: {.column width="70%"}
+```{r} 
+#| echo: false
+#| message: false
+#| warning: false
+library(ggplot2)
+ggplot(
+    data,
+    aes(x = seconds)
+) + 
+    geom_histogram(bins=200, fill="#677487") + 
+    labs(x = "seconds", y = "count", title = "transfer time")
+```
+:::
+::::
+:::
+
+### Plots
+
+
+```{r} 
+#| echo: false
+#| message: false
+library(ggplot2)
+ggplot(data, aes(x = bytes, y = speed)) + 
+  geom_point()
+  # geom_smooth() + 
+  # labs(x = "file size(bytes)", y = "speed (bytes/s)", title = "file isze vs transfer speed") + 
+  # theme_minimal()
+```
+
+
 
 ### Transfer of large files over 200 MB
 In total $4443$ files larger than 200 MB were transferred with an average speed of $78 MB/s$.
