@@ -13,9 +13,9 @@ website:
             - text: "Projects"
               menu:
                   - text: "WGS Upcaling"
-                    href: projects/wgs_upscaling_bioinf.qmd
+                    href: projects/wgs_upscale/wgs_upscaling_bioinf.qmd
 format:
     html:
-        theme: Quartz
+        theme: Journal
         css: styles.css
         toc: true
