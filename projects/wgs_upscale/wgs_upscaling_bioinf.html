@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Xuyang Yuan">
+<meta name="dcterms.date" content="2023-12-04">
+<meta name="description" content="Data transfer, Data storage, Bioinformatics pipeline capacity">
 
-<title>PlaygroundXY - Cool Website</title>
+<title>PlaygroundXY - WGS Upscaling - IT &amp; Bioinformatics Evaluation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +26,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -59,9 +62,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&amp;display=swap" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -71,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">PlaygroundXY</span>
     </a>
   </div>
@@ -82,11 +90,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -95,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
         <li>
-    <a class="dropdown-item" href="./projects/wgs_upscale/wgs_upscaling_bioinf.html" rel="" target="">
+    <a class="dropdown-item" href="../../projects/wgs_upscale/wgs_upscaling_bioinf.html" rel="" target="">
  <span class="dropdown-text">WGS Upcaling</span></a>
   </li>  
     </ul>
@@ -108,36 +116,149 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">WGS Upscaling - IT &amp; Bioinformatics Evaluation</h1>
+                  <div>
+        <div class="description">
+          Data transfer, Data storage, Bioinformatics pipeline capacity
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://dpipe.gitlab.io/docs/docs-pages">Xuyang Yuan</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              GDx, Oslo University Hospital
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 4, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a></li>
+  <li><a href="#it-bioinformatics" id="toc-it-bioinformatics" class="nav-link" data-scroll-target="#it-bioinformatics"><span class="header-section-number">2</span> IT &amp;&amp; Bioinformatics</a>
+  <ul class="collapse">
+  <li><a href="#data-transfer-speed" id="toc-data-transfer-speed" class="nav-link" data-scroll-target="#data-transfer-speed"><span class="header-section-number">2.1</span> Data transfer speed</a>
+  <ul class="collapse">
+  <li><a href="#transfer-of-large-files-over-200-mb" id="toc-transfer-of-large-files-over-200-mb" class="nav-link" data-scroll-target="#transfer-of-large-files-over-200-mb"><span class="header-section-number">2.1.1</span> Transfer of large files over 200 MB</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Cool Website</h1>
+
+
+
+<section id="background" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Background</h1>
+<p>GDx at OUSAMG is planning to upscale the WGS production to <code>4 x 48</code> samples or <code>2 x 48 + 1 x 96</code> samples per week.</p>
+<p>This document evaluates the possible bottlenecks of IT &amp; bioinformatics pipelines in following areas:</p>
+<ol type="1">
+<li>Data transfer speed</li>
+<li>Data storage</li>
+<li>Pipeline capacity (Illumina DRAGEN)</li>
+</ol>
+</section>
+<section id="it-bioinformatics" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> IT &amp;&amp; Bioinformatics</h1>
+<section id="data-transfer-speed" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data-transfer-speed"><span class="header-section-number">2.1</span> Data transfer speed</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><span style="font-family:Chalkboard; font-size:20px;">Data Collection</span></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><span style="font-family:Chalkboard; font-size:20px;">Examples</span></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>To evaluate the data transfer speed, we collected the transfer time for each file transferred from NSC to TSD between <span style="font-family:Quicksand;">2023-09-01 08:41:40</span> and <span style="font-family:Quicksand;">2023-11-28 13:26:06</span>.</p>
 </div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]                                 
+datetime "2023-09-01 11:23:44,015"            
+project  "wgs308"                             
+filename "Diag-wgs308-HG07650783-DR.final.vcf"
+bytes    "1210695438"                         
+seconds  "17.8"                               
+speed    "65050000"                           </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]                                            
+datetime "2023-09-01 09:14:37,391"                       
+project  "wgs308"                                        
+filename "HG24168491-NevrMusk-KIT-wgs_S5_R1_001.fastq.gz"
+bytes    "42002295031"                                   
+seconds  "669.7"                                         
+speed    "59810000"                                      </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]                        
+datetime "2023-09-03 12:07:04,891"   
+project  "wgs309"                    
+filename "Diag-wgs309-HG58817690.bam"
+bytes    "54086716232"               
+seconds  "681.9"                     
+speed    "75640000"                  </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This is an info callout.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>some other</p>
+</div>
+</div>
+</div>
+<section id="transfer-of-large-files-over-200-mb" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="transfer-of-large-files-over-200-mb"><span class="header-section-number">2.1.1</span> Transfer of large files over 200 MB</h3>
+<p>In total <span class="math inline">\(4443\)</span> files larger than 200 MB were transferred with an average speed of <span class="math inline">\(78 MB/s\)</span>.</p>
+<p>wgs326 2023-11-01 14:13:42,747 2023-11-02 20:14:43,258 wgs327 2023-11-03 12:11:16,334</p>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<p>This is my website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
-
-
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
