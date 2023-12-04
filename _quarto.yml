@@ -14,6 +14,8 @@ website:
               menu:
                   - text: "WGS Upcaling"
                     href: projects/wgs_upscale/wgs_upscaling_bioinf.qmd
+                  - text: "Workflow Tracker"
+                    href: projects/workflow_tracker/index.html
 format:
     html:
         theme: Journal
