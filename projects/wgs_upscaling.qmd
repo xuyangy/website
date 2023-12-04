@@ -1,7 +1,0 @@
----
-title: WGS Upscaling
-description: WGS Upscaling bioinformatics related evaluations
-format: 
-  html: 
-    theme: sketchy
----
