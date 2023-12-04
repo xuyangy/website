@@ -13,7 +13,7 @@ website:
             - text: "Projects"
               menu:
                   - text: "WGS Upcaling"
-                    href: projects/wgs_upscaling.qmd
+                    href: projects/wgs_upscaling_bioinf.qmd
 format:
     html:
         theme: Quartz
