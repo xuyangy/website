@@ -19,13 +19,16 @@ format:
     html:
         theme: Journal
         toc: true
+        toc-depth: 4
         number-sections: true
-        number-depth: 3
+        number-depth: 4
         float: true
         header-includes: |
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+execute: 
+    cache: true
 ---
 
 # Background
@@ -110,7 +113,7 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 
 ### Overview
 ::: {.panel-tabset}
-## file size
+#### file size
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -136,7 +139,7 @@ ggplot(
 ```
 :::
 ::::
-## transfer speed
+#### transfer speed
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -159,7 +162,7 @@ ggplot(
 ```
 :::
 ::::
-## time used (seconds)
+#### time used (seconds)
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -187,22 +190,97 @@ ggplot(
 ### Plots
 
 
-```{r} 
+<!-- read data from csv file -->
+```{python}
 #| echo: false
 #| message: false
-library(ggplot2)
-ggplot(data, aes(x = bytes, y = speed)) + 
-  geom_point()
-  # geom_smooth() + 
-  # labs(x = "file size(bytes)", y = "speed (bytes/s)", title = "file isze vs transfer speed") + 
-  # theme_minimal()
+#| warning: false
+#| cache: false
+#| include: false
+def deHumanReadable(bandwidth_string):
+    match_result = re.match(r'^([0-9.]+)\s*([KMGT]?B)(/s)?$', bandwidth_string)
+
+    if match_result is None:
+        raise ValueError("Invalid bandwidth string format")
+
+    numeric_part = float(match_result.group(1))
+    unit_part = match_result.group(2)
+    bytes_per_second = {
+        "B": numeric_part,
+        "KB": numeric_part * 1000,
+        "MB": numeric_part * 1000**2,
+        "GB": numeric_part * 1000**3
+    }.get(unit_part, ValueError("Invalid unit"))
+
+    return bytes_per_second
+
+```
+
+#### Transfer speed and time VS file size (all files)
+
+
+```{python} 
+#| echo: false
+#| cache: false
+import pandas as pd
+from datetime import datetime
+import re
+import plotly.express as px
+py_df = pd.read_csv("data.csv", 
+                    sep=",", 
+                    parse_dates=["datetime"],
+                    date_format="%Y-%m-%d %H:%M:%S.%f")
+py_df["speed"] = py_df["speed"].apply(deHumanReadable)
+fig = px.scatter(py_df, x="bytes", y="speed", opacity=0.5)
+fig.show()
+
+fig_time = px.scatter(py_df, x="bytes", y="seconds", opacity=0.5)
+fig_time.show()
+```
+
+#### Transfer speed and time VS file size (small files)
+
+```{python} 
+#| echo: false
+import plotly.express as px
+small_files = py_df[py_df["bytes"] < 300000]
+fig_sf = px.scatter(small_files, x="bytes", y="speed", opacity=0.5)
+fig_sf.show()
+
+fig_sf_time = px.scatter(small_files, x="bytes", y="seconds", opacity=0.5)
+fig_sf_time.show()
 ```
 
 
+#### [ Maximum transfer reached around <u>200MB</u> file size? ]{style="color:orange;"}
 
-### Transfer of large files over 200 MB
-In total $4443$ files larger than 200 MB were transferred with an average speed of $78 MB/s$.
+```{python} 
+#| echo: false
+import plotly.express as px
+small_files = py_df[py_df["bytes"] < 500000000]
+fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.5)
+fig_200MB.show()
+```
+
+## Data storage
+
+WGS produces large amount of data. The data storage capacity is critical for the upscaling. 
 
 
-wgs326	2023-11-01 14:13:42,747	 2023-11-02 20:14:43,258
-wgs327	2023-11-03 12:11:16,334	
+### NSC
+On NSC side, the data is stored in on **boston** at `/boston/diag`. Boston has a total capacity of 1.5 PB, and the usable capacity is 1.2 at the moment.
+
+
+### TSD
+
+On TSD side, the data is stored in `/cluster/projects/p22`. The total capacity is 1.8 PB, and the usable capacity is 1.2 PB at the moment.
+
+
+
+## Pipeline capacity (Illumina DRAGEN)
+
+Illunima DRAGEN is a bioinformatics pipeline server that can be used to process WGS data. It takes around 1 hours to process a 30x WGS sample.
+
+
+
+
