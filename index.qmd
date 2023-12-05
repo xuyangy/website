@@ -2,6 +2,4 @@
 title: "Cool Website"
 ---
 
-This is my website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This is my cool website which is empty right now.
