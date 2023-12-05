@@ -19,5 +19,8 @@ website:
 format:
     html:
         theme: Journal
+        grid:
+            sidebar-width: 100px
+            body-width: 1000px
         css: styles.css
         toc: true
