@@ -5,8 +5,8 @@ description: "Data transfer, Data storage, Bioinformatics pipeline capacity"
 author: 
     - name: Xuyang Yuan
       email: "xuyangy@uio.no"
-      affiliation: "GDx, Oslo University Hospital"
-      url: "https://dpipe.gitlab.io/docs/docs-pages"
+      affiliation: "GDx"
+      url: "http://www.robotgenome.com"
       role: "collect data"
 # format:
 #   pdf:
