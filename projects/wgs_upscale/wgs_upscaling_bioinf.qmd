@@ -89,11 +89,15 @@ data <- mutate(data, speed = sapply(speed, recognize_bandwidth))
 
 
 
-### Data Collection
+### Collect Historical Data Transfer Records
 
-To evaluate the data transfer speed, we collected the transfer time for each file transferred from NSC to TSD between [`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} and [`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"}.
+To evaluate the data transfer speed, we collected the transfer time of all files that were transferred from NSC to TSD [`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} and [`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"}.
 
-::: {.callout-note collapse="true"}
+::: {.callout-important}
+## The nsc-exporter log and sequencer overview html files were ignored for simplicity.
+:::
+
+::: {.callout-tip collapse="true"}
 
 
 ## examples of collected data
@@ -113,9 +117,9 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 :::
 
 
-### Overview
+### Data Overview
 ::: {.panel-tabset}
-#### file size
+#### File Size
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -136,12 +140,18 @@ ggplot(
     data,
     aes(x = bytes)
 ) +
-    geom_histogram(fill = "#677487", bins = 200) +
-    labs(x = "bytes", y = "count", title = "filesize")
+    geom_histogram(fill = "#fc03d3", bins = 200) +
+    labs(x = "bytes", y = "count", title = "filesize") + theme_minimal()
+ggplot(
+    data,
+    aes(x = bytes)
+) +
+    geom_histogram(fill = "#fc03d3", bins = 200) +
+    labs(x = "bytes", y = "count (log)", title = "filesize (log)") + scale_y_continuous(trans='log2') + theme_minimal()
 ```
 :::
 ::::
-#### transfer speed
+#### Transfer Speed
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -151,20 +161,23 @@ setNames(as.data.frame(sapply(summary(data$speed), humanReadable)), "speed(/s)")
 :::
 ::: {.column width="70%"}
 ```{r} 
-#| echo: false
-#| message: false
-#| warning: false
 library(ggplot2)
 ggplot(
     data,
     aes(x = speed)
 ) + 
-    geom_histogram(bins=200, fill="#677487") + 
-    labs(x = "bytes/s", y = "count", title = "transfer speed")
+    geom_histogram(bins=200, fill="#0bd440") + 
+    labs(x = "bytes/s", y = "count", title = "transfer speed") + theme_minimal()
+ggplot(
+    data,
+    aes(x = speed)
+) + 
+    geom_histogram(bins=200, fill="#0bd440") + 
+    labs(x = "bytes/s", y = "count (log)", title = "transfer speed (log)") + scale_y_continuous(trans='log2') + theme_minimal()
 ```
 :::
 ::::
-#### time used (seconds)
+#### Transfer Time
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -182,14 +195,20 @@ ggplot(
     data,
     aes(x = seconds)
 ) + 
-    geom_histogram(bins=200, fill="#677487") + 
-    labs(x = "seconds", y = "count", title = "transfer time")
+    geom_histogram(bins=200, fill="#e3571b") + 
+    labs(x = "seconds", y = "count", title = "transfer time") + theme_minimal()
+ggplot(
+    data,
+    aes(x = seconds)
+) + 
+    geom_histogram(bins=200, fill="#e3571b") + 
+    labs(x = "seconds", y = "count (log)", title = "transfer time (log)") + scale_y_continuous(trans='log2') + theme_minimal()
 ```
 :::
 ::::
 :::
 
-### Plots
+### Corelation Between File Size And Transfer Time And Transfer Speed
 
 
 <!-- read data from csv file -->
@@ -234,10 +253,10 @@ py_df = pd.read_csv("data.csv",
                     date_format="%Y-%m-%d %H:%M:%S.%f")
 py_df["speed"] = py_df["speed"].apply(deHumanReadable)
 py_df["project_type"] = py_df["project"].apply(lambda x: re.match(r"[a-zA-Z]+", x).group())
-fig = px.scatter(py_df, x="bytes", y="speed", opacity=0.3, color="project_type")
+fig = px.scatter(py_df, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
 fig.show()
 
-fig_time = px.scatter(py_df, x="bytes", y="seconds", opacity=0.3, color="project_type")
+fig_time = px.scatter(py_df, x="bytes", y="seconds", opacity=0.3, color="project_type", height=500)
 fig_time.show()
 ```
 
@@ -247,10 +266,10 @@ fig_time.show()
 #| echo: false
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 300000]
-fig_sf = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type")
+fig_sf = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
 fig_sf.show()
 
-fig_sf_time = px.scatter(small_files, x="bytes", y="seconds", opacity=0.3, color="project_type")
+fig_sf_time = px.scatter(small_files, x="bytes", y="seconds", opacity=0.3, color="project_type", height=500)
 fig_sf_time.show()
 ```
 
@@ -261,7 +280,7 @@ fig_sf_time.show()
 #| echo: false
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 500000000]
-fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type")
+fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
 fig_200MB.show()
 ```
 
@@ -294,6 +313,20 @@ print("logarithmic time")
 px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
 ```
 
+### Discussion
+
+* The nsc-exporter is idle for quite a portion of the time.
+    + Quite long idle time in September observed. 
+    + Almost 12 wgs projects were transferred in November. 
+* The maximum transfer speed is reached around 200 MB file size. This is the configured chunk size of s3cmd which is the tool used for data transfer. We might want to increase the chunk size to improve the transfer speed?
+* The current transfer speed is not optimal considering the 10Gbps switch connecting NSC and TSD. We need to investigate the reason for the low transfer speed.
+
+
+### Conclusion
+
+* We might be able to run `4 x 48` or `2 x 48 + 1 x 96` samples per week with the current transfer speed. However, we will reach maximum capicity of data transfer.
+* If we can increase the transfer speed, e.g. reaching 200MB/s, we can easily double current production capacity.
+
 ## Data storage
 
 WGS produces large amount of data. The data storage capacity is critical for the upscaling. 
@@ -314,5 +347,10 @@ On TSD side, the data is stored in `/cluster/projects/p22`. The total capacity i
 Illunima DRAGEN is a bioinformatics pipeline server that can be used to process WGS data. It takes around 1 hours to process a 30x WGS sample.
 
 
+# Discussion
+To be addded...
 
 
+# Conclusion
+
+To be added...
