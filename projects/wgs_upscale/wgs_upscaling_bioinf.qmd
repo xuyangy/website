@@ -29,6 +29,9 @@ format:
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 execute: 
     cache: true
+    echo: false
+    message: false
+    warning: false
 ---
 
 # Background
@@ -41,7 +44,6 @@ This document evaluates the possible bottlenecks of IT & bioinformatics pipeline
 3. Pipeline capacity (Illumina DRAGEN)
 
 # IT && Bioinformatics
-
 
 
 ## Data transfer speed
@@ -261,6 +263,35 @@ import plotly.express as px
 small_files = py_df[py_df["bytes"] < 500000000]
 fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type")
 fig_200MB.show()
+```
+
+### Idle Time
+
+How much time when nsc-exporter is not transferring files?
+```{python} 
+#| cache: false
+py_df['datetime_shifted']= py_df["datetime"].shift().fillna(pd.to_datetime(py_df["datetime"][0]))
+py_df['time_spent'] = (pd.to_datetime(py_df['datetime']) - pd.to_datetime(py_df['datetime_shifted']))/pd.Timedelta(1, "S")
+```
+#### September
+```{python} 
+px.scatter(py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
+print("logarithmic time")
+px.scatter(py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
+```
+
+#### October
+```{python} 
+px.scatter(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
+print("logarithmic time")
+px.scatter(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
+```
+
+#### November
+```{python} 
+px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
+print("logarithmic time")
+px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
 ```
 
 ## Data storage
