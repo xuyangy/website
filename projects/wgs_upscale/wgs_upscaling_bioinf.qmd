@@ -91,14 +91,10 @@ data <- mutate(data, speed = sapply(speed, recognize_bandwidth))
 
 ### Collect Historical Data Transfer Records
 
-To evaluate the data transfer speed, we collected the transfer time of all files that were transferred from NSC to TSD [`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} and [`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"}.
+To evaluate the data transfer speed, we collected the transfer time of all files that were transferred from NSC to TSD between [`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} and [`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} from the nsc-exporter. The nsc-exporter is the tool that is used to transfer data from NSC to TSD.
 
-::: {.callout-important}
-## The nsc-exporter log and sequencer overview html files were ignored for simplicity.
-:::
 
 ::: {.callout-tip collapse="true"}
-
 
 ## examples of collected data
 
@@ -116,17 +112,26 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 
 :::
 
+::: {.callout-important}
+## The nsc-exporter log files and the sequencer overview html files were ignored for simplicity. [^1]
 
+
+:::
 ### Data Overview
 ::: {.panel-tabset}
 #### File Size
+```{r}
+#| cache: false
+library(gdata)
+```
+The file size of the collected data ranges from [`r humanReadable(min(data$bytes))`]{style="font-family:Quicksand;"} to [`r humanReadable(max(data$bytes))`]{style="font-family:Quicksand;"}. The average file size is [`r humanReadable(mean(data$bytes))`]{style="font-family:Quicksand;"}. The median file size is [`r humanReadable(median(data$bytes))`]{style="font-family:Quicksand;"}. The standard deviation is [`r humanReadable(sd(data$bytes))`]{style="font-family:Quicksand;"}.
+
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
 #| echo: false
 #| message: false
 #| warning: false
-library(gdata)
 setNames(as.data.frame(sapply(summary(data$bytes), humanReadable)), "filesize")
 ```
 :::
@@ -141,17 +146,19 @@ ggplot(
     aes(x = bytes)
 ) +
     geom_histogram(fill = "#fc03d3", bins = 200) +
-    labs(x = "bytes", y = "count", title = "filesize") + theme_minimal()
+    labs(x = "file size (bytes)", y = "count", title = "Filesize") + theme_minimal()
 ggplot(
     data,
     aes(x = bytes)
 ) +
     geom_histogram(fill = "#fc03d3", bins = 200) +
-    labs(x = "bytes", y = "count (log)", title = "filesize (log)") + scale_y_continuous(trans='log2') + theme_minimal()
+    labs(x = "file size (bytes)", y = "count (log2)", title = "Filesize (log2)") + scale_y_continuous(trans='log2') + theme_minimal()
 ```
 :::
 ::::
 #### Transfer Speed
+The transfer speed ranges from [`r humanReadable(min(data$speed))`]{style="font-family:Quicksand;"} to [`r humanReadable(max(data$speed))`]{style="font-family:Quicksand;"}. The average transfer speed is [`r humanReadable(mean(data$speed))`]{style="font-family:Quicksand;"}. The median transfer speed is [`r humanReadable(median(data$speed))`]{style="font-family:Quicksand;"}. The standard deviation is [`r humanReadable(sd(data$speed))`]{style="font-family:Quicksand;"}.
+
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -167,17 +174,19 @@ ggplot(
     aes(x = speed)
 ) + 
     geom_histogram(bins=200, fill="#0bd440") + 
-    labs(x = "bytes/s", y = "count", title = "transfer speed") + theme_minimal()
+    labs(x = "bytes/s", y = "count", title = "Transfer Speed") + theme_minimal()
 ggplot(
     data,
     aes(x = speed)
 ) + 
     geom_histogram(bins=200, fill="#0bd440") + 
-    labs(x = "bytes/s", y = "count (log)", title = "transfer speed (log)") + scale_y_continuous(trans='log2') + theme_minimal()
+    labs(x = "bytes/s", y = "count (log2)", title = "Transfer Speed (log2)") + scale_y_continuous(trans='log2') + theme_minimal()
 ```
 :::
 ::::
 #### Transfer Time
+The transfer time ranges from [`r round(min(data$seconds), 1)`]{style="font-family:Quicksand;"} seconds to [`r round(max(data$seconds), 1)`]{style="font-family:Quicksand;"} seconds. The average transfer time is [`r round(mean(data$seconds),1)`]{style="font-family:Quicksand;"} seconds. The median transfer time is [`r round(median(data$seconds),1)`]{style="font-family:Quicksand;"} seconds. The standard deviation is [`r round(sd(data$seconds),1)`]{style="font-family:Quicksand;"} seconds.
+
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
@@ -196,26 +205,23 @@ ggplot(
     aes(x = seconds)
 ) + 
     geom_histogram(bins=200, fill="#e3571b") + 
-    labs(x = "seconds", y = "count", title = "transfer time") + theme_minimal()
+    labs(x = "transfer time(per file)", y = "count", title = "Transfer Time") + theme_minimal()
 ggplot(
     data,
     aes(x = seconds)
 ) + 
     geom_histogram(bins=200, fill="#e3571b") + 
-    labs(x = "seconds", y = "count (log)", title = "transfer time (log)") + scale_y_continuous(trans='log2') + theme_minimal()
+    labs(x = "transfer time(per file)", y = "count (log2)", title = "Transfer Time (log2)") + scale_y_continuous(trans='log2') + theme_minimal()
 ```
 :::
 ::::
 :::
 
-### Corelation Between File Size And Transfer Time And Transfer Speed
+### Correlation Between File Size And Transfer Time And Transfer Speed
 
 
 <!-- read data from csv file -->
 ```{python}
-#| echo: false
-#| message: false
-#| warning: false
 #| cache: false
 #| include: false
 def deHumanReadable(bandwidth_string):
@@ -240,8 +246,10 @@ def deHumanReadable(bandwidth_string):
 #### Transfer speed and time VS file size (all files)
 
 
+Small files have lower transfer speed. A good transfer speed around 80 MB/s is achieved for files larger than 30 GB.
 ```{python} 
-#| echo: false
+#| label: fig-correlation-filesize-speed-all
+#| fig-cap: Transfer speed VS file size (all files)
 #| cache: false
 import pandas as pd
 from datetime import datetime
@@ -253,22 +261,34 @@ py_df = pd.read_csv("data.csv",
                     date_format="%Y-%m-%d %H:%M:%S.%f")
 py_df["speed"] = py_df["speed"].apply(deHumanReadable)
 py_df["project_type"] = py_df["project"].apply(lambda x: re.match(r"[a-zA-Z]+", x).group())
-fig = px.scatter(py_df, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
+fig = px.scatter(py_df, x="bytes", y="speed", labels={'x': 'file size', 'y': 'transfer speed'}, opacity=0.3, color="project_type", height=500)
 fig.show()
+```
 
+```{python} 
+#| label: fig-correlation-filesize-time-all
+#| fig-cap: Transfer time VS file size (all files)
 fig_time = px.scatter(py_df, x="bytes", y="seconds", opacity=0.3, color="project_type", height=500)
 fig_time.show()
 ```
 
 #### Transfer speed and time VS file size (small files)
 
+
+Although the transfer speed of small files are very low; the transfer time is usually very short. So small files are not the bottleneck of the data transfer.
+
 ```{python} 
-#| echo: false
+#| label: fig-correlation-filesize-speed-small
+#| fig-cap: Transfer speed VS file size (small files)
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 300000]
 fig_sf = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
 fig_sf.show()
+```
 
+```{python} 
+#| label: fig-correlation-filesize-time-small
+#| fig-cap: Transfer time VS file size (small files)
 fig_sf_time = px.scatter(small_files, x="bytes", y="seconds", opacity=0.3, color="project_type", height=500)
 fig_sf_time.show()
 ```
@@ -276,8 +296,11 @@ fig_sf_time.show()
 
 #### [ Maximum transfer reached around <u>200MB</u> file size? ]{style="color:orange;"}
 
+Small files have lower transfer speed. Large files have higher transfer speed. But it looks like best transfer speed is observed for files with sizearound 200 MB file size.
+
 ```{python} 
-#| echo: false
+#| label: fig-correlation-filesize-speed-200MB
+#| fig-cap: maximum transfer speed reached around 200MB file size
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 500000000]
 fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
@@ -286,21 +309,33 @@ fig_200MB.show()
 
 ### Idle Time
 
-How much time when nsc-exporter is not transferring files?
+To evaluate whether there is capacity for upscaling, we need to know the idle time of the nsc-exporter. The nsc-exporter is idle when it is not transferring data.  
+
+All transfer records are plotted with starting time of each transfer on x-axis and the time used to finished the transfer on y-axis. The gaps represnts idle periods of nsc-exporter. The color represents projects, *e.g.* wgs123, EKG20230901 *etc.*. The shape represents project type, *e.g.* wgs, EKG *etc.* You can turn off a project by clicking it in the legend to the right of the figure.  
+
+For easier visualization, the data is grouped in months.
+
 ```{python} 
 #| cache: false
+#| include: false
 py_df['datetime_shifted']= py_df["datetime"].shift().fillna(pd.to_datetime(py_df["datetime"][0]))
 py_df['time_spent'] = (pd.to_datetime(py_df['datetime']) - pd.to_datetime(py_df['datetime_shifted']))/pd.Timedelta(1, "S")
 ```
 #### September
 ```{python} 
+#| label: fig-idle-time-september
+#| fig-cap: Idle time in September
 px.scatter(py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
-print("logarithmic time")
+```
+
+```{python} 
 px.scatter(py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
 ```
 
 #### October
 ```{python} 
+#| label: fig-idle-time-october
+#| fig-cap: Idle time in October
 px.scatter(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
 print("logarithmic time")
 px.scatter(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
@@ -308,6 +343,8 @@ px.scatter(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime
 
 #### November
 ```{python} 
+#| label: fig-idleNovember
+#| fig-cap: Idle time in November
 px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
 print("logarithmic time")
 px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
@@ -316,9 +353,9 @@ px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime
 ### Discussion
 
 * The nsc-exporter is idle for quite a portion of the time.
-    + Quite long idle time in September observed. 
-    + Almost 12 wgs projects were transferred in November. 
-* The maximum transfer speed is reached around 200 MB file size. This is the configured chunk size of s3cmd which is the tool used for data transfer. We might want to increase the chunk size to improve the transfer speed?
+    + Quite long idle time in September observed @fig-idle-time-september.
+    + Almost 12 wgs projects were transferred in November.
+* The maximum transfer speed is reached around 200 MB file size @fig-correlation-filesize-speed-200MB. This is the configured chunk size of s3cmd which is the tool used by nsc-exporter for data transfer. We might want to increase the chunk size to improve the transfer speed?
 * The current transfer speed is not optimal considering the 10Gbps switch connecting NSC and TSD. We need to investigate the reason for the low transfer speed.
 
 
@@ -353,4 +390,7 @@ To be addded...
 
 # Conclusion
 
-To be added...
+To be added... 
+
+
+[^1]: The nsc-exporter log and sequencer overview html files are very small files and do not belong to any projects. They are always transferred in a very short time. They will not affect the transfer speed of other files. Therefore, they are ignored for simplicity.
