@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://robotgenome.com/about.html</loc>
-    <lastmod>2023-12-07T17:26:48.982Z</lastmod>
+    <loc>http://robotgenome.com/about.html</loc>
+    <lastmod>2023-12-07T17:30:32.025Z</lastmod>
   </url>
   <url>
-    <loc>https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf.html</loc>
-    <lastmod>2023-12-07T17:26:48.337Z</lastmod>
+    <loc>http://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf.html</loc>
+    <lastmod>2023-12-07T17:30:31.340Z</lastmod>
   </url>
   <url>
-    <loc>https://robotgenome.com/index.html</loc>
-    <lastmod>2023-12-07T17:26:48.662Z</lastmod>
+    <loc>http://robotgenome.com/index.html</loc>
+    <lastmod>2023-12-07T17:30:31.662Z</lastmod>
   </url>
 </urlset>
