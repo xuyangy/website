@@ -20,6 +20,7 @@ format:
         theme: Journal
         toc: true
         toc-depth: 4
+        toc-expand: 3
         number-sections: true
         number-depth: 4
         float: true
@@ -146,13 +147,18 @@ ggplot(
     aes(x = bytes)
 ) +
     geom_histogram(fill = "#fc03d3", bins = 200) +
-    labs(x = "file size (bytes)", y = "count", title = "Filesize") + theme_minimal()
+    labs(x = "file size (bytes)", y = "count", title = "File Size") + theme_minimal()
 ggplot(
     data,
     aes(x = bytes)
 ) +
-    geom_histogram(fill = "#fc03d3", bins = 200) +
-    labs(x = "file size (bytes)", y = "count (log2)", title = "Filesize (log2)") + scale_y_continuous(trans='log2') + theme_minimal()
+geom_histogram(fill = "#fc03d3", bins = 200) +
+labs(
+    x = "file size (bytes)",
+    y = "count (log10)",
+    title = "File Size (log10)"
+) + 
+scale_y_continuous(trans='log10') + theme_minimal()
 ```
 :::
 ::::
@@ -170,17 +176,25 @@ setNames(as.data.frame(sapply(summary(data$speed), humanReadable)), "speed(/s)")
 ```{r} 
 library(ggplot2)
 ggplot(
-    data,
-    aes(x = speed)
+  data,
+  aes(x = speed)
 ) + 
-    geom_histogram(bins=200, fill="#0bd440") + 
-    labs(x = "bytes/s", y = "count", title = "Transfer Speed") + theme_minimal()
+  geom_histogram(bins = 200, fill = "#0bd440") + 
+  labs(x = "bytes/s", y = "count", title = "Transfer Speed") + 
+  theme_minimal()
+
 ggplot(
     data,
     aes(x = speed)
 ) + 
-    geom_histogram(bins=200, fill="#0bd440") + 
-    labs(x = "bytes/s", y = "count (log2)", title = "Transfer Speed (log2)") + scale_y_continuous(trans='log2') + theme_minimal()
+  geom_histogram(bins = 200, fill = "#0bd440") + 
+  labs(
+    x = "bytes/s",
+    y = "count (log10)",
+    title = "Transfer Speed (log10)"
+  ) + 
+  scale_y_continuous(trans = 'log10') +
+  theme_minimal()
 ```
 :::
 ::::
@@ -201,17 +215,20 @@ summary(data %>% select(seconds))
 #| warning: false
 library(ggplot2)
 ggplot(
-    data,
-    aes(x = seconds)
+  data,
+  aes(x = seconds)
 ) + 
-    geom_histogram(bins=200, fill="#e3571b") + 
-    labs(x = "transfer time(per file)", y = "count", title = "Transfer Time") + theme_minimal()
+  geom_histogram(bins = 200, fill = "#e3571b") + 
+  labs(x = "transfer time(per file)", y = "count", title = "Transfer Time") + theme_minimal()
+
 ggplot(
-    data,
-    aes(x = seconds)
+  data,
+  aes(x = seconds)
 ) + 
-    geom_histogram(bins=200, fill="#e3571b") + 
-    labs(x = "transfer time(per file)", y = "count (log2)", title = "Transfer Time (log2)") + scale_y_continuous(trans='log2') + theme_minimal()
+  geom_histogram(bins = 200, fill = "#e3571b") + 
+  labs(x = "transfer time(per file)", y = "count (log10)", title = "Transfer Time (log10)") + 
+  scale_y_continuous(trans = 'log10') + 
+  theme_minimal()
 ```
 :::
 ::::
@@ -261,14 +278,30 @@ py_df = pd.read_csv("data.csv",
                     date_format="%Y-%m-%d %H:%M:%S.%f")
 py_df["speed"] = py_df["speed"].apply(deHumanReadable)
 py_df["project_type"] = py_df["project"].apply(lambda x: re.match(r"[a-zA-Z]+", x).group())
-fig = px.scatter(py_df, x="bytes", y="speed", labels={'x': 'file size', 'y': 'transfer speed'}, opacity=0.3, color="project_type", height=500)
+fig = px.scatter(
+    py_df,
+    x="bytes",
+    y="speed",
+    labels={"bytes": "file size (bytes)", "speed": "transfer speed"},
+    opacity=0.3,
+    color="project_type",
+    height=500,
+)
 fig.show()
 ```
 
 ```{python} 
 #| label: fig-correlation-filesize-time-all
 #| fig-cap: Transfer time VS file size (all files)
-fig_time = px.scatter(py_df, x="bytes", y="seconds", opacity=0.3, color="project_type", height=500)
+fig_time = px.scatter(
+    py_df,
+    x="bytes",
+    y="seconds",
+    labels={"bytes": "file size (bytes)", "seconds": "transfer time (seconds)"},
+    opacity=0.3,
+    color="project_type",
+    height=500,
+)
 fig_time.show()
 ```
 
@@ -282,14 +315,30 @@ Although the transfer speed of small files are very low; the transfer time is us
 #| fig-cap: Transfer speed VS file size (small files)
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 300000]
-fig_sf = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
+fig_sf = px.scatter(
+    small_files,
+    x="bytes",
+    y="speed",
+    labels={"bytes": "file size (bytes)", "speed": "transfer speed"},
+    opacity=0.3,
+    color="project_type",
+    height=500,
+)
 fig_sf.show()
 ```
 
 ```{python} 
 #| label: fig-correlation-filesize-time-small
 #| fig-cap: Transfer time VS file size (small files)
-fig_sf_time = px.scatter(small_files, x="bytes", y="seconds", opacity=0.3, color="project_type", height=500)
+fig_sf_time = px.scatter(
+    small_files,
+    x="bytes",
+    y="seconds",
+    labels={"bytes": "file size (bytes)", "seconds": "transfer time (seconds)"},
+    opacity=0.3,
+    color="project_type",
+    height=500,
+)
 fig_sf_time.show()
 ```
 
@@ -303,7 +352,15 @@ Small files have lower transfer speed. Large files have higher transfer speed. B
 #| fig-cap: maximum transfer speed reached around 200MB file size
 import plotly.express as px
 small_files = py_df[py_df["bytes"] < 500000000]
-fig_200MB = px.scatter(small_files, x="bytes", y="speed", opacity=0.3, color="project_type", height=500)
+fig_200MB = px.scatter(
+    small_files,
+    x="bytes",
+    y="speed",
+    labels={"bytes": "file size (bytes)", "speed": "transfer speed"},
+    opacity=0.3,
+    color="project_type",
+    height=500,
+)
 fig_200MB.show()
 ```
 
@@ -325,32 +382,192 @@ py_df['time_spent'] = (pd.to_datetime(py_df['datetime']) - pd.to_datetime(py_df[
 ```{python} 
 #| label: fig-idle-time-september
 #| fig-cap: Idle time in September
-px.scatter(py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
+px.scatter(
+    py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))],
+    x="datetime",
+    y="time_spent",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    title="transfer records(per file)",
+    height=600,
+)
 ```
 
 ```{python} 
-px.scatter(py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
+#| label: fig-idle-time-september-logarithmic
+#| fig-cap: Idle time in September (logarithmic time)
+px.scatter(
+    py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))],
+    x="datetime",
+    y="time_spent",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    log_y=True,
+    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    title="transfer records(per file)",
+    height=600,
+)
 ```
 
 #### October
 ```{python} 
 #| label: fig-idle-time-october
 #| fig-cap: Idle time in October
-px.scatter(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
-print("logarithmic time")
-px.scatter(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
+px.scatter(
+    py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))],
+    x="datetime",
+    y="time_spent",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    title="transfer records(per file)",
+    height=600,
+)
+```
+```{python} 
+#| label: fig-idle-time-october-logarithmic
+#| fig-cap: Idle time in October (logarithmic time)
+px.scatter(
+    py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))],
+    x="datetime",
+    y="time_spent",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    log_y=True,
+    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    title="transfer records(per file)",
+    height=600,
+)
 ```
 
 #### November
 ```{python} 
 #| label: fig-idleNovember
 #| fig-cap: Idle time in November
-px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", labels={"x": "transfer start", "y": "transfer time"}, title="transfer records(per file)", height=600)
-print("logarithmic time")
-px.scatter(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))], x="datetime", y="time_spent", opacity=0.3, color="project", symbol="project_type", log_y=True, labels=["x", "y"], title="transfer records(per file)", height=600)
+px.scatter(
+    py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))],
+    x="datetime",
+    y="time_spent",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    title="transfer records(per file)",
+    height=600,
+)
+```
+
+```{python} 
+#| label: fig-idleNovember-logarithmic
+#| fig-cap: Idle time in November (logarithmic time)
+px.scatter(
+    py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))],
+    x="datetime",
+    y="time_spent",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    log_y=True,
+    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    title="transfer records(per file)",
+    height=600,
+)
 ```
 
 ### Discussion
+
+#### Do we transfer too many small files?
+```{python} 
+#| label: fig-small-files-count
+#| fig-cap: total number of small files vs large files
+#| cache: false
+boundary = [100000, 1000000, 10000000, 100000000, 1000000000]
+small = []
+large = []
+
+for threshold in boundary:
+    small.append(len(py_df[py_df["bytes"] < threshold]))
+    large.append(len(py_df[py_df["bytes"] >= threshold]))
+
+filecount_df = pd.DataFrame(
+    {
+        "boundary": map(
+            lambda x: "<" + r.humanReadable(x, standard="SI", digits=0),
+            boundary,
+        ),
+        "small": small,
+        "large": large,
+    },
+)
+
+px.bar(
+    filecount_df,
+    x="boundary",
+    y=["small", "large"],
+    labels={
+        'boundary': 'how small is small?',
+        'value': 'file count',
+        'variable': 'category',
+    },
+    title="Number Of Small Files vs Large Files",
+    color_discrete_map={"small": "seagreen", "large": "orangered"},
+)
+```
+
+```{python} 
+#| label: fig-small-files-tot-time
+#| fig-cap: total time used for transferring small files
+#| cache: false
+small_tot_time = []
+large_tot_time = []
+for threshold in boundary:
+    small_tot_time.append(sum(py_df[py_df["bytes"] < threshold]["seconds"]))
+    large_tot_time.append(sum(py_df[py_df["bytes"] >= threshold]["seconds"]))
+time_df = pd.DataFrame(
+    {
+        "boundary": map(
+            lambda x: "<" + r.humanReadable(x, standard="SI", digits=0),
+            boundary,
+        ),
+        "small": small_tot_time,
+        "large": large_tot_time,
+    },
+)
+px.bar(
+    time_df,
+    x="boundary",
+    y=["small", "large"],
+    labels={
+        'boundary': 'how small is small?',
+        'value': 'total time used (seconds)',
+        'variable': 'category',
+    },
+    title="Total Time Used To Transfer Small Files vs Large Files",
+    color_discrete_map={"small": "seagreen", "large": "orangered"},
+)
+```
+
+::: {.callout-tip collapse="true"}
+##### raw data
+
+```{r} 
+#| output: asis
+library(reticulate)
+library(jtools)
+cat(md_table(
+    py$time_df,
+    align = 'lrrr',
+    format="markdown",
+    col.names = c("threshold", "small files", "large files")
+))
+```
+:::
+####  Possibility Of One More 48-sample Run Per Week
 
 * The nsc-exporter is idle for quite a portion of the time.
     + Quite long idle time in September observed @fig-idle-time-september.
