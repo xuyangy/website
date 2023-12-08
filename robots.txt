@@ -1,1 +1,1 @@
-Sitemap: http://robotgenome.com/sitemap.xml
+Sitemap: https://robotgenome.com/sitemap.xml
