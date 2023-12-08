@@ -20,7 +20,7 @@ format:
         theme: Journal
         toc: true
         toc-depth: 4
-        toc-expand: 3
+        # toc-expand: 3
         number-sections: true
         number-depth: 4
         float: true
@@ -28,6 +28,7 @@ format:
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
 execute: 
     cache: true
     echo: false
@@ -43,6 +44,7 @@ This document evaluates the possible bottlenecks of IT & bioinformatics pipeline
 1. Data transfer speed
 2. Data storage
 3. Pipeline capacity (Illumina DRAGEN)
+
 
 # IT && Bioinformatics
 
@@ -113,7 +115,7 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 
 :::
 
-::: {.callout-important}
+::: {.callout-note}
 ## The nsc-exporter log files and the sequencer overview html files were ignored for simplicity. [^1]
 
 
@@ -130,17 +132,12 @@ The file size of the collected data ranges from [`r humanReadable(min(data$bytes
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
-#| echo: false
-#| message: false
-#| warning: false
 setNames(as.data.frame(sapply(summary(data$bytes), humanReadable)), "filesize")
 ```
 :::
 ::: {.column width="70%"}
 ```{r} 
-#| echo: false
-#| message: false
-#| warning: false
+#| fig-height: 3
 library(ggplot2)
 ggplot(
     data,
@@ -168,13 +165,12 @@ The transfer speed ranges from [`r humanReadable(min(data$speed))`]{style="font-
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
-#| echo: false
 setNames(as.data.frame(sapply(summary(data$speed), humanReadable)), "speed(/s)")
 ```
 :::
 ::: {.column width="70%"}
 ```{r} 
-library(ggplot2)
+#| fig-height: 3
 ggplot(
   data,
   aes(x = speed)
@@ -204,16 +200,12 @@ The transfer time ranges from [`r round(min(data$seconds), 1)`]{style="font-fami
 :::: {.columns}
 ::: {.column width="30%"}
 ```{r} 
-#| echo: false
 summary(data %>% select(seconds))
 ```
 :::
 ::: {.column width="70%"}
 ```{r} 
-#| echo: false
-#| message: false
-#| warning: false
-library(ggplot2)
+#| fig-height: 3
 ggplot(
   data,
   aes(x = seconds)
@@ -290,56 +282,71 @@ fig = px.scatter(
 fig.show()
 ```
 
-```{python} 
+```{r}
 #| label: fig-correlation-filesize-time-all
 #| fig-cap: Transfer time VS file size (all files)
-fig_time = px.scatter(
-    py_df,
-    x="bytes",
-    y="seconds",
-    labels={"bytes": "file size (bytes)", "seconds": "transfer time (seconds)"},
-    opacity=0.3,
-    color="project_type",
-    height=500,
-)
-fig_time.show()
-```
+#| cache: false
+#| fig-width: 10
+#| fig-height: 4
+library(reticulate)
+library(ggplot2)
 
+ggplot(py$py_df, aes(x = bytes, y = seconds, color = project_type)) +
+  geom_point(alpha = 0.3) +
+  labs(x = "file size (bytes)", y = "transfer time (seconds)") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  guides(color = guide_legend(title = "Project Type")) + 
+  scale_color_manual(values = c(
+    "wgs" = "#636EFA",
+    "EKG" = "#EF553B",
+    "excap" = "#00CC96",
+    "Test" = "#AB63FA"
+  ))
+```
 #### Transfer speed and time VS file size (small files)
 
 
 Although the transfer speed of small files are very low; the transfer time is usually very short. So small files are not the bottleneck of the data transfer.
 
-```{python} 
+```{r}
 #| label: fig-correlation-filesize-speed-small
 #| fig-cap: Transfer speed VS file size (small files)
-import plotly.express as px
-small_files = py_df[py_df["bytes"] < 300000]
-fig_sf = px.scatter(
-    small_files,
-    x="bytes",
-    y="speed",
-    labels={"bytes": "file size (bytes)", "speed": "transfer speed"},
-    opacity=0.3,
-    color="project_type",
-    height=500,
-)
-fig_sf.show()
+#| fig-width: 10
+#| fig-height: 4
+#| cache: true
+small_files <- py$py_df[py$py_df$bytes < 300000, ]
+fig_sf <- ggplot(small_files, aes(x = bytes, y = speed, color = project_type)) +
+  geom_point(alpha = 0.3) +
+  labs(x = "file size (bytes)", y = "transfer speed") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 14, face = "bold")) +
+  scale_color_manual(values = c(
+    "wgs" = "#636EFA",
+    "EKG" = "#EF553B",
+    "excap" = "#00CC96",
+    "Test" = "#AB63FA"
+  ))
+print(fig_sf)
 ```
 
-```{python} 
+```{r}
 #| label: fig-correlation-filesize-time-small
 #| fig-cap: Transfer time VS file size (small files)
-fig_sf_time = px.scatter(
-    small_files,
-    x="bytes",
-    y="seconds",
-    labels={"bytes": "file size (bytes)", "seconds": "transfer time (seconds)"},
-    opacity=0.3,
-    color="project_type",
-    height=500,
-)
-fig_sf_time.show()
+#| fig-width: 10
+#| fig-height: 4
+
+ggplot(small_files, aes(x = bytes, y = seconds, color = project_type)) +
+  geom_point(alpha = 0.3) +
+  labs(x = "file size (bytes)", y = "transfer time (seconds)") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_color_manual(values = c(
+    "wgs" = "#636EFA",
+    "EKG" = "#EF553B",
+    "excap" = "#00CC96",
+    "Test" = "#AB63FA"
+  ))
 ```
 
 
@@ -375,109 +382,191 @@ For easier visualization, the data is grouped in months.
 ```{python} 
 #| cache: false
 #| include: false
-py_df['datetime_shifted']= py_df["datetime"].shift().fillna(pd.to_datetime(py_df["datetime"][0]))
-py_df['time_spent'] = (pd.to_datetime(py_df['datetime']) - pd.to_datetime(py_df['datetime_shifted']))/pd.Timedelta(1, "S")
+py_df['datetime_shifted']= py_df["datetime"].shift(1)
+py_df['time_gap'] = (pd.to_datetime(py_df['datetime']) - pd.to_datetime(py_df['datetime_shifted']))[1:].reset_index(drop=True)/pd.Timedelta(1, "S")
 ```
 #### September
 ```{python} 
-#| label: fig-idle-time-september
-#| fig-cap: Idle time in September
+#| label: fig-timeseries-sep-trans-time
+#| fig-cap: Transfer time of all files transferred in September
 px.scatter(
     py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))],
     x="datetime",
-    y="time_spent",
+    y="seconds",
     opacity=0.3,
     color="project",
     symbol="project_type",
-    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
-    title="transfer records(per file)",
+    labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
+    title="transfer time (per file)",
     height=600,
 )
 ```
 
 ```{python} 
-#| label: fig-idle-time-september-logarithmic
-#| fig-cap: Idle time in September (logarithmic time)
+#| label: fig-gap-sep
+#| fig-cap: Idle time in September (transfer gaps)
 px.scatter(
     py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))],
     x="datetime",
-    y="time_spent",
+    y="time_gap",
     opacity=0.3,
     color="project",
     symbol="project_type",
-    log_y=True,
-    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
-    title="transfer records(per file)",
+    log_y=False,
+    labels={"datetime": "transfer start datetime", "time_gap": "Interval to next transfer start (seconds)"},
+    title="transfer gaps (time difference between two transfer starts)",
     height=600,
 )
 ```
+
+```{python} 
+import humanize
+import datetime
+#| cache: true
+slept = pd.read_csv('sleeping_time.csv', parse_dates=['sleep_at'])
+ttt_sep = sum(
+    py_df[( pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"]) ) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))]["seconds"],
+)
+ttt_sep_humanize = humanize.precisedelta(datetime.timedelta(seconds=ttt_sep))
+slept_times_sep = len(slept[(pd.to_datetime("2023-09-01") <= pd.to_datetime(slept["sleep_at"])) & (pd.to_datetime(slept["sleep_at"]) < pd.to_datetime("2023-10-01")) & slept["small_sleep"]])
+slept_tot_sep = slept_times_sep * 600
+ttt_sep_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_sep))
+```
+
+```{r}
+#| cache: true
+r_ttt_sep_humanize <- py$ttt_sep_humanize
+r_ttt_sep_sleep_humanize <- py$ttt_sep_sleep_humanize
+r_slept_times_sep <- py$slept_times_sep
+```
+::: {.callout-caution}
+##### absolute transfer time
+Total absolute time used for transferring files in September is [`r r_ttt_sep_humanize`]{style="font-family:Krona One;"}.
+:::
+
+The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In September, nsc-exporter slept [`r r_slept_times_sep`]{style="font-family:Quicksand"} times, totally [`r r_ttt_sep_sleep_humanize`]{style="font-family:Quicksand;"}. [^2]
+
+Another type of time used is the md5sum checking by `s3cmd put` command. [^3]
+
 
 #### October
 ```{python} 
-#| label: fig-idle-time-october
+#| label: fig-timeseries-oct-trans-time
+#| fig-cap: All transfers in October in time order
+px.scatter(
+    py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))],
+    x="datetime",
+    y="seconds",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
+    title="transfer time (per file)",
+    height=600,
+)
+```
+
+```{python} 
+#| label: fig-gap-oct
 #| fig-cap: Idle time in October
 px.scatter(
     py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))],
     x="datetime",
-    y="time_spent",
+    y="time_gap",
     opacity=0.3,
     color="project",
     symbol="project_type",
-    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
-    title="transfer records(per file)",
-    height=600,
-)
-```
-```{python} 
-#| label: fig-idle-time-october-logarithmic
-#| fig-cap: Idle time in October (logarithmic time)
-px.scatter(
-    py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))],
-    x="datetime",
-    y="time_spent",
-    opacity=0.3,
-    color="project",
-    symbol="project_type",
-    log_y=True,
-    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    labels={"datetime": "transfer start datetime", "time_gap": "time used (seconds)"},
     title="transfer records(per file)",
     height=600,
 )
 ```
 
+```{python} 
+import humanize
+import datetime
+#| cache: true
+ttt_oct = sum(py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))]["seconds"])
+ttt_oct_humanize = humanize.precisedelta(datetime.timedelta(seconds=ttt_oct))
+slept_times_oct = len(slept[(pd.to_datetime("2023-10-01") <= pd.to_datetime(slept["sleep_at"])) & (pd.to_datetime(slept["sleep_at"]) < pd.to_datetime("2023-11-01")) & slept["small_sleep"]])
+slept_tot_oct = slept_times_oct * 600
+ttt_oct_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_oct))
+```
+
+```{r}
+#| cache: true
+library(reticulate)
+r_ttt_oct_humanize <- py$ttt_oct_humanize
+r_ttt_oct_sleep_humanize <- py$ttt_oct_sleep_humanize
+r_slept_times_oct <- py$slept_times_oct
+```
+
+::: {.callout-caution}
+##### absolute transfer time
+Total absolute time used for transferring files in October is [`r r_ttt_oct_humanize`]{style="font-family:Krona One;"}.
+:::
+
+The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In October, nsc-exporter slept [`r r_slept_times_oct`]{style="font-family:Quicksand"} times, totally [`r r_ttt_oct_sleep_humanize`]{style="font-family:Quicksand;"}.
+
+
 #### November
 ```{python} 
-#| label: fig-idleNovember
+#| label: fig-timeseries-nov-trans-time
+#| fig-cap: All transfers in November in time order
+px.scatter(
+    py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))],
+    x="datetime",
+    y="seconds",
+    opacity=0.3,
+    color="project",
+    symbol="project_type",
+    labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
+    title="transfer time (per file)",
+    height=600,
+)
+```
+
+```{python} 
+#| label: fig-gap-nov
 #| fig-cap: Idle time in November
 px.scatter(
     py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))],
     x="datetime",
-    y="time_spent",
+    y="time_gap",
     opacity=0.3,
     color="project",
     symbol="project_type",
-    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
+    labels={"datetime": "transfer start datetime", "time_gap": "time used (seconds)"},
     title="transfer records(per file)",
     height=600,
 )
 ```
 
 ```{python} 
-#| label: fig-idleNovember-logarithmic
-#| fig-cap: Idle time in November (logarithmic time)
-px.scatter(
-    py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))],
-    x="datetime",
-    y="time_spent",
-    opacity=0.3,
-    color="project",
-    symbol="project_type",
-    log_y=True,
-    labels={"datetime": "transfer start datetime", "time_spent": "time used (seconds)"},
-    title="transfer records(per file)",
-    height=600,
-)
+import humanize
+import datetime
+#| cache: true
+ttt_nov = sum(py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))]["seconds"])
+ttt_nov_humanize_nov = humanize.precisedelta(datetime.timedelta(seconds=ttt_nov))
+slept_times_nov = len(slept[(pd.to_datetime("2023-11-01") <= pd.to_datetime(slept["sleep_at"])) & (pd.to_datetime(slept["sleep_at"]) < pd.to_datetime("2023-12-01")) & slept["small_sleep"]])
+slept_tot_nov = slept_times_nov * 600
+ttt_nov_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_nov))
 ```
+
+```{r}
+#| cache: true
+library(reticulate)
+r_ttt_nov_humanize_nov <- py$ttt_nov_humanize_nov
+r_ttt_nov_sleep_humanize <- py$ttt_nov_sleep_humanize
+r_slept_times_nov <- py$slept_times_nov
+```
+
+::: {.callout-caution}
+##### absolute transfer time
+Total absolute time used for transferring files in November is [`r r_ttt_nov_humanize_nov`]{style="font-family:Krona One;"}.
+:::
+
+The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In November, nsc-exporter slept [`r r_slept_times_nov`]{style="font-family:Quicksand"} times, totally [`r r_ttt_nov_sleep_humanize`]{style="font-family:Quicksand;"}.
 
 ### Discussion
 
@@ -553,7 +642,7 @@ px.bar(
 ```
 
 ::: {.callout-tip collapse="true"}
-##### raw data
+##### Total time (seconds) used to transfer small vs larger files (raw data)
 
 ```{r} 
 #| output: asis
@@ -570,7 +659,7 @@ cat(md_table(
 ####  Possibility Of One More 48-sample Run Per Week
 
 * The nsc-exporter is idle for quite a portion of the time.
-    + Quite long idle time in September observed @fig-idle-time-september.
+    + Quite long idle time in September observed @fig-timeseries-sep-trans-time.
     + Almost 12 wgs projects were transferred in November.
 * The maximum transfer speed is reached around 200 MB file size @fig-correlation-filesize-speed-200MB. This is the configured chunk size of s3cmd which is the tool used by nsc-exporter for data transfer. We might want to increase the chunk size to improve the transfer speed?
 * The current transfer speed is not optimal considering the 10Gbps switch connecting NSC and TSD. We need to investigate the reason for the low transfer speed.
@@ -611,3 +700,5 @@ To be added...
 
 
 [^1]: The nsc-exporter log and sequencer overview html files are very small files and do not belong to any projects. They are always transferred in a very short time. They will not affect the transfer speed of other files. Therefore, they are ignored for simplicity.
+[^2]: Data comes in a continuous manner. The nsc-exporter normally takes a snapshot of new data and tranfer it. It then sleeps for 10 minutes before checking for new data. The slept times counted here are where next sleep is more than the sleeping interval (10 minutes) later, siginifying that new data comes right after the sleep. This is contrary to long idle time where no new data comes after the sleep.
+[^3]: To make sure files are transferred intact, `s3cmd put` checks the *md5sum* of the files. This takes time and is not reported as transfer time by `s3cmd`
