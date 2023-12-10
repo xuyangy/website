@@ -40,7 +40,7 @@ execute:
 GDx at OUSAMG is planning to upscale the WGS production to `4 x 48` samples or `2 x 48 + 1 x 96` samples per week. 
 Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?
 
-The capacity of IT & bioinformatics pipelines can be evaluated from three aspects:
+The capacity of IT & bioinformatics pipelines can be evaluated from following three aspects:
 
 1. **Data transfer speed**
 2. **Data storage**
@@ -119,15 +119,14 @@ data <- mutate(data, speed = sapply(speed, recognize_bandwidth))
 
 ## Data Collection
 
-To evaluate the data transfer speed from NSC to TSD, we collected the historical data transfer records (from NSC to TSD) 
+To evaluate the data transfer speed from NSC to TSD, we collected the historical data transfer records
   between [`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} 
   and [`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} 
-  from the nsc-exporter. 
-The nsc-exporter is the tool that is used to transfer data from NSC to TSD.
+  from the nsc-exporter log. 
 
 ::: {.callout-tip collapse="true"}
 
-# examples of collected data
+### examples of collected data
 
 
 ```{r}
@@ -144,7 +143,7 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 :::
 
 ::: {.callout-note}
-# The nsc-exporter log files and the sequencer overview html files were ignored for simplicity. [^1]
+### The nsc-exporter log files and the sequencer overview html files were ignored for simplicity. [^1]
 
 
 :::
@@ -155,9 +154,9 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 #| cache: false
 library(gdata)
 ```
-The file size of the collected data ranges 
-  from [`r humanReadable(min(data$bytes))`]{style="font-family:Quicksand;"} 
-  to [`r humanReadable(max(data$bytes))`]{style="font-family:Quicksand;"}. 
+The size of transferred files ranges from 
+  [`r humanReadable(min(data$bytes))`]{style="font-family:Quicksand;"} to 
+  [`r humanReadable(max(data$bytes))`]{style="font-family:Quicksand;"}. 
 The average file size is [`r humanReadable(mean(data$bytes))`]{style="font-family:Quicksand;"}. 
 The median file size is [`r humanReadable(median(data$bytes))`]{style="font-family:Quicksand;"}. 
 The standard deviation is [`r humanReadable(sd(data$bytes))`]{style="font-family:Quicksand;"}.
@@ -194,11 +193,11 @@ scale_y_continuous(trans='log10') + theme_minimal()
 ::::
 ### Transfer Speed
 The transfer speed ranges 
-  from [`r humanReadable(min(data$speed))`]{style="font-family:Quicksand;"} 
-  to [`r humanReadable(max(data$speed))`]{style="font-family:Quicksand;"}. 
-The average transfer speed is [`r humanReadable(mean(data$speed))`]{style="font-family:Quicksand;"}. 
-The median transfer speed is [`r humanReadable(median(data$speed))`]{style="font-family:Quicksand;"}. 
-The standard deviation is [`r humanReadable(sd(data$speed))`]{style="font-family:Quicksand;"}.
+  from [`r humanReadable(min(data$speed))`/s]{style="font-family:Quicksand;"}
+  to [`r humanReadable(max(data$speed))`/s]{style="font-family:Quicksand;"}.
+The average transfer speed is [`r humanReadable(mean(data$speed))`/s]{style="font-family:Quicksand;"}.
+The median transfer speed is [`r humanReadable(median(data$speed))`/s]{style="font-family:Quicksand;"}.
+The standard deviation is [`r humanReadable(sd(data$speed))`/s]{style="font-family:Quicksand;"}.
 
 :::: {.columns}
 ::: {.column width="30%"}
@@ -298,7 +297,8 @@ def deHumanReadable(bandwidth_string):
 ### Transfer speed and time VS file size (all files)
 
 
-Small files have lower transfer speed. A good transfer speed around 80 MB/s is achieved for files larger than 30 GB.
+Small files have lower transfer speed. A good transfer speed around 80 MB/s can be achieved for large files (>2 GB).
+However, the best speed is observed for files with size around 200 MB (zoom in or see @fig-correlation-filesize-speed-200MB).
 ```{python} 
 #| label: fig-correlation-filesize-speed-all
 #| fig-cap: Transfer speed VS file size (all files)
