@@ -1,5 +1,13 @@
 ---
-title: "Cool Website"
+title: "Projects"
+title-block-banner: false
+listing:
+    contents: projects
+    type: default
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    grid-columns: 2
+    grid-item-border: true
+    grid-item-align: left
 ---
-
-This is my cool website which is empty right now.

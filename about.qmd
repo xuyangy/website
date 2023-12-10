@@ -1,5 +1,21 @@
 ---
-title: "About"
+title: "Robot Genome"
+about: 
+    template: jolla
+    image: pipeline.png
+    links:
+        - icon: twitter
+          text: Twitter
+          href: https://twitter.com
+        - icon: github
+          text: Github
+          href: https://github.com
+        - icon: linkedin
+          text: LinkedIn
+          href: https://linkedin.com
+        - icon: envelope
+          text: Contact me
+          href: mailto:xuyangy@uio.no
 ---
 
-About this site
+Robotis and genomics are two of my favorite things. I'm working on a project to combine them.

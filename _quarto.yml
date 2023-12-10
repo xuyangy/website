@@ -18,7 +18,9 @@ website:
                     href: projects/workflow_tracker/index.html
 format:
     html:
-        theme: Journal
+        theme: 
+            light: Journal
+            dark: Superhero
         grid:
             sidebar-width: 100px
             body-width: 1100px
