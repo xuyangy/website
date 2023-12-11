@@ -437,36 +437,58 @@ For easier visualization, the data is grouped in months.
 ```{python} 
 #| cache: false
 #| include: false
+import humanize
+from pathlib import Path
 py_df['datetime_shifted']= py_df["datetime"].shift(1)
 py_df['time_gap'] = (pd.to_datetime(py_df['datetime']) - pd.to_datetime(py_df['datetime_shifted']))[1:].reset_index(drop=True)/pd.Timedelta(1, "S")
+py_df.datetime = py_df.datetime.shift().fillna(py_df.datetime[0])
+py_df.time_gap = py_df.time_gap.shift().fillna(0)
+py_df["file_extension"] = py_df.filename.apply(lambda x: Path(x).suffix if Path(x).suffix else x)
+py_df["size"] = py_df.bytes.apply(humanize.naturalsize)
+py_df[((py_df.time_gap - py_df.seconds) > 30) & ((py_df.time_gap - py_df.seconds) < 600)]
+
+def md5(x):
+  if (x.time_gap - x.seconds) > 30 and (x.time_gap - x.seconds) < 600:
+    return x.time_gap - x.seconds
+  else:
+    return 0
+
+py_df["md5_check"] = py_df.apply(md5, axis=1)
 ```
 ### September
 ```{python} 
 #| label: fig-timeseries-sep-trans-time
 #| fig-cap: Transfer time of all files in September
+py_df_sep = py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))]
 px.scatter(
-    py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))],
+    py_df_sep,
     x="datetime",
     y="seconds",
     opacity=0.3,
     color="project",
     symbol="project_type",
+    hover_data=["size", "time_gap", "file_extension"],
     labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
     title="transfer time (per file)",
     height=600,
 )
 ```
 
+```{r} 
+r_py_df_sep <- py$py_df_sep
+```
+
 ```{python} 
 #| label: fig-gap-sep
 #| fig-cap: Idle time in September (transfer gaps)
 px.scatter(
-    py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))],
+    py_df_sep,
     x="datetime",
     y="time_gap",
     opacity=0.3,
     color="project",
     symbol="project_type",
+    hover_data=["size", "seconds", "file_extension"],
     log_y=False,
     labels={"datetime": "transfer start datetime", "time_gap": "Interval to next transfer start (seconds)"},
     title="transfer gaps (time difference between two transfer starts)",
@@ -475,19 +497,42 @@ px.scatter(
 ```
 
 ```{python} 
-import humanize
 import datetime
 #| cache: true
 slept = pd.read_csv('sleeping_time.csv', parse_dates=['sleep_at'])
-py_df_sep = py_df[( pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"]) ) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))]
 ttt_sep = sum(py_df_sep["seconds"])
+ttmd5_sep = sum(py_df_sep["md5_check"])
 ttdata_sep = humanize.naturalsize(sum(py_df_sep["bytes"]))
+ttmd5_sep_humanize = humanize.precisedelta(datetime.timedelta(seconds=ttmd5_sep))
 ttt_sep_humanize = humanize.precisedelta(datetime.timedelta(seconds=ttt_sep))
 slept_times_sep = len(slept[(pd.to_datetime("2023-09-01") <= pd.to_datetime(slept["sleep_at"])) & (pd.to_datetime(slept["sleep_at"]) < pd.to_datetime("2023-10-01")) & slept["small_sleep"]])
 slept_tot_sep = slept_times_sep * 600
 ttt_sep_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_sep))
 ttp_sep = py_df_sep.groupby("project", as_index=False).count()
 ttp_sep_wgs = len(ttp_sep[(ttp_sep["project"].apply(lambda x: x.startswith("wgs"))) & (ttp_sep["filename"]>2000)])
+```
+
+```{r} 
+#| label: fig-md5-check-sep
+#| fig-cap: Time used for md5sum check in September [^md5sum]
+#| fig-width: 12
+library(reticulate)
+r_py_df_sep %>% 
+  mutate(r_datetime=as.POSIXct(datetime, format="%Y-%m-%d %H:%M:%S")) %>% 
+    filter(!(project_type == "wgs" & md5_check == 0)) %>% 
+    ggplot(aes(x = r_datetime, y=md5_check, color=project_type)) + 
+    geom_point() + 
+    scale_x_datetime(date_minor_breaks = "1 day") + 
+    labs(x = "datetime", y = "md5sum check time", title = "Time used for md5sum check") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    guides(color = guide_legend(title = "Project Type")) + 
+    scale_color_manual(values = c(
+      "wgs" = "#636EFA",
+      "EKG" = "#EF553B",
+      "excap" = "#00CC96",
+      "Test" = "#AB63FA"
+    )) +
+    theme_minimal()
 ```
 
 ```{r}
@@ -497,48 +542,57 @@ r_ttt_sep_sleep_humanize <- py$ttt_sep_sleep_humanize
 r_slept_times_sep <- py$slept_times_sep
 r_ttdata_sep <- py$ttdata_sep
 r_ttp_sep_wgs <- py$ttp_sep_wgs
+r_ttmd5_sep_humanize <- py$ttmd5_sep_humanize
 ```
 ::: {.callout-caution}
 #### [Attention]{#attention-sep}
-Total absolute time used for transferring files in September is [`r r_ttt_sep_humanize`]{style="font-family:Krona One;"}. 
+* Total absolute time used for transferring files in September is [`r r_ttt_sep_humanize`]{style="font-family:Krona One;"}. 
 In total [`r r_ttdata_sep`]{style="font-family:Krona One;"} data was transferred including
   [`r r_ttp_sep_wgs`]{style="font-family:Krona One;"} new wgs projects.
 
-The nsc-exporter will sleep 10 minutes before checking for new data to transfer. 
+* The nsc-exporter will sleep 10 minutes before checking for new data to transfer. 
 In September, nsc-exporter slept [`r r_slept_times_sep`]{style="font-family:Quicksand"} times, 
-  totally [`r r_ttt_sep_sleep_humanize`]{style="font-family:Quicksand;"}. [^2]
+  totally [`r r_ttt_sep_sleep_humanize`]{style="font-family:Krona One;"}. [^2]
 
-Another type of time used is the md5sum checking by `s3cmd put` command 
-  which is not counted in the absolute transfer time. [^3]
+* Another type of time used is the md5sum checking by `s3cmd put` command 
+which is not counted in the absolute transfer time. [^3]
+The total time used for md5sum checking in September is [`r r_ttmd5_sep_humanize`]{style="font-family:Krona One;"}. 
 :::
 
 ### October
 ```{python} 
 #| label: fig-timeseries-oct-trans-time
 #| fig-cap: Transfer time of all files in October
+py_df_oct = py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))]
 px.scatter(
-    py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))],
+    py_df_oct,
     x="datetime",
     y="seconds",
     opacity=0.3,
     color="project",
     symbol="project_type",
+    hover_data=["size", "time_gap", "file_extension"],
     labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
     title="transfer time (per file)",
     height=600,
 )
 ```
 
+```{r} 
+r_py_df_oct <- py$py_df_oct
+```
+
 ```{python} 
 #| label: fig-gap-oct
 #| fig-cap: Idle time in October (transfer gaps)
 px.scatter(
-    py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))],
+    py_df_oct,
     x="datetime",
     y="time_gap",
     opacity=0.3,
     color="project",
     symbol="project_type",
+    hover_data=["size", "seconds", "file_extension"],
     labels={"datetime": "transfer start datetime", "time_gap": "Interval to next transfer start (seconds)"},
     title="transfer gaps (time difference between two transfer starts)",
     height=600,
@@ -549,15 +603,39 @@ px.scatter(
 import humanize
 import datetime
 #| cache: true
-py_df_oct = py_df[( pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"]) ) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))]
 ttt_oct = sum(py_df_oct["seconds"])
+ttmd5_oct = sum(py_df_oct["md5_check"])
 ttdata_oct = humanize.naturalsize(sum(py_df_oct["bytes"]))
+ttmd5_oct_humanize = humanize.precisedelta(datetime.timedelta(seconds=ttmd5_oct))
 ttt_oct_humanize = humanize.precisedelta(datetime.timedelta(seconds=ttt_oct))
 slept_times_oct = len(slept[(pd.to_datetime("2023-10-01") <= pd.to_datetime(slept["sleep_at"])) & (pd.to_datetime(slept["sleep_at"]) < pd.to_datetime("2023-11-01")) & slept["small_sleep"]])
 slept_tot_oct = slept_times_oct * 600
 ttt_oct_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_oct))
 ttp_oct = py_df_oct.groupby("project", as_index=False).count()
 ttp_oct_wgs = len(ttp_oct[(ttp_oct["project"].apply(lambda x: x.startswith("wgs"))) & (ttp_oct["filename"]>2000)])
+```
+
+```{r} 
+#| label: fig-md5-check-oct
+#| fig-cap: Time used for md5sum check in October
+#| fig-width: 12
+library(reticulate)
+r_py_df_oct %>% 
+  mutate(r_datetime=as.POSIXct(datetime, format="%Y-%m-%d %H:%M:%S")) %>% 
+    filter(!(project_type == "wgs" & md5_check == 0)) %>% 
+    ggplot(aes(x = r_datetime, y=md5_check, color=project_type)) + 
+    geom_point() + 
+    scale_x_datetime(date_minor_breaks = "1 day") + 
+    labs(x = "datetime", y = "md5sum check time", title = "Time used for md5sum check") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    guides(color = guide_legend(title = "Project Type")) + 
+    scale_color_manual(values = c(
+      "wgs" = "#636EFA",
+      "EKG" = "#EF553B",
+      "excap" = "#00CC96",
+      "Test" = "#AB63FA"
+    )) +
+    theme_minimal()
 ```
 
 ```{r}
@@ -568,45 +646,54 @@ r_ttt_oct_sleep_humanize <- py$ttt_oct_sleep_humanize
 r_slept_times_oct <- py$slept_times_oct
 r_ttdata_oct <- py$ttdata_oct
 r_ttp_oct_wgs <- py$ttp_oct_wgs
+r_ttmd5_oct_humanize <- py$ttmd5_oct_humanize
 ```
 
 ::: {.callout-caution}
 #### [Attention]{#attention-oct}
-Total absolute time used for transferring files in October is [`r r_ttt_oct_humanize`]{style="font-family:Krona One;"}.
+* Total absolute time used for transferring files in October is [`r r_ttt_oct_humanize`]{style="font-family:Krona One;"}.
 In total [`r r_ttdata_oct`]{style="font-family:Krona One;"} data was transferred including 
   [`r r_ttp_oct_wgs`]{style="font-family:Krona One;"} new wgs projects.
 
-The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In October, nsc-exporter slept [`r r_slept_times_oct`]{style="font-family:Quicksand"} times, totally [`r r_ttt_oct_sleep_humanize`]{style="font-family:Quicksand;"}.
+* The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In October, nsc-exporter slept [`r r_slept_times_oct`]{style="font-family:Krona One"} times, totally [`r r_ttt_oct_sleep_humanize`]{style="font-family:Quicksand;"}.
 
+* The total time used for md5sum checking in October is [`r r_ttmd5_oct_humanize`]{style="font-family:Krona One;"}. 
 :::
 
 ### November
 ```{python} 
 #| label: fig-timeseries-nov-trans-time
 #| fig-cap: Transfer time of all files in November
+py_df_nov = py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))]
 px.scatter(
-    py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))],
+    py_df_nov,
     x="datetime",
     y="seconds",
     opacity=0.3,
     color="project",
     symbol="project_type",
+    hover_data=["size", "time_gap", "file_extension"],
     labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
     title="transfer time (per file)",
     height=600,
 )
 ```
 
+```{r} 
+r_py_df_nov <- py$py_df_nov
+```
+
 ```{python} 
 #| label: fig-gap-nov
 #| fig-cap: Idle time in November (transfer gaps)
 px.scatter(
-    py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))],
+    py_df_nov,
     x="datetime",
     y="time_gap",
     opacity=0.3,
     color="project",
     symbol="project_type",
+    hover_data=["size", "seconds", "file_extension"],
     labels={"datetime": "transfer start datetime", "time_gap": "Interval to next transfer start (seconds)"},
     title="transfer gaps (time difference between two transfer starts)",
     height=600,
@@ -617,15 +704,39 @@ px.scatter(
 import humanize
 import datetime
 #| cache: true
-py_df_nov = py_df[( pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"]) ) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))]
 ttt_nov = sum(py_df_nov["seconds"])
+ttmd5_nov = sum(py_df_nov["md5_check"])
 ttdata_nov = humanize.naturalsize(sum(py_df_nov["bytes"]))
+ttmd5_nov_humanize = humanize.precisedelta(datetime.timedelta(seconds=ttmd5_nov))
 ttt_nov_humanize_nov = humanize.precisedelta(datetime.timedelta(seconds=ttt_nov))
 slept_times_nov = len(slept[(pd.to_datetime("2023-11-01") <= pd.to_datetime(slept["sleep_at"])) & (pd.to_datetime(slept["sleep_at"]) < pd.to_datetime("2023-12-01")) & slept["small_sleep"]])
 slept_tot_nov = slept_times_nov * 600
 ttt_nov_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_nov))
 ttp_nov = py_df_nov.groupby("project", as_index=False).count()
 ttp_nov_wgs = len(ttp_nov[(ttp_nov["project"].apply(lambda x: x.startswith("wgs"))) & (ttp_nov["filename"]>2000)])
+```
+
+```{r} 
+#| label: fig-md5-check-nov
+#| fig-cap: Time used for md5sum check in November
+#| fig-width: 12
+library(reticulate)
+r_py_df_nov %>% 
+  mutate(r_datetime=as.POSIXct(datetime, format="%Y-%m-%d %H:%M:%S")) %>% 
+    filter(!(project_type == "wgs" & md5_check == 0)) %>% 
+    ggplot(aes(x = r_datetime, y=md5_check, color=project_type)) + 
+    geom_point() + 
+    scale_x_datetime(date_minor_breaks = "1 day") + 
+    labs(x = "datetime", y = "md5sum check time", title = "Time used for md5sum check") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    guides(color = guide_legend(title = "Project Type")) + 
+    scale_color_manual(values = c(
+      "wgs" = "#636EFA",
+      "EKG" = "#EF553B",
+      "excap" = "#00CC96",
+      "Test" = "#AB63FA"
+    )) +
+    theme_minimal()
 ```
 
 ```{r}
@@ -636,16 +747,18 @@ r_ttt_nov_sleep_humanize <- py$ttt_nov_sleep_humanize
 r_slept_times_nov <- py$slept_times_nov
 r_ttdata_nov <- py$ttdata_nov
 r_ttp_nov_wgs <- py$ttp_nov_wgs
+r_ttmd5_nov_humanize <- py$ttmd5_nov_humanize
 ```
 
 ::: {.callout-caution}
 #### [Attention]{#attention-nov}
-Total absolute time used for transferring files in November is [`r r_ttt_nov_humanize_nov`]{style="font-family:Krona One;"}. 
+* Total absolute time used for transferring files in November is [`r r_ttt_nov_humanize_nov`]{style="font-family:Krona One;"}. 
 In total [`r r_ttdata_nov`]{style="font-family:Krona One;"} data was transferred including
 [`r r_ttp_nov_wgs`]{style="font-family:Krona One;"} new wgs projects.
 
-The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In November, nsc-exporter slept [`r r_slept_times_nov`]{style="font-family:Quicksand"} times, totally [`r r_ttt_nov_sleep_humanize`]{style="font-family:Quicksand;"}.
+* The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In November, nsc-exporter slept [`r r_slept_times_nov`]{style="font-family:Krona One"} times, totally [`r r_ttt_nov_sleep_humanize`]{style="font-family:Quicksand;"}.
 
+* The total time used for md5sum checking in November is [`r r_ttmd5_nov_humanize`]{style="font-family:Krona One;"}. 
 :::
 
 ## Discussion
@@ -808,3 +921,7 @@ To be added...
       This is contrary to long idle time where no new data comes after the sleep.
 [^3]: To make sure files are transferred intact, `s3cmd put` checks the *md5sum* of the files. 
       This takes time and is not reported as transfer time by `s3cmd`
+      The md5sum check is done before starting the transfer. 
+      We estimate the md5sum check time by subtracting the transfer time from the time gap between two transfers.
+      The md5sum check time is usually less than 10 minutes, so a gap larger than 10 minutes is not considered as md5sum check time.
+[^md5sum]: Skipped wgs records where md5sum check time equals/close to zero, so project types with small files/folders are shown.
