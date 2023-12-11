@@ -513,6 +513,7 @@ slept_tot_sep = slept_times_sep * 600
 ttt_sep_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_sep))
 ttp_sep = py_df_sep.groupby("project", as_index=False).count()
 ttp_sep_wgs = len(ttp_sep[(ttp_sep["project"].apply(lambda x: x.startswith("wgs"))) & (ttp_sep["filename"]>2000)])
+tteffective_sep = humanize.precisedelta(ttt_sep + slept_tot_sep + ttmd5_sep)
 ```
 
 ```{r} 
@@ -546,6 +547,7 @@ r_slept_times_sep <- py$slept_times_sep
 r_ttdata_sep <- py$ttdata_sep
 r_ttp_sep_wgs <- py$ttp_sep_wgs
 r_ttmd5_sep_humanize <- py$ttmd5_sep_humanize
+r_tteffective_sep <- py$tteffective_sep
 ```
 ::: {.callout-caution}
 #### [Attention]{#attention-sep}
@@ -616,6 +618,7 @@ slept_tot_oct = slept_times_oct * 600
 ttt_oct_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_oct))
 ttp_oct = py_df_oct.groupby("project", as_index=False).count()
 ttp_oct_wgs = len(ttp_oct[(ttp_oct["project"].apply(lambda x: x.startswith("wgs"))) & (ttp_oct["filename"]>2000)])
+tteffective_oct = humanize.precisedelta(ttt_oct + slept_tot_oct + ttmd5_oct)
 ```
 
 ```{r} 
@@ -650,6 +653,7 @@ r_slept_times_oct <- py$slept_times_oct
 r_ttdata_oct <- py$ttdata_oct
 r_ttp_oct_wgs <- py$ttp_oct_wgs
 r_ttmd5_oct_humanize <- py$ttmd5_oct_humanize
+r_tteffective_oct <- py$tteffective_oct
 ```
 
 ::: {.callout-caution}
@@ -658,7 +662,7 @@ r_ttmd5_oct_humanize <- py$ttmd5_oct_humanize
 In total [`r r_ttdata_oct`]{style="font-family:Krona One;"} data was transferred including 
   [`r r_ttp_oct_wgs`]{style="font-family:Krona One;"} new wgs projects.
 
-* The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In October, nsc-exporter slept [`r r_slept_times_oct`]{style="font-family:Krona One"} times, totally [`r r_ttt_oct_sleep_humanize`]{style="font-family:Quicksand;"}.
+* The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In October, nsc-exporter slept [`r r_slept_times_oct`]{style="font-family:Quicksand"} times, totally [`r r_ttt_oct_sleep_humanize`]{style="font-family:Krona One;"}.
 
 * The total time used for md5sum checking in October is [`r r_ttmd5_oct_humanize`]{style="font-family:Krona One;"}. 
 :::
@@ -717,6 +721,7 @@ slept_tot_nov = slept_times_nov * 600
 ttt_nov_sleep_humanize = humanize.precisedelta(datetime.timedelta(seconds=slept_tot_nov))
 ttp_nov = py_df_nov.groupby("project", as_index=False).count()
 ttp_nov_wgs = len(ttp_nov[(ttp_nov["project"].apply(lambda x: x.startswith("wgs"))) & (ttp_nov["filename"]>2000)])
+tteffective_nov = humanize.precisedelta(ttt_nov + slept_tot_nov + ttmd5_nov)
 ```
 
 ```{r} 
@@ -751,6 +756,7 @@ r_slept_times_nov <- py$slept_times_nov
 r_ttdata_nov <- py$ttdata_nov
 r_ttp_nov_wgs <- py$ttp_nov_wgs
 r_ttmd5_nov_humanize <- py$ttmd5_nov_humanize
+r_tteffective_nov <- py$tteffective_nov
 ```
 
 ::: {.callout-caution}
@@ -759,7 +765,7 @@ r_ttmd5_nov_humanize <- py$ttmd5_nov_humanize
 In total [`r r_ttdata_nov`]{style="font-family:Krona One;"} data was transferred including
 [`r r_ttp_nov_wgs`]{style="font-family:Krona One;"} new wgs projects.
 
-* The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In November, nsc-exporter slept [`r r_slept_times_nov`]{style="font-family:Krona One"} times, totally [`r r_ttt_nov_sleep_humanize`]{style="font-family:Quicksand;"}.
+* The nsc-exporter will sleep 10 minutes before checking for new data to transfer. In November, nsc-exporter slept [`r r_slept_times_nov`]{style="font-family:Quicksand"} times, totally [`r r_ttt_nov_sleep_humanize`]{style="font-family:Krona One;"}.
 
 * The total time used for md5sum checking in November is [`r r_ttmd5_nov_humanize`]{style="font-family:Krona One;"}. 
 :::
@@ -857,12 +863,12 @@ cat(md_table(
 ))
 ```
 :::
-###  Possibility Of One More 48-sample Run Per Week
+###  Possibility Of An additional 48-sample Run Each Week
 
 * The nsc-exporter is idle for quite a portion of the time @sec-idle-time.
-    + [September](#attention-sep)'s absolute transfer time is [`r r_ttt_sep_humanize`]{style="font-family:Quicksand;"} including [`r r_ttp_sep_wgs`]{style="font-family:Quicksand"} wgs projects.
-    + [October](#attention-oct)'s absolute transfer time is [`r r_ttt_oct_humanize`]{style="font-family:Quicksand;"} including [`r r_ttp_oct_wgs`]{style="font-family:Quicksand"} wgs projects.
-    + [November](#attention-nov)'s absolute transfer time is [`r r_ttt_nov_humanize_nov`]{style="font-family:Quicksand;"} including [`r r_ttp_nov_wgs`]{style="font-family:Quicksand"} wgs projects.
+    + [September](#attention-sep)'s effective transfer time[^effectivetime] is [`r r_tteffective_sep`]{style="font-family:Krona One;"} including [`r r_ttp_sep_wgs`]{style="font-family:Krona One"} wgs projects.
+    + [October](#attention-oct)'s effective transfer time is [`r r_tteffective_oct`]{style="font-family:Krona One;"} including [`r r_ttp_oct_wgs`]{style="font-family:Krona One"} wgs projects.
+    + [November](#attention-nov)'s effective transfer time is [`r r_tteffective_nov`]{style="font-family:Krona One;"} including [`r r_ttp_nov_wgs`]{style="font-family:Krona One"} wgs projects.
 * The maximum transfer speed is reached around 200 MB file size. @fig-correlation-filesize-speed-200MB
   This is the configured chunk size of s3cmd which is the tool used by nsc-exporter for data transfer.
   We might want to increase the chunk size to improve the transfer speed?
@@ -928,3 +934,4 @@ To be added...
       We estimate the md5sum check time by subtracting the transfer time from the time gap between two transfers.
       The md5sum check time is usually less than 10 minutes, so a gap larger than 10 minutes is not considered as md5sum check time.
 [^md5sum]: Skipped wgs records where md5sum check time equals/close to zero, so project types with small files/folders are shown.
+[^effectivetime]: Effective transfer time is calculated as "absolute transfer time" + "sleep time between 2 transfers" + "md5sum check time".
