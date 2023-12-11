@@ -198,6 +198,8 @@ The transfer speed ranges
 The average transfer speed is [`r humanReadable(mean(data$speed))`/s]{style="font-family:Quicksand;"}.
 The median transfer speed is [`r humanReadable(median(data$speed))`/s]{style="font-family:Quicksand;"}.
 The standard deviation is [`r humanReadable(sd(data$speed))`/s]{style="font-family:Quicksand;"}.
+Transfer speed for small files is usually very low, so the average transfer speed is not a good indicator 
+  for actual transfer speed, see @sec-correlation-filesize-speed-all.
 
 :::: {.columns}
 ::: {.column width="30%"}
@@ -294,7 +296,7 @@ def deHumanReadable(bandwidth_string):
 
 ```
 
-### Transfer speed and time VS file size (all files)
+### Transfer speed and time VS file size (all files){#sec-correlation-filesize-speed-all}
 
 
 Small files have lower transfer speed. A good transfer speed around 80 MB/s can be achieved for large files (>2 GB).
@@ -311,6 +313,7 @@ py_df = pd.read_csv("data.csv",
                     sep=",", 
                     parse_dates=["datetime"],
                     date_format="%Y-%m-%d %H:%M:%S.%f")
+py_df["speed_humanize"] = py_df["speed"]
 py_df["speed"] = py_df["speed"].apply(deHumanReadable)
 py_df["project_type"] = py_df["project"].apply(lambda x: re.match(r"[a-zA-Z]+", x).group())
 fig = px.scatter(
@@ -448,7 +451,7 @@ py_df["size"] = py_df.bytes.apply(humanize.naturalsize)
 py_df[((py_df.time_gap - py_df.seconds) > 30) & ((py_df.time_gap - py_df.seconds) < 600)]
 
 def md5(x):
-  if (x.time_gap - x.seconds) > 30 and (x.time_gap - x.seconds) < 600:
+  if (x.time_gap - x.seconds) > 5 and (x.time_gap - x.seconds) < 600:
     return x.time_gap - x.seconds
   else:
     return 0
@@ -467,7 +470,7 @@ px.scatter(
     opacity=0.3,
     color="project",
     symbol="project_type",
-    hover_data=["size", "time_gap", "file_extension"],
+    hover_data=["size", "time_gap", "file_extension", "speed_humanize"],
     labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
     title="transfer time (per file)",
     height=600,
@@ -488,7 +491,7 @@ px.scatter(
     opacity=0.3,
     color="project",
     symbol="project_type",
-    hover_data=["size", "seconds", "file_extension"],
+    hover_data=["size", "seconds", "file_extension", "speed_humanize"],
     log_y=False,
     labels={"datetime": "transfer start datetime", "time_gap": "Interval to next transfer start (seconds)"},
     title="transfer gaps (time difference between two transfer starts)",
@@ -571,7 +574,7 @@ px.scatter(
     opacity=0.3,
     color="project",
     symbol="project_type",
-    hover_data=["size", "time_gap", "file_extension"],
+    hover_data=["size", "time_gap", "file_extension", "speed_humanize"],
     labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
     title="transfer time (per file)",
     height=600,
@@ -592,7 +595,7 @@ px.scatter(
     opacity=0.3,
     color="project",
     symbol="project_type",
-    hover_data=["size", "seconds", "file_extension"],
+    hover_data=["size", "seconds", "file_extension", "speed_humanize"],
     labels={"datetime": "transfer start datetime", "time_gap": "Interval to next transfer start (seconds)"},
     title="transfer gaps (time difference between two transfer starts)",
     height=600,
@@ -672,7 +675,7 @@ px.scatter(
     opacity=0.3,
     color="project",
     symbol="project_type",
-    hover_data=["size", "time_gap", "file_extension"],
+    hover_data=["size", "time_gap", "file_extension", "speed_humanize"],
     labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
     title="transfer time (per file)",
     height=600,
@@ -693,7 +696,7 @@ px.scatter(
     opacity=0.3,
     color="project",
     symbol="project_type",
-    hover_data=["size", "seconds", "file_extension"],
+    hover_data=["size", "seconds", "file_extension", "speed_humanize"],
     labels={"datetime": "transfer start datetime", "time_gap": "Interval to next transfer start (seconds)"},
     title="transfer gaps (time difference between two transfer starts)",
     height=600,
