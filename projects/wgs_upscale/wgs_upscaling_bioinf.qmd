@@ -6,7 +6,7 @@ description: "Data transfer, Data storage, Bioinformatics pipeline capacity"
 author: 
     - name: Xuyang Yuan
       email: "xuyangy@uio.no"
-      affiliation: "GDx"
+      affiliation: "GDx@OUSAMG"
       url: "http://www.robotgenome.com"
       role: "collect data"
 # format:
@@ -50,8 +50,8 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 # Data transfer speed
 
 
-Both sequencing data and NSC pipeline results are stored at the Norwegian Sequencing Center (NSC). 
-So the volume of data that needs to be transferred from NSC to the TSD at UiO is very big. 
+Both sequencing data and NSC pipeline results are stored at the NSC. 
+So the volume of data that needs to be transferred from NSC to TSD is huge. 
 The data transfer is done by the nsc-exporter. 
 The nsc-exporter uses TSD s3api which in turn uses s3cmd under the hood. 
 The nsc-exporter will check for new data to transfer every 10 minutes and uses `s3cmd put` to transfer the data.
@@ -527,7 +527,7 @@ r_py_df_sep %>%
     ggplot(aes(x = r_datetime, y=md5_check, color=project_type)) + 
     geom_point() + 
     scale_x_datetime(date_minor_breaks = "1 day") + 
-    labs(x = "datetime", y = "md5sum check time", title = "Time used for md5sum check") +
+    labs(x = "datetime", y = "md5sum check time (seconds)", title = "Time used for md5sum check") +
     theme(plot.title = element_text(hjust = 0.5)) +
     guides(color = guide_legend(title = "Project Type")) + 
     scale_color_manual(values = c(
@@ -629,19 +629,23 @@ library(reticulate)
 r_py_df_oct %>% 
   mutate(r_datetime=as.POSIXct(datetime, format="%Y-%m-%d %H:%M:%S")) %>% 
     filter(!(project_type == "wgs" & md5_check == 0)) %>% 
-    ggplot(aes(x = r_datetime, y=md5_check, color=project_type)) + 
-    geom_point() + 
-    scale_x_datetime(date_minor_breaks = "1 day") + 
-    labs(x = "datetime", y = "md5sum check time", title = "Time used for md5sum check") +
-    theme(plot.title = element_text(hjust = 0.5)) +
-    guides(color = guide_legend(title = "Project Type")) + 
-    scale_color_manual(values = c(
-      "wgs" = "#636EFA",
-      "EKG" = "#EF553B",
-      "excap" = "#00CC96",
-      "Test" = "#AB63FA"
-    )) +
-    theme_minimal()
+      ggplot(aes(x = r_datetime, y=md5_check, color=project_type)) + 
+      geom_point() + 
+      scale_x_datetime(date_minor_breaks = "1 day") + 
+      labs(
+        x = "datetime",
+        y = "md5sum check time (seconds)",
+        title = "Time used for md5sum check"
+      ) +
+      theme(plot.title = element_text(hjust = 0.5)) +
+      guides(color = guide_legend(title = "Project Type")) + 
+      scale_color_manual(values = c(
+        "wgs" = "#636EFA",
+        "EKG" = "#EF553B",
+        "excap" = "#00CC96",
+        "Test" = "#AB63FA"
+      )) +
+      theme_minimal()
 ```
 
 ```{r}
@@ -735,7 +739,7 @@ r_py_df_nov %>%
     ggplot(aes(x = r_datetime, y=md5_check, color=project_type)) + 
     geom_point() + 
     scale_x_datetime(date_minor_breaks = "1 day") + 
-    labs(x = "datetime", y = "md5sum check time", title = "Time used for md5sum check") +
+    labs(x = "datetime", y = "md5sum check time (seconds)", title = "Time used for md5sum check") +
     theme(plot.title = element_text(hjust = 0.5)) +
     guides(color = guide_legend(title = "Project Type")) + 
     scale_color_manual(values = c(
@@ -866,14 +870,47 @@ cat(md_table(
 ###  Possibility Of An additional 48-sample Run Each Week
 
 * The nsc-exporter is idle for quite a portion of the time @sec-idle-time.
-    + [September](#attention-sep)'s effective transfer time[^effectivetime] is [`r r_tteffective_sep`]{style="font-family:Krona One;"} including [`r r_ttp_sep_wgs`]{style="font-family:Krona One"} wgs projects.
-    + [October](#attention-oct)'s effective transfer time is [`r r_tteffective_oct`]{style="font-family:Krona One;"} including [`r r_ttp_oct_wgs`]{style="font-family:Krona One"} wgs projects.
-    + [November](#attention-nov)'s effective transfer time is [`r r_tteffective_nov`]{style="font-family:Krona One;"} including [`r r_ttp_nov_wgs`]{style="font-family:Krona One"} wgs projects.
+    + [September](#attention-sep)'s effective transfer time[^effectivetime] is [`r r_tteffective_sep`]{style="font-family:Krona One;"}
+      to transfer [`r r_ttdata_sep`]{style="font-family:Krona One;"} data
+      including that of [`r r_ttp_sep_wgs`]{style="font-family:Krona One"} wgs projects.
+    + [October](#attention-oct)'s effective transfer time is [`r r_tteffective_oct`]{style="font-family:Krona One;"} 
+      to transfer [`r r_ttdata_oct`]{style="font-family:Krona One;"} data
+      including that of [`r r_ttp_oct_wgs`]{style="font-family:Krona One"} wgs projects.
+    + [November](#attention-nov)'s effective transfer time is [`r r_tteffective_nov`]{style="font-family:Krona One;"} 
+      to transfer [`r r_ttdata_nov`]{style="font-family:Krona One;"} data
+      including that of [`r r_ttp_nov_wgs`]{style="font-family:Krona One"} wgs projects.
 * The maximum transfer speed is reached around 200 MB file size. @fig-correlation-filesize-speed-200MB
-  This is the configured chunk size of s3cmd which is the tool used by nsc-exporter for data transfer.
-  We might want to increase the chunk size to improve the transfer speed?
+  This interestingly is the configured chunk size of `s3cmd` which is the tool used by nsc-exporter for data transfer.
+  We might want to increase the chunk size to improve the transfer speed of large files?
 
 * The current transfer speed is not optimal considering the 10Gbps switch connecting NSC and TSD. We need to investigate the reason for the low transfer speed.
+
+
+### Simple Calculation
+
+```{ojs}
+//| echo: false
+//| panel: sidebar
+md`With an aveage transfer speed (MB/s):`
+viewof speed = Inputs.range([1, 500], {value: 80, step: 1})
+```
+```{ojs}
+//| echo: false
+import {textcolor} from "@observablehq/text-color-annotations-in-markdown"
+
+formatBytes = function formatBytes(bytes,decimals) {
+   if(bytes == 0) return '0 Bytes';
+   var k = 1024,
+       dm = decimals || 2,
+       sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+       i = Math.floor(Math.log(bytes) / Math.log(k));
+   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+volume = formatBytes(speed*30*24*60*60*1000*1000)
+md`${textcolor(volume, 'green')} data can be transferred per month.`
+```
+
 
 
 ## Conclusion
