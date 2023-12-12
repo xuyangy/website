@@ -278,6 +278,7 @@ ggplot(
 #| cache: false
 #| include: false
 def deHumanReadable(bandwidth_string):
+    k = 1024  # s3cmd uses 1024 
     match_result = re.match(r'^([0-9.]+)\s*([KMGT]?B)(/s)?$', bandwidth_string)
 
     if match_result is None:
@@ -287,9 +288,9 @@ def deHumanReadable(bandwidth_string):
     unit_part = match_result.group(2)
     bytes_per_second = {
         "B": numeric_part,
-        "KB": numeric_part * 1000,
-        "MB": numeric_part * 1000**2,
-        "GB": numeric_part * 1000**3
+        "KB": numeric_part * k,
+        "MB": numeric_part * k**2,
+        "GB": numeric_part * k**3
     }.get(unit_part, ValueError("Invalid unit"))
 
     return bytes_per_second
@@ -886,12 +887,12 @@ cat(md_table(
 * The current transfer speed is not optimal considering the 10Gbps switch connecting NSC and TSD. We need to investigate the reason for the low transfer speed.
 
 
-### Simple Calculation
+### Calculator
 
 ```{ojs}
 //| echo: false
 //| panel: sidebar
-md`With an aveage transfer speed (MB/s):`
+md`Assuming continuous transfer at speed (**MB/s**):`
 viewof speed = Inputs.range([1, 500], {value: 80, step: 1})
 ```
 ```{ojs}
@@ -907,8 +908,14 @@ formatBytes = function formatBytes(bytes,decimals) {
    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-volume = formatBytes(speed*30*24*60*60*1000*1000)
-md`${textcolor(volume, 'green')} data can be transferred per month.`
+volume_hour= formatBytes(speed*60*60*1000*1000, 1)
+volume_day= formatBytes(speed*24*60*60*1000*1000 , 1)
+volume_week = formatBytes(speed*7*24*60*60*1000*1000, 1)
+volume_month = formatBytes(speed*30*24*60*60*1000*1000, 1)
+md`${textcolor(volume_hour, 'MediumSeaGreen')} data can be transferred per **hour**.`
+md`${textcolor(volume_day, 'SlateBlue')} data can be transferred per **day**.`
+md`${textcolor(volume_week, 'Chocolate')} data can be transferred per **week**.`
+md`${textcolor(volume_month, 'Crimson')} data can be transferred per **month**.`
 ```
 
 
@@ -970,5 +977,5 @@ To be added...
       The md5sum check is done before starting the transfer. 
       We estimate the md5sum check time by subtracting the transfer time from the time gap between two transfers.
       The md5sum check time is usually less than 10 minutes, so a gap larger than 10 minutes is not considered as md5sum check time.
-[^md5sum]: Skipped wgs records where md5sum check time equals/close to zero, so project types with small files/folders are shown.
+[^md5sum]: Skipped wgs records where md5sum check time equals/close to zero, so project types with small files/folders such as EKG are shown.
 [^effectivetime]: Effective transfer time is calculated as "absolute transfer time" + "sleep time between 2 transfers" + "md5sum check time".
