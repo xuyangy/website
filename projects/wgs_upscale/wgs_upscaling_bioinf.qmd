@@ -409,21 +409,48 @@ Small files have lower transfer speed.
 Large files have higher transfer speed. 
 But it looks like best transfer speed is observed for files with sizearound 200 MB file size.
 
-```{python} 
+```{r}
 #| label: fig-correlation-filesize-speed-200MB
 #| fig-cap: maximum transfer speed reached around 200MB file size
-import plotly.express as px
-small_files = py_df[py_df["bytes"] < 500000000]
-fig_200MB = px.scatter(
-    small_files,
-    x="bytes",
-    y="speed",
-    labels={"bytes": "file size (bytes)", "speed": "transfer speed"},
-    opacity=0.3,
-    color="project_type",
-    height=500,
-)
-fig_200MB.show()
+#| fig-width: 10
+#| fig-height: 4
+
+library(gdata)
+small_boundary <- 500000000
+small_files <- py$py_df[py$py_df$bytes < small_boundary, ]
+x_breaks <- seq(0, small_boundary, 100000000)
+y_breaks <- seq(0, max(small_files$speed), 10000000)
+
+ggplot(small_files, aes(x = bytes, y = speed, color = project_type)) +
+  geom_point(alpha = 0.3) + 
+  scale_x_continuous(
+    breaks = x_breaks, 
+    labels = humanReadable(
+      x_breaks,
+      standard = "SI", 
+      digits = 0)
+  ) +
+  scale_y_continuous(
+    breaks = y_breaks, 
+    labels = humanReadable(
+      y_breaks,
+      standard = "SI", 
+      digits = 0)
+  ) +
+  labs(
+    x = "file size (bytes)", 
+    y = "transfer speed", 
+    title = "Transfer speed maximizes at 200 MB file size"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  guides(color = guide_legend(title = "Project Type")) + 
+  scale_color_manual(values = c(
+    "wgs" = "#636EFA",
+    "EKG" = "#EF553B",
+    "excap" = "#00CC96",
+    "Test" = "#AB63FA"
+  ))
 ```
 
 ## Idle Time {#sec-idle-time}
