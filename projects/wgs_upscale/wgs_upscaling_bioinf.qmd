@@ -2,6 +2,7 @@
 title: "WGS Upscaling - IT & Bioinformatics Evaluation"
 title-block-banner: true
 image: "wgsupscale.png"
+css: style.css
 description: "Data transfer, Data storage, Bioinformatics pipeline capacity"
 author: 
     - name: Xuyang Yuan
@@ -37,6 +38,8 @@ execute:
 ---
 
 # Background
+<hr>
+
 GDx at OUSAMG is planning to upscale the WGS production to `4 x 48` samples or `2 x 48 + 1 x 96` samples per week. 
 Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?
 
@@ -48,7 +51,7 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 
 # Data transfer speed
-
+<hr>
 
 Both sequencing data and NSC pipeline results are stored at the NSC. 
 So the volume of data that needs to be transferred from NSC to TSD is huge. 
@@ -56,7 +59,6 @@ The data transfer is done by the nsc-exporter.
 The nsc-exporter uses TSD s3api which in turn uses s3cmd under the hood. 
 The nsc-exporter will check for new data to transfer every 10 minutes and uses `s3cmd put` to transfer the data.
 
-<br>
 <br>
 
 ```{mermaid}
@@ -75,7 +77,6 @@ flowchart LR
     style dp fill:#aab0a2
 ```
 
-<br>
 <br>
 
 ```{r}
@@ -126,7 +127,7 @@ To evaluate the data transfer speed from NSC to TSD, we collected the historical
 
 ::: {.callout-tip collapse="true"}
 
-### examples of collected data
+### expand to see some examples of collected transfer records
 
 
 ```{r}
@@ -272,6 +273,7 @@ ggplot(
 
 ## Correlation
 
+Next, we would like to know the how does file size affect transfer speed and transfer time.
 
 <!-- read data from csv file -->
 ```{python}
@@ -298,7 +300,7 @@ def deHumanReadable(bandwidth_string):
 ```
 
 ### Transfer speed and time VS file size (all files){#sec-correlation-filesize-speed-all}
-
+<hr>
 
 Small files have lower transfer speed. A good transfer speed around 80 MB/s can be achieved for large files (>2 GB).
 However, the best speed is observed for files with size around 200 MB (zoom in or see @fig-correlation-filesize-speed-200MB).
@@ -352,7 +354,7 @@ ggplot(py$py_df, aes(x = bytes, y = seconds, color = project_type)) +
   ))
 ```
 ### Transfer speed and time VS file size (small files)
-
+<hr>
 
 Although the transfer speed of small files are very low; 
   the transfer time is usually very short. 
@@ -401,6 +403,7 @@ ggplot(small_files, aes(x = bytes, y = seconds, color = project_type)) +
 
 
 ### [ Maximum transfer reached around <u>200MB</u> file size? ]{style="color:orange;"}
+<hr>
 
 Small files have lower transfer speed. 
 Large files have higher transfer speed. 
@@ -460,6 +463,8 @@ def md5(x):
 py_df["md5_check"] = py_df.apply(md5, axis=1)
 ```
 ### September
+<hr>
+
 ```{python} 
 #| label: fig-timeseries-sep-trans-time
 #| fig-cap: Transfer time of all files in September
@@ -477,6 +482,38 @@ px.scatter(
     height=600,
 )
 ```
+
+<div class="modal fade" id="exampleModal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered p-8" style="max-width: 90%; max-height: 90%">
+<div class="modal-content">
+
+```{python}
+#| out-height: 100%
+#| out-width: 100%
+py_df_sep = py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))]
+fig = px.scatter(
+    py_df_sep,
+    x="datetime",
+    y="seconds",
+    opacity=0.5,
+    color="project",
+    symbol="project_type",
+    hover_data=["size", "time_gap", "file_extension", "speed_humanize"],
+    labels={"datetime": "transfer start datetime", "seconds": "time used (seconds)"},
+    title="transfer time (per file)",
+    height=1150,
+)
+fig.update_layout(
+    autosize = True,
+)
+```
+
+</div></div></div>
+
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+See in Full Screen
+</button>
+
 
 ```{r} 
 r_py_df_sep <- py$py_df_sep
@@ -566,6 +603,8 @@ The total time used for md5sum checking in September is [`r r_ttmd5_sep_humanize
 :::
 
 ### October
+<hr>
+
 ```{python} 
 #| label: fig-timeseries-oct-trans-time
 #| fig-cap: Transfer time of all files in October
@@ -673,6 +712,8 @@ In total [`r r_ttdata_oct`]{style="font-family:Krona One;"} data was transferred
 :::
 
 ### November
+<hr>
+
 ```{python} 
 #| label: fig-timeseries-nov-trans-time
 #| fig-cap: Transfer time of all files in November
@@ -777,7 +818,12 @@ In total [`r r_ttdata_nov`]{style="font-family:Krona One;"} data was transferred
 
 ## Discussion
 
+
+There are some more questions to be answered.
+
+
 ### Do we transfer too many small files? {#sec-too-many-small-files}
+<hr>
 
 
 @fig-small-files-count show the number of small files and the number of large files using different boundaries.
@@ -868,7 +914,8 @@ cat(md_table(
 ))
 ```
 :::
-###  Possibility Of An additional 48-sample Run Each Week
+###  Possibility Of an additional 48-sample run each week?
+<hr>
 
 * The nsc-exporter is idle for quite a portion of the time @sec-idle-time.
     + [September](#attention-sep)'s effective transfer time[^effectivetime] is [`r r_tteffective_sep`]{style="font-family:Krona One;"}
@@ -888,6 +935,7 @@ cat(md_table(
 
 
 ### Calculator
+<hr>
 
 ```{ojs}
 //| echo: false
@@ -929,16 +977,20 @@ md`${textcolor(volume_month, 'Crimson')} data can be transferred per **month**.`
 * We need to test if running 2 nsc-exporter processes in parallel can improve the transfer capacity.
 
 # Data storage
+<hr>
 
 WGS produces large amount of data. The data storage capacity is critical for the upscaling. 
 
 
 ## NSC
+
+
 On NSC side, the data is stored in on **boston** at `/boston/diag`. 
 Boston has a total capacity of 1.5 PB, and the usable capacity is 1.2 at the moment.
 
 
 ## TSD
+
 
 On TSD side, the data is stored in `/cluster/projects/p22`. 
 The total capacity is 1.8 PB, and the usable capacity is 1.2 PB at the moment.
@@ -946,6 +998,7 @@ The total capacity is 1.8 PB, and the usable capacity is 1.2 PB at the moment.
 
 
 # Pipeline capacity (Illumina DRAGEN)
+<hr>
 
 Illunima DRAGEN is a bioinformatics pipeline server that can be used to process WGS data. 
 It takes around 1 hours to process a 30x WGS sample.
@@ -954,10 +1007,13 @@ To be extended ...
 
 
 # Discussion
+<hr>
+
 To be addded...
 
 
 # Conclusion
+<hr>
 
 To be added... 
 
