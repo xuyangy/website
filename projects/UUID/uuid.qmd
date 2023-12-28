@@ -1,0 +1,258 @@
+---
+title:  Use UUID in Pipeline
+title-block-banner: true
+description: For Maestro and Steps, we need uuid for samples and analyses. How do we add uuid to the system?
+author:
+    - name: Xuyang Yuan
+      email: "xuyangy@uio.no"
+      affiliation: GDx OUSAMG
+      url: https://www.robotgenome.com
+date: last-modified
+format:
+    # html:
+    pdf:
+        highlight-style: nord
+        toc: true
+        number-sections: true
+        number-depth: 3
+        toc-depth: 4
+        keep-tex: true
+include-in-header:
+    text: |
+        \usepackage{soul}
+        \usepackage{tcolorbox}
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{microtype}
+execute:
+    cache: false
+    echo: true
+engine: knitr
+---
+
+# Why uuid?
+
+The UUID is needed for both the filesystem and Maestro/Steps.
+
+1. **Filesystem**
+    1. Unique folder name for each sequencing run of a sample or even for each demultiplexing of a sequencing run of a
+       sample, *e.g.*
+
+       `Diag-wgs123-HG12345678-PM-d303c3b866434b1e93fa4aab17280803`
+    2. Unique folder name for each analysis (basepipe, triopipe or annopipe). Multiple analyses of the same type are
+       possible.
+
+2. **Maestro/Steps**
+    i) UUID for samples:
+        a. `*.fastq.gz` files inherit the UUID of their sample, with a "`_R1`" or "`_R2`" suffix. 
+           This serves as the identifier for the output of *DotSampleFileWatcher* and the inputs of the *BasepipeRunner*
+           process.
+        b. `*.g.vcf` files inherit the UUID of their sample, with a "`_gvcf`" suffix. 
+           This serves as the identifier for the output of the basepipe process and the inputs of the triopipe process.
+        c. `*.final.vcf` files inherit the UUID of their sample, with a "`_vcf`" suffix. 
+           This serves as the identifier for the output of the basepipe process and the inputs of the annopipe process.
+        d. `*.final.vcf` files inherit the UUID of proband sample, with a "`_vcf`" suffix. 
+           This serves as the identifier for the output of the triopipe process and the inputs of the annopipe process.
+    ii) UUID for basepipe, triopipe, and annopipe.
+        a. The samples list in `.analysis` file contains the sample names with UUIDs. _e.g._
+        ```json
+        {
+          "samples": [
+            "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803",
+            "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247",
+            "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+          ]
+        }
+        ```    
+        b. The pedigree object in a triopipe `.analysis` file contains samples with UUIDs. _e.g._
+```json
+{"pedigree": {
+    "proband": {
+      "sample": "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803"
+    },
+    "father": {
+      "sample": "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247"
+    },
+    "mother": {
+      "sample": "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+    }
+}}
+```
+
+
+# How to create uuid?
+We are considering that **it's lims-exporter's responsibility** to create uuid for both samples and analyses.    
+
+We can use the uuid library in python, _e.g._
+
+```{python}
+import uuid          
+smp_uuid = uuid.uuid4()
+print(smp_uuid)
+```
+
+# UUID in dot sample file
+
+A `.sample` json file will have a field called `uuid` with a uuid4 value, *e.g.*
+```json
+{
+  "uuid": "d303c3b866434b1e93fa4aab17280803"
+}
+```
+
+# UUID in dot analysis file
+A `.analysis` will have multiple fields with uuid4 values, *e.g.*
+```json {.small}
+{
+  "name": "Diag-wgs1-HG12345678-PM-DR-TRIO-74b039f45d0d46519311407de17d5ca1",
+  "params": {
+    "pedigree": {
+      "proband": {
+      "sample": "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803"
+      },
+      "father": {
+        "sample": "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247"
+      },
+      "mother": {
+        "sample": "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+      }
+    },
+  },
+  "samples": [
+    "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803",
+    "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247",
+    "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+  ]
+}
+```
+
+# UUID for reanalyses 
+
+When UUIDs are used in `.sample` and `.analysis` files, we need to consider the reanalysis scenario. For reanalyses, 
+instead of creating new UUIDs, the UUIDs of the old samples must be used.
+
+Do we need to make the UUIDs of old samples accessible by lims-exporter?
+
+## No, we don't need to
+
+- [x] For new analysis, lims-exporter just need to create UUID for new samples and analyses and use them in the `.sample` and `.analysis`
+files and in the samples and alalyses-work folder names. The UUID will end up in Neo4j database.
+
+- [ ] For reanalysis, we only need the old sample name and project, Neo4j database will be queried to to
+find the correct UUID of the sample, *e.g.* query by `sample_name` and `project_name` together with other attributes
+such as `sequencing_run_date`, `sequencer_type` etc.
+    - [ ] Who will query Neo4j database, *DotAnalysisFileWatcher*? (there is no `.sample` and `fastq.gz` files for a reanalyzed sample,
+    *DotSampleFileWatcher* or *FastqFileWatcher* will not be triggered.)
+    - [ ] How to query Neo4j db in Steps?
+    - [ ] Violation of the principle of "Steps needs to know nothing of the Neo4j database"?
+
+## Yes, we need to
+- [ ] For reanalysis, we need the path to the sample folder of the old sample on filesystem.
+    
+- [x] If the UUID is not stored, for incomplete trios[^incompletetrio], the sample folder will be created again and again, each time with
+a new UUID.
+    * but this can be avoided; lims-exporter always checks if a sample folder has already been created, letting lims-exporter ignore the UUID part when checking if a sample folder has already been created solves the problem.
+- [x] For the "failed fingerprinting" + "then new SNP-ID file" scenario, we will create a new UUID for the sample which is
+exactly the same sample.
+    * some duplicates in Neo4j database is not a big deal?
+
+If we want to store the UUID of historical samples, we have several options each with pros and cons.
+
+### Option 1: Store the UUID as _input sample_ UDF[^udf] in Clarity LIMS.
+The lims-exporter checks if the sample has a UUID UDF. If not, it will create one and store it as the sample's UUID UDF
+in the Clarity LIMS database; if yes, that UUID will be used.
+
+#### Pros
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Pros]
+\begin{enumerate}
+    \item Can directly query the Clarity database to get old sample name, project and UUID, simple and fast.
+\end{enumerate}
+\end{tcolorbox}
+
+
+#### Cons
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Cons]
+\begin{enumerate}
+    \item Re-prep or re-sequencing or re-demultiplexing will not be distinguished becuase the same UUID will be used.
+\end{enumerate}
+\end{tcolorbox}
+
+### Option 2: lims-exporter creates UUID for samples and store the UUID as attribute of the "Demultiplexing" process output file attributes in Clarity LIMS.
+
+#### Pros
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Pros]
+\begin{enumerate}
+    \item Each re-prep and/or re-sequencing and/or re-demultiplexing will get a new UUID.
+\end{enumerate}
+\end{tcolorbox}
+
+#### Cons
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Cons]
+\begin{enumerate}
+    \item The UUID is stored as the Demultiplexing process's output artifact's UDF, making it hard to retrieve
+that UUID. 
+    \renewcommand{\labelitemi}{$\diamond$}
+    \begin{itemize}
+        \item to query the Clarity database, complex query needed, if even possible.
+        \item to use the Clarity API, super slow.
+    \end{itemize}
+\end{enumerate}
+\end{tcolorbox}
+
+
+
+### Option 3: Maintain a SQLite database with sample name and UUID.
+
+#### Pros
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Pros]
+\begin{enumerate}
+    \item Querying is fast.
+    \item SQLite database can be re-created from Neo4j database if needed.
+\end{enumerate}
+\end{tcolorbox}
+
+
+#### Cons
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Cons,title=Cons]
+\begin{enumerate}
+    \item Adding one more dependency to lims-exporter.
+\end{enumerate}
+\end{tcolorbox}
+
+
+### Option 4: Let lims-exporter query Neo4j database to get the UUID of the old sample.
+The lims-exporter will query the Claity LIMS database to get the old sample name and old project name, and then query the Neo4j database to get the UUID of the old sample.
+
+The lims-exporter will need other metadata to compose the Neo4j query, *e.g.* sequencing_run_date, sequencer_type, etc.
+
+#### Pros
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Pros,title=Pros]
+\begin{enumerate}
+    \item Only one source of truth.
+    \item No need to "write to" Clarity LIMS database by lims-exporter.
+\end{enumerate}
+\end{tcolorbox}
+
+
+#### Cons
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Cons]
+\begin{enumerate}
+    \item Added a dependency to lims-exporter
+    \renewcommand{\labelenumii}{\roman{enumii}}
+    \begin{enumerate}
+    \item Neo4j database itself must be accessible by lims-exporter on NSC.
+    \item noe4j Python package used by lims-exporter to connect to Neo4j database and to make queries.
+    \end{enumerate}
+    \item \st{Circular dependency? (Neo4j database depends on lims-exporter as data source and lims-exporter depends on Neo4j database for UUID.)}
+    \item Requires the Neo4j database to be up-to-date.
+\end{enumerate}
+\end{tcolorbox}
+
+
+[^incompletetrio]: Incomplete trios are trios with missing family members in the lims-exporter step, _e.g._ only proband and mother,
+or only proband and father, or only proband.
+[^udf]: User Defined Field in Clarity LIMS.
