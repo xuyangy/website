@@ -16,9 +16,11 @@ website:
                     href: projects/wgs_upscale/wgs_upscaling_bioinf.qmd
                   - text: "Workflow Tracker"
                     href: projects/workflow_tracker/index.html
+                  - text: "UUID"
+                    href: projects/UUID/uuid.qmd
 format:
     html:
-        theme: 
+        theme:
             light: Journal
             dark: Superhero
         grid:
@@ -27,3 +29,5 @@ format:
             margin-width: 300px
         css: styles.css
         toc: true
+execute:
+    freeze: auto
