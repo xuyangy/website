@@ -7,8 +7,8 @@ description: "Data transfer, Data storage, Bioinformatics pipeline capacity"
 author: 
     - name: Xuyang Yuan
       email: "xuyangy@uio.no"
-      affiliation: "GDx@OUSAMG"
-      url: "http://www.robotgenome.com"
+      affiliation: "GDx OUSAMG"
+      url: "https://www.robotgenome.com"
       role: "collect data"
 # format:
 #   pdf:
