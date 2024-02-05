@@ -1,6 +1,7 @@
 ---
 title:  Use UUID in Pipeline
 title-block-banner: true
+image: uuid.png
 description: For Maestro and Steps, we need uuid for samples and analyses. How do we add uuid to the system?
 author:
     - name: Xuyang Yuan
@@ -17,6 +18,8 @@ format:
         number-depth: 3
         toc-depth: 4
         keep-tex: true
+        monofont: "Ubuntu Mono"
+        code-line-numbers: false
 include-in-header:
     text: |
         \usepackage{soul}
@@ -24,22 +27,28 @@ include-in-header:
         \usepackage{fvextra}
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
         \usepackage{microtype}
+        \usepackage{titling}
+        \pretitle{\begin{center}
+        \includegraphics[width=2in,height=2in]{uuid.png}\LARGE\\}
+        \posttitle{\end{center}}
 execute:
     cache: false
     echo: true
+comments:
+    hypothesis: true
 engine: knitr
 ---
 
 # Why uuid?
 
-The UUID is needed for both the filesystem and Maestro/Steps.
+The UUID is needed for both the **filesystem** and **Maestro/Steps**.
 
 1. **Filesystem**
     1. Unique folder name for each sequencing run of a sample or even for each demultiplexing of a sequencing run of a
        sample, *e.g.*
 
-       `Diag-wgs123-HG12345678-PM-d303c3b866434b1e93fa4aab17280803`
-    2. Unique folder name for each analysis (basepipe, triopipe or annopipe). Multiple analyses of the same type are
+       `Diag-wgs123-HG12345678-PM-d303c3b8-6643-4b1e-93fa-4aab17280803`
+    2. Unique folder name for each analysis (basepipe, triopipe or annopipe). Multiple run of the same analysis are
        possible.
 
 2. **Maestro/Steps**
@@ -58,9 +67,9 @@ The UUID is needed for both the filesystem and Maestro/Steps.
         ```json
         {
           "samples": [
-            "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803",
-            "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247",
-            "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+            "Diag-wgs1-HG12345678-PM-d303c3b8-6643-4b1e-93fa-4aab17280803",
+            "Diag-wgs1-HG12345679-FM-8d72b72c-6bc6-48ab-824d-c9a5588b8247",
+            "Diag-wgs1-HG12345680-MK-d987c050-8a6a-4e5a-a577-1e277a07b3ad"
           ]
         }
         ```    
@@ -68,13 +77,13 @@ The UUID is needed for both the filesystem and Maestro/Steps.
 ```json
 {"pedigree": {
     "proband": {
-      "sample": "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803"
+      "sample": "Diag-wgs1-HG12345678-PM-d303c3b8-6643-4b1e-93fa-4aab17280803"
     },
     "father": {
-      "sample": "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247"
+      "sample": "Diag-wgs1-HG12345679-FM-8d72b72c-6bc6-48ab-824d-c9a5588b8247"
     },
     "mother": {
-      "sample": "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+      "sample": "Diag-wgs1-HG12345680-MK-d987c050-8a6a-4e5a-a577-1e277a07b3ad"
     }
 }}
 ```
@@ -86,6 +95,7 @@ We are considering that **it's lims-exporter's responsibility** to create uuid f
 We can use the uuid library in python, _e.g._
 
 ```{python}
+#| code-line-numbers: false
 import uuid          
 smp_uuid = uuid.uuid4()
 print(smp_uuid)
@@ -96,39 +106,62 @@ print(smp_uuid)
 A `.sample` json file will have a field called `uuid` with a uuid4 value, *e.g.*
 ```json
 {
-  "uuid": "d303c3b866434b1e93fa4aab17280803"
+  "uuid": "d303c3b8-6643-4b1e-93fa-4aab17280803"
 }
 ```
+
+# UUID in sample folder
+
+A sample folder structure looks like:
+```
+Diag-wgs1-HG12345677-0d623118-4741-4b18-99e4-9c36477b7d7c
+├── Diag-wgs1-HG12345677.sample
+├── Diag-wgs1-HG12345677.taqman
+├── HG12345677-Nett-KIT-wgs_S11_R1_001_fastq.gz
+└── HG12345677-Nett-KIT-wgs_S11_R2_001_fastq.gz
+```
+- sample folder name has uuid
+- `.sample` file has \strong{\textcolor{red}{no}} uuid
+- `.taqman` file have \strong{\textcolor{red}{no}} uuid
+- `.fastq.gz` files have \strong{\textcolor{red}{no}} uuid
+
+\tcbset{colback=red!5!white,colframe=red!75!black}
+\begin{tcolorbox}[arc=5mm,outer arc=1mm]
+When checking if a sample folder has already been created, lims-exporter \textbf{ignores the UUID part} of the sample folder
+name.
+\end{tcolorbox}
+
+# UUID in analyses-work folder
 
 # UUID in dot analysis file
 A `.analysis` will have multiple fields with uuid4 values, *e.g.*
 ```json {.small}
 {
-  "name": "Diag-wgs1-HG12345678-PM-DR-TRIO-74b039f45d0d46519311407de17d5ca1",
+  "name": "Diag-wgs1-HG12345678-PM-DR-TRIO-74b039f4-5d0d-4651-9311-407de17d5ca1",
   "params": {
     "pedigree": {
       "proband": {
-      "sample": "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803"
+      "sample": "Diag-wgs1-HG12345678-PM-d303c3b8-6643-4b1e-93fa-4aab17280803"
       },
       "father": {
-        "sample": "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247"
+        "sample": "Diag-wgs1-HG12345679-FM-8d72b72c-6bc6-48ab-824d-c9a5588b8247"
       },
       "mother": {
-        "sample": "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+        "sample": "Diag-wgs1-HG12345680-MK-d987c050-8a6a-4e5a-a577-1e277a07b3ad"
       }
     },
   },
   "samples": [
-    "Diag-wgs1-HG12345678-PM-d303c3b866434b1e93fa4aab17280803",
-    "Diag-wgs1-HG12345679-FM-8d72b72c6bc648ab824dc9a5588b8247",
-    "Diag-wgs1-HG12345680-MK-d987c0508a6a4e5aa5771e277a07b3ad"
+    "Diag-wgs1-HG12345678-PM-d303c3b8-6643-4b1e-93fa-4aab17280803",
+    "Diag-wgs1-HG12345679-FM-8d72b72c-6bc6-48ab-824d-c9a5588b8247",
+    "Diag-wgs1-HG12345680-MK-d987c050-8a6a-4e5a-a577-1e277a07b3ad"
   ]
 }
 ```
 
 # UUID for reanalyses 
 
-When UUIDs are used in `.sample` and `.analysis` files, we need to consider the reanalysis scenario. For reanalyses, 
+When UUIDs are used in `.sample` and `.analysis` files, we need to consider the reanalysis scenario. This is because for reanalyses, 
 instead of creating new UUIDs, the UUIDs of the old samples must be used.
 
 Do we need to make the UUIDs of old samples accessible by lims-exporter?
@@ -136,7 +169,7 @@ Do we need to make the UUIDs of old samples accessible by lims-exporter?
 ## No, we don't need to
 
 - [x] For new analysis, lims-exporter just need to create UUID for new samples and analyses and use them in the `.sample` and `.analysis`
-files and in the samples and alalyses-work folder names. The UUID will end up in Neo4j database.
+files and in the samples and analyses-work folder names. The UUID will end up in Neo4j database.
 
 - [ ] For reanalysis, we only need the old sample name and project, Neo4j database will be queried to to
 find the correct UUID of the sample, *e.g.* query by `sample_name` and `project_name` together with other attributes
@@ -173,7 +206,7 @@ in the Clarity LIMS database; if yes, that UUID will be used.
 #### Cons
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Cons]
 \begin{enumerate}
-    \item Re-prep or re-sequencing or re-demultiplexing will not be distinguished becuase the same UUID will be used.
+    \item Re-prep, re-sequencing or re-demultiplexing will not be distinguishable because the same UUID (from input sample UDF) will be used.
 \end{enumerate}
 \end{tcolorbox}
 

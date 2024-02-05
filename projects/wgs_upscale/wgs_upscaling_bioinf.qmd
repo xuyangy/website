@@ -21,7 +21,7 @@ format:
     html:
         toc: true
         toc-depth: 4
-        # toc-expand: 3
+        toc-expand: true
         number-sections: true
         number-depth: 4
         float: true
@@ -30,6 +30,8 @@ format:
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+comments: 
+    hypothesis: true
 execute: 
     cache: true
     echo: false
@@ -846,8 +848,9 @@ In total [`r r_ttdata_nov`]{style="font-family:Krona One;"} data was transferred
 ## Discussion
 
 
-There are some more questions to be answered.
-
+Obviously, with a 10Gbps switch connecting NSC and TSD, the current transfer speed is not optimal. There can be many
+reasons for this, e.g. network components, software and protocol used to transfer data, the storage system I/O, CPU
+performance o both ends etc.
 
 ### Do we transfer too many small files? {#sec-too-many-small-files}
 <hr>
@@ -993,15 +996,35 @@ md`${textcolor(volume_week, 'Chocolate')} data can be transferred per **week**.`
 md`${textcolor(volume_month, 'Crimson')} data can be transferred per **month**.`
 ```
 
+### Debugging
+
+1. **Does [`tacl`](https://github.com/unioslo/tsd-api-client) transfer data at a higher speed?**
+
+The [`tacl`](https://github.com/unioslo/tsd-api-client) tool transfers speed is actually lower than `s3cmd`.
+The `tacl` tool transfers data at around 65 MB/s.
+
+2. **CPU performance on NSC side**
+
+CPU usage on NSC side (sleipnir) is high during data transfer. It can reach 90% of a single core.
+
+3. **Does increasing the chunk size of `s3cmd` improve the transfer speed?**
+
+The 200MB chunk size is almost the optimal size for the current setup. 2500MB chunk size is slightly 
+better (+10%) than 200MB chunk size for very large files.
+
+4. **Does parallelizing the transfer improve the transfer speed?**
+
+With two parallel `nsc-exporter` processes, we can achieve around **1.6x - 1.8x** the transfer speed of a single process.
 
 
 ## Conclusion
 
-* We might be able to run `4 x 48` or `2 x 48 + 1 x 96` samples per week.
-  Then we are reaching the limit of the current setup.
-* We need to investigate the reason for the low transfer speed.
-* We need to investigate the possibility of increasing the chunk size of s3cmd to improve the transfer speed.
-* We need to test if running 2 nsc-exporter processes in parallel can improve the transfer capacity.
+* We can run `4 x 48` or `2 x 48 + 1 x 96` samples per week. Then the alloanace for downtime is reduced to 2 days per week.
+* 200MB chunk size is almost the optimal size for the current setup.
+* With 2 parallel `nsc-exporter` processes, we can achieve around **1.6x - 1.8x** the transfer speed of a single
+  process with current setup.
+* We are waiting or the investigation of the low transfer speed on TSD side, e.g. TCP Proxy, MinIO performance,
+     storage I/O etc.
 
 # Data storage
 <hr>
@@ -1013,7 +1036,7 @@ WGS produces large amount of data. The data storage capacity is critical for the
 
 
 On NSC side, the data is stored in on **boston** at `/boston/diag`. 
-Boston has a total capacity of 1.5 PB, and the usable capacity is 1.2 at the moment.
+Boston has a total capacity of 1.5 PB, and the usable capacity is 320TB at the moment.
 
 
 ## TSD
