@@ -463,7 +463,7 @@ The nsc-exporter is idle when it is not transferring data.
 All transfer records are plotted with 
   starting time of each transfer on x-axis and 
   the time used to finished the transfer on y-axis. 
-The gaps represnts idle periods of nsc-exporter. 
+The gaps represents idle periods of nsc-exporter. 
 The color represents projects, *e.g.* wgs123, EKG20230901 *etc.*. 
 The shape represents project type, *e.g.* wgs, EKG *etc.* 
 You can turn off a project by clicking it in the legend to the right of the figure.  
@@ -1019,7 +1019,7 @@ With two parallel `nsc-exporter` processes, we can achieve around **1.6x - 1.8x*
 
 ## Conclusion
 
-* We can run `4 x 48` or `2 x 48 + 1 x 96` samples per week. Then the alloanace for downtime is reduced to 2 days per week.
+* We can run `4 x 48` or `2 x 48 + 1 x 96` samples per week. Then the allowance for downtime is reduced to 2 days per week.
 * 200MB chunk size is almost the optimal size for the current setup.
 * With 2 parallel `nsc-exporter` processes, we can achieve around **1.6x - 1.8x** the transfer speed of a single
   process with current setup.
@@ -1059,7 +1059,7 @@ To be extended ...
 # Discussion
 <hr>
 
-To be addded...
+To be added...
 
 
 # Conclusion
