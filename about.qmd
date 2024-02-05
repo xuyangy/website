@@ -2,7 +2,7 @@
 title: "Robot Genome"
 about: 
     template: jolla
-    image: pipeline.png
+    image: logo.png
     links:
         - icon: twitter
           text: Twitter
