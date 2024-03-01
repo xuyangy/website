@@ -42,6 +42,7 @@ engine: knitr
 # Why uuid?
 
 The UUID is needed for both the **filesystem** and **Maestro/Steps**.
+[example](uuid.png)
 
 1. **Filesystem**
     1. Unique folder name for each sequencing run of a sample or even for each demultiplexing of a sequencing run of a
