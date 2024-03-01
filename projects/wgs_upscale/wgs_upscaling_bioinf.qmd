@@ -938,9 +938,9 @@ library(reticulate)
 library(jtools)
 cat(md_table(
     py$time_df,
-    align = 'lrrr',
+    align = "lrrr",
     format="markdown",
-    col.names = c("threshold", "small files", "large files")
+    col.names = c("threshold", "small files total time(s)", "large files total time(s)")
 ))
 ```
 :::
@@ -1073,10 +1073,10 @@ To be added...
       They will not affect the transfer speed of other files. 
       Therefore, they are ignored for simplicity.
 [^2]: Data comes in a continuous manner. 
-      The nsc-exporter normally takes a snapshot of new data and tranfer it. 
+      The nsc-exporter normally takes a snapshot of new data and transfer it. 
       It then sleeps for 10 minutes before checking for new data. 
       The slept times counted here are where next sleep is more than the sleeping interval (10 minutes) later,
-        siginifying that new data comes right after the sleep. 
+        signifying that new data comes right after the sleep. 
       This is contrary to long idle time where no new data comes after the sleep.
 [^3]: To make sure files are transferred intact, `s3cmd put` checks the *md5sum* of the files. 
       This takes time and is not reported as transfer time by `s3cmd`
