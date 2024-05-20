@@ -1,0 +1,15 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+
+.highlight-last  {
+  color: grey;
+  .current-fragment {
+    color: #5500ff;
+  }
+}
+
+.mono {
+  font-family: monospace;
+  font-size: 0.4em;
+}
