@@ -4,6 +4,7 @@ subtitle:  📅 May 6-8 2024 🇲🇾 Kuala Lumpur, Malaysia
 title-slide-attributes: 
   data-background-image: venue.JPG
   data-background-opacity: "0.5"
+image: venue.JPG
 author: 
   - Maire
   - Kayleigh
@@ -24,7 +25,7 @@ format:
 - Day 0 (Sun): Pre-conference workshop (Thermo Fisher PGT solutions, carrier screening, methylation, TGS)
 - Day 1 (Mon): Advances in PGT + Contraversies in PGT
 - Day 2 (Tue): Contraversies in PGT + Embryo selection + niPGT + Conselling
-- Day 3 (Wed): Scientific Sessions
+- Day 3 (Wed): Quality in IVF + Inovations in PGT
 :::
 
 
