@@ -27,20 +27,31 @@ format:
 :::
 
 
-## From Sample To Report: Comprehensive NGS Solutions For Reproductive Health Assays
+## Thermo Fisher Scientific's NGS Solutions For PGT
 
-Lab Prep + Sequencing + Bioinformatics + Reporting
+::: {style="font-size: 0.8em;"}
+Whole Workflow: Lab Prep + Sequencing + Analysis + Reporting
 
-
-- Lab Prep: combined DNA extraction, WGA and sample barcoding
-- Template Prep: automated clonal amplification of libraries
-- Sequencing: [Ion GeneStudio System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/instruments/ion-genestudio-system.html){.external}
-
-::: {.incremental .highlight-last}
-- PGT-A
-- PGT-M ← PGD-SEQ
-- Carrier Screening ← CarrierSeq
-- Newborn Screening
+- Library Prep [(DNA extraction, WGA and barcoding)]{style="color: gray"} and Template Prep [(automated clonal amplification)]{style="color: gray"}
+  - [Ion Chef System](https://www.thermofisher.com/order/catalog/product/4484177){.external}
+- Sequencing (Ion Semiconductor Sequencing): 
+  - [Ion GeneStudio S5 System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-workflow/ion-torrent-next-generation-sequencing-run-sequence/ion-s5-ngs-targeted-sequencing.html){.external}
+  - [Ion Torrent Genexus System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-workflow/ion-torrent-next-generation-sequencing-run-sequence/ion-torrent-genexus-system.html){.external}
+- Analysis and Reporting: 
+  - [Ion Reporter Software](https://ionreporter.thermofisher.com/ir/){.external}
 :::
 
-## Carrier screening, epigenetics and methylation
+## PGT-A {.smaller}
+### [Ion ReproSeq PGS](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-applications/reproductive-health-research/preimplantation-genetic-testing/preimplantation-genetic-screening.html)
+- Detect whole-chromosome, mosaic, and small copy number events with just 6 pg of DNA from single or multiple cells
+- Multiple kit configurations to analyze from 16 to 192 samples in a single run
+- Mosaicism detection, gender masking, and improved data plotting (for easier data interpretation)
+- Together with the _Ion AmpliSeq Polyploidy Panel_ can confidently identify triploidy 69, XXX, assess potential maternal contamination, and track sibling samples, preventing sample mix-ups.
+- Turnaround time for the Ion ReproSeq PGS Kit 16 samples/run is <10 hours with <2 hours of hands on time.
+
+## PGT-M
+### [PGD-SEQ Panel and Reagent Kits](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-applications/reproductive-health-research/preimplantation-genetic-testing/targeted-ngs-monogenic.html)
+- \>500 gene panels for common and rare monogenic diseases for IVF 
+- Complete kit reagents and targeted PGT-M library to analyze 15 samples
+- Comprehensive familial carrier status using proprietary linkage analysis software
+- >**Simultaneous PGT-M and PGT-A using a single embryo biopsy**
