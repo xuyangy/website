@@ -11,18 +11,19 @@ author:
 format: 
   revealjs:
     theme: [beige, custom.scss]
+    progress: true
     incremental: false
     link-external-icon: true
     link-external-newwindow: true
 ---
 
-## Conference Agenda {background-video="slidebg.mov" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.5"}
+## Conference Agenda {background-video="slidebg.m4v" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.5"}
 
 
 ::: {.incremental .highlight-last}
-- Day 0 (Sun): Pre-conference workshop
-- Day 1 (Mon): Scientific Sessions  - History;  PGT-M k
-- Day 2 (Tue): Scientific Sessions
+- Day 0 (Sun): Pre-conference workshop (Thermo Fisher PGT solutions, carrier screening, methylation, TGS)
+- Day 1 (Mon): Advances in PGT + Contraversies in PGT
+- Day 2 (Tue): Contraversies in PGT + Embryo selection + niPGT + Conselling
 - Day 3 (Wed): Scientific Sessions
 :::
 
@@ -33,25 +34,52 @@ format:
 Whole Workflow: Lab Prep + Sequencing + Analysis + Reporting
 
 - Library Prep [(DNA extraction, WGA and barcoding)]{style="color: gray"} and Template Prep [(automated clonal amplification)]{style="color: gray"}
-  - [Ion Chef System](https://www.thermofisher.com/order/catalog/product/4484177){.external}
+  - [Ion Chef™ System](https://www.thermofisher.com/order/catalog/product/4484177){.external}
 - Sequencing (Ion Semiconductor Sequencing): 
-  - [Ion GeneStudio S5 System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-workflow/ion-torrent-next-generation-sequencing-run-sequence/ion-s5-ngs-targeted-sequencing.html){.external}
-  - [Ion Torrent Genexus System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-workflow/ion-torrent-next-generation-sequencing-run-sequence/ion-torrent-genexus-system.html){.external}
+  - [Ion GeneStudio™ S5 System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-workflow/ion-torrent-next-generation-sequencing-run-sequence/ion-s5-ngs-targeted-sequencing.html){.external}
+  - [Ion Torrent Genexus™ System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-workflow/ion-torrent-next-generation-sequencing-run-sequence/ion-torrent-genexus-system.html){.external}
 - Analysis and Reporting: 
-  - [Ion Reporter Software](https://ionreporter.thermofisher.com/ir/){.external}
+  - [Ion Reporter™ Software](https://ionreporter.thermofisher.com/ir/){.external}
 :::
 
 ## PGT-A {.smaller}
-### [Ion ReproSeq PGS](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-applications/reproductive-health-research/preimplantation-genetic-testing/preimplantation-genetic-screening.html)
+### [Ion ReproSeq™ PGS](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-applications/reproductive-health-research/preimplantation-genetic-testing/preimplantation-genetic-screening.html)
 - Detect whole-chromosome, mosaic, and small copy number events with just 6 pg of DNA from single or multiple cells
 - Multiple kit configurations to analyze from 16 to 192 samples in a single run
 - Mosaicism detection, gender masking, and improved data plotting (for easier data interpretation)
-- Together with the _Ion AmpliSeq Polyploidy Panel_ can confidently identify triploidy 69, XXX, assess potential maternal contamination, and track sibling samples, preventing sample mix-ups.
+- Together with the _Ion AmpliSeq™ Polyploidy Panel_ can confidently identify triploidy 69, XXX, assess potential maternal contamination, and track sibling samples, preventing sample mix-ups.
 - Turnaround time for the Ion ReproSeq PGS Kit 16 samples/run is <10 hours with <2 hours of hands on time.
 
 ## PGT-M
-### [PGD-SEQ Panel and Reagent Kits](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-applications/reproductive-health-research/preimplantation-genetic-testing/targeted-ngs-monogenic.html)
+#### [PGD-SEQ™ Panel and Reagent Kits](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/ion-torrent-next-generation-sequencing-applications/reproductive-health-research/preimplantation-genetic-testing/targeted-ngs-monogenic.html)
 - \>500 gene panels for common and rare monogenic diseases for IVF 
 - Complete kit reagents and targeted PGT-M library to analyze 15 samples
 - Comprehensive familial carrier status using proprietary linkage analysis software
 - >**Simultaneous PGT-M and PGT-A using a single embryo biopsy**
+
+
+## Mosasic transfer
+
+- \>99% of live births from mosaic embryos transfer have no detectable abnormalities (Note the prerequisites of ongoing
+pregnancy, i.e. no implantation failure, no miscarriage)
+- Low-level mosaicism has a better outcome for implantation and pregnancy. But mosiac level "currenly" does not predict
+the risk of being in the <1% of live births with abnormalities.
+
+
+## de novo mutations 
+Long-read sequencing (and direct haplotyping) when incomplete pedigree, de novo mutations (Yikon).
+
+## AI
+#### re-classification of mosaic embryos
+- Mosasic Resolution by Decompositon 
+- Clinical and theoretical decomposition to estimate mosaicism
+- Copy number variation (CNV) and allelic balance
+
+#### Grading embryos
+AI embryo image analysis
+
+## Non-invasive PGT (niPGT)
+- During in vitro development, mostly from day 4 to 6, embryo cell-free DNA (cfDNA) is released to the culture medium, with higher concentrations as the number of cells increase at blastocyst.
+- informativity rates on D6: 98.8% (D5: 81.8%)
+- ploidy concordance TE on D6: 89.1% (D5: 76%)
+- concordance rate with full frozen blastocyst/ICM: up to 93.7% D6/7
