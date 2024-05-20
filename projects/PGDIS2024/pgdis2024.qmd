@@ -1,0 +1,46 @@
+---
+title: PGDIS 2024
+subtitle:  📅 May 6-8 2024 🇲🇾 Kuala Lumpur, Malaysia 
+title-slide-attributes: 
+  data-background-image: venue.JPG
+  data-background-opacity: "0.5"
+author: 
+  - Maire
+  - Kayleigh
+  - Xuyang
+format: 
+  revealjs:
+    theme: [beige, custom.scss]
+    incremental: false
+    link-external-icon: true
+    link-external-newwindow: true
+---
+
+## Conference Agenda {background-video="slidebg.mov" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.5"}
+
+
+::: {.incremental .highlight-last}
+- Day 0 (Sun): Pre-conference workshop
+- Day 1 (Mon): Scientific Sessions  - History;  PGT-M k
+- Day 2 (Tue): Scientific Sessions
+- Day 3 (Wed): Scientific Sessions
+:::
+
+
+## From Sample To Report: Comprehensive NGS Solutions For Reproductive Health Assays
+
+Lab Prep + Sequencing + Bioinformatics + Reporting
+
+
+- Lab Prep: combined DNA extraction, WGA and sample barcoding
+- Template Prep: automated clonal amplification of libraries
+- Sequencing: [Ion GeneStudio System](https://www.thermofisher.com/no/en/home/life-science/sequencing/next-generation-sequencing/instruments/ion-genestudio-system.html){.external}
+
+::: {.incremental .highlight-last}
+- PGT-A
+- PGT-M ← PGD-SEQ
+- Carrier Screening ← CarrierSeq
+- Newborn Screening
+:::
+
+## Carrier screening, epigenetics and methylation
