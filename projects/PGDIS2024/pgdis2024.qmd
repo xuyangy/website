@@ -18,7 +18,7 @@ format:
     link-external-newwindow: true
 ---
 
-## Conference Agenda {background-video="slidebg.m4v" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.5"}
+## Conference Agenda {background-video="slidebg.m4v" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.6"}
 
 
 ::: {.incremental .highlight-last}
