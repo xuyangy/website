@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://robotgenome.com/about.html</loc>
-    <lastmod>2024-03-01T10:49:52.649Z</lastmod>
+    <lastmod>2023-12-29T18:53:55.814Z</lastmod>
   </url>
   <url>
     <loc>https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf.html</loc>
-    <lastmod>2024-03-01T10:49:39.466Z</lastmod>
+    <lastmod>2024-02-05T11:20:09.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://robotgenome.com/projects/PGDIS2024/pgdis2024.html</loc>
+    <lastmod>2024-05-20T21:08:47.667Z</lastmod>
   </url>
   <url>
     <loc>https://robotgenome.com/index.html</loc>
-    <lastmod>2024-03-01T10:49:52.257Z</lastmod>
+    <lastmod>2023-12-09T13:32:02.798Z</lastmod>
   </url>
 </urlset>
