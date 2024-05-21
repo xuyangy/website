@@ -116,14 +116,14 @@
     "href": "projects/PGDIS2024/pgdis2024.html#de-novo-mutations-or-incomplete-pedigree",
     "title": "PGDIS 2024",
     "section": "de novo mutations or incomplete pedigree",
-    "text": "de novo mutations or incomplete pedigree\nLong-read sequencing (and direct haplotyping) when incomplete pedigree, de novo mutations (Yikon)."
+    "text": "de novo mutations or incomplete pedigree\n\nNesten ingen som gjør dette per i dag, var diskusjoner om hvorvidt man skal begynne å rapportere dette. Joris fra Leuven snakket om dette. Hvis vi begynner å rapportere dette for embryo vil det være et paradigmeskifte. De Novo krever så mange som mulig embryobiopsier for å skille ulike haplotyper.\nHva ender man til slutt med å kunne sette inn ved WES/WGS for DeNovo mutasjoner?\nLong-read sequencing (and direct haplotyping) when incomplete pedigree, de novo mutations (Yikon)."
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#ai",
     "href": "projects/PGDIS2024/pgdis2024.html#ai",
     "title": "PGDIS 2024",
     "section": "AI",
-    "text": "AI\nre-classification of mosaic embryos\n\nMosasic Resolution by Decompositon\nClinical and theoretical decomposition to estimate mosaicism\nCopy number variation (CNV) and allelic balance\n\nGrading embryos\nAI embryo image analysis"
+    "text": "AI\nre-classification of mosaic embryos (CooperSurgical)\n\nMosasic Resolution by Decompositon\nClinical and theoretical decomposition to estimate mosaicism\nCopy number variation (CNV) and allelic balance\n\nGrading embryos\nAI embryo image analysis"
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#non-invasive-pgt-nipgt",
@@ -131,6 +131,48 @@
     "title": "PGDIS 2024",
     "section": "Non-invasive PGT (niPGT)",
     "text": "Non-invasive PGT (niPGT)\n\nDuring in vitro development, mostly from day 4 to 6, embryo cell-free DNA (cfDNA) is released to the culture medium, with higher concentrations as the number of cells increase at blastocyst.\ninformativity rates on D6: 98.8% (D5: 81.8%)\nploidy concordance TE on D6: 89.1% (D5: 76%)\nconcordance rate with full frozen blastocyst/ICM: up to 93.7% D6/7"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#mosaisism",
+    "href": "projects/PGDIS2024/pgdis2024.html#mosaisism",
+    "title": "PGDIS 2024",
+    "section": "Mosaisism",
+    "text": "Mosaisism\n\nIRMET (international registry of mosaic embryo transfer) (irmet.net)\nKilder til mossaikk: endogene, indusert, artifaktisk\n20-30% mosaikk-tilstander er alt for høyt - må da finne avvik (RMA, lab/operatør, osv)\nGold standard: celle linjer (blinded?), brukes for å validere og definere “cut off”/støy hos oss\nKjøre OM alle segmentale aneueploidier (Rana et. Al, 2023; D. Marin)\nHvordan rapporteres dette?\nDet er caser med uheldige utfall, med disse er undertrykt/ikke publisert pga juridiske problemer"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-a-1",
+    "href": "projects/PGDIS2024/pgdis2024.html#pgt-a-1",
+    "title": "PGDIS 2024",
+    "section": "PGT-A",
+    "text": "PGT-A\n\nDiskusjoner om hva som er best, karyomapping eller NGS\nKaryomapping\n\nPoster 28"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#nsg-snp",
+    "href": "projects/PGDIS2024/pgdis2024.html#nsg-snp",
+    "title": "PGDIS 2024",
+    "section": "NSG + SNP",
+    "text": "NSG + SNP"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#kontaminasjon-og-prøveforbytting",
+    "href": "projects/PGDIS2024/pgdis2024.html#kontaminasjon-og-prøveforbytting",
+    "title": "PGDIS 2024",
+    "section": "Kontaminasjon og prøveforbytting",
+    "text": "Kontaminasjon og prøveforbytting\n\nJuno Genetics v/Dagan Wells tar video av overføringer.\nmtDNA- kontroll"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-p",
+    "href": "projects/PGDIS2024/pgdis2024.html#pgt-p",
+    "title": "PGDIS 2024",
+    "section": "PGT-P",
+    "text": "PGT-P"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#kontaktpersoner",
+    "href": "projects/PGDIS2024/pgdis2024.html#kontaktpersoner",
+    "title": "PGDIS 2024",
+    "section": "Kontaktpersoner",
+    "text": "Kontaktpersoner\n\nCarmen fra iGenomix Valencia\nEdith Coonen (fikk info om at hun var go-to for PGT-SR)\nDavid Kubicek Poster 29\nAaron Chen fra Malaysia som har brukt Karyomapping og Embryomap i mange år\nSilja Lu fra Yikon (lusijia@yikongenoics.com)"
   },
   {
     "objectID": "index.html",
