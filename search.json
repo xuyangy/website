@@ -81,7 +81,7 @@
     "href": "projects/PGDIS2024/pgdis2024.html#conference-agenda",
     "title": "PGDIS 2024",
     "section": "Conference Agenda",
-    "text": "Conference Agenda\n\n\nDay 0 (Sun): Pre-conference workshop (Thermo Fisher PGT solutions, carrier screening, methylation, TGS)\nDay 1 (Mon): Advances in PGT + Contraversies in PGT\nDay 2 (Tue): Contraversies in PGT + Embryo selection + niPGT + Conselling\nDay 3 (Wed): Quality in IVF + Inovations in PGT"
+    "text": "Conference Agenda\n\n\nDay 0 (Sun): Pre-conference workshop (Thermo Fisher PGT solutions, carrier screening, methylation, TGS)\nDay 1 (Mon): Advances in PGT + Contraversies in PGT\nDay 2 (Tue): Contraversies in PGT + Embryo selection + niPGT + genetic counselling\nDay 3 (Wed): Quality in IVF + Inovations in Preimplantation Genetics"
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#thermo-fisher-scientifics-ngs-solutions-for-pgt",
@@ -105,11 +105,95 @@
     "text": "PGT-M\nPGD-SEQ™ Panel and Reagent Kits\n\n&gt;500 gene panels for common and rare monogenic diseases for IVF\nComplete kit reagents and targeted PGT-M library to analyze 15 samples\nComprehensive familial carrier status using proprietary linkage analysis software\n\nSimultaneous PGT-M and PGT-A using a single embryo biopsy"
   },
   {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#epigenetics-testing",
+    "href": "projects/PGDIS2024/pgdis2024.html#epigenetics-testing",
+    "title": "PGDIS 2024",
+    "section": "Epigenetics Testing",
+    "text": "Epigenetics Testing\nPreimplantation DNA methylation Screening (PIMS)\n\nCurrent PGT mainly focus on genetic causes\nOnly about 1/3 of birth defects can find reason\nBoth genetic and epigenetic factors can cause birth defects\nCompared to standard PGT-A, PIMS increases pregnancy rate and live birth rate by 10-15%\nExclusive methylation-based artificial intelligence to improve accuracy and to avoid subjectivity"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-a-1",
+    "href": "projects/PGDIS2024/pgdis2024.html#pgt-a-1",
+    "title": "PGDIS 2024",
+    "section": "PGT-A",
+    "text": "PGT-A\nPGTai 2.0 (CooperSurgical) VS PGTseq-A (JunoGenetis) VS PG-Seq Rapid v2 Kit(Revvit)\nPGTseq-A : NGS of thousands of sites on each chromosome to get accurate copy number information and SNPs"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-a-2",
+    "href": "projects/PGDIS2024/pgdis2024.html#pgt-a-2",
+    "title": "PGDIS 2024",
+    "section": "PGT-A",
+    "text": "PGT-A\nPGTai 2.0 (CooperSurgical) VS PGTseq-A (JunoGenetis)\nPGTai 2.0: Also NGS and combines copy number information with SNPs, but powered by AI"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#section-1",
+    "href": "projects/PGDIS2024/pgdis2024.html#section-1",
+    "title": "PGDIS 2024",
+    "section": "1",
+    "text": "1"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#mosaikk",
+    "href": "projects/PGDIS2024/pgdis2024.html#mosaikk",
+    "title": "PGDIS 2024",
+    "section": "Mosaikk",
+    "text": "Mosaikk"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#mosaikk-fort.",
+    "href": "projects/PGDIS2024/pgdis2024.html#mosaikk-fort.",
+    "title": "PGDIS 2024",
+    "section": "Mosaikk fort.",
+    "text": "Mosaikk fort.\n ## Mosaikk fort."
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#mosaikk-rapportering",
+    "href": "projects/PGDIS2024/pgdis2024.html#mosaikk-rapportering",
+    "title": "PGDIS 2024",
+    "section": "Mosaikk, rapportering",
+    "text": "Mosaikk, rapportering\nMosaikk-embryo klassifisering for et redusert embryotap, v/Steve Grkovic (genea, Australia)"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#mosaikk-rapportering-1",
+    "href": "projects/PGDIS2024/pgdis2024.html#mosaikk-rapportering-1",
+    "title": "PGDIS 2024",
+    "section": "mosaikk, rapportering",
+    "text": "mosaikk, rapportering"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#mosaikk-rapportering-2",
+    "href": "projects/PGDIS2024/pgdis2024.html#mosaikk-rapportering-2",
+    "title": "PGDIS 2024",
+    "section": "mosaikk, rapportering",
+    "text": "mosaikk, rapportering"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#medlem-av-pgdis-david-cram-om-mosaikk",
+    "href": "projects/PGDIS2024/pgdis2024.html#medlem-av-pgdis-david-cram-om-mosaikk",
+    "title": "PGDIS 2024",
+    "section": "Medlem av PGDIS (David Cram) om mosaikk",
+    "text": "Medlem av PGDIS (David Cram) om mosaikk\n\nHvordan definere cut-off for “lav-” og “høy”-gradig mosaikk:  \n\nAlt. 1: bruke 50% som cut off \nAlt. 2 er å ta støynivå satt av laboratoriet til betrakning.  \n\nHvis støygrense er 20% for å definere euploid vil: \n\nMåling av 30% kan være så høy som 50% eller lav som 10% \nMåling av 40% kan være så høy som 60% eller lav som 20% \nMåling av 50% kan være så høy som 70% eller lav som 30%"
+  },
+  {
     "objectID": "projects/PGDIS2024/pgdis2024.html#mosasic-transfer",
     "href": "projects/PGDIS2024/pgdis2024.html#mosasic-transfer",
     "title": "PGDIS 2024",
     "section": "Mosasic transfer",
     "text": "Mosasic transfer\n\n&gt;99% of live births from mosaic embryos transfer have no detectable abnormalities (Note the prerequisites of ongoing pregnancy, i.e. no implantation failure, no miscarriage)\nLow-level mosaicism has a better outcome for implantation and pregnancy. But mosiac level “currenly” does not predict the risk of being in the &lt;1% of live births with abnormalities."
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#oversikt-metoder",
+    "href": "projects/PGDIS2024/pgdis2024.html#oversikt-metoder",
+    "title": "PGDIS 2024",
+    "section": "Oversikt metoder",
+    "text": "Oversikt metoder\n\nPGT-A: trenger kun kopitall, vanligvis med lav-dekning sekvensering (&lt;0.1X dekning), ca 10Mb størrelse  \nPGT-SR: lav-dekning sekvensering kan detektere ubalanser. Trenger SNP-analyse for å skille bærer fra normale \nPGT-M: linkage eller SNP-analyse (haplotyping eller direkte deteksjon av mutasjonen) \nPGT-P: trenger SNP-analyse\nPGT-WGS: alt over, trenger SNP-analyse"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#div.-om-kontaminasjon-og-prøveforbytting",
+    "href": "projects/PGDIS2024/pgdis2024.html#div.-om-kontaminasjon-og-prøveforbytting",
+    "title": "PGDIS 2024",
+    "section": "Div. om kontaminasjon og prøveforbytting",
+    "text": "Div. om kontaminasjon og prøveforbytting\n\nJuno Genetics (v/Dagan Wells) tar video av overføringer.\nCytogenomix laboratory in Malaysia: Utfører shipping validation for IVF-lab som har forhøyet amplifiseringsfeil. \nFor NGS-basert metode: amplifisere mtDNA fra WGA-produkt (mtDetect Web App, skybasert m/server i USA)."
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#de-novo-mutations-or-incomplete-pedigree",
@@ -123,7 +207,7 @@
     "href": "projects/PGDIS2024/pgdis2024.html#ai",
     "title": "PGDIS 2024",
     "section": "AI",
-    "text": "AI\nre-classification of mosaic embryos (CooperSurgical)\n\nMosasic Resolution by Decompositon\nClinical and theoretical decomposition to estimate mosaicism\nCopy number variation (CNV) and allelic balance\n\nGrading embryos\nAI embryo image analysis"
+    "text": "AI\nre-classification of mosaic embryos (CooperSurgical)\n\nMosasic Resolution by Decompositon\nClinical and theoretical decomposition to estimate mosaicism\nCopy number variation (CNV) and allelic balance\n\nGrading/Selection Embryos"
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#non-invasive-pgt-nipgt",
@@ -140,8 +224,8 @@
     "text": "Mosaisism\n\nIRMET (international registry of mosaic embryo transfer) (irmet.net)\nKilder til mossaikk: endogene, indusert, artifaktisk\n20-30% mosaikk-tilstander er alt for høyt - må da finne avvik (RMA, lab/operatør, osv)\nGold standard: celle linjer (blinded?), brukes for å validere og definere “cut off”/støy hos oss\nKjøre OM alle segmentale aneueploidier (Rana et. Al, 2023; D. Marin)\nHvordan rapporteres dette?\nDet er caser med uheldige utfall, med disse er undertrykt/ikke publisert pga juridiske problemer"
   },
   {
-    "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-a-1",
-    "href": "projects/PGDIS2024/pgdis2024.html#pgt-a-1",
+    "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-a-3",
+    "href": "projects/PGDIS2024/pgdis2024.html#pgt-a-3",
     "title": "PGDIS 2024",
     "section": "PGT-A",
     "text": "PGT-A\n\nDiskusjoner om hva som er best, karyomapping eller NGS\nKaryomapping\n\nPoster 28"
@@ -152,13 +236,6 @@
     "title": "PGDIS 2024",
     "section": "NSG + SNP",
     "text": "NSG + SNP"
-  },
-  {
-    "objectID": "projects/PGDIS2024/pgdis2024.html#kontaminasjon-og-prøveforbytting",
-    "href": "projects/PGDIS2024/pgdis2024.html#kontaminasjon-og-prøveforbytting",
-    "title": "PGDIS 2024",
-    "section": "Kontaminasjon og prøveforbytting",
-    "text": "Kontaminasjon og prøveforbytting\n\nJuno Genetics v/Dagan Wells tar video av overføringer.\nmtDNA- kontroll"
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-p",
