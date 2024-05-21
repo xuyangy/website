@@ -18,8 +18,7 @@ format:
     link-external-newwindow: true
 ---
 
-## Conference Agenda {background-video="slidebg.m4v" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.6"}
-
+## Conference Agenda {background-video="slidebg.m4v" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.7"}
 
 ::: {.incremental .highlight-last}
 - Day 0 (Sun): Pre-conference workshop (Thermo Fisher PGT solutions, carrier screening, methylation, TGS)
@@ -29,7 +28,7 @@ format:
 :::
 
 
-## Thermo Fisher Scientific's NGS Solutions For PGT
+## [Thermo Fisher Scientific]{.underline}'s NGS Solutions For PGT
 
 ::: {style="font-size: 0.8em;"}
 Whole Workflow: Lab Prep + Sequencing + Analysis + Reporting
@@ -67,11 +66,14 @@ pregnancy, i.e. no implantation failure, no miscarriage)
 the risk of being in the <1% of live births with abnormalities.
 
 
-## de novo mutations 
-Long-read sequencing (and direct haplotyping) when incomplete pedigree, de novo mutations (Yikon).
+## de novo mutations or incomplete pedigree
+
+- Nesten ingen som gjør dette per i dag, var diskusjoner om hvorvidt man skal begynne å rapportere dette. Joris fra Leuven snakket om dette. Hvis vi begynner å rapportere dette for embryo vil det være et paradigmeskifte. De Novo krever så mange som mulig embryobiopsier for å skille ulike haplotyper.
+- Hva ender man til slutt med å kunne sette inn ved WES/WGS for DeNovo mutasjoner? 
+- Long-read sequencing (and direct haplotyping) when incomplete pedigree, de novo mutations (Yikon).
 
 ## AI
-#### re-classification of mosaic embryos
+#### re-classification of mosaic embryos (CooperSurgical)
 - Mosasic Resolution by Decompositon 
 - Clinical and theoretical decomposition to estimate mosaicism
 - Copy number variation (CNV) and allelic balance
@@ -84,3 +86,41 @@ AI embryo image analysis
 - informativity rates on D6: 98.8% (D5: 81.8%)
 - ploidy concordance TE on D6: 89.1% (D5: 76%)
 - concordance rate with full frozen blastocyst/ICM: up to 93.7% D6/7
+
+## Mosaisism {.smaller}
+
+
+- IRMET (international registry of mosaic embryo transfer) (irmet.net)
+- Kilder til mossaikk: endogene, indusert, artifaktisk
+- 20-30% mosaikk-tilstander er alt for høyt - må da finne avvik (RMA, lab/operatør, osv)
+- Gold standard: celle linjer (blinded?), brukes for å validere og definere “cut off”/støy hos oss
+- Kjøre OM alle segmentale aneueploidier (Rana et. Al, 2023; D. Marin)
+- Hvordan rapporteres dette?
+- Det er caser med uheldige utfall, med disse er undertrykt/ikke publisert pga juridiske problemer
+
+## PGT-A
+
+- Diskusjoner om hva som er best, karyomapping eller NGS
+- Karyomapping
+  - Poster 28
+
+## NSG + SNP
+
+
+## Kontaminasjon og prøveforbytting
+
+- Juno Genetics v/Dagan Wells tar video av overføringer. 
+- mtDNA- kontroll
+
+## PGT-P
+
+
+
+## Kontaktpersoner
+- *Carmen* fra iGenomix Valencia
+- *Edith Coonen* (fikk info om at hun var go-to for PGT-SR)
+- *David Kubicek* Poster 29
+- *Aaron Chen* fra Malaysia som har brukt Karyomapping og Embryomap i mange år
+- *Silja Lu* fra Yikon (lusijia@yikongenoics.com)
+
+## QA
