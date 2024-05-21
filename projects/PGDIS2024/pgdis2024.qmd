@@ -2,7 +2,7 @@
 title: PGDIS 2024
 subtitle:  📅 May 6-8 2024 🇲🇾 Kuala Lumpur, Malaysia 
 title-slide-attributes: 
-  data-background-image: venue.jpg
+  data-background-image: venue.JPG
   data-background-opacity: "0.5"
 image: venue.JPG
 author: 
@@ -30,6 +30,8 @@ format:
 ##
 ::: {.r-stack}
 ![](threeofus.jpg){.fragment .r-stretch }
+
+![](discussion.jpeg){.fragment .r-stretch}
 
 ![](ask.jpg){.fragment .r-stretch }
 
@@ -73,6 +75,139 @@ Whole Workflow: Lab Prep + Sequencing + Analysis + Reporting
 - Comprehensive familial carrier status using proprietary linkage analysis software
 - >**Simultaneous PGT-M and PGT-A using a single embryo biopsy**
 
+## Epigenetics Testing
+Preimplantation DNA methylation Screening (**PIMS**)
+
+- Current PGT mainly focus on genetic causes
+- Only about 1/3 of birth defects can find reasons
+- Both genetic and epigenetic factors can cause birth defects
+- Compared to standard PGT-A, PIMS increases pregnancy rate and live birth rate by 10-15%
+- Exclusive methylation-based **artificial intelligence** to improve accuracy and to avoid subjectivity
+
+## PGT-A
+PGTai 2.0 (CooperSurgical) VS PGTseq-A (JunoGenetis) VS PG-Seq Rapid v2 Kit(Revvit)
+
+PGTseq-A : [NGS of thousands of sites on each chromosome to get accurate copy number information and SNPs]{style="font-size: 0.4em;"}
+
+::: {.r-stack}
+
+![](copy_number.png){.fragment }
+
+![](snps.png){.fragment }
+:::
+
+## PGT-A
+PGTai 2.0 (CooperSurgical) VS PGTseq-A (JunoGenetis)
+
+PGTai 2.0: [Also NGS and combines copy number information with SNPs, but powered by AI]{style="font-size: 0.5em;"}
+![](PGTai2.0.png)
+
+## 
+![](IMG_20240506_164838.jpg) 
+
+## 
+![](IMG_20240506_165126.jpg) 
+
+## 
+![](IMG_20240507_121808.jpg) 
+
+## 
+![](IMG_20240507_122845.jpg) 
+
+## 
+![](IMG_20240508_081023.jpg) 
+
+## 
+![](IMG_20240508_081206.jpg) 
+
+## 
+![](IMG_20240508_081312.jpg) 
+
+## 
+![](IMG_20240508_081511.jpg) 
+
+## 
+![](IMG_20240508_081648.jpg) 
+
+## 
+![](IMG_20240508_081754.jpg) 
+
+## 
+![](IMG_20240508_082146.jpg) 
+
+## 
+![](IMG_20240508_082337.jpg) 
+
+## 
+![](IMG_20240508_082607.jpg) 
+
+## 
+![](IMG_20240508_082734.jpg) 
+
+## 
+![](IMG_20240508_083011.jpg) 
+
+## 
+![](IMG_20240508_083335.jpg) 
+
+## 
+![](IMG_20240508_083654.jpg) 
+
+## 
+![](IMG_20240508_083718.jpg) 
+
+## 
+![](IMG_20240508_083812.jpg) 
+
+## 
+![](IMG_20240508_084053.jpg) 
+
+## 
+![](IMG_20240508_084201.jpg) 
+
+## 
+![](IMG_20240508_084333.jpg) 
+
+## 
+![](IMG_20240508_084537.jpg) 
+
+## 
+![](IMG_20240508_084634.jpg) 
+
+## 
+![](IMG_20240508_084708.jpg) 
+
+## 
+![](IMG_20240508_102059.jpg) 
+
+## 
+![](IMG_20240508_121754.jpg) 
+
+## 
+![](IMG_20240508_122130.jpg) 
+
+## 
+![](IMG_20240508_122241.jpg) 
+
+## 
+![](IMG_20240508_122331.jpg) 
+
+## 
+![](IMG_20240508_122523.jpg) 
+
+## 
+![](IMG_20240508_122633.jpg) 
+
+## 
+![](IMG_20240508_122838.jpg) 
+
+## 
+![](IMG_20240508_123015.jpg) 
+
+## 
+![](IMG_20240508_123122.jpg)
+
+
 ## Mosaikk
 ![](mosaikk.png)
 
@@ -86,12 +221,52 @@ Whole Workflow: Lab Prep + Sequencing + Analysis + Reporting
 [Mosaikk-embryo klassifisering for et redusert embryotap, v/Steve Grkovic (genea, Australia)]{style="font-size: 0.5em;"}
 ![](mosaikk_rapport.png)
 
+## mosaikk, rapportering
+![](mosaikk_rapport_1.png)
+
+
+## mosaikk, rapportering
+
+:::: {.columns}
+::: {.column width=50%}
+![](mosaikk_rapport_2.png)
+:::
+
+::: {.column width=50%}
+![](mosaikk_rapport_3.png)
+:::
+::::
+
+## Medlem av PGDIS (David Cram) om mosaikk {.smaller}
+- Hvordan definere cut-off for “lav-” og “høy”-gradig mosaikk:  
+  - Alt. 1: bruke 50% som cut off 
+  - Alt. 2 er å ta støynivå satt av laboratoriet til betrakning.  
+- Hvis støygrense er 20% for å definere euploid vil: 
+  - Måling av 30% kan være så høy som 50% eller lav som 10% 
+  - Måling av 40% kan være så høy som 60% eller lav som 20% 
+  - Måling av 50% kan være så høy som 70% eller lav som 30% 
+
+
 ## Mosasic transfer
 
 - \>99% of live births from mosaic embryos transfer have no detectable abnormalities (Note the prerequisites of ongoing
 pregnancy, i.e. no implantation failure, no miscarriage)
 - Low-level mosaicism has a better outcome for implantation and pregnancy. But mosiac level "currenly" does not predict
 the risk of being in the <1% of live births with abnormalities.
+
+
+## Oversikt metoder
+- PGT-A: trenger kun kopitall, vanligvis med lav-dekning sekvensering (<0.1X dekning), ca 10Mb størrelse  
+- PGT-SR: lav-dekning sekvensering kan detektere ubalanser. **Trenger SNP-analyse** for å skille bærer fra normale 
+- PGT-M: linkage eller **SNP-analyse** (haplotyping eller direkte deteksjon av mutasjonen) 
+- PGT-P: trenger **SNP-analyse**
+- PGT-WGS: alt over, trenger **SNP-analyse**
+
+## Div. om kontaminasjon og prøveforbytting
+
+- Juno Genetics (v/Dagan Wells) tar video av overføringer.
+- Cytogenomix laboratory in Malaysia: Utfører shipping validation for IVF-lab som har forhøyet amplifiseringsfeil. 
+- For NGS-basert metode: amplifisere mtDNA fra WGA-produkt (mtDetect Web App, skybasert m/server i USA).
 
 
 ## de novo mutations or incomplete pedigree
@@ -106,8 +281,7 @@ the risk of being in the <1% of live births with abnormalities.
 - Clinical and theoretical decomposition to estimate mosaicism
 - Copy number variation (CNV) and allelic balance
 
-#### Grading embryos
-AI embryo image analysis
+#### Grading/Selection Embryos
 
 ## Non-invasive PGT (niPGT)
 - During in vitro development, mostly from day 4 to 6, embryo cell-free DNA (cfDNA) is released to the culture medium, with higher concentrations as the number of cells increase at blastocyst.
@@ -135,11 +309,6 @@ AI embryo image analysis
 ## NSG + SNP
 
 
-## Kontaminasjon og prøveforbytting
-
-- Juno Genetics v/Dagan Wells tar video av overføringer. 
-- mtDNA- kontroll
-
 ## PGT-P
 
 
@@ -150,5 +319,3 @@ AI embryo image analysis
 - *David Kubicek* Poster 29
 - *Aaron Chen* fra Malaysia som har brukt Karyomapping og Embryomap i mange år
 - *Silja Lu* fra Yikon (lusijia@yikongenoics.com)
-
-## QA
