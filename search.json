@@ -175,11 +175,11 @@
     "text": "Oversikt metoder\n\nPGT-A: trenger kun kopitall, vanligvis med lav-dekning sekvensering (&lt;0.1X dekning), ca 10Mb størrelse  \nPGT-SR: lav-dekning sekvensering kan detektere ubalanser. Trenger SNP-analyse for å skille bærer fra normale \nPGT-M: linkage eller SNP-analyse (haplotyping eller direkte deteksjon av mutasjonen) \nPGT-P: trenger SNP-analyse\nPGT-WGS: alt over, trenger SNP-analyse"
   },
   {
-    "objectID": "projects/PGDIS2024/pgdis2024.html#div.-om-kontaminasjon-og-prøveforbytting",
-    "href": "projects/PGDIS2024/pgdis2024.html#div.-om-kontaminasjon-og-prøveforbytting",
+    "objectID": "projects/PGDIS2024/pgdis2024.html#quality-in-ivf",
+    "href": "projects/PGDIS2024/pgdis2024.html#quality-in-ivf",
     "title": "PGDIS 2024",
-    "section": "Div. om kontaminasjon og prøveforbytting",
-    "text": "Div. om kontaminasjon og prøveforbytting\n\nJuno Genetics (v/Dagan Wells) tar video av overføringer.\nCytogenomix laboratory in Malaysia: Utfører shipping validation for IVF-lab som har forhøyet amplifiseringsfeil. \nFor NGS-basert metode: amplifisere mtDNA fra WGA-produkt (mtDetect Web App, skybasert m/server i USA)."
+    "section": "Quality in IVF",
+    "text": "Quality in IVF\n\nJuno Genetics (v/Dagan Wells) tar video av overføringer.\nCytogenomix laboratory in Malaysia: Utfører shipping validation for IVF-lab som har forhøyet amplifiseringsfeil. \nFor NGS-basert metode: amplifisere mtDNA fra WGA-produkt (mtDetect Web App, skybasert m/server i USA)."
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#de-novo-mutations-or-incomplete-pedigree",
