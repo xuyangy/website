@@ -16,6 +16,8 @@ format:
     incremental: false
     link-external-icon: true
     link-external-newwindow: true
+    controls: true
+    touch: true
 ---
 
 ## Conference Agenda {background-video="slidebg.m4v" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.7"}
@@ -23,26 +25,8 @@ format:
 ::: {.incremental .highlight-last}
 - Day 0 (Sun): Pre-conference workshop (Thermo Fisher PGT solutions, carrier screening, methylation, TGS)
 - Day 1 (Mon): Advances in PGT + Contraversies in PGT
-- Day 2 (Tue): Contraversies in PGT + Embryo selection + niPGT + genetic counselling
+- Day 2 (Tue): Contraversies in PGT + Embryo selection + niPGT + genetic counselling + Gala dinner
 - Day 3 (Wed): Quality in IVF + Inovations in Preimplantation Genetics
-:::
-
-##
-::: {.r-stack}
-![](threeofus.jpg){.fragment .r-stretch }
-
-![](discussion.jpeg){.fragment .r-stretch}
-
-![](ask.jpg){.fragment .r-stretch }
-
-![](lunch.jpg){.fragment .r-stretch }
-
-![](queen_come.jpg){.fragment .r-stretch }
-
-![](queen1.jpg){.fragment .r-stretch }
-
-![](dance.jpg){.fragment .r-stretch }
-
 :::
 
 
@@ -84,10 +68,127 @@ Preimplantation DNA methylation Screening (**PIMS**)
 - Compared to standard PGT-A, PIMS increases pregnancy rate and live birth rate by 10-15%
 - Exclusive methylation-based **artificial intelligence** to improve accuracy and to avoid subjectivity
 
-## PGT-A
-PGTai 2.0 (CooperSurgical) VS PGTseq-A (JunoGenetis) VS PG-Seq Rapid v2 Kit(Revvit)
 
-PGTseq-A : [NGS of thousands of sites on each chromosome to get accurate copy number information and SNPs]{style="font-size: 0.4em;"}
+## Mosaikk
+![](mosaikk.png)
+
+## Mosaikk fort.
+![](mosaikk_fort.png)
+
+## Mosaikk fort.
+![](mosaikk_fort_1.png)
+
+## Mosaikk, rapportering
+[Mosaikk-embryo klassifisering for et redusert embryotap, v/Steve Grkovic (genea, Australia)]{style="font-size: 0.5em;"}
+![](mosaikk_rapport.png)
+
+## mosaikk, rapportering
+![](mosaikk_rapport_1.png)
+
+
+## mosaikk, rapportering
+
+:::: {.columns}
+::: {.column width=50%}
+![](mosaikk_rapport_2.png)
+:::
+
+::: {.column width=50%}
+![](mosaikk_rapport_3.png)
+:::
+::::
+
+## Medlem av PGDIS (David Cram) om mosaikk {.smaller}
+- Hvordan definere cut-off for “lav-” og “høy”-gradig mosaikk:  
+  - Alt. 1: bruke 50% som cut off 
+  - Alt. 2 er å ta støynivå satt av laboratoriet til betrakning.  
+- Hvis støygrense er 20% for å definere euploid vil: 
+  - Måling av 30% kan være så høy som 50% eller lav som 10% 
+  - Måling av 40% kan være så høy som 60% eller lav som 20% 
+  - Måling av 50% kan være så høy som 70% eller lav som 30% 
+
+
+## Mosasic transfer
+
+- \>99% of live births from mosaic embryos transfer have no detectable abnormalities (Note the prerequisites of ongoing
+pregnancy, i.e. no implantation failure, no miscarriage)
+- Low-level mosaicism has a better outcome for implantation and pregnancy. But mosiac level "currenly" does not predict
+the risk of being in the <1% of live births with abnormalities.
+
+
+## Oversikt metoder
+- PGT-A: trenger kun kopitall, vanligvis med lav-dekning sekvensering (<0.1X dekning), ca 10Mb størrelse  
+- PGT-SR: lav-dekning sekvensering kan detektere ubalanser. **Trenger SNP-analyse** for å skille bærer fra normale 
+- PGT-M: linkage eller **SNP-analyse** (haplotyping eller direkte deteksjon av mutasjonen) 
+- PGT-P: trenger **SNP-analyse**
+- PGT-WGS: alt over, trenger **SNP-analyse**
+
+## Div. om kontaminasjon og prøveforbytting
+
+- Juno Genetics (v/Dagan Wells) tar video av overføringer.
+- Cytogenomix laboratory in Malaysia: Utfører shipping validation for IVF-lab som har forhøyet amplifiseringsfeil. 
+- For NGS-basert metode: amplifisere mtDNA fra WGA-produkt (mtDetect Web App, skybasert m/server i USA).
+
+
+## de novo mutations or incomplete pedigree
+
+- Nesten ingen som gjør dette per i dag, var diskusjoner om hvorvidt man skal begynne å rapportere dette. Joris fra Leuven snakket om dette. Hvis vi begynner å rapportere dette for embryo vil det være et paradigmeskifte. De Novo krever så mange som mulig embryobiopsier for å skille ulike haplotyper.
+- Hva ender man til slutt med å kunne sette inn ved WES/WGS for DeNovo mutasjoner? 
+- Long-read sequencing (and direct haplotyping) when incomplete pedigree, de novo mutations (Yikon).
+
+## AI
+#### re-classification of mosaic embryos (CooperSurgical)
+- Mosasic Resolution by Decompositon 
+- Clinical and theoretical decomposition to estimate mosaicism
+- Copy number variation (CNV) and allelic balance
+
+#### Grading/Selection Embryos
+
+## Non-invasive PGT (niPGT)
+- During in vitro development, mostly from day 4 to 6, embryo cell-free DNA (cfDNA) is released to the culture medium, with higher concentrations as the number of cells increase at blastocyst.
+- informativity rates on D6: 98.8% (D5: 81.8%)
+- ploidy concordance TE on D6: 89.1% (D5: 76%)
+- concordance rate with full frozen blastocyst/ICM: up to 93.7% D6/7
+
+## Mosaisism {.smaller}
+
+
+- IRMET (international registry of mosaic embryo transfer) (irmet.net)
+- Kilder til mossaikk: endogene, indusert, artifaktisk
+- 20-30% mosaikk-tilstander er alt for høyt - må da finne avvik (RMA, lab/operatør, osv)
+- Gold standard: celle linjer (blinded?), brukes for å validere og definere “cut off”/støy hos oss
+- Kjøre OM alle segmentale aneueploidier (Rana et. Al, 2023; D. Marin)
+- Hvordan rapporteres dette?
+- Det er caser med uheldige utfall, med disse er undertrykt/ikke publisert pga juridiske problemer
+
+## PGT-A
+
+- Diskusjoner om hva som er best, karyomapping eller NGS
+- Karyomapping
+  - Poster 28
+
+## NSG + SNP
+
+
+## PGT-P
+
+
+
+## Kontaktpersoner
+- *Carmen* fra iGenomix Valencia
+- *Edith Coonen* (fikk info om at hun var go-to for PGT-SR)
+- *David Kubicek* Poster 29
+- *Aaron Chen* fra Malaysia som har brukt Karyomapping og Embryomap i mange år
+- *Silja Lu* fra Yikon (lusijia@yikongenoics.com)
+
+
+## PGT-A
+PGTai 2.0 ([CooperSurgical]{style="color:blue;"}) VS 
+PGTseq-A ([JunoGenetis]{style="color:blue;"}) VS 
+PG-Seq Rapid v2 Kit ([Revvit]{style="color:blue;"})
+
+PGTseq-A:
+[NGS of thousands of sites on each chromosome to get accurate copy number information and SNPs]{style="font-size: 0.4em;"}
 
 ::: {.r-stack}
 
@@ -208,114 +309,22 @@ PGTai 2.0: [Also NGS and combines copy number information with SNPs, but powered
 ![](IMG_20240508_123122.jpg)
 
 
-## Mosaikk
-![](mosaikk.png)
 
+##
+::: {.r-stack}
+![](threeofus.jpg){.fragment .r-stretch }
 
-## Mosaikk fort.
-![](mosaikk_fort.png)
-## Mosaikk fort.
-![](mosaikk_fort_1.png)
+![](discussion.jpeg){.fragment .r-stretch}
 
-## Mosaikk, rapportering
-[Mosaikk-embryo klassifisering for et redusert embryotap, v/Steve Grkovic (genea, Australia)]{style="font-size: 0.5em;"}
-![](mosaikk_rapport.png)
+![](ask.jpg){.fragment .r-stretch }
 
-## mosaikk, rapportering
-![](mosaikk_rapport_1.png)
+![](lunch.jpg){.fragment .r-stretch }
 
+![](queen_come.jpg){.fragment .r-stretch }
 
-## mosaikk, rapportering
+![](queen1.jpg){.fragment .r-stretch }
 
-:::: {.columns}
-::: {.column width=50%}
-![](mosaikk_rapport_2.png)
+![](dance.jpg){.fragment .r-stretch }
+
 :::
 
-::: {.column width=50%}
-![](mosaikk_rapport_3.png)
-:::
-::::
-
-## Medlem av PGDIS (David Cram) om mosaikk {.smaller}
-- Hvordan definere cut-off for “lav-” og “høy”-gradig mosaikk:  
-  - Alt. 1: bruke 50% som cut off 
-  - Alt. 2 er å ta støynivå satt av laboratoriet til betrakning.  
-- Hvis støygrense er 20% for å definere euploid vil: 
-  - Måling av 30% kan være så høy som 50% eller lav som 10% 
-  - Måling av 40% kan være så høy som 60% eller lav som 20% 
-  - Måling av 50% kan være så høy som 70% eller lav som 30% 
-
-
-## Mosasic transfer
-
-- \>99% of live births from mosaic embryos transfer have no detectable abnormalities (Note the prerequisites of ongoing
-pregnancy, i.e. no implantation failure, no miscarriage)
-- Low-level mosaicism has a better outcome for implantation and pregnancy. But mosiac level "currenly" does not predict
-the risk of being in the <1% of live births with abnormalities.
-
-
-## Oversikt metoder
-- PGT-A: trenger kun kopitall, vanligvis med lav-dekning sekvensering (<0.1X dekning), ca 10Mb størrelse  
-- PGT-SR: lav-dekning sekvensering kan detektere ubalanser. **Trenger SNP-analyse** for å skille bærer fra normale 
-- PGT-M: linkage eller **SNP-analyse** (haplotyping eller direkte deteksjon av mutasjonen) 
-- PGT-P: trenger **SNP-analyse**
-- PGT-WGS: alt over, trenger **SNP-analyse**
-
-## Div. om kontaminasjon og prøveforbytting
-
-- Juno Genetics (v/Dagan Wells) tar video av overføringer.
-- Cytogenomix laboratory in Malaysia: Utfører shipping validation for IVF-lab som har forhøyet amplifiseringsfeil. 
-- For NGS-basert metode: amplifisere mtDNA fra WGA-produkt (mtDetect Web App, skybasert m/server i USA).
-
-
-## de novo mutations or incomplete pedigree
-
-- Nesten ingen som gjør dette per i dag, var diskusjoner om hvorvidt man skal begynne å rapportere dette. Joris fra Leuven snakket om dette. Hvis vi begynner å rapportere dette for embryo vil det være et paradigmeskifte. De Novo krever så mange som mulig embryobiopsier for å skille ulike haplotyper.
-- Hva ender man til slutt med å kunne sette inn ved WES/WGS for DeNovo mutasjoner? 
-- Long-read sequencing (and direct haplotyping) when incomplete pedigree, de novo mutations (Yikon).
-
-## AI
-#### re-classification of mosaic embryos (CooperSurgical)
-- Mosasic Resolution by Decompositon 
-- Clinical and theoretical decomposition to estimate mosaicism
-- Copy number variation (CNV) and allelic balance
-
-#### Grading/Selection Embryos
-
-## Non-invasive PGT (niPGT)
-- During in vitro development, mostly from day 4 to 6, embryo cell-free DNA (cfDNA) is released to the culture medium, with higher concentrations as the number of cells increase at blastocyst.
-- informativity rates on D6: 98.8% (D5: 81.8%)
-- ploidy concordance TE on D6: 89.1% (D5: 76%)
-- concordance rate with full frozen blastocyst/ICM: up to 93.7% D6/7
-
-## Mosaisism {.smaller}
-
-
-- IRMET (international registry of mosaic embryo transfer) (irmet.net)
-- Kilder til mossaikk: endogene, indusert, artifaktisk
-- 20-30% mosaikk-tilstander er alt for høyt - må da finne avvik (RMA, lab/operatør, osv)
-- Gold standard: celle linjer (blinded?), brukes for å validere og definere “cut off”/støy hos oss
-- Kjøre OM alle segmentale aneueploidier (Rana et. Al, 2023; D. Marin)
-- Hvordan rapporteres dette?
-- Det er caser med uheldige utfall, med disse er undertrykt/ikke publisert pga juridiske problemer
-
-## PGT-A
-
-- Diskusjoner om hva som er best, karyomapping eller NGS
-- Karyomapping
-  - Poster 28
-
-## NSG + SNP
-
-
-## PGT-P
-
-
-
-## Kontaktpersoner
-- *Carmen* fra iGenomix Valencia
-- *Edith Coonen* (fikk info om at hun var go-to for PGT-SR)
-- *David Kubicek* Poster 29
-- *Aaron Chen* fra Malaysia som har brukt Karyomapping og Embryomap i mange år
-- *Silja Lu* fra Yikon (lusijia@yikongenoics.com)
