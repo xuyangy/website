@@ -6,7 +6,7 @@ title-slide-attributes:
   data-background-opacity: "0.5"
 image: venue.JPG
 author: 
-  - Maire
+  - Marie
   - Kayleigh
   - Xuyang
 format: 
@@ -69,6 +69,18 @@ Preimplantation DNA methylation Screening (**PIMS**)
 - Exclusive methylation-based **artificial intelligence** to improve accuracy and to avoid subjectivity
 
 
+## Mosaisism {.smaller}
+
+
+- IRMET (international registry of mosaic embryo transfer) (irmet.net)
+- Kilder til mossaikk: endogene, indusert, artifaktisk
+- 20-30% mosaikk-tilstander er alt for høyt - må da finne avvik (RMA, lab/operatør, osv)
+- Gold standard: celle linjer (blinded?), brukes for å validere og definere “cut off”/støy hos oss
+- Kjøre OM alle segmentale aneueploidier (Rana et. Al, 2023; D. Marin)
+- Hvordan rapporteres dette?
+- Det er caser med uheldige utfall, med disse er undertrykt/ikke publisert pga juridiske problemer
+
+
 ## Mosaikk
 ![](mosaikk.png)
 
@@ -125,14 +137,39 @@ the risk of being in the <1% of live births with abnormalities.
 - PGT-P: trenger **SNP-analyse**
 - PGT-WGS: alt over, trenger **SNP-analyse**
 
+
+## PGT metoder
+###### SNP array Genotyping 
+Karyomapping, Haplarithmisis. High throughput SNP array, HaploSew, APCAD, Genome pridication PGT-PS, Hapltype-Aware, Whole genome prediction 
+
+
+###### NGS genotyping
+ PGT Complete, One PGT, Genotyping by sequencing, Cheb et al., HaploPGT, S-HaploSeek 
+
+
+###### Sekvensering og target SNPs
+PGT-Seq (Revvity), OneGene PGT
+
+
+## Utfører WGS embryo screening  {.smaller}
+
+- Gattaca Genomics (Florida, USA) 
+- Orchid: genpanel med 1,400 gener for arvet patogene sykdommer og polygen risiko) 
+- Panacea – GenomeScreen TM: >2,500 sykdomsfremkallende gener for arvelige eller nye de novo-mutasjoner (GenEmbryomics/Progensis Inc) 
+  - Foredlere ved x30 dybde og embryoer ved 50x dybde 
+  - Omfattende variant filtrering for å eliminere FP 
+  - Variant annotering utført fra >50 annoteringskilder, algoritmer for prediksjon av patogenisitet, og ACMG guidelines 
+  - Benchmarking: Genome in a Bottle, flow-sorted GIAB celle linje, sammenlignet gDNA og amplifisert DNA (RepliG), vurdert med hap.py/VCFEval (Conrad Nat. Genet. (2011)) 
+  - Binning approach (hadde problemer med targeted CNV) 
+  - De nova mutasjoner: nøyaktighet beregnet etter filtrering men før annotatering 
+  - niPGT: lav og variable DNA fragmenter --> ikke så robust
+
+
 ## Quality in IVF
 
 - Juno Genetics (v/Dagan Wells) tar video av overføringer.
 - Cytogenomix laboratory in Malaysia: Utfører shipping validation for IVF-lab som har forhøyet amplifiseringsfeil. 
 - For NGS-basert metode: amplifisere mtDNA fra WGA-produkt (mtDetect Web App, skybasert m/server i USA).
-
-## 
-![](IMG_20240507_122845.jpg) 
 
 ## 
 ![](IMG_20240508_081023.jpg) 
@@ -182,22 +219,18 @@ the risk of being in the <1% of live births with abnormalities.
 
 #### Grading/Selection Embryos
 
+
+## 
+![](IMG_20240507_121808.jpg) 
+
+## 
+![](IMG_20240507_122845.jpg) 
+
 ## Non-invasive PGT (niPGT)
 - During in vitro development, mostly from day 4 to 6, embryo cell-free DNA (cfDNA) is released to the culture medium, with higher concentrations as the number of cells increase at blastocyst.
 - informativity rates on D6: 98.8% (D5: 81.8%)
 - ploidy concordance TE on D6: 89.1% (D5: 76%)
 - concordance rate with full frozen blastocyst/ICM: up to 93.7% D6/7
-
-## Mosaisism {.smaller}
-
-
-- IRMET (international registry of mosaic embryo transfer) (irmet.net)
-- Kilder til mossaikk: endogene, indusert, artifaktisk
-- 20-30% mosaikk-tilstander er alt for høyt - må da finne avvik (RMA, lab/operatør, osv)
-- Gold standard: celle linjer (blinded?), brukes for å validere og definere “cut off”/støy hos oss
-- Kjøre OM alle segmentale aneueploidier (Rana et. Al, 2023; D. Marin)
-- Hvordan rapporteres dette?
-- Det er caser med uheldige utfall, med disse er undertrykt/ikke publisert pga juridiske problemer
 
 
 ## PGT-A
@@ -228,17 +261,7 @@ PGTai 2.0: [Also NGS and combines copy number information with SNPs, but powered
 ![](IMG_20240506_165126.jpg) 
 
 ## 
-![](IMG_20240507_121808.jpg) 
-
-
-## 
 ![](IMG_20240508_083335.jpg) 
-
-## 
-![](IMG_20240508_083654.jpg) 
-
-## 
-![](IMG_20240508_083718.jpg) 
 
 ## 
 ![](IMG_20240508_083812.jpg) 
