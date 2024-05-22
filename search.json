@@ -168,11 +168,25 @@
     "text": "Mosasic transfer\n\n&gt;99% of live births from mosaic embryos transfer have no detectable abnormalities (Note the prerequisites of ongoing pregnancy, i.e. no implantation failure, no miscarriage)\nLow-level mosaicism has a better outcome for implantation and pregnancy. But mosiac level “currenly” does not predict the risk of being in the &lt;1% of live births with abnormalities."
   },
   {
-    "objectID": "projects/PGDIS2024/pgdis2024.html#oversikt-metoder",
-    "href": "projects/PGDIS2024/pgdis2024.html#oversikt-metoder",
+    "objectID": "projects/PGDIS2024/pgdis2024.html#oversikt-platformer",
+    "href": "projects/PGDIS2024/pgdis2024.html#oversikt-platformer",
     "title": "PGDIS 2024",
-    "section": "Oversikt metoder",
-    "text": "Oversikt metoder\n\nPGT-A: trenger kun kopitall, vanligvis med lav-dekning sekvensering (&lt;0.1X dekning), ca 10Mb størrelse  \nPGT-SR: lav-dekning sekvensering kan detektere ubalanser. Trenger SNP-analyse for å skille bærer fra normale \nPGT-M: linkage eller SNP-analyse (haplotyping eller direkte deteksjon av mutasjonen) \nPGT-P: trenger SNP-analyse\nPGT-WGS: alt over, trenger SNP-analyse"
+    "section": "Oversikt platformer",
+    "text": "Oversikt platformer\n\nPGT-A: trenger kun kopitall, vanligvis med lav-dekning sekvensering (&lt;0.1X dekning), ca 10Mb størrelse  \nPGT-SR: lav-dekning sekvensering kan detektere ubalanser. Trenger SNP-analyse for å skille bærer fra normale \nPGT-M: linkage eller SNP-analyse (haplotyping eller direkte deteksjon av mutasjonen) \nPGT-P: trenger SNP-analyse\nPGT-WGS: alt over, trenger SNP-analyse"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#pgt-metoder",
+    "href": "projects/PGDIS2024/pgdis2024.html#pgt-metoder",
+    "title": "PGDIS 2024",
+    "section": "PGT metoder",
+    "text": "PGT metoder\nSNP array Genotyping\nKaryomapping, Haplarithmisis. High throughput SNP array, HaploSew, APCAD, Genome pridication PGT-PS, Hapltype-Aware, Whole genome prediction\nNGS genotyping\nPGT Complete, One PGT, Genotyping by sequencing, Cheb et al., HaploPGT, S-HaploSeek\nSekvensering og target SNPs\nPGT-Seq (Revvity), OneGene PGT"
+  },
+  {
+    "objectID": "projects/PGDIS2024/pgdis2024.html#utfører-wgs-embryo-screening",
+    "href": "projects/PGDIS2024/pgdis2024.html#utfører-wgs-embryo-screening",
+    "title": "PGDIS 2024",
+    "section": "Utfører WGS embryo screening",
+    "text": "Utfører WGS embryo screening\n\nGattaca Genomics (Florida, USA)\nOrchid: genpanel med 1,400 gener for arvet patogene sykdommer og polygen risiko)\nPanacea – GenomeScreen TM: &gt;2,500 sykdomsfremkallende gener for arvelige eller nye de novo-mutasjoner (GenEmbryomics/Progensis Inc)\n\nForedlere ved x30 dybde og embryoer ved 50x dybde\nOmfattende variant filtrering for å eliminere FP\nVariant annotering utført fra &gt;50 annoteringskilder, algoritmer for prediksjon av patogenisitet, og ACMG guidelines\nBenchmarking: Genome in a Bottle, flow-sorted GIAB celle linje, sammenlignet gDNA og amplifisert DNA (RepliG), vurdert med hap.py/VCFEval (Conrad Nat. Genet. (2011))\nBinning approach (hadde problemer med targeted CNV)\nDe nova mutasjoner: nøyaktighet beregnet etter filtrering men før annotatering\nniPGT: lav og variable DNA fragmenter –&gt; ikke så robust"
   },
   {
     "objectID": "projects/PGDIS2024/pgdis2024.html#quality-in-ivf",
