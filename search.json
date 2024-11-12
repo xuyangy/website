@@ -14,18 +14,18 @@
     "text": "Conference Agenda\n\n\nDay 1 (Mon): Hackathon day 1 + Social event\nDay 2 (Tue): Hackathon day 2\nDay 3 (Wed): Hackathon day 3 + Summit Day 1\nDay 4 (Thu): Summit Day 2 + Halloween Party\nDay 5 (Fri): Summit Day 3"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-hackathon",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-hackathon",
     "title": "Nextflow Summit 2024",
-    "section": "Hackathon",
-    "text": "Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n(Standardized QC Metrics, Definition And Implementation)\n\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\n\n\n\nc-BIG/NPM-sample-qc\nxuyangyuio/ousamg-sample-qc"
+    "section": "Nextflow Hackathon",
+    "text": "Nextflow Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n(Standardized QC Metrics, Definition And Implementation)\n\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\n\n\n\nimplementations c-BIG/NPM-sample-qc\nimplementations xuyangyuio/ousamg-sample-qc"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#summit",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#summit",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-summit",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-summit",
     "title": "Nextflow Summit 2024",
-    "section": "Summit",
-    "text": "Summit\nTopics\n\n\ndev good practices: nf-test, nf-core tools, green algorithms & env impact of pipelines, nf-nomad and other plugins, SQL integration, pipeline benchmarking.\ncommunity: examples from academia, pharma, biotech and tech companies (mainly experience sharing, describing different approaches).\ntraining and teaching: focus on how to engage people of diverse backgrounds, levels and availability.\nregulation: regulatory issues related to clinical applications.\ntech trend: Nextflow LSP and Seqera AI.\nhelping people grow professionally: open science foundation, paths of success discussion."
+    "section": "Nextflow Summit",
+    "text": "Nextflow Summit\nTopics\n\n\ndev good practices: nf-test, nf-core tools, green algorithms & env impact of pipelines, nf-nomad and other plugins, SQL integration, pipeline benchmarking.\ncommunity: examples from academia, pharma, biotech and tech companies (mainly experience sharing, describing different approaches).\ntraining and teaching: focus on how to engage people of diverse backgrounds, levels and availability.\nregulation: regulatory issues related to clinical applications.\ntech trend: Nextflow LSP and Seqera AI.\nhelping people grow professionally: open science foundation, paths of success discussion."
   },
   {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
@@ -40,6 +40,13 @@
     "title": "Nextflow Summit 2024",
     "section": "Seqera Platform demo",
     "text": "Seqera Platform demo"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#gitpod-demo",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#gitpod-demo",
+    "title": "Nextflow Summit 2024",
+    "section": "Gitpod demo",
+    "text": "Gitpod demo"
   },
   {
     "objectID": "projects/wgs_upscale/wgs_upscaling_bioinf.html",
