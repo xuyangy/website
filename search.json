@@ -35,11 +35,11 @@
     "text": "Nextflow LSP\nEditor support: vscode emacs neovim\nThe following language features are currently supported:\n\ncode navigation (outline, go to definition, find references)\n\ncompletion\n\ndiagnostics (errors, warnings)\n\nformatting\n\nhover hints\n\nrename\n\nDAG preview for workflows"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#seqera-platform-demo",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#seqera-platform-demo",
     "title": "Nextflow Summit 2024",
-    "section": "",
-    "text": "Nextflow Summit 2024"
+    "section": "Seqera Platform demo",
+    "text": "Seqera Platform demo\n\n\n\nNextflow Summit 2024"
   },
   {
     "objectID": "projects/wgs_upscale/wgs_upscaling_bioinf.html",
