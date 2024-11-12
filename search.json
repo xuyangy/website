@@ -14,18 +14,18 @@
     "text": "Conference Agenda\n\n\nDay 1 (Mon): Hackathon day 1 + Social event\nDay 2 (Tue): Hackathon day 2\nDay 3 (Wed): Hackathon day 3 + Summit Day 1\nDay 4 (Thu): Summit Day 2 + Halloween Party\nDay 5 (Fri): Summit Day 3"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon-data-background-imagehackathon_board.png-data-background-sizecontain-data-background-opacity0.3",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon-data-background-imagehackathon_board.png-data-background-sizecontain-data-background-opacity0.3",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon",
     "title": "Nextflow Summit 2024",
-    "section": "Hackathon {data-background-image=“hackathon_board.png” data-background-size=“contain” data-background-opacity=“0.3”}",
-    "text": "Hackathon {data-background-image=“hackathon_board.png” data-background-size=“contain” data-background-opacity=“0.3”}\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n(Standardized QC Metrics, Definition And Implementation)\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\nc-BIG/NPM-sample-qc xuyangyuio/ousamg-sample-qc"
+    "section": "Hackathon",
+    "text": "Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n(Standardized QC Metrics, Definition And Implementation)\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\nc-BIG/NPM-sample-qc xuyangyuio/ousamg-sample-qc"
   },
   {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#summit",
     "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#summit",
     "title": "Nextflow Summit 2024",
     "section": "Summit",
-    "text": "Summit\nTopics\n\n\ndev good practices: nf-test, nf-core tools, green algorithms & env impact of pipelines, nf-nomad and other plugins, SQL integration, pipeline benchmarking.\ncommunity: examples from academia, pharma, biotech and tech companies (mainly experience sharing, describing different approaches).\ntraining and teaching: focus on how to engage people of diverse backgrounds, levels and availability.\nregulation: regulatory issues related to clinical applications.\ntech trend: Nextflow LSP and Seqera AI.\nhelping people grow professionally: open science foundation, paths of success discussion."
+    "text": "Summit\nTopics\n\ndev good practices: nf-test, nf-core tools, green algorithms & env impact of pipelines, nf-nomad and other plugins, SQL integration, pipeline benchmarking.\ncommunity: examples from academia, pharma, biotech and tech companies (mainly experience sharing, describing different approaches).\ntraining and teaching: focus on how to engage people of diverse backgrounds, levels and availability.\nregulation: regulatory issues related to clinical applications.\ntech trend: Nextflow LSP and Seqera AI.\nhelping people grow professionally: open science foundation, paths of success discussion."
   },
   {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
