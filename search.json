@@ -7,6 +7,41 @@
     "text": "Robotis and genomics are two of my favorite things. I’m working on a project to combine them."
   },
   {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#conference-agenda",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#conference-agenda",
+    "title": "Nextflow Summit 2024",
+    "section": "Conference Agenda",
+    "text": "Conference Agenda\n\n\nDay 1 (Mon): Hackathon day 1 + Social event\nDay 2 (Tue): Hackathon day 2\nDay 3 (Wed): Hackathon day 3 + Summit Day 1\nDay 4 (Thu): Summit Day 2 + Halloween Party\nDay 5 (Fri): Summit Day 3"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#hackathon",
+    "title": "Nextflow Summit 2024",
+    "section": "Hackathon",
+    "text": "Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n(Standardized QC Metrics, Definition And Implementation)\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\nc-BIG/NPM-sample-qc xuyangyuio/ousamg-sample-qc"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#summit",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#summit",
+    "title": "Nextflow Summit 2024",
+    "section": "Summit",
+    "text": "Summit\nTopics\n\n\ndev good practices: nf-test, nf-core tools, green algorithms & env impact of pipelines, nf-nomad and other plugins, SQL integration, pipeline benchmarking.\ncommunity: examples from academia, pharma, biotech and tech companies (mainly experience sharing, describing different approaches).\ntraining and teaching: focus on how to engage people of diverse backgrounds, levels and availability.\nregulation: regulatory issues related to clinical applications.\ntech trend: Nextflow LSP and Seqera AI.\nhelping people grow professionally: open science foundation, paths of success discussion."
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
+    "title": "Nextflow Summit 2024",
+    "section": "Nextflow LSP",
+    "text": "Nextflow LSP\nEditor support: vscode emacs neovim\nThe following language features are currently supported:\n\ncode navigation (outline, go to definition, find references)\n\ncompletion\n\ndiagnostics (errors, warnings)\n\nformatting\n\nhover hints\n\nrename\n\nDAG preview for workflows"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Nextflow Summit 2024"
+  },
+  {
     "objectID": "projects/wgs_upscale/wgs_upscaling_bioinf.html",
     "href": "projects/wgs_upscale/wgs_upscaling_bioinf.html",
     "title": "WGS Upscaling - IT & Bioinformatics Evaluation",
@@ -249,6 +284,6 @@
     "href": "index.html",
     "title": "Projects",
     "section": "",
-    "text": "PGDIS 2024\n\n\n📅 May 6-8 2024 🇲🇾 Kuala Lumpur, Malaysia\n\n\n\n\n\n\n\n\nMay 22, 2024\n\n\nMarie , Kayleigh , Xuyang\n\n\n\n\n\n\n\n\n\n\n\n\nUse UUID in Pipeline\n\n\n\n\n\nFor Maestro and Steps, we need uuid for samples and analyses. How do we add uuid to the system?\n\n\n\n\n\nFeb 6, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\n\n\n\n\n\n\nWGS Upscaling - IT & Bioinformatics Evaluation\n\n\n\n\n\nData transfer, Data storage, Bioinformatics pipeline capacity\n\n\n\n\n\nAug 1, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\nNo matching items"
+    "text": "Nextflow Summit 2024\n\n\n📅 October 28 - November 1, 2024 🇪🇸Barcelona, Spain\n\n\n\n\n\n\n\n\nNov 13, 2024\n\n\n👩 Eirini Liampa, 🤵 Xuyang Yuan\n\n\n\n\n\n\n\n\n\n\n\n\nPGDIS 2024\n\n\n📅 May 6-8 2024 🇲🇾 Kuala Lumpur, Malaysia\n\n\n\n\n\n\n\n\nMay 22, 2024\n\n\nMarie , Kayleigh , Xuyang\n\n\n\n\n\n\n\n\n\n\n\n\nUse UUID in Pipeline\n\n\n\n\n\nFor Maestro and Steps, we need uuid for samples and analyses. How do we add uuid to the system?\n\n\n\n\n\nFeb 6, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\n\n\n\n\n\n\nWGS Upscaling - IT & Bioinformatics Evaluation\n\n\n\n\n\nData transfer, Data storage, Bioinformatics pipeline capacity\n\n\n\n\n\nSep 27, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\nNo matching items"
   }
 ]
