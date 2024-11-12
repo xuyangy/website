@@ -1,0 +1,26 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+
+.highlight2-last {
+  font-family: monospace;
+  color: white;
+
+  .current-fragment {
+    color: #5500ff;
+  }
+}
+
+.mono {
+  font-family: monospace;
+  font-size: 0.4em;
+}
+
+.tiny {
+  font-size: 0.4em;
+}
+
+.verysmall {
+  font-family: monospace;
+  font-size: 0.7em;
+}
