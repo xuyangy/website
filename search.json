@@ -21,13 +21,6 @@
     "text": "Nextflow Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n(Standardized QC Metrics, Definition And Implementation)\n\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\n\n\n\nimplementations c-BIG/NPM-sample-qc\nimplementations xuyangyuio/ousamg-sample-qc"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-summit",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-summit",
-    "title": "Nextflow Summit 2024",
-    "section": "Nextflow Summit",
-    "text": "Nextflow Summit\nTopics\n\n\ndev good practices: nf-test, nf-core tools, green algorithms & env impact of pipelines, nf-nomad and other plugins, SQL integration, pipeline benchmarking.\ncommunity: examples from academia, pharma, biotech and tech companies (mainly experience sharing, describing different approaches).\ntraining and teaching: focus on how to engage people of diverse backgrounds, levels and availability.\nregulation: regulatory issues related to clinical applications.\ntech trend: Nextflow LSP and Seqera AI.\nhelping people grow professionally: open science foundation, paths of success discussion."
-  },
-  {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
     "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
     "title": "Nextflow Summit 2024",
