@@ -11,14 +11,14 @@
     "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#conference-agenda",
     "title": "Nextflow Summit 2024",
     "section": "Conference Agenda",
-    "text": "Conference Agenda\n\n\nDay 1 (Mon): Hackathon day 1 + Social event\nDay 2 (Tue): Hackathon day 2\nDay 3 (Wed): Hackathon day 3 + Summit Day 1\nDay 4 (Thu): Summit Day 2 + Halloween Party\nDay 5 (Fri): Summit Day 3"
+    "text": "Conference Agenda\n\n\nDay 1 (Mon): Hackathon day 1 + Quiz@Hard Rock Cafè\nDay 2 (Tue): Hackathon day 2\nDay 3 (Wed): Hackathon day 3 + Summit Day 1\nDay 4 (Thu): Summit Day 2 + Halloween Party\nDay 5 (Fri): Summit Day 3"
   },
   {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-hackathon",
     "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-hackathon",
     "title": "Nextflow Summit 2024",
     "section": "Nextflow Hackathon",
-    "text": "Nextflow Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n(Standardized QC Metrics, Definition And Implementation)\n\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\n\n\n\nimplementations c-BIG/NPM-sample-qc\nimplementations xuyangyuio/ousamg-sample-qc"
+    "text": "Nextflow Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n\n\n(Standardized QC Metrics, Definition And Implementation)\n\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\n\n\n\nimplementations: c-BIG/NPM-sample-qc\nimplementations: xuyangyuio/ousamg-sample-qc"
   },
   {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
@@ -28,17 +28,38 @@
     "text": "Nextflow LSP\nEditor support: vscode emacs neovim\nSupported language features:\n\n\ncode navigation (outline, go to definition, find references)\n\ncompletion\n\ndiagnostics (errors, warnings)\n\nformatting\n\nhover hints\n\nrename\n\nDAG preview for workflows"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#seqera-platform-demo",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#seqera-platform-demo",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-11",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-11",
     "title": "Nextflow Summit 2024",
-    "section": "Seqera Platform demo",
+    "section": "",
+    "text": "Nextflow is widely used\n\n\n\n\nCommunity is growing quickly"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-12",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-12",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Metagenomics analyzes DNA from all organisms in a sample.\n\n\n\n\nThis talk covers nf-core pipelines for profiling, assembly, and functional screening in metagenomics.\n\n\n\n\nIt introduces the meta-omics group and plans for better pipeline integration."
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-13",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-13",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Ensuring the correctness and reliability of large and complex pipelines is challenging\n\n\n\n\nnf-test, testing framework, modular, test individual process blocks, workflow patterns, and entire pipelines\n\n\n\n\nDSL2-like syntax, snapshot testing, testing only changed modules, CI support, plugin system (new)"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-14",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-14",
+    "title": "Nextflow Summit 2024",
+    "section": "",
     "text": "Seqera Platform demo"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#gitpod-demo",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#gitpod-demo",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-15",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-15",
     "title": "Nextflow Summit 2024",
-    "section": "Gitpod demo",
+    "section": "",
     "text": "Gitpod demo"
   },
   {
@@ -284,6 +305,6 @@
     "href": "index.html",
     "title": "Projects",
     "section": "",
-    "text": "Nextflow Summit 2024\n\n\n📅 October 28 - November 1, 2024 🇪🇸Barcelona, Spain\n\n\n\n\n\n\n\n\nNov 13, 2024\n\n\n👩 Eirini Liampa, 🤵 Xuyang Yuan\n\n\n\n\n\n\n\n\n\n\n\n\nPGDIS 2024\n\n\n📅 May 6-8 2024 🇲🇾 Kuala Lumpur, Malaysia\n\n\n\n\n\n\n\n\nMay 22, 2024\n\n\nMarie , Kayleigh , Xuyang\n\n\n\n\n\n\n\n\n\n\n\n\nUse UUID in Pipeline\n\n\n\n\n\nFor Maestro and Steps, we need uuid for samples and analyses. How do we add uuid to the system?\n\n\n\n\n\nFeb 6, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\n\n\n\n\n\n\nWGS Upscaling - IT & Bioinformatics Evaluation\n\n\n\n\n\nData transfer, Data storage, Bioinformatics pipeline capacity\n\n\n\n\n\nSep 27, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\nNo matching items"
+    "text": "Nextflow Summit 2024\n\n\n📅 October 28 - November 1, 2024 🇪🇸Barcelona, Spain\n\n\n\n\n\n\n\n\nNov 20, 2024\n\n\n👩 Eirini Liampa, 🤵 Xuyang Yuan\n\n\n\n\n\n\n\n\n\n\n\n\nPGDIS 2024\n\n\n📅 May 6-8 2024 🇲🇾 Kuala Lumpur, Malaysia\n\n\n\n\n\n\n\n\nMay 22, 2024\n\n\nMarie , Kayleigh , Xuyang\n\n\n\n\n\n\n\n\n\n\n\n\nUse UUID in Pipeline\n\n\n\n\n\nFor Maestro and Steps, we need uuid for samples and analyses. How do we add uuid to the system?\n\n\n\n\n\nFeb 6, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\n\n\n\n\n\n\nWGS Upscaling - IT & Bioinformatics Evaluation\n\n\n\n\n\nData transfer, Data storage, Bioinformatics pipeline capacity\n\n\n\n\n\nSep 27, 2024\n\n\nXuyang Yuan\n\n\n\n\n\n\nNo matching items"
   }
 ]
