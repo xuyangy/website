@@ -8,7 +8,7 @@ image: bcn_wtc.jpg
 author: 
   - 👩  Eirini Liampa
   - 🤵 Xuyang Yuan
-date: 2024-11-13
+date: 2024-11-20
 footer: Nextflow Summit 2024
 format: 
   revealjs:
@@ -17,7 +17,7 @@ format:
       - custom.scss
     progress: true
     incremental: false
-    link-external-icon: true
+    link-external-icon: false
     link-external-newwindow: true
     controls: true
     touch: true
@@ -31,24 +31,36 @@ format:
 
 ## Conference Agenda {background-video="NextflowSummit2024.m4v" background-video-loop="true" background-video-muted="true" background-video-size="cover" background-opacity="0.73"}
 
-::: {.incremental .highlight-last2 .tiny}
-- Day 1 (Mon): Hackathon day 1 + Social event
-- Day 2 (Tue): Hackathon day 2
-- Day 3 (Wed): Hackathon day 3 + Summit Day 1
+
+::: {.incremental .mono .highlight-last style="font-size: 0.5em"}
+- Day 1 (Mon): Hackathon/Training day 1 + Social Event
+- Day 2 (Tue): Hackathon/Training day 2
+- Day 3 (Wed): Hackathon/Training day 3 + Summit Day 1
 - Day 4 (Thu): Summit Day 2 + Halloween Party
 - Day 5 (Fri): Summit Day 3
 -
 :::
 
 
-## [Hackathon](https://github.com/orgs/nf-core/projects/76) {data-background-image="hackathon_board.png" data-background-size="contain" data-background-opacity="0.3" .smaller}
-  **Project: [GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations](https://github.com/ga4gh/quality-control-wgs)**  
+## {data-background-image="slide-1.png" data-background-size="contain" data-background-opacity="1"}
+
+:::{.r-fit-text}
+[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://github.com/orgs/nf-core/projects/76){.no-external-icon}
+:::
+
+
+## [Nextflow Hackathon](https://github.com/orgs/nf-core/projects/76) {data-background-image="hackathon_board.png" data-background-size="contain" data-background-opacity="0.2" .smaller}
+**Project: [GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations](https://github.com/ga4gh/quality-control-wgs)**  
+<hr>
   (Standardized QC Metrics, Definition And Implementation)  
+
+
+:::{style="font-size: 0.7em"}
 
   _e.g. coverage_
 
   - **Many Available Tools**  
-    - samtools, picard, sambamba, indexcov, mosdepth  
+    - [samtools, picard, sambamba, indexcov, mosdepth]{style="font-family: monospace;"}
   - **Each Tool Gives Different Results**
     - All chromosomes or autosomes only❓
     - N bases masked❓ 
@@ -56,28 +68,44 @@ format:
     - Soft-clipped bases included❓
     - Base quality filtering❓ threshold❓
     - Mapping quality filtering❓ threshold❓  
-       [c-BIG/NPM-sample-qc](https://github.com/c-BIG/NPM-sample-qc)
-       [xuyangyuio/ousamg-sample-qc](https://github.com/xuyangyuio/ousamg-sample-qc/tree/dev)
 
-
-## Summit
-#### Topics
-::: {.verysmall}
-- **dev good practices**: nf-test, nf-core tools, green algorithms & env impact of pipelines, nf-nomad  and other plugins, SQL integration, pipeline benchmarking.
-- **community**: examples from academia, pharma, biotech and tech companies (mainly experience sharing, describing different approaches).
-- **training and teaching**: focus on how to engage people of diverse backgrounds, levels and availability.
-- **regulation**: regulatory issues related to clinical applications.
-- **tech trend**: Nextflow LSP and Seqera AI.
-- **helping people grow professionally**: open science foundation, paths of success discussion.
 :::
+implementations: [c-BIG/NPM-sample-qc](https://github.com/c-BIG/NPM-sample-qc)  
+implementations: [xuyangyuio/ousamg-sample-qc](https://github.com/xuyangyuio/ousamg-sample-qc/tree/dev)
+
+
+## {data-background-image="slide-2.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-3.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-4.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-5.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-6.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-7.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-8.png" data-background-size="contain" data-background-opacity="1"}
+:::{.r-fit-text}
+[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://seqera.io/ask-ai){.no-external-icon}
+:::
+
+## {data-background-image="slide-9.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-10.png" data-background-size="contain" data-background-opacity="1"}
+
+## {data-background-image="slide-11.png" data-background-size="contain" data-background-opacity="1"}
 
 ## [Nextflow LSP](https://github.com/nextflow-io/language-server)
 Editor support:
-[vscode](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow){preview-link="true"}
+[vscode](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
 [emacs](https://github.com/emacs-lsp/lsp-mode/pull/4606) 
 [neovim](https://github.com/nextflow-io/language-server/issues/56)
 
-The following language features are currently supported:
+Supported language features:
+
+::: {style="font-size: 0.8em"}
 
 - code navigation (outline, go to definition, find references)  
 - completion  
@@ -87,6 +115,135 @@ The following language features are currently supported:
 - rename  
 - DAG preview for workflows  
 
+:::  
+
+
+## {data-background-image="evan_update.png" data-background-size="contain" data-background-opacity="1"}
+:::: {.r-stack style="font-size: 0.7em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 30em; padding-righ:30m;"}
+&nbsp;  
+&nbsp;
+:::
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+Nextflow is widely used
+:::
+:::
+
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+Community is growing quickly
+:::
+:::
+
+::::
+
+
+<!-- use cases -->
+
+## [Australian BioCommons](https://www.youtube.com/watch?v=1fCrYAofF70)
+::: {.r-stack}
+![](australian_biocommons.png){.r-stretch}
+
+![](biocommon-omics.png){.fragment .r-stretch}
+
+:::
+
+
+
+## {data-background-image="metagenomics.png" data-background-size="contain" data-background-opacity="1"}
+:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
+&nbsp;  
+&nbsp;
+:::
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+[Metagenomics analyzes DNA from all organisms in a sample.]{style="word-break: break-all;"}
+:::
+:::
+
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+This talk covers nf-core pipelines for profiling, assembly, and functional screening in metagenomics.
+:::
+:::
+
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+It introduces the meta-omics group and plans for better pipeline integration.
+:::
+:::
+
+
+<!-- a list of other use cases -->
+
+::::
+
+## {.center}
+
+::: {.incremental}
+[Australian ProteinFold service](https://www.youtube.com/watch?v=1fCrYAofF70){title="Interactive prediction and visualisation of protein structure"}
+:::
+
+
+
+
+## {data-background-image="nf-test.png" data-background-size="contain" data-background-opacity="1"}
+
+:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
+&nbsp;  
+&nbsp;
+:::
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+[Ensuring the correctness and reliability of large and complex pipelines is challenging]{style="word-break: break-all;"}
+:::
+:::
+
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+nf-test, testing framework, modular, test individual process blocks, workflow patterns, and entire pipelines
+:::
+:::
+
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+DSL2-like syntax, snapshot testing, testing only changed modules, CI support, plugin system (new)
+:::
+:::
+
+
+::::
+
+
+
+
+
+## {.center}
+
+::: {.r-fit-text}
+[Seqera Platform demo](https://cloud.seqera.io/orgs/community/workspaces/showcase/launchpad)
+:::
+
+
+## {.center}
+
+::: {.r-fit-text}
+[Gitpod demo](https://gitlab.com/DPIPE/labautomation/steps/-/tree/61-test-for-triopipe?ref_type=heads){title="Open in a browser with Gitpod extension installed"}
+:::
 
 
 ##
@@ -98,6 +255,3 @@ The following language features are currently supported:
 ![](xuyang.jpg){.fragment .r-stretch }
 
 :::
-
-
-## Seqera Platform demo

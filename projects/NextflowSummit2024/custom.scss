@@ -1,8 +1,9 @@
 /*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Shadows+Into+Light&display=swap');
 
 /*-- scss:rules --*/
 
-.highlight2-last {
+.highlight-last {
   font-family: monospace;
   color: white;
 
@@ -16,11 +17,20 @@
   font-size: 0.4em;
 }
 
-.tiny {
-  font-size: 0.4em;
+.smallsmall {
+  font-size: 0.3em;
 }
 
-.verysmall {
-  font-family: monospace;
+.rem7 {
   font-size: 0.7em;
 }
+
+.rem6 {
+  font-size: 0.6em;
+}
+
+a.no-external-icon::after {
+  content: none !important;
+}
+
+.reveal.overview .slides section.present { outline: 10px solid #FFCC00; }
