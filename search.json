@@ -11,14 +11,105 @@
     "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#conference-agenda",
     "title": "Nextflow Summit 2024",
     "section": "Conference Agenda",
-    "text": "Conference Agenda\n\n\nDay 1 (Mon): Hackathon day 1 + Quiz@Hard Rock Cafè\nDay 2 (Tue): Hackathon day 2\nDay 3 (Wed): Hackathon day 3 + Summit Day 1\nDay 4 (Thu): Summit Day 2 + Halloween Party\nDay 5 (Fri): Summit Day 3"
+    "text": "Conference Agenda\n\n\nDay 1 (Mon): Hackathon/Training day 1 + Social Event\nDay 2 (Tue): Hackathon/Training day 2\nDay 3 (Wed): Hackathon/Training day 3 + Summit Day 1\nDay 4 (Thu): Summit Day 2 + Halloween Party\nDay 5 (Fri): Summit Day 3"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "HACKATHON"
   },
   {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-hackathon",
     "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-hackathon",
     "title": "Nextflow Summit 2024",
     "section": "Nextflow Hackathon",
-    "text": "Nextflow Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n\n\n(Standardized QC Metrics, Definition And Implementation)\n\ne.g. coverage\n\nMany Available Tools\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\nEach Tool Gives Different Results\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓ threshold❓\nMapping quality filtering❓ threshold❓\n\n\n\nimplementations: c-BIG/NPM-sample-qc\nimplementations: xuyangyuio/ousamg-sample-qc"
+    "text": "Nextflow Hackathon\nProject: GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations\n\n\n\n\n\n\n\n\nMotivation & Mandate\nStandardized QC Metrics, Definition And Implementation\n\nMany available tools ( e.g. coverage)\n\nsamtools, picard, sambamba, indexcov, mosdepth\n\nDifferent tools give different results depending on defaults settings and options ( e.g. coverage)\n\nAll chromosomes or autosomes only❓\nN bases masked❓\nDuplicates excluded❓\nSoft-clipped bases included❓\nBase quality filtering❓\n\nIf yes, what’s the cutoff to throw away bases❓\n\nMapping quality filtering❓\n\nIf yes, whta’s the cutoff to throw away reads❓\n\n\n\n\n\n \n\n\nImplementation:\n\nNational Precision Medicine programme in Singapore (NPM)\n\nc-BIG/NPM-sample-qc\n\nTools\n\nCollectMultipleMetrics\nCollectVariantCallingMetrics\nCollectWgsMetrics\nbcftools\nsamtools\nverifyBamID2 (DNA contamination estimation from sequence reads using ancestry-agnostic method)\n\nGRCh38\nTest run ✅\n\nOUSAMG\n\nxuyangyuio/ousamg-sample-qc\nGRCh37\nMosdepth"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-4",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-4",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "SUMMIT"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-6",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-6",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "GENERAL TALKS ABOUT NEXTFLOW, BIOINFORMATICS, INDUSTRY ETC."
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-11",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-11",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Nextflow is widely used\n\n\nCommunity is growing quickly"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-12",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-12",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "REGULATION"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-15",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-15",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "EXPERIENCE SHARING IN A VARIETY OF FIELDS"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#australian-biocommons",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#australian-biocommons",
+    "title": "Nextflow Summit 2024",
+    "section": "Australian BioCommons",
+    "text": "Australian BioCommons"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-16",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-16",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Metagenomics analyzes DNA from all organisms in a sample.\n\n\nnf-core pipelines for profiling, assembly, and functional screening in metagenomics.\n\n\nmeta-omics group and plans for better pipeline integration."
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#geni-genomics-englands-pipeline-orchestration-platform",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#geni-genomics-englands-pipeline-orchestration-platform",
+    "title": "Nextflow Summit 2024",
+    "section": "Geni: Genomics England’s pipeline orchestration platform",
+    "text": "Geni: Genomics England’s pipeline orchestration platform\n\n\n\n\n\n\n\n\n\n\n\nSuccessor of Bertha for 100K genomes project, not adaptable, no industry standard, e.g. Nextflow, not scalable, not cloud compatible\nGeni does all above\nFor 100K new born genomes project\nPipelines run automatically and continuously\n\n\n\n\n\n AWS Lambda Function AWS Eventbridge AWS Step Function"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-17",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-17",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "The SARS-CoV-2 pandemic drove the development of CLIMB-COVID, a platform enabling collaboration on over 3.5 million genome sequences for pandemic research and response in the UK. Building on this, CLIMB-TRE now offers a broader infrastructure for pathogen genome surveillance, integrating data from multiple sources with quality control and analysis capabilities. This session explores its technical design, focusing on Nextflow workflows and cloud-based user analysis.\n\n\n\n\n\n\n\n \n\n\nPorting somatic variant calling pipelines (SNVs, Small INDELs, SVs, allele-specific somatic copy number aberrations (sCNAs)) of National Center for Tumor Diseases (NCT) and the German Cancer Research Center (DKFZ) to Nextflow to achiev FAIR compliance.\n\n\n\n\n\n\n\n \n\n\nnf-core/crisprseq, a Nextflow pipeline for the assessment of CRISPR gene editing and screening assays."
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-18",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-18",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Tools and techs"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-19",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-19",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Ensuring the correctness and reliability of large and complex pipelines is challenging\n\n\nnf-test, testing framework, modular, test individual process blocks, workflow patterns, and entire pipelines\n\n\nDSL2-like syntax, snapshot testing, testing only changed modules, CI support, plugin system (new)"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-20",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-20",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "Scientific computing uses a lot of energy, thus affects the environment.GPT-3: 552t Data center: 134Mt Total: 37Bt\n\n\n\\(E = t * (P_c + P_m)* PUE\\)\n\n\nNextflow plugin: nf-col2footprint\n\n\nGreen DiSC certification framework can support scientists and institutions in making their research more sustainable."
   },
   {
     "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#nextflow-lsp",
@@ -28,39 +119,32 @@
     "text": "Nextflow LSP\nEditor support: vscode emacs neovim\nSupported language features:\n\n\ncode navigation (outline, go to definition, find references)\n\ncompletion\n\ndiagnostics (errors, warnings)\n\nformatting\n\nhover hints\n\nrename\n\nDAG preview for workflows"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-11",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-11",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#multiqc---whats-new",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#multiqc---whats-new",
     "title": "Nextflow Summit 2024",
-    "section": "",
-    "text": "Nextflow is widely used\n\n\n\n\nCommunity is growing quickly"
+    "section": "MultiQC - What’s new?",
+    "text": "MultiQC - What’s new?"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-12",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-12",
-    "title": "Nextflow Summit 2024",
-    "section": "",
-    "text": "Metagenomics analyzes DNA from all organisms in a sample.\n\n\n\n\nThis talk covers nf-core pipelines for profiling, assembly, and functional screening in metagenomics.\n\n\n\n\nIt introduces the meta-omics group and plans for better pipeline integration."
-  },
-  {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-13",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-13",
-    "title": "Nextflow Summit 2024",
-    "section": "",
-    "text": "Ensuring the correctness and reliability of large and complex pipelines is challenging\n\n\n\n\nnf-test, testing framework, modular, test individual process blocks, workflow patterns, and entire pipelines\n\n\n\n\nDSL2-like syntax, snapshot testing, testing only changed modules, CI support, plugin system (new)"
-  },
-  {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-14",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-14",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-22",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-22",
     "title": "Nextflow Summit 2024",
     "section": "",
     "text": "Seqera Platform demo"
   },
   {
-    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-15",
-    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-15",
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-23",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-23",
     "title": "Nextflow Summit 2024",
     "section": "",
     "text": "Gitpod demo"
+  },
+  {
+    "objectID": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-24",
+    "href": "projects/NextflowSummit2024/nextflow_summit_2024.html#section-24",
+    "title": "Nextflow Summit 2024",
+    "section": "",
+    "text": "POSTERS"
   },
   {
     "objectID": "projects/wgs_upscale/wgs_upscaling_bioinf.html",
