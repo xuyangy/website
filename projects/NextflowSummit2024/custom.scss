@@ -33,4 +33,23 @@ a.no-external-icon::after {
   content: none !important;
 }
 
-.reveal.overview .slides section.present { outline: 10px solid #FFCC00; }
+.reveal.overview .slides section.present {
+  outline: 10px solid #FFCC00;
+}
+
+.side-bullets {
+  font-size: 0.65em;
+  font-family: 'Caveat', cursive;
+  color: #000080;
+  margin: 0
+}
+
+.column-smaller-lightblue {
+  font-size: 0.7em;
+  background-color: #F0F8FF;
+}
+
+.column-smaller-lightgreen {
+  font-size: 0.6em;
+  background-color: #F0FFF0;
+}
