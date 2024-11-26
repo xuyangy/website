@@ -19,6 +19,9 @@ format:
     incremental: false
     link-external-icon: false
     link-external-newwindow: true
+    transition: convex
+    background-transition: convex
+    background-speed: slow
     controls: true
     touch: true
     slide-number: true
@@ -38,8 +41,10 @@ format:
 - Day 3 (Wed): Hackathon/Training day 3 + Summit Day 1
 - Day 4 (Thu): Summit Day 2 + Halloween Party
 - Day 5 (Fri): Summit Day 3
--
 :::
+
+## {.center}
+[HACKATHON](https://github.com/orgs/nf-core/projects/76){.r-fit-text}
 
 
 ## {data-background-image="slide-1.png" data-background-size="contain" data-background-opacity="1"}
@@ -49,36 +54,74 @@ format:
 :::
 
 
-## [Nextflow Hackathon](https://github.com/orgs/nf-core/projects/76) {data-background-image="hackathon_board.png" data-background-size="contain" data-background-opacity="0.2" .smaller}
-**Project: [GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations](https://github.com/ga4gh/quality-control-wgs)**  
-<hr>
-  (Standardized QC Metrics, Definition And Implementation)  
-
-
-:::{style="font-size: 0.7em"}
-
-  _e.g. coverage_
-
-  - **Many Available Tools**  
-    - [samtools, picard, sambamba, indexcov, mosdepth]{style="font-family: monospace;"}
-  - **Each Tool Gives Different Results**
-    - All chromosomes or autosomes only❓
-    - N bases masked❓ 
-    - Duplicates excluded❓
-    - Soft-clipped bases included❓
-    - Base quality filtering❓ threshold❓
-    - Mapping quality filtering❓ threshold❓  
-
-:::
-implementations: [c-BIG/NPM-sample-qc](https://github.com/c-BIG/NPM-sample-qc)  
-implementations: [xuyangyuio/ousamg-sample-qc](https://github.com/xuyangyuio/ousamg-sample-qc/tree/dev)
-
-
 ## {data-background-image="slide-2.png" data-background-size="contain" data-background-opacity="1"}
 
 ## {data-background-image="slide-3.png" data-background-size="contain" data-background-opacity="1"}
 
+
+## [Nextflow Hackathon](https://github.com/orgs/nf-core/projects/76) {data-background-image="hackathon_board.png" data-background-size="contain" data-background-opacity="0.1" style="font-size: 0.7em;"}
+**Project: [GA4GH Quality Control of Whole Genome Sequencing metrics and reference implementations](https://github.com/ga4gh/quality-control-wgs)**  
+<hr>
+
+:::: {layout="[12,-2,10]"}
+
+
+::: {.column-smaller-lightblue}
+
+[Motivation & Mandate]{style="font-size:1.3em; font-weight: bold;"}  
+Standardized QC Metrics, Definition And Implementation
+
+- **Many available tools** ( _e.g. coverage_)
+    - [samtools, picard, sambamba, indexcov, mosdepth]{style="font-family: monospace;"}
+- **Different tools give different results depending on defaults settings and options** ( _e.g. coverage_)
+    - All chromosomes or autosomes only❓
+    - N bases masked❓ 
+    - Duplicates excluded❓
+    - Soft-clipped bases included❓
+    - Base quality filtering❓ 
+      - If yes, what's the cutoff to throw away bases❓
+    - Mapping quality filtering❓ 
+      - If yes, whta's the cutoff to throw away reads❓  
+
+
+
+:::
+
+::: {.column-smaller-lightgreen}
+
+[Implementation:]{style="font-size:1.3em; font-weight: bold;"}
+
+- National Precision Medicine programme in Singapore (NPM)  
+  - [c-BIG/NPM-sample-qc](https://github.com/c-BIG/NPM-sample-qc)  
+  - Tools
+    - CollectMultipleMetrics
+    - CollectVariantCallingMetrics
+    - CollectWgsMetrics
+    - bcftools
+    - samtools
+    - [verifyBamID2]{style="color:#AE338C"} [(DNA contamination estimation from sequence reads using ancestry-agnostic
+    method)]{style="font-size:0.5em;"}
+  - GRCh38
+  - Test run ✅
+- OUSAMG 
+   - [xuyangyuio/ousamg-sample-qc](https://github.com/xuyangyuio/ousamg-sample-qc/tree/dev)
+   - GRCh37
+   - Mosdepth
+
+:::
+
+::::
+
+
+## {.center}
+[SUMMIT](https://www.youtube.com/watch?v=bImg8qIa23I&list=PLPZ8WHdZGxmVKQga4KE15YVt95i-QXVvE){.r-fit-text}
+
+
 ## {data-background-image="slide-4.png" data-background-size="contain" data-background-opacity="1"}
+
+
+## {.center}
+[GENERAL TALKS ABOUT NEXTFLOW, BIOINFORMATICS, INDUSTRY ETC.]{.r-fit-text}
 
 ## {data-background-image="slide-5.png" data-background-size="contain" data-background-opacity="1"}
 
@@ -86,16 +129,198 @@ implementations: [xuyangyuio/ousamg-sample-qc](https://github.com/xuyangyuio/ous
 
 ## {data-background-image="slide-7.png" data-background-size="contain" data-background-opacity="1"}
 
-## {data-background-image="slide-8.png" data-background-size="contain" data-background-opacity="1"}
-:::{.r-fit-text}
-[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://seqera.io/ask-ai){.no-external-icon}
+## {data-background-image="slide-11.png" data-background-size="contain" data-background-opacity="1"}
+
+
+## {data-background-image="evan_update.png" data-background-size="contain" data-background-opacity="1"}
+:::: {.r-stack style="font-size: 0.7em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 30em; padding-righ:30m;"}
+&nbsp;  
+&nbsp;
 :::
+
+:::{.fragment .fade-in-then-out}
+Nextflow is widely used
+:::
+
+
+:::{.fragment .fade-in-then-out}
+[Community is growing quickly]{style="color: #A93226;"}
+:::
+
+::::
+
+
+
+
+## {.center}
+[REGULATION]{.r-fit-text}
 
 ## {data-background-image="slide-9.png" data-background-size="contain" data-background-opacity="1"}
 
 ## {data-background-image="slide-10.png" data-background-size="contain" data-background-opacity="1"}
 
-## {data-background-image="slide-11.png" data-background-size="contain" data-background-opacity="1"}
+
+## {.center}
+[EXPERIENCE SHARING IN A VARIETY OF FIELDS]{.r-fit-text}
+
+<!-- use cases -->
+
+## [Australian BioCommons](https://www.youtube.com/watch?v=1fCrYAofF70)
+:::: {.r-stack}
+![](australian_biocommons.png){.r-stretch}
+
+![](biocommon-omics.png){.fragment .r-stretch}
+
+![](./biocommon_3.png){.fragment .r-stretch}
+::::
+
+
+
+## {data-background-image="metagenomics.png" data-background-size="contain" data-background-opacity="1"}
+:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
+&nbsp;  
+&nbsp;
+:::
+
+:::{.fragment .fade-in-then-out}
+[Metagenomics analyzes DNA from all organisms in a sample.]{style="word-break: break-all;"}
+:::
+
+
+:::{.fragment .fade-in-then-out}
+nf-core pipelines for profiling, assembly, and functional screening in metagenomics.
+:::
+
+
+:::{.fragment .fade-in-then-out}
+meta-omics group and plans for better pipeline integration.
+:::
+
+::::
+
+
+## [Geni: Genomics England's pipeline orchestration platform](https://www.youtube.com/watch?v=EP8jvBsVACg){style="font-size:0.9em;"}
+
+::::: {.r-stack}
+
+:::: {layout-ncol=2}
+![](geni.png) 
+
+:::{.incremental .side-bullets}
+- Successor of Bertha for 100K genomes project, not adaptable, no industry standard, e.g. Nextflow, not scalable, not cloud compatible
+- Geni does all above 
+- For 100K new born genomes project
+- Pipelines run automatically and continuously
+:::
+
+::::
+
+![](geni_1.png){.fragment .r-stretch}
+
+![](geni_3.png){.fragment .r-stretch}
+[AWS Lambda Function]{.fragment .absolute bottom="67%" right="20%" style="font-size:0.6em; font-family:'Caveat', cursive; color: #000080;"}
+[AWS Eventbridge]{.fragment .absolute bottom="55%" right="13%" style="font-size:0.6em; font-family:'Caveat', cursive; color: #000080;"}
+[AWS Step Function]{.fragment .absolute bottom="55%" right="37%" style="font-size:0.6em; font-family:'Caveat', cursive; color: #000080;"}
+
+
+:::::
+
+
+
+
+
+## {data-background-image="nf-test.png" data-background-size="contain" data-background-opacity="1"}
+
+:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.7); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
+&nbsp;  
+&nbsp;
+:::
+
+:::{.fragment .fade-in-then-out}
+[Ensuring the correctness and reliability of large and complex pipelines is challenging]{style="word-break: break-all;"}
+:::
+
+
+:::{.fragment .fade-in-then-out}
+[nf-test, testing framework, modular, test individual process blocks, workflow patterns, and entire pipelines]{style="word-break: break-all; color: #A93226;"}
+:::
+
+
+:::{.fragment .fade-in-then-out}
+[DSL2-like syntax, snapshot testing, testing only changed modules, CI support, plugin system (new)]{style="word-break: break-all; color: #1D8348;"}
+:::
+
+
+::::
+
+
+<!-- best practice -->
+
+## {data-background-image="green.png" data-background-size="contain" data-background-opacity="1"}
+
+:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.7); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
+&nbsp;  
+&nbsp;
+:::
+
+:::{.fragment .fade-in-then-out}
+[Scientific computing uses a lot of energy, thus affects the environment.]{style="word-break: break-all;"}[GPT-3: 552t Data center: 134Mt Total: 37Bt]{style="font-size: 0.5em;"}
+:::
+
+
+:::{.fragment .fade-in-then-out}
+[$E = t * (P_c + P_m)* PUE$]{style="word-break: break-all; color: #A93226;"}
+:::
+
+:::{.fragment .fade-in-then-out}
+[Nextflow plugin:&nbsp;]{style="color: #5990B3;"}[nf-col2footprint]{style="color: #5990B3;font-family: monospace;"}
+:::
+
+
+:::{.fragment .fade-in-then-out}
+[Green DiSC certification framework can support scientists and institutions in making their research more sustainable. ]{style="word-break: break-all; color: #1D8348;"}
+:::
+
+
+::::
+
+## {.scrollable}
+::: {layout="[30,-5, 65]"}
+[![](clibm-tre.png)](https://www.youtube.com/watch?v=F4hB8nqRSPQ) 
+
+[The SARS-CoV-2 pandemic drove the development of CLIMB-COVID, a platform enabling collaboration on over 3.5 million genome sequences for pandemic research and response in the UK. Building on this, [CLIMB-TRE]{style="color:steelblue; font-weight: bold;"} now offers a broader infrastructure for pathogen genome surveillance, integrating data from multiple sources with quality control and analysis capabilities. This session explores its technical design, focusing on Nextflow workflows and cloud-based user analysis.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
+
+[![](GHGA.png)](https://www.youtube.com/watch?v=M-gMbxPpU1w)
+
+[Porting [somatic variant calling pipelines]{style="color:steelblue; font-weight: bold;"} (SNVs, Small INDELs, SVs, allele-specific somatic copy number aberrations (sCNAs)) of National Center for Tumor Diseases (NCT) and the German Cancer Research Center (DKFZ) to Nextflow to achiev FAIR compliance.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
+
+
+[![](crispr.png)](https://www.youtube.com/watch?v=45M77V3Mm9g)
+
+[[nf-core/crisprseq]{style="color:steelblue; font-weight: bold;"}, a Nextflow pipeline for the assessment of CRISPR gene editing and screening assays.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
+
+
+:::
+
+
+<!-- tools, techs   -->
+
+## {.center}
+[Tools and techs]{.r-fit-text}
+
+## {data-background-image="slide-8.png" data-background-size="contain" data-background-opacity="1"}
+:::{.r-fit-text}
+[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://seqera.io/ask-ai){.no-external-icon}
+:::
+
 
 ## [Nextflow LSP](https://github.com/nextflow-io/language-server)
 Editor support:
@@ -118,118 +343,24 @@ Supported language features:
 :::  
 
 
-## {data-background-image="evan_update.png" data-background-size="contain" data-background-opacity="1"}
-:::: {.r-stack style="font-size: 0.7em;font-family:'Caveat', cursive; color: #000080;"}
-
-:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 30em; padding-righ:30m;"}
-&nbsp;  
-&nbsp;
-:::
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-Nextflow is widely used
-:::
-:::
-
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-Community is growing quickly
-:::
-:::
-
-::::
-
-
-<!-- use cases -->
-
-## [Australian BioCommons](https://www.youtube.com/watch?v=1fCrYAofF70)
+## [MultiQC - What's new?](https://www.youtube.com/watch?v=-qwmeHyY6T0)
 ::: {.r-stack}
-![](australian_biocommons.png){.r-stretch}
 
-![](biocommon-omics.png){.fragment .r-stretch}
+![](./multiqc_1.png){.r-stretch}
+
+[![](./multiqc_2.png){.fragment .r-stretch}](https://seqera.io/multiqc/)
+
+![](./multiqc_3.png){.fragment .r-stretch}
+
+![](./multiqc_4.png){.fragment .r-stretch}
+
+![](./multiqc_5.2.png){.fragment .r-stretch}
+
+![](./multiqc_5.3.png){.fragment .r-stretch}
+
+![](./multiqc_6.png){.fragment .r-stretch}
 
 :::
-
-
-
-## {data-background-image="metagenomics.png" data-background-size="contain" data-background-opacity="1"}
-:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
-
-:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
-&nbsp;  
-&nbsp;
-:::
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-[Metagenomics analyzes DNA from all organisms in a sample.]{style="word-break: break-all;"}
-:::
-:::
-
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-This talk covers nf-core pipelines for profiling, assembly, and functional screening in metagenomics.
-:::
-:::
-
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-It introduces the meta-omics group and plans for better pipeline integration.
-:::
-:::
-
-
-<!-- a list of other use cases -->
-
-::::
-
-## {.center}
-
-::: {.incremental}
-[Australian ProteinFold service](https://www.youtube.com/watch?v=1fCrYAofF70){title="Interactive prediction and visualisation of protein structure"}
-:::
-
-
-
-
-## {data-background-image="nf-test.png" data-background-size="contain" data-background-opacity="1"}
-
-:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
-
-:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.5); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
-&nbsp;  
-&nbsp;
-:::
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-[Ensuring the correctness and reliability of large and complex pipelines is challenging]{style="word-break: break-all;"}
-:::
-:::
-
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-nf-test, testing framework, modular, test individual process blocks, workflow patterns, and entire pipelines
-:::
-:::
-
-
-:::{.fragment .fade-in}
-:::{.fragment .fade-out}
-DSL2-like syntax, snapshot testing, testing only changed modules, CI support, plugin system (new)
-:::
-:::
-
-
-::::
-
-
-
 
 
 ## {.center}
@@ -244,6 +375,10 @@ DSL2-like syntax, snapshot testing, testing only changed modules, CI support, pl
 ::: {.r-fit-text}
 [Gitpod demo](https://gitlab.com/DPIPE/labautomation/steps/-/tree/61-test-for-triopipe?ref_type=heads){title="Open in a browser with Gitpod extension installed"}
 :::
+
+
+## {.center}
+[POSTERS](https://summit.nextflow.io/2024/barcelona/posters/){.r-fit-text}
 
 
 ##
