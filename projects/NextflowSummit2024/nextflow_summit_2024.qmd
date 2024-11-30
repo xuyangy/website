@@ -127,9 +127,6 @@ Standardized QC Metrics, Definition And Implementation
 
 ## {data-background-image="slide-6.png" data-background-size="contain" data-background-opacity="1"}
 
-## {data-background-image="slide-7.png" data-background-size="contain" data-background-opacity="1"}
-
-## {data-background-image="slide-11.png" data-background-size="contain" data-background-opacity="1"}
 
 
 ## {data-background-image="evan_update.png" data-background-size="contain" data-background-opacity="1"}
@@ -174,6 +171,7 @@ Nextflow is widely used
 ![](biocommon-omics.png){.fragment .r-stretch}
 
 ![](./biocommon_3.png){.fragment .r-stretch}
+
 ::::
 
 
@@ -203,7 +201,7 @@ meta-omics group and plans for better pipeline integration.
 ::::
 
 
-## [Geni: Genomics England's pipeline orchestration platform](https://www.youtube.com/watch?v=EP8jvBsVACg){style="font-size:0.9em;"}
+## [Genie: Genomics England's pipeline orchestration platform](https://www.youtube.com/watch?v=EP8jvBsVACg){style="font-size:0.9em;"}
 
 ::::: {.r-stack}
 
@@ -212,7 +210,7 @@ meta-omics group and plans for better pipeline integration.
 
 :::{.incremental .side-bullets}
 - Successor of Bertha for 100K genomes project, not adaptable, no industry standard, e.g. Nextflow, not scalable, not cloud compatible
-- Geni does all above 
+- Genie does all above 
 - For 100K new born genomes project
 - Pipelines run automatically and continuously
 :::
@@ -232,6 +230,65 @@ meta-omics group and plans for better pipeline integration.
 
 
 
+
+## {.scrollable}
+
+::: {layout="[30,-5, 65]"}
+
+[![](clibm-tre.png)](https://www.youtube.com/watch?v=F4hB8nqRSPQ) 
+
+[The SARS-CoV-2 pandemic drove the development of CLIMB-COVID, a platform enabling collaboration on over 3.5 million genome sequences for pandemic research and response in the UK. Building on this, [CLIMB-TRE]{style="color:steelblue; font-weight: bold;"} now offers a broader infrastructure for pathogen genome surveillance, integrating data from multiple sources with quality control and analysis capabilities. This session explores its technical design, focusing on Nextflow workflows and cloud-based user analysis.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
+
+[![](GHGA.png)](https://www.youtube.com/watch?v=M-gMbxPpU1w)
+
+[Porting [somatic variant calling pipelines]{style="color:steelblue; font-weight: bold;"} (SNVs, Small INDELs, SVs, allele-specific somatic copy number aberrations (sCNAs)) of National Center for Tumor Diseases (NCT) and the German Cancer Research Center (DKFZ) to Nextflow to achiev FAIR compliance.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
+
+
+[![](crispr.png)](https://www.youtube.com/watch?v=45M77V3Mm9g)
+
+[[nf-core/crisprseq]{style="color:steelblue; font-weight: bold;"}, a Nextflow pipeline for the assessment of CRISPR gene editing and screening assays.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
+
+
+<!-- [![](cats.png)](https://www.youtube.com/watch?v=dC5p_tXQpEs&list=PLPZ8WHdZGxmVKQga4KE15YVt95i-QXVvE&index=24) -->
+
+<!-- [[STIMULUS]{style="color:steelblue; font-weight: bold;"}, Nextflow for deep learning.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}   -->
+
+
+:::
+
+
+<!-- tools, techs   -->
+
+## {.center}
+[TOOLS AND NEW TECHS]{.r-fit-text}
+
+## [What's next for Nextflow?](https://www.youtube.com/watch?v=yAMvfs9gw4o){style="font-size:0.8em;"}
+
+::: {.r-stack}
+
+![](slide-7.png){.r-stretch width=90%}
+
+![](.fragment paolo.png)
+
+![](paolo_2.png){.fragment .r-stretch}
+
+![](paolo_3.png){.fragment .r-stretch}
+
+![](wave_why.png){.fragment .r-stretch}
+
+![](container_2types.png){.fragment .r-stretch}
+
+![](wave_stats.png){.fragment .r-stretch}
+
+![](fusion_1.png){.fragment .r-stretch}
+
+![](fusion_2.png){.fragment .r-stretch}
+
+![](fusion_3.png){.fragment .r-stretch}
+
+![](fusion_4.png){.fragment .r-stretch}
+
+:::
 
 ## {data-background-image="nf-test.png" data-background-size="contain" data-background-opacity="1"}
 
@@ -292,29 +349,6 @@ meta-omics group and plans for better pipeline integration.
 
 ::::
 
-## {.scrollable}
-::: {layout="[30,-5, 65]"}
-[![](clibm-tre.png)](https://www.youtube.com/watch?v=F4hB8nqRSPQ) 
-
-[The SARS-CoV-2 pandemic drove the development of CLIMB-COVID, a platform enabling collaboration on over 3.5 million genome sequences for pandemic research and response in the UK. Building on this, [CLIMB-TRE]{style="color:steelblue; font-weight: bold;"} now offers a broader infrastructure for pathogen genome surveillance, integrating data from multiple sources with quality control and analysis capabilities. This session explores its technical design, focusing on Nextflow workflows and cloud-based user analysis.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
-
-[![](GHGA.png)](https://www.youtube.com/watch?v=M-gMbxPpU1w)
-
-[Porting [somatic variant calling pipelines]{style="color:steelblue; font-weight: bold;"} (SNVs, Small INDELs, SVs, allele-specific somatic copy number aberrations (sCNAs)) of National Center for Tumor Diseases (NCT) and the German Cancer Research Center (DKFZ) to Nextflow to achiev FAIR compliance.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
-
-
-[![](crispr.png)](https://www.youtube.com/watch?v=45M77V3Mm9g)
-
-[[nf-core/crisprseq]{style="color:steelblue; font-weight: bold;"}, a Nextflow pipeline for the assessment of CRISPR gene editing and screening assays.]{style="font-size: 0.4em; display: inline-block; padding: 0.5em;"}  
-
-
-:::
-
-
-<!-- tools, techs   -->
-
-## {.center}
-[Tools and techs]{.r-fit-text}
 
 ## {data-background-image="slide-8.png" data-background-size="contain" data-background-opacity="1"}
 :::{.r-fit-text}
@@ -322,13 +356,15 @@ meta-omics group and plans for better pipeline integration.
 :::
 
 
-## [Nextflow LSP](https://github.com/nextflow-io/language-server)
+## [Nextflow language-server](https://github.com/nextflow-io/language-server)
 Editor support:
 [vscode](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
 [emacs](https://github.com/emacs-lsp/lsp-mode/pull/4606) 
 [neovim](https://github.com/nextflow-io/language-server/issues/56)
 
 Supported language features:
+
+:::: {.r-stack}
 
 ::: {style="font-size: 0.8em"}
 
@@ -341,6 +377,12 @@ Supported language features:
 - DAG preview for workflows  
 
 :::  
+
+![](base.svg){.fragment .fade-in-then-out width=90%}
+
+![](nextflow_ls_roadmap.png){.fragment .fade-up width=100%}
+
+::::
 
 
 ## [MultiQC - What's new?](https://www.youtube.com/watch?v=-qwmeHyY6T0)
@@ -361,6 +403,37 @@ Supported language features:
 ![](./multiqc_6.png){.fragment .r-stretch}
 
 :::
+
+
+
+
+
+## {.center}
+[TRAINING / EDUCATION]{.r-fit-text}
+
+## {data-background-image="training.jpg" data-background-size="contain" data-background-opacity="1"}
+
+:::: {.r-stack style="font-size: 0.65em;font-family:'Caveat', cursive; color: #000080;"}
+
+:::{ .fragment .fade-in style="background-color: rgba(255, 255, 255, 0.7); border-radius: 1.5em; padding-left: 41em; padding-righ:41m;"}
+&nbsp;  
+&nbsp;
+:::
+
+:::{.fragment .fade-in-then-out}
+[training program](https://training.nextflow.io){style="word-break: break-all;"}
+:::
+
+
+:::{.fragment .fade-in-then-out}
+[Nextflow in classroom](https://www.youtube.com/watch?v=5Za-8FE2mOM&list=PLPZ8WHdZGxmVKQga4KE15YVt95i-QXVvE&index=28){style="word-break: break-all;"}
+:::
+
+::::
+
+
+## {data-background-image="slide-11.png" data-background-size="contain" data-background-opacity="1"}
+
 
 
 ## {.center}
