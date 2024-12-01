@@ -42,7 +42,7 @@ execute:
 # Background
 <hr>
 
-GDx at OUSAMG is planning to upscale the WGS production to `4 x 48` samples or `2 x 48 + 1 x 96` samples per week. 
+GDx at OUSAMG is planning to upscale the WGS production to `192` samples (`4 x 48` or `2 x 48 + 1 x 96`) samples per week. 
 Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?
 
 The capacity of IT & bioinformatics pipelines can be evaluated from following three aspects:
@@ -52,31 +52,32 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 3. **Pipeline capacity**
 
 
+This document will focus on the evaluation of data transfer speed.
+
 # Data transfer speed
 <hr>
 
-Both sequencing data and NSC pipeline results are stored at the NSC. 
-So the volume of data that needs to be transferred from NSC to TSD is huge. 
-The data transfer is done by the nsc-exporter. 
-The nsc-exporter uses TSD s3api which in turn uses s3cmd under the hood. 
+Both _sequencing data_ and _NSC pipeline results_ are stored at the NSC and need to be transferred to the TSD.
+The amount of data to be transferred is very large.
+The data transfer is done by the **nsc-exporter** software which uses TSD s3api, a wrapper of s3cmd. 
 The nsc-exporter will check for new data to transfer every 10 minutes and uses `s3cmd put` to transfer the data.
 
 <br>
 
 ```{mermaid}
 flowchart LR
-    subgraph dt[nsc-exporter]
-    check-new-data(((New data?))) --> |Yes| transfer(Transfer to TSD) 
+    subgraph dt[**nsc-exporter**]
+    check-new-data(((data to transfer))) --> |Yes| transfer(Transfer data to TSD) 
     transfer --> sleep(Sleep 10 minutes)
-    sleep --> check-new-data
+    sleep --> |check| check-new-data
     check-new-data --> |No| sleep
     end
-    subgraph dp[data producer]
+    subgraph dp[**2 data producers**]
     lims-exporter[lims-exporter]  ---> |produce| check-new-data
-    pipeline[NSC pipeline] ---> |produce| check-new-data
+    pipeline[NSC pipelines] ---> |produce| check-new-data
     end
     style dt fill:#e4eda6,stroke-width:3px
-    style dp fill:#aab0a2
+    style dp fill:#F2D1FF
 ```
 
 <br>
@@ -129,7 +130,7 @@ To evaluate the data transfer speed from NSC to TSD, we collected the historical
 
 ::: {.callout-tip collapse="true"}
 
-### expand to see some examples of collected transfer records
+### expand to see examples of collected file transfer records
 
 
 ```{r}
