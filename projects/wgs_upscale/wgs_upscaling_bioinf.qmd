@@ -176,22 +176,30 @@ setNames(as.data.frame(sapply(summary(data$bytes), humanReadable)), "filesize")
 #| fig-height: 3
 library(ggplot2)
 ggplot(
-    data,
-    aes(x = bytes)
+  data,
+  aes(x = bytes)
 ) +
-    geom_histogram(fill = "#fc03d3", bins = 200) +
-    labs(x = "file size (bytes)", y = "file count", title = "File Size Distribution") + theme_minimal()
-ggplot(
-    data,
-    aes(x = bytes)
-) +
-geom_histogram(fill = "#fc03d3", bins = 200) +
-labs(
+  geom_histogram(fill = "#F05A7E", bins = 200) +
+  labs(
     x = "file size (bytes)",
-    y = "file count (log10)",
-    title = "File Size Distribution (log10 file count)"
-) + 
-scale_y_continuous(trans='log10') + theme_minimal()
+    y = "number of files",
+    title = "File Size Distribution"
+  ) +
+  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(
+  data,
+  aes(x = bytes)
+) +
+  geom_histogram(fill = "#F05A7E", bins = 200) +
+  labs(
+    x = "file size (bytes)",
+    y = "number of files (log10)",
+    title = "File Size Distribution (log10 number of files)"
+  ) +
+  scale_y_continuous(trans = "log10") +
+  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
 ```
 :::
 ::::
@@ -218,22 +226,23 @@ ggplot(
   data,
   aes(x = speed)
 ) + 
-  geom_histogram(bins = 200, fill = "#0bd440") + 
-  labs(x = "bytes/s", y = "file count", title = "Transfer Speed") + 
-  theme_minimal()
+  geom_histogram(bins = 200, fill = "#125B9A") + 
+  labs(x = "bytes/s", y = "number of files", title = "Transfer Speed") + 
+  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
 ggplot(
     data,
     aes(x = speed)
 ) + 
-  geom_histogram(bins = 200, fill = "#0bd440") + 
+  geom_histogram(bins = 200, fill = "#125B9A") + 
   labs(
     x = "bytes/s",
-    y = "file count (log10)",
-    title = "Transfer Speed (log10 file count)"
+    y = "number of files (log10)",
+    title = "Transfer Speed (log10 number of files)"
   ) + 
   scale_y_continuous(trans = 'log10') +
-  theme_minimal()
+  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
 ```
 :::
 ::::
@@ -254,21 +263,29 @@ summary(data %>% select(seconds))
 ::: {.column width="70%"}
 ```{r} 
 #| fig-height: 3
+x_label <- "transfer time (seconds)"
 ggplot(
   data,
   aes(x = seconds)
-) + 
-  geom_histogram(bins = 200, fill = "#e3571b") + 
-  labs(x = "transfer time (per file)", y = "file count", title = "Transfer Time") + theme_minimal()
+) +
+  geom_histogram(bins = 200, fill = "#0B8494") +
+  labs(x = x_label, y = "number of files", title = "Transfer Time") +
+  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
 
 ggplot(
   data,
   aes(x = seconds)
-) + 
-  geom_histogram(bins = 200, fill = "#e3571b") + 
-  labs(x = "transfer time (per file)", y = "file count (log10)", title = "Transfer Time (log10 file count)") + 
-  scale_y_continuous(trans = "log10") + 
-  theme_minimal()
+) +
+  geom_histogram(bins = 200, fill = "#0B8494") +
+  labs(
+    x = x_label,
+    y = "number of files (log10)",
+    title = "Transfer Time (log10 number of files)"
+  ) +
+  scale_y_continuous(trans = "log10") +
+  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
+
 ```
 :::
 ::::
@@ -302,7 +319,7 @@ def deHumanReadable(bandwidth_string):
 
 ```
 
-### Transfer speed and time VS file size (all files){#sec-correlation-filesize-speed-all}
+### Transfer speed and time against file size for all files {#sec-correlation-filesize-speed-all}
 <hr>
 
 Small files have lower transfer speed. A good transfer speed around 80 MB/s can be achieved for large files (>2 GB).
@@ -315,13 +332,15 @@ import pandas as pd
 from datetime import datetime
 import re
 import plotly.express as px
-py_df = pd.read_csv("data.csv", 
-                    sep=",", 
-                    parse_dates=["datetime"],
-                    date_format="%Y-%m-%d %H:%M:%S.%f")
+
+py_df = pd.read_csv(
+    "data.csv", sep=",", parse_dates=["datetime"], date_format="%Y-%m-%d %H:%M:%S.%f"
+)
 py_df["speed_humanize"] = py_df["speed"]
 py_df["speed"] = py_df["speed"].apply(deHumanReadable)
-py_df["project_type"] = py_df["project"].apply(lambda x: re.match(r"[a-zA-Z]+", x).group())
+py_df["project_type"] = py_df["project"].apply(
+    lambda x: re.match(r"[a-zA-Z]+", x).group()
+)
 fig = px.scatter(
     py_df,
     x="bytes",
@@ -345,10 +364,14 @@ library(ggplot2)
 
 ggplot(py$py_df, aes(x = bytes, y = seconds, color = project_type)) +
   geom_point(alpha = 0.3) +
-  labs(x = "file size (bytes)", y = "transfer time (seconds)") +
+  labs(
+    x = "file size (bytes)",
+    y = "transfer time (seconds)",
+    title = "transfer time vs file size"
+  ) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5)) +
-  guides(color = guide_legend(title = "Project Type")) + 
+  guides(color = guide_legend(title = "Project Type")) +
   scale_color_manual(values = c(
     "wgs" = "#636EFA",
     "EKG" = "#EF553B",
@@ -356,7 +379,7 @@ ggplot(py$py_df, aes(x = bytes, y = seconds, color = project_type)) +
     "Test" = "#AB63FA"
   ))
 ```
-### Transfer speed and time VS file size (small files)
+### Transfer speed and time against file size for small files only
 <hr>
 
 Although the transfer speed of small files are very low; 
@@ -889,7 +912,7 @@ px.bar(
     y=["small", "large"],
     labels={
         'boundary': 'how small is small?',
-        'value': 'file count',
+        'value': 'number of files',
         'variable': 'category',
     },
     title="Number Of Small Files vs Large Files",
@@ -921,9 +944,9 @@ px.bar(
     x="boundary",
     y=["small", "large"],
     labels={
-        'boundary': 'how small is small?',
-        'value': 'total time used (seconds)',
-        'variable': 'category',
+        "boundary": "how small is small?",
+        "value": "total time used (seconds)",
+        "variable": "category",
     },
     title="Total Time Used To Transfer Small Files vs Large Files",
     color_discrete_map={"small": "seagreen", "large": "orangered"},
