@@ -350,7 +350,13 @@ fig = px.scatter(
     color="project_type",
     height=600,
 )
-fig.show()
+
+fig.update_layout(
+    xaxis=dict(
+        tickformat=".2s",  # Use SI prefixes with two significant digits
+    )
+)
+
 ```
 
 ```{r}
