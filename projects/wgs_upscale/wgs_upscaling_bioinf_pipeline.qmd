@@ -1,0 +1,104 @@
+---
+title: "WGS Upscaling - Pipeline Capacity Evaluation"
+title-block-banner: true
+image: "wgsupscale.png"
+css: style.css
+description: "DRAEN pipeline capacity"
+author: 
+    - name: Xuyang Yuan
+      email: "xuyangy@uio.no"
+      affiliation: "GDx OUSAMG"
+      url: "https://www.robotgenome.com"
+      role: "collect data"
+# format:
+#   pdf:
+#     toc: true
+#     number-sections: true
+#     colorlinks: true
+#     fig-cap-location: top
+date: last-modified
+format: 
+    html:
+        toc: true
+        toc-depth: 4
+        toc-expand: true
+        number-sections: true
+        number-depth: 4
+        float: true
+        header-includes: |
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+comments: 
+    hypothesis: true
+execute: 
+    cache: true
+    echo: false
+    message: false
+    warning: false
+---
+
+# Background
+<hr>
+
+GDx at OUSAMG is planning to upscale the WGS production to `192` samples (`4 x 48` or `2 x 48 + 1 x 96`) samples per week. 
+Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?
+
+The capacity of IT & bioinformatics pipelines can be evaluated from following three aspects:
+
+1. Data transfer speed
+2. Data storage
+3. Pipeline capacity
+
+
+**This document will focus on the evaluation of pipeline capacity.**
+
+# Pipeline Capacity
+<hr>
+
+## Available hardware
+
+| Machine        | Units   | DRAGEN type           | DRAGENs per unit| Total DRAGENs |
+| :--------------|:--------|:----------------------|:--------------------|:--------------|
+| NovaSeq X Plus | 2       | Onboard               | 4                   | 8             |
+| NSC DRAGEN     | 2       | External              | 1                   | 2             |
+| TSD DRAGEN     | 1       | External              | 1                   | 1             |
+
+## Capacity evaluation
+DRAGEN is "single-threaded". 
+The pipeline capacity is determined by the number of DRAGENs available. 
+And the time needed to process a sample.
+
+### Sequencing + Demultiplexing
+Sequencing of a single 25B flowcell takes about `44h`. 
+Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
+Demultiplexing takes `6h` after sequenicing finish and copy data from sequencer to boston takes another `1h`.
+Sequencing starts to fastq files on boston takes `51h`.
+
+:::{.panel-tabset}
+### diagram
+
+```{mermaid}
+gantt
+%%{init: {'theme':'forest'}}%%
+dateFormat YYYY-MM-DD HH:mm:ss
+axisFormat %d/%m %H:%M
+title NovaSeq X Sequenicing + Demultiplexing
+section one 25B flowcell, 64 samples
+Sequencing: seq, 2024-11-18 13:02:04, 2024-11-20 06:51:37
+Sequencing file transfer to external storage: seqcopy,2024-11-18 19:32:40,2024-11-20 08:57:45
+Analysis: ana,2024-11-18 19:32:44, 2024-11-20 13:58:15
+Analysis file transfer to external storage: anacopy, 2024-11-18 19:32:45, 2024-11-20 13:58:15
+```
+
+### table
+
+| Status | Started | Started | 
+|-----|---|---|
+|Sequencing completed |2024-11-18 13:02:04|2024-11-20 06:51:37|
+|Sequencing file transfer to external storage completed| 2024-11-18 19:32:40| 2024-11-20 08:57:45|
+|Analysis completed| 2024-11-18 19:32:44| 2024-11-20 13:58:15|
+|Analysis file transfer to external storage completed| 2024-11-18 19:32:45| 2024-11-20 13:58:15|
+
+:::
