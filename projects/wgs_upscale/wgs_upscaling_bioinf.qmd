@@ -1,5 +1,5 @@
 ---
-title: "WGS Upscaling - IT & Bioinformatics Evaluation"
+title: "WGS Upscaling - Data Transfer Capacity Evaluation"
 title-block-banner: true
 image: "wgsupscale.png"
 css: style.css
@@ -47,12 +47,12 @@ Do we have enough capacity in IT and bioinformatics pipelines for this upscaling
 
 The capacity of IT & bioinformatics pipelines can be evaluated from following three aspects:
 
-1. **Data transfer speed**
-2. **Data storage**
-3. **Pipeline capacity**
+1. Data transfer speed
+2. Data storage
+3. Pipeline capacity
 
 
-This document will focus on the evaluation of data transfer speed.
+**This document will focus on the evaluation of data transfer speed.**
 
 # Data transfer speed
 <hr>
