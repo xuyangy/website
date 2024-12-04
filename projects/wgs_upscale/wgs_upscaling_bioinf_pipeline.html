@@ -208,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#available-hardware" id="toc-available-hardware" class="nav-link" data-scroll-target="#available-hardware"><span class="header-section-number">2.1</span> Available hardware</a></li>
   <li><a href="#capacity-evaluation" id="toc-capacity-evaluation" class="nav-link" data-scroll-target="#capacity-evaluation"><span class="header-section-number">2.2</span> Capacity evaluation</a>
   <ul class="collapse">
-  <li><a href="#sequencing-demultiplexing" id="toc-sequencing-demultiplexing" class="nav-link" data-scroll-target="#sequencing-demultiplexing"><span class="header-section-number">2.2.1</span> Sequencing + Demultiplexing</a></li>
+  <li><a href="#sequencing-demultiplexing-delivery" id="toc-sequencing-demultiplexing-delivery" class="nav-link" data-scroll-target="#sequencing-demultiplexing-delivery"><span class="header-section-number">2.2.1</span> Sequencing + Demultiplexing + Delivery</a></li>
   </ul></li>
   <li><a href="#pipeline-real-time-monitoring" id="toc-pipeline-real-time-monitoring" class="nav-link" data-scroll-target="#pipeline-real-time-monitoring"><span class="header-section-number">2.3</span> Pipeline real-time monitoring</a>
   <ul class="collapse">
@@ -220,6 +220,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#fri" id="toc-fri" class="nav-link" data-scroll-target="#fri"><span class="header-section-number">2.3.6</span> 2024-11-15 (Fri)</a></li>
   <li><a href="#sat" id="toc-sat" class="nav-link" data-scroll-target="#sat"><span class="header-section-number">2.3.7</span> 2024-11-16 (Sat)</a></li>
   <li><a href="#sun-1" id="toc-sun-1" class="nav-link" data-scroll-target="#sun-1"><span class="header-section-number">2.3.8</span> 2024-11-17 (Sun)</a></li>
+  <li><a href="#mon-1" id="toc-mon-1" class="nav-link" data-scroll-target="#mon-1"><span class="header-section-number">2.3.9</span> 2024-11-18 (Mon)</a></li>
+  <li><a href="#tue-1" id="toc-tue-1" class="nav-link" data-scroll-target="#tue-1"><span class="header-section-number">2.3.10</span> 2024-11-19 (Tue)</a></li>
+  <li><a href="#wed-1" id="toc-wed-1" class="nav-link" data-scroll-target="#wed-1"><span class="header-section-number">2.3.11</span> 2024-11-20 (Wed)</a></li>
+  <li><a href="#thu-1" id="toc-thu-1" class="nav-link" data-scroll-target="#thu-1"><span class="header-section-number">2.3.12</span> 2024-11-21 (Thu)</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -294,9 +298,21 @@ ul.task-list li input[type="checkbox"] {
 <section id="capacity-evaluation" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="capacity-evaluation"><span class="header-section-number">2.2</span> Capacity evaluation</h2>
 <p>DRAGEN is “single-threaded”. The pipeline capacity is determined by the number of DRAGENs available. And the time needed to process a sample.</p>
-<section id="sequencing-demultiplexing" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="sequencing-demultiplexing"><span class="header-section-number">2.2.1</span> Sequencing + Demultiplexing</h3>
-<p>Sequencing of a single 25B flowcell takes about <code>44h</code>. Sequencing file transfer to external storage starts <code>7h</code> after sequencing start and finishes <code>2h</code> after sequencing finishes. Demultiplexing takes <code>6h</code> after sequenicing finish and copy data from sequencer to boston takes another <code>1h</code>. Sequencing starts to fastq files on boston takes <code>51h</code>.</p>
+<section id="sequencing-demultiplexing-delivery" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="sequencing-demultiplexing-delivery"><span class="header-section-number">2.2.1</span> Sequencing + Demultiplexing + Delivery</h3>
+<p>The time taken by each step of each sequencing run differs. Numbers listed here is “close to” the median.</p>
+<ul>
+<li>Sequencing of a single 25B flowcell takes about <code>44h</code>.</li>
+<li>Sequencing file transfer to external storage starts <code>7h</code> after sequencing start and finishes <code>2h</code> after sequencing finishes.</li>
+<li>Secondary analysis (BCL Convert, Fastqc, ORA compression) takes about <code>6h</code>.
+<ul>
+<li>BCL Convert takes <code>2h</code> after sequencing finish.</li>
+<li>Fastqc and ORA compression take <code>4h</code> after BCL Convert finish.</li>
+</ul></li>
+<li>Coping secondary analysis data from sequencer to external storage (boston) takes <code>1h</code>.</li>
+<li>After copying data to boston complete, deliver sequencing data to the <em>nscDeliver</em> folder, calculating md5sum and push samples to lims-exporter queue takes <code>30m</code>.</li>
+</ul>
+<p>Sequencing starts to samples ready for running pipleline takes <code>52h</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">diagram</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">table</a></li></ul>
 <div class="tab-content">
@@ -307,15 +323,26 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">gantt
-%%{init: {'theme':'forest'}}%%
+%%{ 
+  init: { 
+    'theme': 'forest' ,
+    'gantt': {
+      'barHeight': 30,
+      'fontSize': 12,
+      'sectionFontSize': 18
+    }
+  } 
+}%%
 dateFormat YYYY-MM-DD HH:mm:ss
 axisFormat %d/%m %H:%M
 title NovaSeq X Sequenicing + Demultiplexing
 section one 25B flowcell, 64 samples
-Sequencing: seq, 2024-11-18 13:02:04, 2024-11-20 06:51:37
-Sequencing file transfer to external storage: seqcopy,2024-11-18 19:32:40,2024-11-20 08:57:45
-Analysis: ana,2024-11-18 19:32:44, 2024-11-20 13:58:15
-Analysis file transfer to external storage: anacopy, 2024-11-18 19:32:45, 2024-11-20 13:58:15
+Sequencing 44h: seq, 2024-11-18 13:02:04, 2024-11-20 06:51:37
+BCL Convert 2h: bcl, after seq, 2h
+Fastqc and ORA compression 4h: fastqcORA, after bcl, 4h
+Analysis file transfer to boston 1h: anacopy, after fastqcORA, 1h
+md5sum and deliver 30m: md5, after anacopy, 30m
+
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -746,6 +773,114 @@ wgs420_50 (35m 45s): 2024-10-17 23:04:57.219,2024-10-17 23:40:12.277
 wgs420_57 (40m 38s): 2024-10-17 23:21:46.990,2024-10-18 00:02:52.058
 wgs420_58 (37m 26s): 2024-10-17 23:40:36.801,2024-10-18 00:17:41.851
 ☆ : milestone, end, 2024-10-17 23:59:59.999, 0d
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="mon-1" class="level3" data-number="2.3.9">
+<h3 data-number="2.3.9" class="anchored" data-anchor-id="mon-1"><span class="header-section-number">2.3.9</span> 2024-11-18 (Mon)</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gantt
+dateFormat YYYY-MM-DD HH:mm:ss.SSS
+axisFormat %d/%m %H:%M
+
+%%{init: {'theme':'default'}}%%
+☀ : milestone, 2024-10-18 00:00:00.000, 0d
+wgs420_75 (49m 21s): 2024-10-18 00:03:04.798,2024-10-18 00:51:59.863
+wgs420_79 (37m 12s): 2024-10-18 00:17:43.082,2024-10-18 00:54:38.342
+wgs420_90 (37m 20s): 2024-10-18 00:51:47.403,2024-10-18 01:29:12.476
+wgs420_76 (38m 46s): 2024-10-18 00:54:53.754,2024-10-18 01:33:28.977
+wgs420_92 (31m 19s): 2024-10-18 01:29:13.876,2024-10-18 02:00:53.973
+wgs420_80 (29m 52s): 2024-10-18 01:33:18.137,2024-10-18 02:03:18.348
+wgs420_77 (32m 48s): 2024-10-18 02:01:05.829,2024-10-18 02:33:25.883
+wgs420_85 (30m 11s): 2024-10-18 02:03:17.518,2024-10-18 02:33:42.566
+wgs420_87 (28m 47s): 2024-10-18 02:33:19.592,2024-10-18 03:02:24.630
+wgs420_78 (34m 2s): 2024-10-18 02:33:37.261,2024-10-18 03:07:27.383
+wgs420_86 (30m 59s): 2024-10-18 03:02:35.547,2024-10-18 03:33:15.601
+wgs420_67 (31m 7s): 2024-10-18 03:08:03.200,2024-10-18 03:38:58.310
+wgs420_91 (33m 2s): 2024-10-18 03:33:51.249,2024-10-18 04:06:21.320
+wgs420_82 (31m 30s): 2024-10-18 03:38:53.431,2024-10-18 04:10:23.462
+wgs420_88 (32m 13s): 2024-10-18 04:06:33.444,2024-10-18 04:38:48.669
+wgs420_89 (37m 39s): 2024-10-18 04:10:25.560,2024-10-18 04:47:40.635
+wgs420_74 (39m 20s): 2024-10-18 04:38:39.962,2024-10-18 05:18:00.032
+wgs420_83 (35m 54s): 2024-10-18 04:48:22.286,2024-10-18 05:23:37.426
+wgs420_84 (31m 18s): 2024-10-18 05:18:01.237,2024-10-18 05:49:21.293
+wgs420_2 (32m): 2024-10-18 05:23:51.720,2024-10-18 05:55:51.926
+wgs420_27 (30m 13s): 2024-10-18 05:49:47.611,2024-10-18 06:19:37.832
+wgs420_73 (38m 8s): 2024-10-18 05:55:36.785,2024-10-18 06:33:46.892
+wgs420_17 (30m 2s): 2024-10-18 06:19:25.875,2024-10-18 06:49:40.910
+☆ : milestone, 2024-10-18 23:59:59.999, 0d
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="tue-1" class="level3" data-number="2.3.10">
+<h3 data-number="2.3.10" class="anchored" data-anchor-id="tue-1"><span class="header-section-number">2.3.10</span> 2024-11-19 (Tue)</h3>
+<p>No run</p>
+</section>
+<section id="wed-1" class="level3" data-number="2.3.11">
+<h3 data-number="2.3.11" class="anchored" data-anchor-id="wed-1"><span class="header-section-number">2.3.11</span> 2024-11-20 (Wed)</h3>
+<p>No run</p>
+</section>
+<section id="thu-1" class="level3" data-number="2.3.12">
+<h3 data-number="2.3.12" class="anchored" data-anchor-id="thu-1"><span class="header-section-number">2.3.12</span> 2024-11-21 (Thu)</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gantt
+dateFormat YYYY-MM-DD HH:mm:ss.SSS
+axisFormat %d/%m %H:%M
+
+%%{init: {'theme':'default'}}%%
+☀ : milestone, 2024-10-21 00:00:00.000, 0d
+
+wgs421_35 (32m 2s): 2024-10-21 10:00:48.688,2024-10-21 10:32:58.770
+wgs421_12 (25m 51s): 2024-10-21 10:00:49.452,2024-10-21 10:27:04.517
+wgs421_36 (31m 56s): 2024-10-21 10:27:24.569,2024-10-21 10:58:49.634
+wgs421_18 (41m 11s): 2024-10-21 10:33:24.678,2024-10-21 11:13:59.761
+wgs421_34 (50m 30s): 2024-10-21 10:58:34.796,2024-10-21 11:49:34.893
+wgs421_16 (39m 12s): 2024-10-21 11:13:59.931,2024-10-21 11:53:25.059
+wgs421_14 (32m 5s): 2024-10-21 11:49:45.384,2024-10-21 12:21:10.450
+wgs422_83 (39m 3s): 2024-10-21 11:53:30.705,2024-10-21 12:32:25.819
+wgs421_40 (39m 6s): 2024-10-21 12:21:44.231,2024-10-21 13:00:39.477
+wgs422_16 (40m 43s): 2024-10-21 12:32:36.804,2024-10-21 13:13:21.885
+wgs422_17 (35m 4s): 2024-10-21 13:00:37.606,2024-10-21 13:35:32.664
+wgs421_37 (39m 36s): 2024-10-21 13:13:17.896,2024-10-21 13:53:03.005
+wgs422_77 (38m 14s): 2024-10-21 13:41:41.609,2024-10-21 14:19:16.661
+wgs421_39 (33m 59s): 2024-10-21 13:52:52.306,2024-10-21 14:26:57.361
+wgs422_19 (33m 15s): 2024-10-21 14:25:05.460,2024-10-21 14:58:10.648
+wgs421_20 (38m 3s): 2024-10-21 14:27:32.533,2024-10-21 15:04:47.597
+wgs421_38 (30m 31s): 2024-10-21 14:57:54.444,2024-10-21 15:28:49.468
+wgs421_24 (42m 24s): 2024-10-21 15:05:05.725,2024-10-21 15:47:25.863
+wgs422_78 (36m 8s): 2024-10-21 15:29:06.283,2024-10-21 16:04:36.361
+wgs421_26 (41m 16s): 2024-10-21 15:47:07.854,2024-10-21 16:28:37.922
+wgs421_33 (30m 20s): 2024-10-21 16:33:49.356,2024-10-21 17:04:09.418
+wgs421_17 (38m 40s): 2024-10-21 17:03:59.559,2024-10-21 17:42:19.629
+wgs422_79 (30m 29s): 2024-10-21 17:42:28.609,2024-10-21 18:13:08.670
+wgs421_32 (35m 34s): 2024-10-21 18:12:53.899,2024-10-21 18:48:28.963
+wgs421_25 (34m 47s): 2024-10-21 18:13:38.912,2024-10-21 18:48:23.971
+wgs421_42 (41m 25s): 2024-10-21 18:48:16.695,2024-10-21 19:29:51.779
+wgs421_43 (39m 25s): 2024-10-21 20:00:05.479,2024-10-21 20:39:15.551
+wgs421_30 (35m 17s): 2024-10-21 20:39:35.620,2024-10-21 21:14:25.736
+wgs421_23 (40m 40s): 2024-10-21 21:08:40.877,2024-10-21 21:49:10.939
+wgs421_29 (36m 48s): 2024-10-21 21:49:01.668,2024-10-21 22:25:56.725
+wgs421_28 (37m 11s): 2024-10-21 22:28:17.198,2024-10-21 23:05:47.241
+wgs422_15 (34m 58s): 2024-10-21 22:37:37.349,2024-10-21 23:12:22.400
+wgs421_21 (37m 28s): 2024-10-21 23:06:03.150,2024-10-21 23:43:08.202
+wgs421_27 (36m 19s): 2024-10-21 23:12:24.441,2024-10-21 23:48:49.487
+☆ : milestone, 2024-10-21 23:59:59.999, 0d
 </pre>
 </div>
 <p></p></figure><p></p>
