@@ -49,7 +49,7 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 1. Data transfer speed
 2. Data storage
-3. Pipeline capacity
+3. [Pipeline capacity](https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf_pipeline.html)
 
 
 **This document will focus on the evaluation of data transfer speed.**
@@ -59,6 +59,7 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 Both _sequencing data_ and _NSC pipeline results_ are stored at the NSC and need to be transferred to the TSD.
 The amount of data to be transferred is very large.
+
 The data transfer is done by the **nsc-exporter** software which uses TSD s3api, a wrapper of s3cmd. 
 The nsc-exporter will check for new data to transfer every 10 minutes and uses `s3cmd put` to transfer the data.
 
@@ -175,6 +176,7 @@ setNames(as.data.frame(sapply(summary(data$bytes), humanReadable)), "filesize")
 ```{r} 
 #| fig-height: 3
 library(ggplot2)
+library(scales)
 ggplot(
   data,
   aes(x = bytes)
@@ -185,19 +187,7 @@ ggplot(
     y = "number of files",
     title = "File Size Distribution"
   ) +
-  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
-
-ggplot(
-  data,
-  aes(x = bytes)
-) +
-  geom_histogram(fill = "#F05A7E", bins = 200) +
-  labs(
-    x = "file size (bytes)",
-    y = "number of files (log10)",
-    title = "File Size Distribution (log10 number of files)"
-  ) +
-  scale_y_continuous(trans = "log10") +
+  scale_x_log10(labels = label_bytes()) +
   theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
 ```
@@ -228,21 +218,8 @@ ggplot(
 ) + 
   geom_histogram(bins = 200, fill = "#125B9A") + 
   labs(x = "bytes/s", y = "number of files", title = "Transfer Speed") + 
+  scale_x_log10(labels = label_bytes()) +
   theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
-
-ggplot(
-    data,
-    aes(x = speed)
-) + 
-  geom_histogram(bins = 200, fill = "#125B9A") + 
-  labs(
-    x = "bytes/s",
-    y = "number of files (log10)",
-    title = "Transfer Speed (log10 number of files)"
-  ) + 
-  scale_y_continuous(trans = 'log10') +
-  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
-
 ```
 :::
 ::::
@@ -270,19 +247,7 @@ ggplot(
 ) +
   geom_histogram(bins = 200, fill = "#0B8494") +
   labs(x = x_label, y = "number of files", title = "Transfer Time") +
-  theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
-
-
-ggplot(
-  data,
-  aes(x = seconds)
-) +
-  geom_histogram(bins = 200, fill = "#0B8494") +
-  labs(
-    x = x_label,
-    y = "number of files (log10)",
-    title = "Transfer Time (log10 number of files)"
-  ) +
+  scale_x_log10(labels = label_scientific()) +
   scale_y_continuous(trans = "log10") +
   theme_minimal() + theme(plot.title = element_text(hjust = 0.5))
 
@@ -297,7 +262,7 @@ Next, we would like to know the how does file size affect transfer speed and tra
 
 <!-- read data from csv file -->
 ```{python}
-#| cache: false
+#| cache: true
 #| include: false
 def deHumanReadable(bandwidth_string):
     k = 1024  # s3cmd uses 1024 
@@ -327,7 +292,7 @@ However, the best speed is observed for files with size around 200 MB (zoom in o
 ```{python} 
 #| label: fig-correlation-filesize-speed-all
 #| fig-cap: Transfer speed VS file size (all files)
-#| cache: false
+#| cache: true
 import pandas as pd
 from datetime import datetime
 import re
@@ -362,7 +327,7 @@ fig.update_layout(
 ```{r}
 #| label: fig-correlation-filesize-time-all
 #| fig-cap: Transfer time VS file size (all files)
-#| cache: false
+#| cache: true
 #| fig-width: 10
 #| fig-height: 4
 library(reticulate)
@@ -501,7 +466,7 @@ You can turn off a project by clicking it in the legend to the right of the figu
 For easier visualization, the data is grouped in months.
 
 ```{python} 
-#| cache: false
+#| cache: true
 #| include: false
 import humanize
 from pathlib import Path
@@ -892,7 +857,7 @@ performance o both ends etc.
 ```{python} 
 #| label: fig-small-files-count
 #| fig-cap: total number of small files vs large files
-#| cache: false
+#| cache: true
 boundary = [100000, 1000000, 10000000, 100000000, 1000000000]
 small = []
 large = []
@@ -929,7 +894,7 @@ px.bar(
 ```{python} 
 #| label: fig-small-files-tot-time
 #| fig-cap: total time used for transferring small files
-#| cache: false
+#| cache: true
 small_tot_time = []
 large_tot_time = []
 for threshold in boundary:
