@@ -1,0 +1,30 @@
+---
+title: NIPT
+title-block-banner: false
+description: "Diagrams of NIPT project"
+image: "cover.png"
+format: html
+author: 
+    - name: Xuyang Yuan
+      email: "xuyangy@uio.no"
+      affiliation: "GDx OUSAMG"
+      url: "https://www.robotgenome.com"
+      role: "collect data"
+date: last-modified
+---
+
+
+# Interpretation
+![](interp.svg)
+
+<hr>
+
+# Workflow Overview
+![](./overview.svg)
+
+<hr>
+
+# Whole workflow
+![](whole_workflow_sequence_diagram.svg)
+
+

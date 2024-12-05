@@ -25,6 +25,12 @@ website:
                     href: projects/PGDIS2024/pgdis2024.qmd
                   - text: "Nextflow Summit 2024"
                     href: projects/NextflowSummit2024/nextflow_summit_2024.qmd
+                  - text: NIPT Interpretation
+                    href: projects/NIPT/interp.svg
+                  - text: NIPT Whole Workflow
+                    href: ./projects/NIPT/whole_workflow_sequence_diagram.svg
+                  - text: NIPT Overview Workflow
+                    href: projects/NIPT/overview.svg
 format:
     html:
         theme:
