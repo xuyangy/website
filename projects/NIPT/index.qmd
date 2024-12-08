@@ -14,17 +14,18 @@ date: last-modified
 ---
 
 
-# Interpretation
+# NIPT Interpretation
+<hr>
 ![](interp.svg)
 
+# NIPT Workflow Overview
 <hr>
 
-# Workflow Overview
 ![](./overview.svg)
 
-<hr>
 
-# Whole workflow
+# NIPT Whole Workflow
+<hr>
 ![](whole_workflow_sequence_diagram.svg)
 
 
