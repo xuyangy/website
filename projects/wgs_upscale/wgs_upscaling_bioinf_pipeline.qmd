@@ -59,33 +59,91 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 ## Available hardware
 
+::: {#hardware}
+
 | Machine        | Units   | DRAGEN type           | DRAGENs per unit| Total DRAGENs |
 | :--------------|:--------|:----------------------|:--------------------|:--------------|
-| NovaSeq X Plus | 2       | Onboard               | 4                   | 8             |
-| NSC DRAGEN     | 2       | External              | 1                   | 2             |
+| NovaSeq X Plus | 2^a^     | Onboard               | 4                   | 8             |
+| NSC DRAGEN     | 2^b^    | External              | 1                   | 2             |
 | TSD DRAGEN     | 1       | External              | 1                   | 1             |
+: Available DRAGENs {#tbl-harware .hover .bordered .secondary .striped .success}
 
-## Capacity evaluation
-DRAGEN is "single-threaded". 
-The pipeline capacity is determined by the number of DRAGENs available. 
-And the time needed to process a sample.
+:::: {style="font-size: 0.8em; color: #777; margin-top: 0.5em;"}
+a. __nox__ and __nixie__  
+b. __stormfly__ and __toothless__
 
-### Sequencing + Demultiplexing + Delivery
+:::
 
-The time taken by each step of each sequencing run differs. Numbers listed here is "close to" the median.
+## Sequencing ➕ Demultiplexing ➕ Delivery data to bioinformatics pipeline
+This section will evaluate the time needed for sequencing, demultiplexing and copying data from NovaSeq X to external
+storage (Boston).
 
-- Sequencing of a single 25B flowcell takes about `44h`. 
-- Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
-- Secondary analysis (BCL Convert, Fastqc, ORA compression) takes about `6h`.
-  - BCL Convert takes `2h` after sequencing finish.
-  - Fastqc and ORA compression take `4h` after BCL Convert finish.
-- Coping secondary analysis data from sequencer to external storage (boston) takes about `1h`.
-- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes about `30m`.
 
-Sequencing starts to samples ready for running pipleline takes about `52h`.
+### Single 25B flowcell 2nd Analysis BCL Convert only
+
+#### NovaSeq X reported time
+
 
 :::{.panel-tabset}
-### diagram
+##### Diagram
+
+```{mermaid}
+%%| label: fig-single-25B-flowcell-2nd-analysis-bcl-convert-only
+%%| fig-cap: Single 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
+gantt
+%%{ 
+  init: { 
+    'theme': 'forest' ,
+    'gantt': {
+      'barHeight': 30,
+      'fontSize': 12,
+      'sectionFontSize': 18
+    }
+  } 
+}%%
+dateFormat YYYY-MM-DD HH:mm:ss
+axisFormat %d/%b %H:%M
+title NovaSeq X reported time
+section single 25B flowcell<br/>(64 samples)
+Sequencing completed 44h : 2024-11-18 13:02:04, 2024-11-20 06:51:37
+Sequencing file transfer to external storage completed ➕2h: 2024-11-18 19:32:40, 2024-11-20 08:57:45
+Analysis completed ➕5h: 2024-11-18 19:32:44, 2024-11-20 13:58:15
+Analysis file transfer to external storage completed ➕0h: 2024-11-18 19:32:45, 2024-11-20 13:58:15
+
+```
+
+##### Table
+
+| Status | Started | Completed | 
+|-----|---|---|
+|Sequencing completed | 2024-11-18 13:02:04| 2024-11-20 06:51:37|
+|Sequencing file transfer to external storage completed| 2024-11-18 19:32:40| 2024-11-20 08:57:45|
+|Analysis completed| 2024-11-18 19:32:44| 2024-11-20 13:58:15|
+|Analysis file transfer to external storage completed| 2024-11-18 19:32:45| 2024-11-20 13:58:15|
+: example run 20241118 {#tbl-20241118 .hover .bordered .secondary .striped .success}
+
+:::
+
+#### Detailed steps time
+
+The time taken by each step of each sequencing run differs. Numbers listed here is "close to" the medians.
+
+- Sequencing of a single 25B flowcell takes `44h`. 
+- Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
+  - Post-run wash time included which takes 1h48m
+  - Some reports need to be copied to external storage. But they must wait for completion of post-run wash.
+- Secondary analysis (BCL Convert, Fastqc, ORA compression) takes `6h`.
+  - BCL Convert takes `2h` after sequencing finish.
+  - Fastqc and ORA compression take `4h` after BCL Convert finish.
+- Coping secondary analysis data from sequencer to external storage (boston) takes `1h20m`.
+  - Copying _fastq.ora_ files takes `1h`
+  - Copying other files, _e.g.,_ reports, logs, metadata files takes `20m`
+- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes `15m`.
+
+Sequencing starts to samples ready for running pipleline takes `52h`.
+
+:::{.panel-tabset}
+##### Diagram
 
 ```{mermaid}
 gantt
@@ -102,30 +160,249 @@ gantt
 dateFormat YYYY-MM-DD HH:mm:ss
 axisFormat %d/%b %H:%M
 title NovaSeq X Sequenicing ➡  Ready for lims-exporter
-section one 25B flowcell, 64 samples
+section single 25B flowcell<br/>(64 samples)
 Sequencing 44h: seq, 2024-11-18 13:02:04, 2024-11-20 06:51:37
-BCL Convert 2h: bcl, after seq, 2h
-Fastqc and ORA compression 4h: fastqcORA, after bcl, 4h
-Analysis file transfer to boston 1h: anacopy, after fastqcORA, 1h
-md5sum and deliver to lims-exporter 30m: md5, after anacopy, 30m
+bcl2fastq: 2024-11-19 21:12:28, 2024-11-19 23:35:36
+32 sample ora compress: 2024-11-19 23:35:36, 2024-11-20 01:21:08
+FastQC (map-align) msg_001: 2024-11-19 23:35:36, 2024-11-20 02:53:09
+FastQC (map-align) msg_002: 2024-11-19 23:35:36, 2024-11-20 02:58:34
+32 sample ora compress: 2024-11-20 01:21:08, 2024-11-20 03:08:53
+FastQC report generation: 2024-11-20 10:54:00, 2024-11-20 11:11:00
+Analysis file transfer to boston: 2024-11-20 13:40:00, 2024-11-20 14:00:00
+NSC automation (md5sum+deliver): 2024-11-20 14:05:02, 2024-11-20 14:15:05
 
 ```
 
-### table
+##### Table
 
-| Status | Started | Started | 
-|-----|---|---|
-|Sequencing completed |2024-11-18 13:02:04|2024-11-20 06:51:37|
-|Sequencing file transfer to external storage completed| 2024-11-18 19:32:40| 2024-11-20 08:57:45|
-|Analysis completed| 2024-11-18 19:32:44| 2024-11-20 13:58:15|
-|Analysis file transfer to external storage completed| 2024-11-18 19:32:45| 2024-11-20 13:58:15|
+| Status                           | Started             | Completed           |
+| :-----------                     | :--                 | :--                 |
+| Sequencing completed             | 2024-11-18 13:02:04 | 2024-11-20 06:51:37 |
+| bcl2fastq                        | 2024-11-19 21:12:28 | 2024-11-19 23:35:36 |
+| 32 sample ora compress           | 2024-11-19 23:35:36 | 2024-11-20 01:21:08 |
+| FastQC (map-align) msg_001       | 2024-11-19 23:35:36 | 2024-11-20 02:53:09 |
+| FastQC (map-align) msg_002       | 2024-11-19 23:35:36 | 2024-11-20 02:58:34 |
+| 32 sample ora compress           | 2024-11-20 01:21:08 | 2024-11-20 03:08:53 |
+| FastQC report generation         | 2024-11-20 10:54:00 | 2024-11-20 11:11:00 |
+| Analysis file transfer to boston | 2024-11-20 13:40:00 | 2024-11-20 14:00:00 |
+| NSC automation (md5sum+deliver)  | 2024-11-20 14:05:02 | 2024-11-20 14:15:05 |
+: Example run 20241118 {#tbl-20241118-detail .hover .bordered}
+
+::::{.callout-note}
+This is a specific run on 2024-11-18.
+::::
 
 :::
 
-## Pipeline real-time monitoring (1 or 2 NSC DRAGEN in use)
-With 1 or 2 NSC DRAGENs in use, the pipeline can process `36` or `72` samples in 24 hours.
 
-### 2024-11-10 (Sun)
+### Dual 25B flowcell; 2nd Analysis = BCL Convert only
+
+The time taken by each step of each sequencing run differs. Numbers listed here is "close to" the medians.
+
+#### NovaSeq X reported time
+:::{.panel-tabset}
+##### Diagram
+```{mermaid}
+%%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
+%%| fig-cap: NovaSeq X reported time, Dual 25B flowcell, 2nd Analysis BCL Convert only
+gantt
+%%{ 
+  init: { 
+    'theme': 'default',
+    'gantt': {
+      'barHeight': 30,
+      'fontSize': 12,
+      'sectionFontSize': 18
+    }
+  } 
+}%%
+dateFormat YYYY-MM-DD HH:mm:ss
+axisFormat %d/%b %H:%M
+title NovaSeq X reported time
+section Flowcell B
+Sequencing completed 44h :2024-12-09 11:30:41,2024-12-11 07:09:03
+Sequencing file transfer to external storage completed ➕2h:2024-12-09 18:01:57,2024-12-11 09:17:40
+Analysis completed ➕5h:2024-12-09 18:02:06,2024-12-11 14:03:25
+Analysis file transfer to external storage completed ➕0h:2024-12-09 18:02:07,2024-12-11 14:03:25
+
+section Flowcell A
+Sequencing completed 44h :2024-12-09 11:30:37,2024-12-11 07:12:55
+Sequencing file transfer to external storage completed ➕2h:2024-12-09 18:02:33,2024-12-11 09:22:38
+Analysis completed ➕10h:2024-12-09 18:02:38,2024-12-11 19:28:08
+Analysis file transfer to external storage completed ➕0h:2024-12-09 18:02:40,2024-12-11 19:28:08
+```
+
+##### Table
+
+**Flowcell B**
+
+| Status | Started | Completed |  Duration |
+|----------|---|---|---|
+|Sequencing completed|2024-12-09 11:30:41|2024-12-11 07:09:03|43h37m|
+|Sequencing file transfer to external storage completed|2024-12-09 18:01:57|2024-12-11 09:17:40|39h15m|
+|Analysis completed|2024-12-09 18:02:06|2024-12-11 14:03:25|44h01m|
+|Analysis file transfer to external storage completed|2024-12-09 18:02:07|2024-12-11 14:03:25|44h01m|
+
+
+**Flowcell A**
+
+| Status | Started | Completed | Duration |
+|-----|---|---|---|
+|Sequencing completed|2024-12-09 11:30:37|2024-12-11 07:12:55|43h42m|
+|Sequencing file transfer to external storage completed|2024-12-09 18:02:33|2024-12-11 09:22:38|39h19m|
+|Analysis completed|2024-12-09 18:02:38|2024-12-11 19:28:08|49h24m|
+|Analysis file transfer to external storage completed|2024-12-09 18:02:40|2024-12-11 19:28:08|49h24m|
+
+:::
+
+
+#### Detailed steps time
+
+- Sequencing of dual 25B flowcell takes `44h`. 
+- Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
+  - Post-run wash time included which takes 1h48m
+  - Some reports need to be copied to external storage. But they must wait for completion of post-run wash.
+- Secondary analysis (BCL Convert, Fastqc, ORA compression, FastQC reporting) takes `10h`.
+  - Flowcell B BCL Convert takes `2h` for each flowcell separately.
+  - Flowcell B Fastqc and ORA compression are done in parallel and finishes `3h` after BCL Convert finish.
+  - Flowcell A BCL Convert takes `2h` for each flowcell separately.
+  - Flowcell A BFastqc and ORA compression are done in parallel and finishes `3h` after BCL Convert finish.
+  - Flowcell B FastQC reporting for flowcell B takes `1h40m`.
+  - Flowcell A FastQC reporting for flowcell B takes `1h40m`.
+- Coping secondary analysis data from sequencer to external storage (boston) takes `2h40m`.
+  - Copying _fastq.ora_ files takes `1h`
+  - Copying other files, _e.g.,_ reports, logs, metadata files takes `20m`
+  - Sequencial for flowcell B, then A.
+- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes `15m` for each flowcell.
+
+Sequencing starts to samples ready for running pipleline takes `57h`.
+
+
+
+:::{.panel-tabset}
+### Diagram
+
+```{mermaid}
+%%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
+%%| fig-cap: Dual 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
+gantt
+%%{ 
+  init: { 
+    'theme': 'forest' ,
+    'gantt': {
+      'barHeight': 30,
+      'fontSize': 12,
+      'sectionFontSize': 18
+    }
+  } 
+}%%
+dateFormat YYYY-MM-DD HH:mm:ss
+axisFormat %d/%b %H:%M
+title NovaSeq X Sequenicing ➡  Ready for lims-exporter
+section Dual 25B flowcell (128 samples)
+RunStartTime (B): milestone, 2024-12-09 11:03:53, 0d
+Sequencing 44h (B): seq, 2024-12-09 11:30:41, 2024-12-11 07:09:03
+Instrument Analytics Cycle 1 - 320 (B): 2024-12-09 17:01:58, 2024-12-11 06:09:02
+BCL CONVERSION B: convB, 2024-12-10 04:52:36, 2024-12-10 21:33:20
+bcl2fastq (B): 2024-12-10 21:33:21, 2024-12-10 23:39:08
+16 sample ora compress (B): 2024-12-10 23:39:09, 2024-12-11 00:40:27
+16 sample ora compress (B): 2024-12-10 23:39:09, 2024-12-11 00:36:40
+16 sample ora compress (B): 2024-12-10 23:39:09, 2024-12-11 00:47:16
+FastQC (map-align) (B) msg_001: 2024-12-10 23:39:09, 2024-12-11 01:16:52
+FastQC (map-align) (B) msg_002: 2024-12-10 23:39:09, 2024-12-11 02:49:01
+FastQC (map-align) (B) msg_003: 2024-12-10 23:39:09, 2024-12-11 01:21:56
+FastQC (map-align) (B) msg_004: 2024-12-10 23:39:09, 2024-12-11 01:21:20
+16 sample ora compress (B): 2024-12-11 00:36:40, 2024-12-11 01:33:13
+fastq generation complete (B): milestone, 2024-12-11 07:39:08, 0d
+RunEndTime (B): milestone, 2024-12-11 09:04:23, 0d
+FastQC report generation (B): 2024-12-11 09:12:00, 2024-12-11 10:50:00
+Analysis file transfer to boston (B): 2024-12-11 12:40:00, 2024-12-11 14:02:00
+NSC automation (md5sum+deliver) (B):  2024-12-11 14:10:02, 2024-12-11 14:16:49
+RunStartTime (A): milestone, 2024-12-09 11:03:52, 0d
+Sequencing 44h (A): seq, 2024-12-09 11:30:37, 2024-12-11 07:12:55
+Instrument Analytics Cycle 1 - 320 (A): 2024-12-09 17:02:34, 2024-12-11 06:12:54
+BCL CONVERSION A: convA, 2024-12-10 04:49:52, 2024-12-10 21:29:01
+bcl2fastq (A): 2024-12-11 02:51:04, 2024-12-11 04:54:52
+16 sample ora compress (A): 2024-12-11 04:54:52, 2024-12-11 06:03:44
+16 sample ora compress (A): 2024-12-11 04:54:52, 2024-12-11 06:00:23
+16 sample ora compress (A): 2024-12-11 04:54:52, 2024-12-11 06:04:37
+FastQC (map-align) (A) msg_001: 2024-12-11 04:54:52, 2024-12-11 08:11:00
+FastQC (map-align) (A) msg_002: 2024-12-11 04:54:52, 2024-12-11 06:32:46
+FastQC (map-align) (A) msg_003: 2024-12-11 04:54:52, 2024-12-11 06:34:32
+FastQC (map-align) (A) msg_004: 2024-12-11 04:54:52, 2024-12-11 06:35:42
+16 sample ora compress (A): 2024-12-11 06:00:23, 2024-12-11 06:57:40
+RunEndTime (A): milestone, 2024-12-11 09:04:23, 0d
+fastq generation complete (A): milestone, 2024-12-11 12:54:52, 0d
+FastQC report generation (A): 2024-12-11 14:33:00, 2024-12-11 16:12:00
+Analysis file transfer to boston (A): 2024-12-11 18:00:00, 2024-12-11 19:27:00
+NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
+
+```
+
+### Table
+
+**Flowcell B**
+
+| Job                                    | Started             | Completed           |
+| ----                                   | ---                 | ---                 |
+| RunStartTime (B)                       | 2024-12-09 11:03:53 |                     |
+| Sequencing completed (B)               | 2024-12-09 11:30:41 | 2024-12-11 07:09:03 |
+| Instrument Analytics Cycle 1 - 320 (B) | 2024-12-09 17:01:58 | 2024-12-11 06:09:02 |
+| BCL CONVERSION B                       | 2024-12-10 04:52:36 | 2024-12-10 21:33:20 |
+| bcl2fastq (B)                          | 2024-12-10 21:33:21 | 2024-12-10 23:39:08 |
+| 16 sample ora compress (B)             | 2024-12-10 23:39:09 | 2024-12-11 00:40:27 |
+| 16 sample ora compress (B)             | 2024-12-10 23:39:09 | 2024-12-11 00:36:40 |
+| 16 sample ora compress (B)             | 2024-12-10 23:39:09 | 2024-12-11 00:47:16 |
+| FastQC (map-align) (B) msg_001         | 2024-12-10 23:39:09 | 2024-12-11 01:16:52 |
+| FastQC (map-align) (B) msg_002         | 2024-12-10 23:39:09 | 2024-12-11 02:49:01 |
+| FastQC (map-align) (B) msg_003         | 2024-12-10 23:39:09 | 2024-12-11 01:21:56 |
+| FastQC (map-align) (B) msg_004         | 2024-12-10 23:39:09 | 2024-12-11 01:21:20 |
+| 16 sample ora compress (B)             | 2024-12-11 00:36:40 | 2024-12-11 01:33:13 |
+| fastq generation complete (B)          |                     | 2024-12-11 07:39:08 |
+| RunEndTime (B)                         |                     | 2024-12-11 09:04:23 |
+| FastQC report generation (B)           | 2024-12-11 09:12:00 | 2024-12-11 10:50:00 |
+| Analysis file transfer to boston (B)   | 2024-12-11 12:40:00 | 2024-12-11 14:02:00 |
+| NSC automation (md5sum+deliver) (B)    | 2024-12-11 14:10:02 | 2024-12-11 14:16:49 |
+
+**Flowcell A**
+
+| Job                                    | Started             | Completed           |
+| ----                                   | ---                 | ---                 |
+| RunStartTime (A)| 2024-12-09 11:03:52| |
+| Sequencing completed (A)| 2024-12-09 11:30:37| 2024-12-11 07:12:55|
+| Instrument Analytics Cycle 1 - 320 (A)| 2024-12-09 17:02:34| 2024-12-11 06:12:54|
+| BCL CONVERSION A| 2024-12-10 04:49:52| 2024-12-10 21:29:01|
+| bcl2fastq (A)| 2024-12-11 02:51:04| 2024-12-11 04:54:52|
+| 16 sample ora compress (A)| 2024-12-11 04:54:52| 2024-12-11 06:03:44|
+| 16 sample ora compress (A)| 2024-12-11 04:54:52| 2024-12-11 06:00:23|
+| 16 sample ora compress (A)| 2024-12-11 04:54:52| 2024-12-11 06:04:37|
+| FastQC (map-align) (A) msg_001| 2024-12-11 04:54:52| 2024-12-11 08:11:00|
+| FastQC (map-align) (A) msg_002| 2024-12-11 04:54:52| 2024-12-11 06:32:46|
+| FastQC (map-align) (A) msg_003| 2024-12-11 04:54:52| 2024-12-11 06:34:32|
+| FastQC (map-align) (A) msg_004| 2024-12-11 04:54:52| 2024-12-11 06:35:42|
+| 16 sample ora compress (A)| 2024-12-11 06:00:23| 2024-12-11 06:57:40|
+| RunEndTime (A)| | 2024-12-11 09:04:23|
+| fastq generation complete (A)| | 2024-12-11 12:54:52|
+| FastQC report generation (A)| 2024-12-11 14:33:00| 2024-12-11 16:12:00|
+| Analysis file transfer to boston (A)| 2024-12-11 18:00:00| 2024-12-11 19:27:00|
+| NSC automation (md5sum+deliver) (A)| 2024-12-11 19:35:01| 2024-12-11 19:42:11|
+
+:::
+
+
+
+
+## Pipeline capacity evaluation
+DRAGEN is "single-threaded". 
+The pipeline capacity is determined by the number of DRAGENs available. 
+And the time needed to process a sample.
+
+
+
+### Pipeline real-time monitoring (1 or 2 NSC DRAGEN in use)
+With 1 or 2 NSC DRAGENs in use, the pipeline can process up to `36` or `72` samples in 24 hours.
+
+#### 2024-11-10 (Sun)
 ```{mermaid}
 ---
 config:
@@ -138,7 +415,7 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-10 00:00:00.000, 0d
+☀: milestone, start, 2024-10-10 00:00:00.000, 0d
 wgs418_61 (35m 2s): 2024-10-10 09:01:56.207,2024-10-10 09:37:16.310
 wgs418_22 (30m 48s): 2024-10-10 09:41:32.212,2024-10-10 10:12:42.295
 wgs418_29 (36m 51s): 2024-10-10 10:12:47.722,2024-10-10 10:49:47.793
@@ -163,10 +440,10 @@ wgs418_1 (36m 55s): 2024-10-10 22:01:17.617,2024-10-10 22:38:27.682
 wgs418_15 (34m 55s): 2024-10-10 22:38:37.089,2024-10-10 23:13:22.178
 wgs418_8 (32m 44s): 2024-10-10 23:13:12.620,2024-10-10 23:46:02.741
 wgs418_48 (38m 46s): 2024-10-10 23:45:52.665,2024-10-11 00:25:02.730
-🌛: milestone, end, 2024-10-10 23:59:59.999, 0d
+☪: milestone, end, 2024-10-10 23:59:59.999, 0d
 ```
 
-### 2024-11-11 (Mon)
+#### 2024-11-11 (Mon)
 
 ```{mermaid}
 ---
@@ -180,7 +457,7 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-11 00:00:00.000, 0d
+☀: milestone, start, 2024-10-11 00:00:00.000, 0d
 wgs418_12 (31m 1s): 2024-10-11 00:24:57.798,2024-10-11 00:55:47.861
 wgs418_17 (37m 13s): 2024-10-11 00:55:53.641,2024-10-11 01:33:03.707
 wgs418_58 (34m 35s): 2024-10-11 01:33:33.508,2024-10-11 02:07:28.627
@@ -203,15 +480,15 @@ wgs418_16 (41m 41s): 2024-10-11 12:02:17.011,2024-10-11 12:44:02.077
 wgs418_44 (44m 52s): 2024-10-11 12:44:22.181,2024-10-11 13:29:02.340
 wgs418_51 (45m 28s): 2024-10-11 13:29:06.517,2024-10-11 14:14:41.592
 wgs418_32 (41m 33s): 2024-10-11 14:14:27.425,2024-10-11 14:55:57.494
-wgs418_38 (7m 5s): crit, 2024-10-11 15:26:47.890,2024-10-11 15:33:52.898
-wgs418_23 (7m 5s): crit, 2024-10-11 15:26:49.670,2024-10-11 15:33:54.691
-wgs418_57 (7m 5s): crit, 2024-10-11 15:26:49.910,2024-10-11 15:33:54.942
-wgs418_56 (7m 5s): crit, 2024-10-11 15:26:56.506,2024-10-11 15:34:01.531
-wgs418_24 (7m 5s): crit, 2024-10-11 15:26:58.376,2024-10-11 15:34:03.388
-wgs418_40 (7m 5s): crit, 2024-10-11 15:26:59.629,2024-10-11 15:34:04.636
-wgs418_37 (7m 5s): crit, 2024-10-11 15:27:01.986,2024-10-11 15:34:06.997
-wgs418_43 (7m 5s): crit, 2024-10-11 15:27:13.990,2024-10-11 15:34:19.005
-wgs418_21 (7m 5s): crit, 2024-10-11 15:27:14.794,2024-10-11 15:34:19.798
+wgs418_38 (7m 5s, failed): crit, 2024-10-11 15:26:47.890,2024-10-11 15:33:52.898
+wgs418_23 (7m 5s, failed): crit, 2024-10-11 15:26:49.670,2024-10-11 15:33:54.691
+wgs418_57 (7m 5s, failed): crit, 2024-10-11 15:26:49.910,2024-10-11 15:33:54.942
+wgs418_56 (7m 5s, failed): crit, 2024-10-11 15:26:56.506,2024-10-11 15:34:01.531
+wgs418_24 (7m 5s, failed): crit, 2024-10-11 15:26:58.376,2024-10-11 15:34:03.388
+wgs418_40 (7m 5s, failed): crit, 2024-10-11 15:26:59.629,2024-10-11 15:34:04.636
+wgs418_37 (7m 5s, failed): crit, 2024-10-11 15:27:01.986,2024-10-11 15:34:06.997
+wgs418_43 (7m 5s, failed): crit, 2024-10-11 15:27:13.990,2024-10-11 15:34:19.005
+wgs418_21 (7m 5s, failed): crit, 2024-10-11 15:27:14.794,2024-10-11 15:34:19.798
 wgs418_38 (38m 3s): 2024-10-11 15:33:57.887,2024-10-11 16:12:22.960
 wgs418_23 (38m 59s): 2024-10-11 15:34:29.669,2024-10-11 16:13:44.855
 wgs418_57 (30m 39s): 2024-10-11 16:12:34.992,2024-10-11 16:42:55.043
@@ -222,14 +499,14 @@ wgs418_37 (40m 2s): 2024-10-11 17:20:47.213,2024-10-11 18:00:22.364
 wgs418_43 (29m 21s): 2024-10-11 17:28:09.193,2024-10-11 17:56:59.424
 wgs418_21 (34m 39s): 2024-10-11 17:57:20.055,2024-10-11 18:31:35.121
 wgs418_25 (31m 57s): 2024-10-11 18:00:16.227,2024-10-11 18:32:41.280
-🌛: milestone, end, 2024-10-11 23:59:59.999, 0d
+☪: milestone, end, 2024-10-11 23:59:59.999, 0d
 ```
 
-### 2024-11-12 (Tue)
+#### 2024-11-12 (Tue)
 
 No run
 
-### 2024-11-13 (Wed)
+#### 2024-11-13 (Wed)
 
 ```{mermaid}
 ---
@@ -243,7 +520,7 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-13 00:00:00.000, 0d
+☀: milestone, start, 2024-10-13 00:00:00.000, 0d
 wgs420_10 (31m 25s): 2024-10-13 15:49:24.996,2024-10-13 16:21:00.067
 wgs420_4 (28m 29s): 2024-10-13 15:49:25.207,2024-10-13 16:18:10.359
 wgs419_24 (30m 30s): 2024-10-13 16:18:06.907,2024-10-13 16:48:56.961
@@ -268,10 +545,10 @@ wgs420_8 (1h 14m 43s): 2024-10-13 22:25:30.317,2024-10-13 23:40:35.438
 wgs419_45 (47m 35s): 2024-10-13 23:06:50.871,2024-10-13 23:54:15.946
 wgs419_43 (39m 2s): 2024-10-13 23:40:19.022,2024-10-14 00:19:23.963
 wgs419_34 (58m 10s): 2024-10-13 23:54:14.168,2024-10-14 00:52:34.258
-🌛: milestone, end, 2024-10-13 23:59:59.999, 0d
+☪: milestone, end, 2024-10-13 23:59:59.999, 0d
 ```
 
-### 2024-11-14 (Thu)
+#### 2024-11-14 (Thu)
 
 ```{mermaid}
 ---
@@ -285,7 +562,7 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-14 00:00:00.000, 0d
+☀: milestone, start, 2024-10-14 00:00:00.000, 0d
 wgs419_28 (45m 31s): 2024-10-14 00:19:11.956,2024-10-14 01:05:02.294
 wgs419_33 (37m 48s): 2024-10-14 00:52:49.423,2024-10-14 01:30:14.482
 wgs419_8 (33m 21s): 2024-10-14 01:30:42.768,2024-10-14 02:04:02.822
@@ -319,10 +596,10 @@ wgs419_23 (40m 5s): 2024-10-14 09:52:47.495,2024-10-14 10:32:37.661
 wgs419_38 (33m 28s): 2024-10-14 10:23:59.829,2024-10-14 10:56:45.008
 wgs420_3 (37m 39s): 2024-10-14 10:32:39.812,2024-10-14 11:10:09.878
 wgs419_7 (38m 55s): 2024-10-14 10:57:14.761,2024-10-14 11:35:55.091
-🌛: milestone, end, 2024-10-14 23:59:59.999, 0d
+☪: milestone, end, 2024-10-14 23:59:59.999, 0d
 ```
 
-### 2024-11-15 (Fri)
+#### 2024-11-15 (Fri)
 
 ```{mermaid}
 ---
@@ -336,13 +613,13 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-15 00:00:00.000, 0d
+☀: milestone, start, 2024-10-15 00:00:00.000, 0d
 wgs420_7 (32m 59s): 2024-10-15 17:02:28.156,2024-10-15 17:35:38.240
 wgs420_12 (26m 45s): 2024-10-15 17:02:28.239,2024-10-15 17:29:13.338
-🌛: milestone, end, 2024-10-15 23:59:59.999, 0d
+☪: milestone, end, 2024-10-15 23:59:59.999, 0d
 ```
 
-### 2024-11-16 (Sat)
+#### 2024-11-16 (Sat)
 
 ```{mermaid}
 ---
@@ -356,7 +633,7 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-16 00:00:00.000, 0d
+☀: milestone, start, 2024-10-16 00:00:00.000, 0d
 wgs420_35 (29m 12s): 2024-10-16 18:27:07.499,2024-10-16 18:56:32.640
 wgs418_65 (26m 26s): 2024-10-16 18:27:35.331,2024-10-16 18:54:05.762
 wgs420_40 (31m 39s): 2024-10-16 18:56:20.058,2024-10-16 19:28:25.124
@@ -375,10 +652,10 @@ wgs418_46 (39m 11s): 2024-10-16 22:26:27.475,2024-10-16 23:05:27.538
 wgs420_33 (50m 52s): 2024-10-16 22:54:47.854,2024-10-16 23:45:27.921
 wgs420_26 (48m 40s): 2024-10-16 23:05:29.337,2024-10-16 23:54:14.474
 wgs420_41 (33m 38s): 2024-10-16 23:45:51.300,2024-10-17 00:19:11.366
-🌛: milestone, end, 2024-10-16 23:59:59.999, 0d
+☪: milestone, end, 2024-10-16 23:59:59.999, 0d
 ```
 
-### 2024-11-17 (Sun)
+#### 2024-11-17 (Sun)
 
 ```{mermaid}
 ---
@@ -403,7 +680,7 @@ axisFormat %d/%b %H:%M
   }
 }%%
 
-☀️ : milestone, start, 2024-10-17 00:00:00.000, 0d
+☀: milestone, start, 2024-10-17 00:00:00.000, 0d
 wgs418_3 (38m 53s): a1, 2024-10-17 00:00:47.017,2024-10-17 00:39:52.157
 wgs420_93 (44m 3s): 2024-10-17 00:19:05.641,2024-10-17 01:03:15.934
 wgs420_14 (36m 52s): 2024-10-17 00:39:47.931,2024-10-17 01:16:43.009
@@ -476,10 +753,10 @@ wgs420_61 (36m 53s): 2024-10-17 22:45:10.032,2024-10-17 23:21:55.093
 wgs420_50 (35m 45s): 2024-10-17 23:04:57.219,2024-10-17 23:40:12.277
 wgs420_57 (40m 38s): 2024-10-17 23:21:46.990,2024-10-18 00:02:52.058
 wgs420_58 (37m 26s): 2024-10-17 23:40:36.801,2024-10-18 00:17:41.851
-🌛: milestone, end, 2024-10-17 23:59:59.999, 0d
+☪: milestone, end, 2024-10-17 23:59:59.999, 0d
 ```
 
-### 2024-11-18 (Mon)
+#### 2024-11-18 (Mon)
 
 ```{mermaid}
 ---
@@ -493,7 +770,7 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-18 00:00:00.000, 0d
+☀: milestone, start, 2024-10-18 00:00:00.000, 0d
 wgs420_75 (49m 21s): 2024-10-18 00:03:04.798,2024-10-18 00:51:59.863
 wgs420_79 (37m 12s): 2024-10-18 00:17:43.082,2024-10-18 00:54:38.342
 wgs420_90 (37m 20s): 2024-10-18 00:51:47.403,2024-10-18 01:29:12.476
@@ -517,21 +794,21 @@ wgs420_2 (32m): 2024-10-18 05:23:51.720,2024-10-18 05:55:51.926
 wgs420_27 (30m 13s): 2024-10-18 05:49:47.611,2024-10-18 06:19:37.832
 wgs420_73 (38m 8s): 2024-10-18 05:55:36.785,2024-10-18 06:33:46.892
 wgs420_17 (30m 2s): 2024-10-18 06:19:25.875,2024-10-18 06:49:40.910
-🌛: milestone, end, 2024-10-18 23:59:59.999, 0d
+☪: milestone, end, 2024-10-18 23:59:59.999, 0d
 ```
 
 
-### 2024-11-19 (Tue)
+#### 2024-11-19 (Tue)
 
 No run
 
 
-### 2024-11-20 (Wed)
+#### 2024-11-20 (Wed)
 
 No run
 
 
-### 2024-11-21 (Thu)
+#### 2024-11-21 (Thu)
 
 ```{mermaid}
 ---
@@ -545,7 +822,7 @@ config:
 gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
-☀️ : milestone, start, 2024-10-21 00:00:00.000, 0d
+☀: milestone, start, 2024-10-21 00:00:00.000, 0d
 wgs421_35 (32m 2s): 2024-10-21 10:00:48.688,2024-10-21 10:32:58.770
 wgs421_12 (25m 51s): 2024-10-21 10:00:49.452,2024-10-21 10:27:04.517
 wgs421_36 (31m 56s): 2024-10-21 10:27:24.569,2024-10-21 10:58:49.634
@@ -580,6 +857,6 @@ wgs421_28 (37m 11s): 2024-10-21 22:28:17.198,2024-10-21 23:05:47.241
 wgs422_15 (34m 58s): 2024-10-21 22:37:37.349,2024-10-21 23:12:22.400
 wgs421_21 (37m 28s): 2024-10-21 23:06:03.150,2024-10-21 23:43:08.202
 wgs421_27 (36m 19s): 2024-10-21 23:12:24.441,2024-10-21 23:48:49.487
-🌛: milestone, end, 2024-10-21 23:59:59.999, 0d
+☪: milestone, end, 2024-10-21 23:59:59.999, 0d
 ```
 
