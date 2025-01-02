@@ -7,12 +7,12 @@ h3,
     margin-top: 60px;
 }
 
-text.sectionTitle.sectionTitle0 {
+text.sectionTitle {
     fill-opacity: .8;
     fill: gray !important;
 }
 
-text.taskTextOutside0 {
+text.taskTextOutside0, text.taskTextOutside1 {
     fill: #636566 !important;
 }
 
@@ -24,4 +24,8 @@ text.taskTextOutside0 {
 #fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-mermaid .milestone {
     fill: #009B2A !important;
     stroke: #009B2A !important;
+}
+
+.section1 {
+    fill: #217842 !important;
 }

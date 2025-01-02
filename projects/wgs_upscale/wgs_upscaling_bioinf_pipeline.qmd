@@ -2,7 +2,6 @@
 title: "WGS Upscaling - Pipeline Capacity Evaluation"
 title-block-banner: true
 image: "pipeline.png"
-css: style.css
 description: "DRAEN pipeline capacity"
 author: 
     - name: Xuyang Yuan
@@ -19,6 +18,7 @@ author:
 date: last-modified
 format: 
     html:
+        css: style.css
         toc: true
         toc-depth: 4
         toc-expand: true
@@ -61,16 +61,17 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 ::: {#hardware}
 
-| Machine        | Units   | DRAGEN type           | DRAGENs per unit| Total DRAGENs |
-| :--------------|:--------|:----------------------|:--------------------|:--------------|
-| NovaSeq X Plus | 2^a^     | Onboard               | 4                   | 8             |
-| NSC DRAGEN     | 2^b^    | External              | 1                   | 2             |
-| TSD DRAGEN     | 1       | External              | 1                   | 1             |
-: Available DRAGENs {#tbl-harware .hover .bordered .secondary .striped .success}
+| Machine         | Units     | DRAGEN type             | DRAGENs per unit      | Total DRAGENs   |
+| :-------------- | :-------- | :---------------------- | :-------------------- | :-------------- |
+| NovaSeq X Plus  | 2^a^      | Onboard                 | 4                     | 8               |
+| NSC DRAGEN      | 2^b^      | External                | 1                     | 2               |
+| TSD DRAGEN      | 1         | External                | 1                     | 1               |
+: Available DRAGENs {#tbl-hardware .hover .bordered .highlight}
 
 :::: {style="font-size: 0.8em; color: #777; margin-top: 0.5em;"}
-a. __nox__ and __nixie__  
-b. __stormfly__ and __toothless__
+a. _nox_ and _nixie_  
+b. _stormfly_ and _toothless_
+::::
 
 :::
 
@@ -114,13 +115,13 @@ Analysis file transfer to external storage completed ➕0h: 2024-11-18 19:32:45,
 
 ##### Table
 
-| Status | Started | Completed | 
-|-----|---|---|
-|Sequencing completed | 2024-11-18 13:02:04| 2024-11-20 06:51:37|
-|Sequencing file transfer to external storage completed| 2024-11-18 19:32:40| 2024-11-20 08:57:45|
-|Analysis completed| 2024-11-18 19:32:44| 2024-11-20 13:58:15|
-|Analysis file transfer to external storage completed| 2024-11-18 19:32:45| 2024-11-20 13:58:15|
-: example run 20241118 {#tbl-20241118 .hover .bordered .secondary .striped .success}
+| Status                                                 | Started             | Completed           |
+| -----                                                  | ---                 | ---                 |
+| Sequencing completed                                   | 2024-11-18 13:02:04 | 2024-11-20 06:51:37 |
+| Sequencing file transfer to external storage completed | 2024-11-18 19:32:40 | 2024-11-20 08:57:45 |
+| Analysis completed                                     | 2024-11-18 19:32:44 | 2024-11-20 13:58:15 |
+| Analysis file transfer to external storage completed   | 2024-11-18 19:32:45 | 2024-11-20 13:58:15 |
+: example run 20241118 {#tbl-20241118 .hover .bordered}
 
 :::
 
@@ -176,7 +177,7 @@ NSC automation (md5sum+deliver): 2024-11-20 14:05:02, 2024-11-20 14:15:05
 ##### Table
 
 | Status                           | Started             | Completed           |
-| :-----------                     | :--                 | :--                 |
+| :----                            | :--                 | :--                 |
 | Sequencing completed             | 2024-11-18 13:02:04 | 2024-11-20 06:51:37 |
 | bcl2fastq                        | 2024-11-19 21:12:28 | 2024-11-19 23:35:36 |
 | 32 sample ora compress           | 2024-11-19 23:35:36 | 2024-11-20 01:21:08 |
@@ -186,9 +187,9 @@ NSC automation (md5sum+deliver): 2024-11-20 14:05:02, 2024-11-20 14:15:05
 | FastQC report generation         | 2024-11-20 10:54:00 | 2024-11-20 11:11:00 |
 | Analysis file transfer to boston | 2024-11-20 13:40:00 | 2024-11-20 14:00:00 |
 | NSC automation (md5sum+deliver)  | 2024-11-20 14:05:02 | 2024-11-20 14:15:05 |
-: Example run 20241118 {#tbl-20241118-detail .hover .bordered}
+: Example run 20241118 {#tbl-20241118-detail .hover .bordered .striped}
 
-::::{.callout-note}
+::::{.callout-caution}
 This is a specific run on 2024-11-18.
 ::::
 
@@ -200,7 +201,9 @@ This is a specific run on 2024-11-18.
 The time taken by each step of each sequencing run differs. Numbers listed here is "close to" the medians.
 
 #### NovaSeq X reported time
+
 :::{.panel-tabset}
+
 ##### Diagram
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
@@ -234,24 +237,33 @@ Analysis file transfer to external storage completed ➕0h:2024-12-09 18:02:40,2
 
 ##### Table
 
-**Flowcell B**
+:::: {#tbl-dual-25B-flowcell layout-nrow=2}
+| Status                                                 | Started             | Completed           | Duration |
+| -------                                                | ---                 | ---                 | ---      |
+| Sequencing completed                                   | 2024-12-09 11:30:41 | 2024-12-11 07:09:03 | 43h37m   |
+| Sequencing file transfer to external storage completed | 2024-12-09 18:01:57 | 2024-12-11 09:17:40 | 39h15m   |
+| Analysis completed                                     | 2024-12-09 18:02:06 | 2024-12-11 14:03:25 | 44h01m   |
+| Analysis file transfer to external storage completed   | 2024-12-09 18:02:07 | 2024-12-11 14:03:25 | 44h01m   |
 
-| Status | Started | Completed |  Duration |
-|----------|---|---|---|
-|Sequencing completed|2024-12-09 11:30:41|2024-12-11 07:09:03|43h37m|
-|Sequencing file transfer to external storage completed|2024-12-09 18:01:57|2024-12-11 09:17:40|39h15m|
-|Analysis completed|2024-12-09 18:02:06|2024-12-11 14:03:25|44h01m|
-|Analysis file transfer to external storage completed|2024-12-09 18:02:07|2024-12-11 14:03:25|44h01m|
+: Flowcell B {#tbl-dual-25B-flowcell-b}
 
 
-**Flowcell A**
+| Status                                                 | Started             | Completed           | Duration |
+| -------                                                | ---                 | ---                 | ---      |
+| Sequencing completed                                   | 2024-12-09 11:30:37 | 2024-12-11 07:12:55 | 43h42m   |
+| Sequencing file transfer to external storage completed | 2024-12-09 18:02:33 | 2024-12-11 09:22:38 | 39h19m   |
+| Analysis completed                                     | 2024-12-09 18:02:38 | 2024-12-11 19:28:08 | 49h24m   |
+| Analysis file transfer to external storage completed   | 2024-12-09 18:02:40 | 2024-12-11 19:28:08 | 49h24m   |
 
-| Status | Started | Completed | Duration |
-|-----|---|---|---|
-|Sequencing completed|2024-12-09 11:30:37|2024-12-11 07:12:55|43h42m|
-|Sequencing file transfer to external storage completed|2024-12-09 18:02:33|2024-12-11 09:22:38|39h19m|
-|Analysis completed|2024-12-09 18:02:38|2024-12-11 19:28:08|49h24m|
-|Analysis file transfer to external storage completed|2024-12-09 18:02:40|2024-12-11 19:28:08|49h24m|
+: Flowcell A {#tbl-dual-25B-flowcell-a}
+
+
+NovaSeq X reported time example run 20241209
+::::
+
+:::: {.callout-caution}
+This is a specific run on 2024-12-09.
+::::
 
 :::
 
@@ -280,7 +292,7 @@ Sequencing starts to samples ready for running pipleline takes `57h`.
 
 
 :::{.panel-tabset}
-### Diagram
+##### Diagram
 
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
@@ -299,7 +311,7 @@ gantt
 dateFormat YYYY-MM-DD HH:mm:ss
 axisFormat %d/%b %H:%M
 title NovaSeq X Sequenicing ➡  Ready for lims-exporter
-section Dual 25B flowcell (128 samples)
+section Flowcell B
 RunStartTime (B): milestone, 2024-12-09 11:03:53, 0d
 Sequencing 44h (B): seq, 2024-12-09 11:30:41, 2024-12-11 07:09:03
 Instrument Analytics Cycle 1 - 320 (B): 2024-12-09 17:01:58, 2024-12-11 06:09:02
@@ -318,6 +330,7 @@ RunEndTime (B): milestone, 2024-12-11 09:04:23, 0d
 FastQC report generation (B): 2024-12-11 09:12:00, 2024-12-11 10:50:00
 Analysis file transfer to boston (B): 2024-12-11 12:40:00, 2024-12-11 14:02:00
 NSC automation (md5sum+deliver) (B):  2024-12-11 14:10:02, 2024-12-11 14:16:49
+section Flowcell A
 RunStartTime (A): milestone, 2024-12-09 11:03:52, 0d
 Sequencing 44h (A): seq, 2024-12-09 11:30:37, 2024-12-11 07:12:55
 Instrument Analytics Cycle 1 - 320 (A): 2024-12-09 17:02:34, 2024-12-11 06:12:54
@@ -339,9 +352,9 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 
 ```
 
-### Table
+##### Table
 
-**Flowcell B**
+:::: {#tbl-dual-25B-flowcell-detailed layout-ncol=2 }
 
 | Job                                    | Started             | Completed           |
 | ----                                   | ---                 | ---                 |
@@ -364,28 +377,39 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 | Analysis file transfer to boston (B)   | 2024-12-11 12:40:00 | 2024-12-11 14:02:00 |
 | NSC automation (md5sum+deliver) (B)    | 2024-12-11 14:10:02 | 2024-12-11 14:16:49 |
 
-**Flowcell A**
+: Flowcell B {#tbl-dual-25B-flowcell-b-detailed .striped .hover style="font-size: 0.7em;"}
+
 
 | Job                                    | Started             | Completed           |
 | ----                                   | ---                 | ---                 |
-| RunStartTime (A)| 2024-12-09 11:03:52| |
-| Sequencing completed (A)| 2024-12-09 11:30:37| 2024-12-11 07:12:55|
-| Instrument Analytics Cycle 1 - 320 (A)| 2024-12-09 17:02:34| 2024-12-11 06:12:54|
-| BCL CONVERSION A| 2024-12-10 04:49:52| 2024-12-10 21:29:01|
-| bcl2fastq (A)| 2024-12-11 02:51:04| 2024-12-11 04:54:52|
-| 16 sample ora compress (A)| 2024-12-11 04:54:52| 2024-12-11 06:03:44|
-| 16 sample ora compress (A)| 2024-12-11 04:54:52| 2024-12-11 06:00:23|
-| 16 sample ora compress (A)| 2024-12-11 04:54:52| 2024-12-11 06:04:37|
-| FastQC (map-align) (A) msg_001| 2024-12-11 04:54:52| 2024-12-11 08:11:00|
-| FastQC (map-align) (A) msg_002| 2024-12-11 04:54:52| 2024-12-11 06:32:46|
-| FastQC (map-align) (A) msg_003| 2024-12-11 04:54:52| 2024-12-11 06:34:32|
-| FastQC (map-align) (A) msg_004| 2024-12-11 04:54:52| 2024-12-11 06:35:42|
-| 16 sample ora compress (A)| 2024-12-11 06:00:23| 2024-12-11 06:57:40|
-| RunEndTime (A)| | 2024-12-11 09:04:23|
-| fastq generation complete (A)| | 2024-12-11 12:54:52|
-| FastQC report generation (A)| 2024-12-11 14:33:00| 2024-12-11 16:12:00|
-| Analysis file transfer to boston (A)| 2024-12-11 18:00:00| 2024-12-11 19:27:00|
-| NSC automation (md5sum+deliver) (A)| 2024-12-11 19:35:01| 2024-12-11 19:42:11|
+| RunStartTime (A)                       | 2024-12-09 11:03:52 |                     |
+| Sequencing completed (A)               | 2024-12-09 11:30:37 | 2024-12-11 07:12:55 |
+| Instrument Analytics Cycle 1 - 320 (A) | 2024-12-09 17:02:34 | 2024-12-11 06:12:54 |
+| BCL CONVERSION A                       | 2024-12-10 04:49:52 | 2024-12-10 21:29:01 |
+| bcl2fastq (A)                          | 2024-12-11 02:51:04 | 2024-12-11 04:54:52 |
+| 16 sample ora compress (A)             | 2024-12-11 04:54:52 | 2024-12-11 06:03:44 |
+| 16 sample ora compress (A)             | 2024-12-11 04:54:52 | 2024-12-11 06:00:23 |
+| 16 sample ora compress (A)             | 2024-12-11 04:54:52 | 2024-12-11 06:04:37 |
+| FastQC (map-align) (A) msg_001         | 2024-12-11 04:54:52 | 2024-12-11 08:11:00 |
+| FastQC (map-align) (A) msg_002         | 2024-12-11 04:54:52 | 2024-12-11 06:32:46 |
+| FastQC (map-align) (A) msg_003         | 2024-12-11 04:54:52 | 2024-12-11 06:34:32 |
+| FastQC (map-align) (A) msg_004         | 2024-12-11 04:54:52 | 2024-12-11 06:35:42 |
+| 16 sample ora compress (A)             | 2024-12-11 06:00:23 | 2024-12-11 06:57:40 |
+| RunEndTime (A)                         |                     | 2024-12-11 09:04:23 |
+| fastq generation complete (A)          |                     | 2024-12-11 12:54:52 |
+| FastQC report generation (A)           | 2024-12-11 14:33:00 | 2024-12-11 16:12:00 |
+| Analysis file transfer to boston (A)   | 2024-12-11 18:00:00 | 2024-12-11 19:27:00 |
+| NSC automation (md5sum+deliver) (A)    | 2024-12-11 19:35:01 | 2024-12-11 19:42:11 |
+
+: Flowcell A {#tbl-dual-25B-flowcell-a-detailed .striped .hover style="font-size: 0.7em;"}
+
+Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time
+
+::::
+
+:::: {.callout-caution}
+This is a specific run on 2024-12-09.
+::::
 
 :::
 
