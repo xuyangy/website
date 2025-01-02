@@ -19,6 +19,11 @@ date: last-modified
 format: 
     html:
         css: style.css
+        grid:
+            sidebar-width: 10px
+            body-width: 1200px
+            margin-width: 320px
+            gutter-width: 1.5rem
         toc: true
         toc-depth: 4
         toc-expand: true
@@ -127,7 +132,7 @@ Analysis file transfer to external storage completed ➕0h: 2024-11-18 19:32:45,
 
 #### Detailed steps time
 
-The time taken by each step of each sequencing run differs. Numbers listed here is "close to" the medians.
+The time taken by each step of each Novaseq X run differs. Numbers listed here is "close to" the medians.
 
 - Sequencing of a single 25B flowcell takes `44h`. 
 - Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
@@ -198,7 +203,7 @@ This is a specific run on 2024-11-18.
 
 ### Dual 25B flowcell; 2nd Analysis = BCL Convert only
 
-The time taken by each step of each sequencing run differs. Numbers listed here is "close to" the medians.
+The time taken by each step of each Novaseq X run differs. Numbers listed here is from a specific run 20241209.
 
 #### NovaSeq X reported time
 
@@ -262,7 +267,7 @@ NovaSeq X reported time example run 20241209
 ::::
 
 :::: {.callout-caution}
-This is a specific run on 2024-12-09.
+This is a specific run 20241209.
 ::::
 
 :::
@@ -326,6 +331,7 @@ FastQC (map-align) (B) msg_003: 2024-12-10 23:39:09, 2024-12-11 01:21:56
 FastQC (map-align) (B) msg_004: 2024-12-10 23:39:09, 2024-12-11 01:21:20
 16 sample ora compress (B): 2024-12-11 00:36:40, 2024-12-11 01:33:13
 fastq generation complete (B): milestone, 2024-12-11 07:39:08, 0d
+Post Run (B): 2024-12-11 07:47:48, 2024-12-11 09:00:31
 RunEndTime (B): milestone, 2024-12-11 09:04:23, 0d
 FastQC report generation (B): 2024-12-11 09:12:00, 2024-12-11 10:50:00
 Analysis file transfer to boston (B): 2024-12-11 12:40:00, 2024-12-11 14:02:00
@@ -344,6 +350,7 @@ FastQC (map-align) (A) msg_002: 2024-12-11 04:54:52, 2024-12-11 06:32:46
 FastQC (map-align) (A) msg_003: 2024-12-11 04:54:52, 2024-12-11 06:34:32
 FastQC (map-align) (A) msg_004: 2024-12-11 04:54:52, 2024-12-11 06:35:42
 16 sample ora compress (A): 2024-12-11 06:00:23, 2024-12-11 06:57:40
+Post Run (A): 2024-12-11 07:54:00, 2024-12-11 09:04:23
 RunEndTime (A): milestone, 2024-12-11 09:04:23, 0d
 fastq generation complete (A): milestone, 2024-12-11 12:54:52, 0d
 FastQC report generation (A): 2024-12-11 14:33:00, 2024-12-11 16:12:00
@@ -372,6 +379,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 | FastQC (map-align) (B) msg_004         | 2024-12-10 23:39:09 | 2024-12-11 01:21:20 |
 | 16 sample ora compress (B)             | 2024-12-11 00:36:40 | 2024-12-11 01:33:13 |
 | fastq generation complete (B)          |                     | 2024-12-11 07:39:08 |
+| Post Run (B)                           | 2024-12-11 07:47:48 | 2024-12-11 09:00:31 |
 | RunEndTime (B)                         |                     | 2024-12-11 09:04:23 |
 | FastQC report generation (B)           | 2024-12-11 09:12:00 | 2024-12-11 10:50:00 |
 | Analysis file transfer to boston (B)   | 2024-12-11 12:40:00 | 2024-12-11 14:02:00 |
@@ -395,6 +403,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 | FastQC (map-align) (A) msg_003         | 2024-12-11 04:54:52 | 2024-12-11 06:34:32 |
 | FastQC (map-align) (A) msg_004         | 2024-12-11 04:54:52 | 2024-12-11 06:35:42 |
 | 16 sample ora compress (A)             | 2024-12-11 06:00:23 | 2024-12-11 06:57:40 |
+| Post Run (A)                           | 2024-12-11 07:54:00 | 2024-12-11 09:04:23 |
 | RunEndTime (A)                         |                     | 2024-12-11 09:04:23 |
 | fastq generation complete (A)          |                     | 2024-12-11 12:54:52 |
 | FastQC report generation (A)           | 2024-12-11 14:33:00 | 2024-12-11 16:12:00 |
@@ -403,7 +412,184 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 
 : Flowcell A {#tbl-dual-25B-flowcell-a-detailed .striped .hover style="font-size: 0.7em;"}
 
-Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time
+Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time, run 20241209
+
+::::
+
+:::: {.callout-caution}
+This is a specific run on 2024-12-09.
+::::
+
+:::
+
+
+### Dual 25B flowcell; 2nd Analysis = WGS Germline
+Dual 25B flowcell (128 samples). 2nd Analysis is WGS Germline (mapping and variant calling).
+The time taken by each step of each Novaseq X run differs. 
+Numbers listed here is from a specific run 20241213.
+
+#### NovaSeq X reported time
+
+:::{.panel-tabset}
+
+##### Diagram
+```{mermaid}
+%%| label: fig-dual-25B-flowcell-2nd-analysis-wgs-germline
+
+gantt
+%%{ 
+  init: { 
+    'theme': 'default',
+    'gantt': {
+      'barHeight': 30,
+      'fontSize': 12,
+      'sectionFontSize': 18
+    }
+  } 
+}%%
+dateFormat YYYY-MM-DD HH:mm:ss
+axisFormat %d/%b %H:%M
+title NovaSeq X reported time
+section Flowcell B
+Sequencing completed 44h :2024-12-13 15:49:42, 2024-12-15 11:49:42
+Sequencing file transfer to external storage completed ➕2h:2024-12-13 22:49:42, 2024-12-15 13:48:00
+Analysis completed ➕12h:2024-12-13 22:49:42, 2024-12-16 01:47:00
+Analysis file transfer to external storage completed ➕0h:2024-12-13 22:49:42,  2024-12-16 01:47:00
+
+section Flowcell A
+Sequencing completed 44h :2024-12-13 15:49:42, 2024-12-15 11:49:42
+Sequencing file transfer to external storage completed ➕2h:2024-12-13 22:49:42, 2024-12-15 13:48:00
+Analysis completed ➕22h:2024-12-13 22:49:42, 2024-12-16 11:42:00
+Analysis file transfer to external storage completed ➕0h:2024-12-13 22:49:42,  2024-12-16 11:42:00
+```
+
+##### Table
+
+:::
+
+
+#### Detailed steps time
+
+- Sequencing of dual 25B flowcell takes `44h`. 
+- Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
+  - Post-run wash time included which takes 1h48m
+  - Some reports need to be copied to external storage. But they must wait for completion of post-run wash.
+- Secondary analysis (BCL Convert, Fastqc, ORA compression, Mapping and all variant calling) takes `16h`.
+- Coping secondary analysis data from sequencer to external storage (boston) takes `6h`
+  - `3h` for flowcell B
+  - `3h` for flowcell A
+- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes `15m` for each flowcell.
+
+Sequencing starts to samples ready for running pipleline takes `68h`.
+
+
+
+:::{.panel-tabset}
+##### Diagram
+
+```{mermaid}
+%%| label: fig-dual-25B-flowcell-2nd-analysis-wgs-germline
+%%| fig-cap: Dual 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
+gantt
+%%{ 
+  init: { 
+    'theme': 'forest' ,
+    'gantt': {
+      'barHeight': 30,
+      'fontSize': 12,
+      'sectionFontSize': 18
+    }
+  } 
+}%%
+dateFormat YYYY-MM-DD HH:mm:ss
+axisFormat %d/%b %H:%M
+title NovaSeq X Sequenicing ➡  Ready for lims-exporter
+section Flowcell B
+RunStartTime (B): milestone, 2024-12-13 15:22:38, 0d
+Instrument Analytics Cycle 1 - 320 (B): 2024-12-13 21:32:07, 2024-12-15 10:39:45 
+BCL CONVERSION (B): 2024-12-14 09:20:26, 2024-12-15 01:58:22
+bcl2fastq (B): 2024-12-15 04:41:06, 2024-12-15 04:55:58
+Post Run (B): 2024-12-15 11:39:46, 2024-12-15 13:31:14
+RunEndTime (B): milestone, 2024-12-15 13:35:06, 0d
+8 sample pipeline (B)(msg_001): 2024-12-15 02:14:40,  2024-12-15 06:12:10
+8 sample pipeline (B)(msg_002): 2024-12-15 02:16:03,  2024-12-15 06:08:38
+8 sample pipeline (B)(msg_003): 2024-12-15 02:21:34,  2024-12-15 06:02:43
+8 sample pipeline (B)(msg_004) (waiting for board access ~1.7h): 2024-12-15 02:30:31,  2024-12-15 07:21:59
+8 sample pipeline (B)(msg_005): 2024-12-15 06:02:54,  2024-12-15 09:27:04
+8 sample pipeline (B)(msg_006): 2024-12-15 06:09:01,  2024-12-15 10:15:17
+8 sample pipeline (B)(msg_007) (waiting for board access ~1.2h): 2024-12-15 06:12:43,  2024-12-15 11:00:17
+8 sample pipeline (B)(msg_008) (waiting for board access ~2h): 2024-12-15 07:22:41,  2024-12-15 12:21:11
+FastQC etc. report generation (B): 2024-12-15 17:33:00, 2024-12-15 20:27:00
+Analysis file transfer to boston (B): 2024-12-15 22:10:00, 2024-12-16 01:10:00
+NSC automation (md5sum+deliver) (B):  2024-12-16 01:15:01, 2024-12-16 01:22:02
+section Flowcell A
+RunStartTime (A): milestone, 2024-12-13 15:22:39, 0d
+Instrument Analytics Cycle 1 - 320 (A): 2024-12-13 21:32:38, 2024-12-15 10:43:37
+BCL CONVERSION (A): 2024-12-14 09:23:44, 2024-12-15 02:03:05
+Post Run (A): 2024-12-15 11:43:38, 2024-12-15 13:35:06
+RunEndTime (A): milestone, 2024-12-15 13:35:06, 0d
+bcl2fastq (A): 2024-12-15 15:36:32, 2024-12-15 15:55:22
+8 sample pipeline (A) (msg_001): 2024-12-15 12:35:29,  2024-12-15 16:20:28
+8 sample pipeline (A) (msg_002): 2024-12-15 12:41:54,  2024-12-15 15:59:51
+8 sample pipeline (A) (msg_003): 2024-12-15 12:46:44,  2024-12-15 16:29:28
+8 sample pipeline (A) (msg_004) (waiting for board access ~3h): 2024-12-15 12:57:58,  2024-12-15 19:40:46
+8 sample pipeline (A) (msg_005): 2024-12-15 15:59:59,  2024-12-15 20:09:04
+8 sample pipeline (A) (msg_006): 2024-12-15 16:21:01,  2024-12-15 20:12:05
+8 sample pipeline (A) (msg_007): 2024-12-15 16:29:32,  2024-12-15 20:44:58
+8 sample pipeline (A) (msg_008): 2024-12-15 19:40:54,  2024-12-15 22:53:59
+FastQC etc. report generation (A): 2024-12-16 04:20:00, 2024-12-16 07:00:00
+Analysis file transfer to boston (A): 2024-12-16 08:40:00, 2024-12-16 11:40:00
+NSC automation (md5sum+deliver) (A):  2024-12-16 11:50:01, 2024-12-16 11:56:58
+```
+
+##### Table
+
+:::: {#tbl-dual-25B-flowcell-detailed layout-ncol=2 }
+
+| Job                                    | Started             | Completed           |
+| ----                                   | ---                 | ---                 |
+| RunStartTime (B)                       | 2024-12-13 15:22:38 |                     |
+| Instrument Analytics Cycle 1 - 320 (B) | 2024-12-13 21:32:07 | 2024-12-15 10:39:45 |
+| BCL CONVERSION (B)                     | 2024-12-14 09:20:26 | 2024-12-15 01:58:22 |
+| Post Run (B)                           | 2024-12-15 11:39:46 | 2024-12-15 13:31:14 |
+| RunEndTime (B)                         |                     | 2024-12-15 13:35:06 |
+| 8 sample pipeline (msg_001)            | 2024-12-15 02:14:40 | 2024-12-15 06:12:10 |
+| 8 sample pipeline (msg_002)            | 2024-12-15 02:16:03 | 2024-12-15 06:08:38 |
+| 8 sample pipeline (msg_003)            | 2024-12-15 02:21:34 | 2024-12-15 06:02:43 |
+| 8 sample pipeline (msg_004)            | 2024-12-15 02:30:31 | 2024-12-15 07:21:59 |
+| 8 sample pipeline (msg_005)            | 2024-12-15 06:02:54 | 2024-12-15 09:27:04 |
+| 8 sample pipeline (msg_006)            | 2024-12-15 06:09:01 | 2024-12-15 10:15:17 |
+| 8 sample pipeline (msg_007)            | 2024-12-15 06:12:43 | 2024-12-15 11:00:17 |
+| 8 sample pipeline (msg_008)            | 2024-12-15 07:22:41 | 2024-12-15 12:21:11 |
+| FastQC etc. report generation (B)      | 2024-12-15 17:33:00 | 2024-12-15 20:27:00 |
+| Analysis file transfer to boston (B)   | 2024-12-15 22:10:00 | 2024-12-16 01:10:00 |
+| NSC automation (md5sum+deliver) (B)    | 2024-12-16 01:15:01 | 2024-12-16 01:22:02 |
+
+: Flowcell B {#tbl-dual-25B-flowcell-b-detailed .striped .hover style="font-size: 0.7em;"}
+
+
+| Job                                                       | Started             | Completed           |
+| ----                                                      | ---                 | ---                 |
+| RunStartTime (A)                                          | 2024-12-13 15:22:39 |                     |
+| Instrument Analytics Cycle 1 - 320 (A)                    | 2024-12-13 21:32:38 | 2024-12-15 10:43:37 |
+| Post Run (A)                                              | 2024-12-15 11:43:38 | 2024-12-15 13:35:06 |
+| RunEndTime (A)                                            |                     | 2024-12-15 13:35:06 |
+| BCL CONVERSION (A)                                        | 2024-12-14 09:23:44 | 2024-12-15 02:03:05 |
+| 8 sample pipeline(msg_001)                                | 2024-12-15 12:35:29 | 2024-12-15 16:20:28 |
+| 8 sample pipeline(msg_002)                                | 2024-12-15 12:41:54 | 2024-12-15 15:59:51 |
+| 8 sample pipeline(msg_003)                                | 2024-12-15 12:46:44 | 2024-12-15 16:29:28 |
+| 8 sample pipeline(msg_004) (waiting for board access ~3h) | 2024-12-15 12:57:58 | 2024-12-15 19:40:46 |
+| 8 sample pipeline(msg_005)                                | 2024-12-15 15:59:59 | 2024-12-15 20:09:04 |
+| 8 sample pipeline(msg_006)                                | 2024-12-15 16:21:01 | 2024-12-15 20:12:05 |
+| 8 sample pipeline(msg_007)                                | 2024-12-15 16:29:32 | 2024-12-15 20:44:58 |
+| 8 sample pipeline(msg_008)                                | 2024-12-15 19:40:54 | 2024-12-15 22:53:59 |
+| FastQC etc. report generation (A)                         | 2024-12-16 04:20:00 | 2024-12-16 07:00:00 |
+| Analysis file transfer to boston (A)                      | 2024-12-16 08:40:00 | 2024-12-16 11:40:00 |
+| NSC automation (md5sum+deliver) (A)                       | 2024-12-16 11:50:01 | 2024-12-16 11:56:58 |
+
+: Flowcell A {#tbl-dual-25B-flowcell-a-detailed .striped .hover style="font-size: 0.7em;"}
+
+Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time, run 20241209
 
 ::::
 
@@ -526,9 +712,28 @@ wgs418_25 (31m 57s): 2024-10-11 18:00:16.227,2024-10-11 18:32:41.280
 ☪: milestone, end, 2024-10-11 23:59:59.999, 0d
 ```
 
-#### 2024-11-12 (Tue)
+#### 2024-11-12 (Tue)^idle^
 
-No run
+```{mermaid}
+---
+config:
+  themeCSS: '
+    rect#start {fill: #00FF00; stroke: #00FF00;}
+    rect#end {fill: #FF0000; stroke: #FF0000;}
+    .grid .tick {stroke: grey; opacity: 0.7;}
+  '
+---
+gantt
+dateFormat YYYY-MM-DD HH:mm:ss.SSS
+axisFormat %d/%b %H:%M
+☀: milestone, start, 2024-10-13 00:00:00.000, 0d
+☪: milestone, end, 2024-10-13 23:59:59.999, 0d
+```
+::: {.callout-caution}
+### FULL DAY IDLE
+No DRAGEN run on 2024-11-12.
+:::
+
 
 #### 2024-11-13 (Wed)
 
@@ -623,7 +828,7 @@ wgs419_7 (38m 55s): 2024-10-14 10:57:14.761,2024-10-14 11:35:55.091
 ☪: milestone, end, 2024-10-14 23:59:59.999, 0d
 ```
 
-#### 2024-11-15 (Fri)
+#### 2024-11-15 (Fri)^idle^
 
 ```{mermaid}
 ---
@@ -642,6 +847,10 @@ wgs420_7 (32m 59s): 2024-10-15 17:02:28.156,2024-10-15 17:35:38.240
 wgs420_12 (26m 45s): 2024-10-15 17:02:28.239,2024-10-15 17:29:13.338
 ☪: milestone, end, 2024-10-15 23:59:59.999, 0d
 ```
+::: {.callout-caution}
+###
+Just 2 DRAGEN runs on 2024-11-12.
+:::
 
 #### 2024-11-16 (Sat)
 
@@ -658,6 +867,7 @@ gantt
 dateFormat YYYY-MM-DD HH:mm:ss.SSS
 axisFormat %d/%b %H:%M
 ☀: milestone, start, 2024-10-16 00:00:00.000, 0d
+2024#45;10#45;16 18#58;27#58;07: milestone, 2024-10-16 18:27:07.499, 0d
 wgs420_35 (29m 12s): 2024-10-16 18:27:07.499,2024-10-16 18:56:32.640
 wgs418_65 (26m 26s): 2024-10-16 18:27:35.331,2024-10-16 18:54:05.762
 wgs420_40 (31m 39s): 2024-10-16 18:56:20.058,2024-10-16 19:28:25.124
@@ -679,7 +889,7 @@ wgs420_41 (33m 38s): 2024-10-16 23:45:51.300,2024-10-17 00:19:11.366
 ☪: milestone, end, 2024-10-16 23:59:59.999, 0d
 ```
 
-#### 2024-11-17 (Sun)
+#### 2024-11-17 (Sun)^full^
 
 ```{mermaid}
 ---
@@ -780,6 +990,12 @@ wgs420_58 (37m 26s): 2024-10-17 23:40:36.801,2024-10-18 00:17:41.851
 ☪: milestone, end, 2024-10-17 23:59:59.999, 0d
 ```
 
+::: {.callout-tip}
+### FULL DAY RUN
+A full day of DRAGEN runs on 2024-11-17.
+:::
+
+
 #### 2024-11-18 (Mon)
 
 ```{mermaid}
@@ -822,14 +1038,54 @@ wgs420_17 (30m 2s): 2024-10-18 06:19:25.875,2024-10-18 06:49:40.910
 ```
 
 
-#### 2024-11-19 (Tue)
-
-No run
+#### 2024-11-19 (Tue)^idle^
 
 
-#### 2024-11-20 (Wed)
+```{mermaid}
+---
+config:
+  themeCSS: '
+    rect#start {fill: #00FF00; stroke: #00FF00;}
+    rect#end {fill: #FF0000; stroke: #FF0000;}
+    .grid .tick {stroke: grey; opacity: 0.7;}
+  '
+---
+gantt
+dateFormat YYYY-MM-DD HH:mm:ss.SSS
+axisFormat %d/%b %H:%M
+☀: milestone, start, 2024-10-13 00:00:00.000, 0d
+☪: milestone, end, 2024-10-13 23:59:59.999, 0d
+```
+::: {.callout-caution}
+### FULL DAY IDLE
+No DRAGEN run on 2024-11-12.
+:::
 
-No run
+
+
+#### 2024-11-20 (Wed)^idle^
+
+
+```{mermaid}
+---
+config:
+  themeCSS: '
+    rect#start {fill: #00FF00; stroke: #00FF00;}
+    rect#end {fill: #FF0000; stroke: #FF0000;}
+    .grid .tick {stroke: grey; opacity: 0.7;}
+  '
+---
+gantt
+dateFormat YYYY-MM-DD HH:mm:ss.SSS
+axisFormat %d/%b %H:%M
+☀: milestone, start, 2024-10-13 00:00:00.000, 0d
+☪: milestone, end, 2024-10-13 23:59:59.999, 0d
+```
+::: {.callout-caution}
+### FULL DAY IDLE
+No DRAGEN run on 2024-11-12.
+:::
+
 
 
 #### 2024-11-21 (Thu)
