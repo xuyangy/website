@@ -450,17 +450,17 @@ Table&nbsp;2: example run 20241118
 <li>Post-run wash time included which takes 1h48m</li>
 <li>Some reports need to be copied to external storage. But they must wait for completion of post-run wash.</li>
 </ul></li>
-<li>Secondary analysis (BCL Convert, Fastqc, ORA compression) takes <code>6h</code>.
+<li>Secondary analysis (BCL Convert, Fastqc, ORA compression) takes extra <code>6h</code>.
 <ul>
 <li>BCL Convert takes <code>2h</code> after sequencing finish.</li>
 <li>Fastqc and ORA compression take <code>4h</code> after BCL Convert finish.</li>
 </ul></li>
-<li>Coping secondary analysis data from sequencer to external storage (boston) takes <code>1h20m</code>.
+<li>Coping secondary analysis data from sequencer to external storage (boston) takes extra <code>1h20m</code>.
 <ul>
 <li>Copying <em>fastq.ora</em> files takes <code>1h</code></li>
 <li>Copying other files, <em>e.g.,</em> reports, logs, metadata files takes <code>20m</code></li>
 </ul></li>
-<li>After copying data to boston complete, deliver sequencing data to the <em>nscDeliver</em> folder, calculating md5sum and push samples to lims-exporter queue takes <code>15m</code>.</li>
+<li>After copying data to boston complete, deliver sequencing data to the <em>nscDeliver</em> folder, calculating md5sum and push samples to lims-exporter queue takes extra <code>15m</code>.</li>
 </ul>
 <p>Sequencing starts to samples ready for running pipleline takes <code>52h</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -790,7 +790,7 @@ Caution
 <li>Post-run wash time included which takes 1h48m</li>
 <li>Some reports need to be copied to external storage. But they must wait for completion of post-run wash.</li>
 </ul></li>
-<li>Secondary analysis (BCL Convert, Fastqc, ORA compression, FastQC reporting) takes <code>10h</code>.
+<li>Secondary analysis (BCL Convert, Fastqc, ORA compression, FastQC reporting) takes extra <code>10h</code>.
 <ul>
 <li>Flowcell B BCL Convert takes <code>2h</code> for each flowcell separately.</li>
 <li>Flowcell B Fastqc and ORA compression are done in parallel and finishes <code>3h</code> after BCL Convert finish.</li>
@@ -799,13 +799,13 @@ Caution
 <li>Flowcell B FastQC reporting for flowcell B takes <code>1h40m</code>.</li>
 <li>Flowcell A FastQC reporting for flowcell B takes <code>1h40m</code>.</li>
 </ul></li>
-<li>Coping secondary analysis data from sequencer to external storage (boston) takes <code>2h40m</code>.
+<li>Coping secondary analysis data from sequencer to external storage (boston) takes extra <code>2h40m</code>.
 <ul>
 <li>Copying <em>fastq.ora</em> files takes <code>1h</code></li>
 <li>Copying other files, <em>e.g.,</em> reports, logs, metadata files takes <code>20m</code></li>
 <li>Sequencial for flowcell B, then A.</li>
 </ul></li>
-<li>After copying data to boston complete, deliver sequencing data to the <em>nscDeliver</em> folder, calculating md5sum and push samples to lims-exporter queue takes <code>15m</code> for each flowcell.</li>
+<li>After copying data to boston complete, deliver sequencing data to the <em>nscDeliver</em> folder, calculating md5sum and push samples to lims-exporter queue takes extra <code>15m</code> for each flowcell.</li>
 </ul>
 <p>Sequencing starts to samples ready for running pipleline takes <code>57h</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -1224,13 +1224,13 @@ Figure&nbsp;4
 <li>Post-run wash time included which takes 1h48m</li>
 <li>Some reports need to be copied to external storage. But they must wait for completion of post-run wash.</li>
 </ul></li>
-<li>Secondary analysis (BCL Convert, Fastqc, ORA compression, Mapping and all variant calling) takes <code>16h</code>.</li>
-<li>Coping secondary analysis data from sequencer to external storage (boston) takes <code>6h</code>
+<li>Secondary analysis (BCL Convert, Fastqc, ORA compression, Mapping and all variant calling) takes extra <code>16h</code>.</li>
+<li>Coping secondary analysis data from sequencer to external storage (boston) takes extra <code>6h</code>
 <ul>
 <li><code>3h</code> for flowcell B</li>
 <li><code>3h</code> for flowcell A</li>
 </ul></li>
-<li>After copying data to boston complete, deliver sequencing data to the <em>nscDeliver</em> folder, calculating md5sum and push samples to lims-exporter queue takes <code>15m</code> for each flowcell.</li>
+<li>After copying data to boston complete, deliver sequencing data to the <em>nscDeliver</em> folder, calculating md5sum and push samples to lims-exporter queue takes extra <code>15m</code> for each flowcell.</li>
 </ul>
 <p>Sequencing starts to samples ready for running pipleline takes <code>68h</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
