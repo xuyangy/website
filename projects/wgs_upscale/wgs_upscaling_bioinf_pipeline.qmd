@@ -138,13 +138,13 @@ The time taken by each step of each Novaseq X run differs. Numbers listed here i
 - Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
   - Post-run wash time included which takes 1h48m
   - Some reports need to be copied to external storage. But they must wait for completion of post-run wash.
-- Secondary analysis (BCL Convert, Fastqc, ORA compression) takes `6h`.
+- Secondary analysis (BCL Convert, Fastqc, ORA compression) takes extra `6h`.
   - BCL Convert takes `2h` after sequencing finish.
   - Fastqc and ORA compression take `4h` after BCL Convert finish.
-- Coping secondary analysis data from sequencer to external storage (boston) takes `1h20m`.
+- Coping secondary analysis data from sequencer to external storage (boston) takes extra `1h20m`.
   - Copying _fastq.ora_ files takes `1h`
   - Copying other files, _e.g.,_ reports, logs, metadata files takes `20m`
-- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes `15m`.
+- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes extra `15m`.
 
 Sequencing starts to samples ready for running pipleline takes `52h`.
 
@@ -279,18 +279,18 @@ This is a specific run 20241209.
 - Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
   - Post-run wash time included which takes 1h48m
   - Some reports need to be copied to external storage. But they must wait for completion of post-run wash.
-- Secondary analysis (BCL Convert, Fastqc, ORA compression, FastQC reporting) takes `10h`.
+- Secondary analysis (BCL Convert, Fastqc, ORA compression, FastQC reporting) takes extra `10h`.
   - Flowcell B BCL Convert takes `2h` for each flowcell separately.
   - Flowcell B Fastqc and ORA compression are done in parallel and finishes `3h` after BCL Convert finish.
   - Flowcell A BCL Convert takes `2h` for each flowcell separately.
   - Flowcell A BFastqc and ORA compression are done in parallel and finishes `3h` after BCL Convert finish.
   - Flowcell B FastQC reporting for flowcell B takes `1h40m`.
   - Flowcell A FastQC reporting for flowcell B takes `1h40m`.
-- Coping secondary analysis data from sequencer to external storage (boston) takes `2h40m`.
+- Coping secondary analysis data from sequencer to external storage (boston) takes extra `2h40m`.
   - Copying _fastq.ora_ files takes `1h`
   - Copying other files, _e.g.,_ reports, logs, metadata files takes `20m`
   - Sequencial for flowcell B, then A.
-- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes `15m` for each flowcell.
+- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes extra `15m` for each flowcell.
 
 Sequencing starts to samples ready for running pipleline takes `57h`.
 
@@ -474,11 +474,11 @@ Analysis file transfer to external storage completed ➕0h:2024-12-13 22:49:42, 
 - Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
   - Post-run wash time included which takes 1h48m
   - Some reports need to be copied to external storage. But they must wait for completion of post-run wash.
-- Secondary analysis (BCL Convert, Fastqc, ORA compression, Mapping and all variant calling) takes `16h`.
-- Coping secondary analysis data from sequencer to external storage (boston) takes `6h`
+- Secondary analysis (BCL Convert, Fastqc, ORA compression, Mapping and all variant calling) takes extra `16h`.
+- Coping secondary analysis data from sequencer to external storage (boston) takes extra `6h`
   - `3h` for flowcell B
   - `3h` for flowcell A
-- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes `15m` for each flowcell.
+- After copying data to boston complete, deliver sequencing data to the _nscDeliver_ folder, calculating md5sum and push samples to lims-exporter queue takes extra `15m` for each flowcell.
 
 Sequencing starts to samples ready for running pipleline takes `68h`.
 
