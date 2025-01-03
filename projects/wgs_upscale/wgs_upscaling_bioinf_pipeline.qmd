@@ -1,5 +1,5 @@
 ---
-title: "WGS Upscaling - Pipeline Capacity Evaluation"
+title: "WGS Upscaling - Pipeline Capacity"
 title-block-banner: true
 image: "pipeline.png"
 description: "DRAEN pipeline capacity"

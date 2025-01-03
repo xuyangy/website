@@ -1,5 +1,5 @@
 ---
-title: "WGS Upscaling - NSC Storage"
+title: "WGS Upscaling - NSC Storage Capacity"
 title-block-banner: true
 image: "storage.png"
 description: "NSC storage capability"
