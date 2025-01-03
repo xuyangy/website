@@ -15,8 +15,12 @@ website:
               href: about.qmd
             - text: "Projects"
               menu:
-                  - text: "WGS Upcaling"
+                  - text: "WGS Upcaling - Data Transfer"
                     href: projects/wgs_upscale/wgs_upscaling_bioinf.qmd
+                  - text: "WGS Upcaling - Pipeline Capacity"
+                    href: projects/wgs_upscale/wgs_upscaling_bioinf_pipeline.qmd
+                  - text: "WGS Upcaling - NSC Storage"
+                    href: projects/wgs_upscale/wgs_upscaling_bioinf_storage.qmd
                   - text: "Workflow Tracker"
                     href: projects/workflow_tracker/index.html
                   - text: "UUID"

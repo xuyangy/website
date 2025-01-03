@@ -53,7 +53,7 @@ Do we have enough capacity in IT and bioinformatics pipelines for this upscaling
 The capacity of IT & bioinformatics pipelines can be evaluated from following three aspects:
 
 1. [Data transfer speed](https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf.html)
-2. Data storage
+2. [Data storage](https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf_storage.html)
 3. Pipeline capacity
 
 
