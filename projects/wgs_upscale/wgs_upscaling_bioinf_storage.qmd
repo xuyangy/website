@@ -172,7 +172,7 @@ The `{R1,R2}.fastq.ora` files per sample is about `14 GB` (`18 GB` on disk).
 
 Other files such as BCL files, images, logs, reports, etc. is about `47 GB` per sample (`63 GB` on disk).
 
-::: {.callout-important}
+::: {.callout-warning}
 ### Data
 In total, `61 GB` per sample (`81 GB` on disk).
 :::
@@ -185,7 +185,7 @@ calling with Onboard DRAGEN.
 Each sample has about `20 GB` pipeline output files (`27 GB` on disk) in addition.
 See @sec-analysis-folder for details.
 
-::: {.callout-important}
+::: {.callout-warning}
 ### Data
 In total, `81 GB` per sample (`108 GB` on disk).
 :::
@@ -321,7 +321,7 @@ Each sequencing run can have different set up.
 #### Single 25B flowcell; BCL Convert
 Single 25B flowcell (64 samples), 2nd analysis is BCL Convert, i.e. only demultiplexing.
 
-::: {.callout-important}
+::: {.callout-warning}
 ### Data
 `3.9 TB` data (`5.1 TB` on disk).
 :::
@@ -329,7 +329,8 @@ Single 25B flowcell (64 samples), 2nd analysis is BCL Convert, i.e. only demulti
 #### Dual 25B flowcell; BCL Convert
 Dual 25B flowcell (128 samples), 2nd analysis is BCL Convert, i.e. only demultiplexing.
 
-::: {.callout-important}
+::: {.callout-warning}
+### Data
 `7.8 TB` data (`10.2 TB` on disk).
 :::
 
@@ -337,6 +338,7 @@ Dual 25B flowcell (128 samples), 2nd analysis is BCL Convert, i.e. only demultip
 #### Dual 25B flowcell; DRAGEN Germline, AllVariantCallers
 Dual 25B flowcell (128 samples), 2nd analysis is DRAGEN Germline with all variant callers enabled.
 
-::: {.callout-important}
+::: {.callout-warning}
+### Data
 `10.5 TB` data (`14.0 TB` on disk).
 :::
