@@ -39,3 +39,7 @@ text.taskTextOutside1 {
 .section1 {
     fill: #217842 !important;
 }
+
+.commonDir {
+    color: lightgray;
+}
