@@ -1,0 +1,156 @@
+---
+title: "WGS Upscaling - NSC Storage"
+title-block-banner: true
+image: "storage.png"
+description: "NSC storage capability"
+author: 
+    - name: Xuyang Yuan
+      email: "xuyangy@uio.no"
+      affiliation: "GDx OUSAMG"
+      url: "https://www.robotgenome.com"
+      role: "collect data"
+date: last-modified
+format: 
+    html:
+        css: style.css
+        toc: true
+        toc-depth: 6
+        toc-expand: true
+        number-sections: true
+        number-depth: 6
+        float: true
+        header-includes: |
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+comments: 
+    hypothesis: false
+execute: 
+    cache: true
+    echo: false
+    message: false
+    warning: false
+---
+
+# Background
+<hr>
+
+GDx at OUSAMG is planning to upscale the WGS production to `192` samples (`4 x 48` or `2 x 48 + 1 x 96`) samples per week. 
+Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?
+
+The capacity of IT & bioinformatics pipelines can be evaluated from following three aspects:
+
+1. [Data transfer speed](https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf.html)
+2. Data storage
+3. [Pipeline capacity](https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf_pipeline.html)
+
+
+**This document will focus on the evaluation of NSC storage capacity.**
+
+# NSC Storage Capacity
+<hr>
+
+## Capacity breakdown
+As of Dec 29, 2024, 12:00 PM
+
+![](capacity_breakdown.png)
+
+
+## Usable capacity
+As of Dec 29, 2024, 12:00 PM
+
+![](usable_capacity.png)
+
+
+## Storage volumes
+
+| Name                                                   | Purpose                              |
+| ---                                                    | ---                                  |
+| /boston                                                | General data area                    |
+| /boston/runScrach                                      | Sequencing runs (Illumina, ONT)      |
+| /boston/projects                                       | Research projects                    |
+| /boston/common                                         | Software, and repositories           |
+| /boston/diag                                           | Diagnostics production               |
+| /boston/diag/transfer                                  | Transfer area (for TSD)              |
+| /boston/runScratch/demultiplexed/delivery/tsd_sleipnir | Transfer area NSC                    |
+| vm-datastore                                           | VMware datastore (virtual hard disks)|
+
+
+## Used capacity
+
+::: {style="font-family:courier"}
+    
+### /boston (228 TiB)    
+| Directory                               | Logical  | %use of Parent Directory | Physical |
+| -------                                 | -----    | -----                    | -----    |
+| [/boston/diag](#boston-diag)            | 96.9 TiB | 51.8%                    | 113 TiB  |
+| [/boston/runScrach](#boston-runscratch) | 83.1 TiB | 44.4%                    | 107 TiB  |
+| /boston/projects                        | 2.87 TiB | 1.5%                     | 3.74 TiB |
+| /boston/home                            | 2.77 TiB | 1.5%                     | 2.82 TiB |
+| /boston/common                          | 1.42 TiB | 0.8%                     | 1.54 TiB |
+
+:::
+
+#### [/boston/diag]{#boston-diag}
+
+::: {style="font-family:courier"}
+| Directory                                          | Logical  | %use of Parent Directory | Physical |
+| ----------                                         | -----    | -----                    | -----    |
+| /boston/diag/runs                                  | 35.8 TiB | 37.0%                    | 47.4 TiB |
+| [/boston/diag/production](#boston-diag-production) | 33.8 TiB | 34.9%                    | 34.3 TiB |
+| [/boston/diag/transfer](#boston-diag-transfer)     | 15.6 TiB | 16.1%                    | 16.3 TiB |
+| /boston/diag/nscDelivery                           | 7.82 TiB | 8.1%                     | 10.4 TiB |
+| [/boston/diag/staging](#boston-diag-staging)       | 3.84 TiB | 4.0%                     | 4.88 TiB |
+| /boston/diag/diagInternal                          | 1.48 GiB | 0.0%                     | 1.88 GiB |
+:::
+
+
+##### [/boston/diag/production]{#boston-diag-production}
+
+
+::: {style="font-family:courier"}
+| Directory   | Logical  | %use of Parent Directory | Physical |
+| ------      | -----    | -----                    | -----    |
+| data        | 33.5 TiB | 99.1%                    | 33.9 TiB |
+| sw          | 238 GiB  | 0.7%                     | 297 GiB  |
+| reference   | 74.3 GiB | 0.2%                     | 63.9 GiB |
+| logs        | 3.32 GiB | 0.0%                     | 557 MiB  |
+| .thirdparty | 110 MiB  | 0.0%                     | 148 GiB  |
+:::
+
+
+##### [/boston/diag/transfer]{#boston-diag-transfer}
+::: {style="font-family:courier"}
+| Directory  | Logical  | %use of Parent Directory | Physical |
+| ------     | -----    | -----                    | -----    |
+| production | 14.8 TiB | 97.7%                    | 15.4 TiB |
+:::
+
+
+##### [/boston/diag/staging]{#boston-diag-staging}
+::: {style="font-family:courier"}
+| Directory  | Logical  | %use of Parent Directory | Physical |
+| ------     | -----    | -----                    | -----    |
+| data        | 3.53 TiB | 92.0%                    | 4.54 TiB |
+| sw          | 237 GiB  | 6.0%                     | 285 GiB  |
+| reference   | 77.5 GiB | 2.0%                     | 67.5 GiB |
+:::
+
+
+#### [/boston/runScratch]{#boston-runscratch}
+::: {style="font-family:courier"}
+| Directory        | Logical  | %use of Parent Directory | Physical |
+| ------           | -----    | -----                    | -----    |
+| NovaSeqX         | 34.5 TiB | 41.5%                    | 45.7 TiB |
+| analysis         | 38.8 TiB | 37.0%                    | 37.1 TiB |
+| demultiplexed    | 15.6 TiB | 18.8%                    | 20.7 TiB |
+| processed        | 1.03 TiB | 1.2%                     | 1.58 TiB |
+| ONT              | 738 GiB  | 0.9%                     | 1.02 TiB |
+| UserData         | 244 GiB  | 0.3%                     | 254 GiB  |
+| test             | 64.7 GiB | 0.1%                     | 86.1 GiB |
+| PGT              | 16.7 GiB | 0.0%                     | 20.5 GiB |
+| Upgrade_software | 16.7 GiB | 0.0%                     | 22.2 GiB |
+| mik_data         | 12.5 GiB | 0.0%                     | 12.5 GiB |
+| imm_data         | 4.5 GiB  | 0.0%                     | 4.53 GiB |
+:::
