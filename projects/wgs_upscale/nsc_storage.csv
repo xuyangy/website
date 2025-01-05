@@ -14,8 +14,10 @@ runs,diag,39.53,47.4 TiB
 20241127_LH00534_0073_A22JMF5LT4,runs,3.94,3.94 TiB
 20241220_LH00534_0087_A22JMH2LT4,runs,3.93,3.93 TiB
 production,diag,0,34.3 TiB
-transfer,diag,0,16.3 TiB
-nscDelivery,diag,10.4,10.4 TiB
+transfer,diag,0.9,16.3 TiB
+nscDelivery,diag,7.56,10.4 TiB
+241213_LH00534.A.Project_Diag-wgs437-2024-12-10,nscDelivery,1.71,1.71 TiB
+241213_LH00534.B.Project_Diag-wgs435-2024-12-03,nscDelivery,1.23,1.23 TiB
 staging,diag,0,4.88 TiB
 diagInternal,diag,1.88,1.88 TiB
 data,production,0,33.9 TiB
@@ -26,18 +28,36 @@ sw,production,0.297,297 GiB
 reference,production,0.0639,63.9 GiB
 logs,production,0.557,557 GiB
 thirdparty,production,0.148,148 GiB
-production ,transfer,15.4,15.4 TiB
+production ,transfer,0,15.4 TiB
+transferred,production ,12.4,12.4 TiB
+normal,production ,1,1 TiB
+urgent,production ,1,1 TiB
+high,production ,1,1 TiB
 data ,staging,4.54,4.54 TiB
 sw ,staging,0.285,285 GiB
 reference ,staging,0.0675,67.5 GiB
-NovaSeqX,runScratch,45.7,45.7 TiB
-analysis,runScratch,37.1,37.1 TiB
-demultiplexed,runScratch,20.7,20.7 TiB
-processed,runScratch,1.58,1.58 TiB
+NovaSeqX,runScratch,14.5,45.7 TiB
+processed ,NovaSeqX,21.7,21.7 TiB
+20241209_LH00770_0001_B22JKHMLT4,NovaSeqX,4.87,4.87 TiB
+20241209_LH00770_0002_A22JMNMLT4,NovaSeqX,4.6,4.6 TiB
+analysis,runScratch,0.1,37.1 TiB
+projects ,analysis,3.6,36.3 TiB
+Djurovic-DNA1-2024-03-01,projects ,22,22 TiB
+tomte,projects ,10.7,10.7 TiB
+pipelines,analysis,0.814,814 GiB
+demultiplexed,runScratch,0.1,20.7 TiB
+completed,demultiplexed,20.7,20.7 TiB
+internal,demultiplexed,0.0613,61.3 GiB
+processed,runScratch,1.183,1.58 TiB
+241210_A01447_0591_AHLY27DRX5,processed,0.198,198 GiB
+241210_A01447_0592_BHM3CMDRX5,processed,0.183,183 GiB
+241129_M01334_0208_000000000-LRV8G,processed,0.0154,15.4 GiB
 ONT,runScratch,1.02,1.02 TiB
 UserData,runScratch,0.254,254 GiB
 test,runScratch,0.086,86 GiB
-PGT,runScratch,0.0205,20.5 GiB
+PGT,runScratch,0.001,20.5 GiB
+Array_output,PGT,0.0149,14.9 GiB
+DMAP,PGT,0.0046,46 GiB
 Upgrade_software,runScratch,0.0222,22.2 GiB
 mik_data,runScratch,0.0125,12.5 GiB
 imm_data,runScratch,0.00453,4.53 GiB
