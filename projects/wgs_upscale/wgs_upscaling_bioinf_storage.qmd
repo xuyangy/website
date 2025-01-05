@@ -86,7 +86,7 @@ Usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
 ## Used storage
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM:]{style="color:red"}
- The used storage as of Dec 29, 2024, 12:00 PM is `228 TiB`. Details are as follows:
+The used storage as of Dec 29, 2024, 12:00 PM is `228 TiB`. Details are as follows:
 :::
 
 
@@ -110,7 +110,7 @@ fig.update_traces(
     hovertemplate="Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})",
     text=disp,
 )
-fig.update_layout(margin=dict(t=0, l=0, r=0, b=0), height=900)
+fig.update_layout(margin=dict(t=20, l=0, r=0, b=0), height=900)
 ```
 
 ::: {style="font-family:courier"}
@@ -380,7 +380,7 @@ demultiplexing and mapping, variant calling with Onboard DRAGEN.
 
 #### 
 ```{python}
-# | cache: false
+#| cache: false
 import plotly.graph_objects as go
 
 analyses_work_dirs = [
