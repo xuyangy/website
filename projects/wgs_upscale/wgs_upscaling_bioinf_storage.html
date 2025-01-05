@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Xuyang Yuan">
-<meta name="dcterms.date" content="2025-01-03">
+<meta name="dcterms.date" content="2025-01-05">
 <meta name="description" content="NSC storage capability">
 
 <title>WGS Upscaling - NSC Storage Capacity – Robot Genome</title>
@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -72,6 +72,25 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.12.1.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand&amp;display=swap" rel="stylesheet">
@@ -195,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 3, 2025</p>
+        <p class="date">January 5, 2025</p>
       </div>
     </div>
     
@@ -219,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#capacity-breakdown" id="toc-capacity-breakdown" class="nav-link" data-scroll-target="#capacity-breakdown"><span class="header-section-number">2.1</span> Capacity breakdown</a></li>
   <li><a href="#usable-capacity" id="toc-usable-capacity" class="nav-link" data-scroll-target="#usable-capacity"><span class="header-section-number">2.2</span> Usable capacity</a></li>
   <li><a href="#storage-volumes" id="toc-storage-volumes" class="nav-link" data-scroll-target="#storage-volumes"><span class="header-section-number">2.3</span> Storage volumes</a></li>
-  <li><a href="#used-capacity" id="toc-used-capacity" class="nav-link" data-scroll-target="#used-capacity"><span class="header-section-number">2.4</span> Used capacity</a>
+  <li><a href="#used-storage" id="toc-used-storage" class="nav-link" data-scroll-target="#used-storage"><span class="header-section-number">2.4</span> Used storage</a>
   <ul>
   <li><a href="#boston-228-tib" id="toc-boston-228-tib" class="nav-link" data-scroll-target="#boston-228-tib"><span class="header-section-number">2.4.1</span> <span style="font-family:courier">/boston</span> (228 TiB)</a></li>
   <li><a href="#bostondiag" id="toc-bostondiag" class="nav-link" data-scroll-target="#bostondiag"><span class="header-section-number">2.4.1.1</span> <span id="boston-diag" style="font-family:courier">/boston/diag</span></a>
@@ -245,6 +264,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#single-25b-flowcell-bcl-convert" id="toc-single-25b-flowcell-bcl-convert" class="nav-link" data-scroll-target="#single-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.1</span> Single 25B flowcell; BCL Convert</a></li>
   <li><a href="#dual-25b-flowcell-bcl-convert" id="toc-dual-25b-flowcell-bcl-convert" class="nav-link" data-scroll-target="#dual-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.2</span> Dual 25B flowcell; BCL Convert</a></li>
   <li><a href="#dual-25b-flowcell-dragen-germline-allvariantcallers" id="toc-dual-25b-flowcell-dragen-germline-allvariantcallers" class="nav-link" data-scroll-target="#dual-25b-flowcell-dragen-germline-allvariantcallers"><span class="header-section-number">2.5.2.3</span> Dual 25B flowcell; DRAGEN Germline, AllVariantCallers</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.5.2.4</span> </a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -275,12 +295,36 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <section id="capacity-breakdown" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="capacity-breakdown"><span class="header-section-number">2.1</span> Capacity breakdown</h2>
-<p>As of Dec 29, 2024, 12:00 PM</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">As of Dec 29, 2024, 12:00 PM</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Total capacity of NSC storage is <code>552.6 TiB</code>. The capability breakdown as of Dec 29, 2024 12:00 PM is as follows:</p>
+</div>
+</div>
 <p><img src="capacity_breakdown.png" class="img-fluid"></p>
 </section>
 <section id="usable-capacity" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="usable-capacity"><span class="header-section-number">2.2</span> Usable capacity</h2>
-<p>As of Dec 29, 2024, 12:00 PM</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">As of Dec 29, 2024, 12:00 PM</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usable capacity as of Dec 29, 2024, 12:00 PM is <code>231.2 TiB</code>.</p>
+</div>
+</div>
 <p><img src="usable_capacity.png" class="img-fluid"></p>
 </section>
 <section id="storage-volumes" class="level2" data-number="2.3">
@@ -332,8 +376,57 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="used-capacity" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="used-capacity"><span class="header-section-number">2.4</span> Used capacity</h2>
+<section id="used-storage" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="used-storage"><span class="header-section-number">2.4</span> Used storage</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">As of Dec 29, 2024, 12:00 PM:</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The used storage as of Dec 29, 2024, 12:00 PM is <code>228 TiB</code>. Details are as follows:</p>
+</div>
+</div>
+<div id="cell-fig-nsc_storage_used" class="cell" data-execution_count="1">
+<div id="fig-nsc_storage_used" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nsc_storage_used-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>                            <div id="70266783-293a-4345-89ac-b7d8bc333d4a" class="plotly-graph-div" style="height:900px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("70266783-293a-4345-89ac-b7d8bc333d4a")) {                    Plotly.newPlot(                        "70266783-293a-4345-89ac-b7d8bc333d4a",                        [{"branchvalues":"remainder","domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})","labels":["boston","diag","runScratch","projects","yvans","paalmbj","home","steffanb","common","repo","tools","runs","20241127_LH00534_0073_A22JMF5LT4","20241220_LH00534_0087_A22JMH2LT4","production","transfer","nscDelivery","241213_LH00534.A.Project_Diag-wgs437-2024-12-10","241213_LH00534.B.Project_Diag-wgs435-2024-12-03","staging","diagInternal","data","analyses-work","analyses-results","samples","sw","reference","logs","thirdparty","production ","transferred","normal","urgent","high","data ","sw ","reference ","NovaSeqX","processed ","20241209_LH00770_0001_B22JKHMLT4","20241209_LH00770_0002_A22JMNMLT4","analysis","projects ","Djurovic-DNA1-2024-03-01","tomte","pipelines","demultiplexed","completed","internal","processed","241210_A01447_0591_AHLY27DRX5","241210_A01447_0592_BHM3CMDRX5","241129_M01334_0208_000000000-LRV8G","ONT","UserData","test","PGT","Array_output","DMAP","Upgrade_software","mik_data","imm_data"],"name":"","parents":["","boston","boston","boston","projects","projects","boston","home","boston","common","common","diag","runs","runs","diag","diag","diag","nscDelivery","nscDelivery","diag","diag","production","data","data","data","production","production","production","production","transfer","production ","production ","production ","production ","staging","staging","staging","runScratch","NovaSeqX","NovaSeqX","NovaSeqX","runScratch","analysis","projects ","projects ","analysis","runScratch","demultiplexed","demultiplexed","runScratch","processed","processed","processed","runScratch","runScratch","runScratch","runScratch","PGT","PGT","runScratch","runScratch","runScratch"],"values":[0.0,0.0,0.0,0.0,3.74,0.138,0.75,2.07,0.253,0.768,0.519,39.53,3.94,3.93,0.0,0.9,7.56,1.71,1.23,0.0,1.88,0.0,19.6,13.4,0.924,0.297,0.0639,0.557,0.148,0.0,12.4,1.0,1.0,1.0,4.54,0.285,0.0675,14.5,21.7,4.87,4.6,0.1,3.6,22.0,10.7,0.814,0.1,20.7,0.0613,1.183,0.198,0.183,0.0154,1.02,0.254,0.086,0.001,0.0149,0.0046,0.0222,0.0125,0.00453],"type":"sunburst","text":["228 TiB","113 TiB","107 TiB","3.74 TiB","3.74 TiB","138 MiB","2.82 TiB","2.07 TiB","1.54 TiB","768 GiB","519 GiB","47.4 TiB","3.94 TiB","3.93 TiB","34.3 TiB","16.3 TiB","10.4 TiB","1.71 TiB","1.23 TiB","4.88 TiB","1.88 TiB","33.9 TiB","19.6 TiB","13.4 TiB","924 GiB","297 GiB","63.9 GiB","557 GiB","148 GiB","15.4 TiB","12.4 TiB","1 TiB","1 TiB","1 TiB","4.54 TiB","285 GiB","67.5 GiB","45.7 TiB","21.7 TiB","4.87 TiB","4.6 TiB","37.1 TiB","36.3 TiB","22 TiB","10.7 TiB","814 GiB","20.7 TiB","20.7 TiB","61.3 GiB","1.58 TiB","198 GiB","183 GiB","15.4 GiB","1.02 TiB","254 GiB","86 GiB","20.5 GiB","14.9 GiB","46 GiB","22.2 GiB","12.5 GiB","4.53 GiB"]}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"legend":{"tracegroupgap":0},"margin":{"t":20,"l":0,"r":0,"b":0},"height":900},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('70266783-293a-4345-89ac-b7d8bc333d4a');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nsc_storage_used-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Used storage
+</figcaption>
+</figure>
+</div>
+</div>
 <section id="boston-228-tib" class="level3" style="font-family:courier" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="boston-228-tib"><span class="header-section-number">2.4.1</span> <span style="font-family:courier">/boston</span> (228 TiB)</h3>
 <table class="table-striped table-hover caption-top table">
@@ -654,7 +747,7 @@ ul.task-list li input[type="checkbox"] {
 <h4 data-number="2.5.1.1" class="anchored" data-anchor-id="bcl-convert"><span class="header-section-number">2.5.1.1</span> BCL Convert</h4>
 <p>The <code>{R1,R2}.fastq.ora</code> files per sample is about <code>14 GB</code> (<code>18 GB</code> on disk).</p>
 <p>Other files such as BCL files, images, logs, reports, etc. is about <code>47 GB</code> per sample (<code>63 GB</code> on disk).</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -670,9 +763,9 @@ Data
 </section>
 <section id="dragen-germline" class="level4" data-number="2.5.1.2">
 <h4 data-number="2.5.1.2" class="anchored" data-anchor-id="dragen-germline"><span class="header-section-number">2.5.1.2</span> DRAGEN Germline</h4>
-<p>When secondary analysis is DRAGEN Germline with all variant callers, i.e.&nbsp;doing both demultiplexing and mapping, variant calling with Onboard DRAGEN.</p>
+<p>When secondary analysis is DRAGEN Germline with all variant callers, <em>i.e.</em> doing both demultiplexing and mapping, variant calling with Onboard DRAGEN.</p>
 <p>Each sample has about <code>20 GB</code> pipeline output files (<code>27 GB</code> on disk) in addition. See <a href="#sec-analysis-folder" class="quarto-xref">Section&nbsp;2.5.1.2.1</a> for details.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -792,17 +885,17 @@ Data
 &nbsp;&nbsp;&nbsp;&nbsp;└── [ 2.4K] P2FSW-stdout_3358454.txt</p>
 </blockquote>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Generated by <code>tree --du</code> which shows the actual file sizes instead of disk space used.</p>
+<p>👆 Generated by <code>tree --du</code> which shows the actual file sizes instead of disk space used.</p>
 </div>
 </div>
 </section>
@@ -836,8 +929,8 @@ Note
 </ul>
 <section id="single-25b-flowcell-bcl-convert" class="level4" data-number="2.5.2.1">
 <h4 data-number="2.5.2.1" class="anchored" data-anchor-id="single-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.1</span> Single 25B flowcell; BCL Convert</h4>
-<p>Single 25B flowcell (64 samples), 2nd analysis is BCL Convert, i.e.&nbsp;only demultiplexing.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<p>Single 25B flowcell (64 samples), secondary analysis is BCL Convert, <em>i.e.</em> only demultiplexing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -853,8 +946,8 @@ Data
 </section>
 <section id="dual-25b-flowcell-bcl-convert" class="level4" data-number="2.5.2.2">
 <h4 data-number="2.5.2.2" class="anchored" data-anchor-id="dual-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.2</span> Dual 25B flowcell; BCL Convert</h4>
-<p>Dual 25B flowcell (128 samples), 2nd analysis is BCL Convert, i.e.&nbsp;only demultiplexing.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<p>Dual 25B flowcell (128 samples), secondary analysis is BCL Convert, <em>i.e.</em> only demultiplexing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -870,8 +963,8 @@ Data
 </section>
 <section id="dual-25b-flowcell-dragen-germline-allvariantcallers" class="level4" data-number="2.5.2.3">
 <h4 data-number="2.5.2.3" class="anchored" data-anchor-id="dual-25b-flowcell-dragen-germline-allvariantcallers"><span class="header-section-number">2.5.2.3</span> Dual 25B flowcell; DRAGEN Germline, AllVariantCallers</h4>
-<p>Dual 25B flowcell (128 samples), 2nd analysis is DRAGEN Germline with all variant callers enabled.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<p>Dual 25B flowcell (128 samples), secondary analysis is DRAGEN Germline with all variant callers enabled, <em>i.e.</em> doing both demultiplexing and mapping, variant calling with Onboard DRAGEN.</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -882,6 +975,38 @@ Data
 </div>
 <div class="callout-body-container callout-body">
 <p><code>10.5 TB</code> data (<code>14.0 TB</code> on disk).</p>
+</div>
+</div>
+</section>
+<section id="section" class="level4" data-number="2.5.2.4">
+<h4 data-number="2.5.2.4" class="anchored" data-anchor-id="section"><span class="header-section-number">2.5.2.4</span> </h4>
+<div id="3c7d3485" class="cell" data-cache="false" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>                            <div id="288af23d-8a96-4e6f-a1e7-d2110e40aa8f" class="plotly-graph-div" style="height:600px; width:500px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("288af23d-8a96-4e6f-a1e7-d2110e40aa8f")) {                    Plotly.newPlot(                        "288af23d-8a96-4e6f-a1e7-d2110e40aa8f",                        [{"boxpoints":"all","name":"analyses-work","y":[63,63,66,66,66,66,67,67,67,67,67,68,68,68,68,68,68,68,69,69,69,69,69,69,69,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,71,71,71,71,71,71,71,71,71,71,71,71,71,71,72,72,72,72,72,72,72,72,73,73,73,73,73,73,73,73,73,74,74,74,74,74,74,75,75,75,75,75,76,76,76,77,77,77,78,78,80,80,82,143],"type":"box","hovertemplate":"Size: %{y} GB"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(51,51,51)"},"error_y":{"color":"rgb(51,51,51)"},"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"baxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"colorscale":{"sequential":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"sequentialminus":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]]},"colorway":["#F8766D","#A3A500","#00BF7D","#00B0F6","#E76BF3"],"font":{"color":"rgb(51,51,51)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"rgb(237,237,237)","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"rgb(237,237,237)","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","radialaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"baxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","caxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"}}},"title":{"text":"Analysis work directories size (GB)","x":0.5},"yaxis":{"title":{"text":"Size (GB)"}},"height":600,"width":500},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('288af23d-8a96-4e6f-a1e7-d2110e40aa8f');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
 </div>
 </div>
 

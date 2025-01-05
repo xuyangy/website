@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Xuyang Yuan">
+<meta name="dcterms.date" content="2025-01-05">
+<meta name="description" content="NSC storage capability">
+
+<title>WGS Upscaling - NSC Storage Capacity – Robot Genome</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8b864f0777c60eecff11d75b6b2e1175.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2f99c0dddf6fde71845b53a111661507.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-87cd4b7f73350d47b305eb1b490faf42.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.12.1.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Krona+One&amp;display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Robot Genome</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="../../projects/wgs_upscale/wgs_upscaling_bioinf.html">
+ <span class="dropdown-text">WGS Upcaling - Data Transfer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/wgs_upscale/wgs_upscaling_bioinf_pipeline.html">
+ <span class="dropdown-text">WGS Upcaling - Pipeline Capacity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/wgs_upscale/wgs_upscaling_bioinf_storage.html">
+ <span class="dropdown-text">WGS Upcaling - NSC Storage</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/workflow_tracker/index.html">
+ <span class="dropdown-text">Workflow Tracker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/UUID/uuid.pdf">
+ <span class="dropdown-text">UUID</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/PGDIS2024/pgdis2024.html">
+ <span class="dropdown-text">PGDIS 2024</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/NextflowSummit2024/nextflow_summit_2024.html">
+ <span class="dropdown-text">Nextflow Summit 2024</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/NIPT/interp.svg">
+ <span class="dropdown-text">NIPT Interpretation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../.././projects/NIPT/whole_workflow_sequence_diagram.svg">
+ <span class="dropdown-text">NIPT Whole Workflow</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects/NIPT/overview.svg">
+ <span class="dropdown-text">NIPT Overview Workflow</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">WGS Upscaling - NSC Storage Capacity</h1>
+                  <div>
+        <div class="description">
+          NSC storage capability
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://www.robotgenome.com">Xuyang Yuan</a> <a href="mailto:xuyangy@uio.no" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              GDx OUSAMG
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 5, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../logo_square.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a></li>
+  <li><a href="#nsc-storage-capacity" id="toc-nsc-storage-capacity" class="nav-link" data-scroll-target="#nsc-storage-capacity"><span class="header-section-number">2</span> NSC Storage Capacity</a>
+  <ul>
+  <li><a href="#capacity-breakdown" id="toc-capacity-breakdown" class="nav-link" data-scroll-target="#capacity-breakdown"><span class="header-section-number">2.1</span> Capacity breakdown</a></li>
+  <li><a href="#usable-capacity" id="toc-usable-capacity" class="nav-link" data-scroll-target="#usable-capacity"><span class="header-section-number">2.2</span> Usable capacity</a></li>
+  <li><a href="#storage-volumes" id="toc-storage-volumes" class="nav-link" data-scroll-target="#storage-volumes"><span class="header-section-number">2.3</span> Storage volumes</a></li>
+  <li><a href="#used-storage" id="toc-used-storage" class="nav-link" data-scroll-target="#used-storage"><span class="header-section-number">2.4</span> Used storage</a>
+  <ul>
+  <li><a href="#boston-228-tib" id="toc-boston-228-tib" class="nav-link" data-scroll-target="#boston-228-tib"><span class="header-section-number">2.4.1</span> <span style="font-family:courier">/boston</span> (228 TiB)</a></li>
+  <li><a href="#bostondiag" id="toc-bostondiag" class="nav-link" data-scroll-target="#bostondiag"><span class="header-section-number">2.4.1.1</span> <span id="boston-diag" style="font-family:courier">/boston/diag</span></a>
+  <ul>
+  <li><a href="#bostondiagproduction" id="toc-bostondiagproduction" class="nav-link" data-scroll-target="#bostondiagproduction"><span class="header-section-number">2.4.1.1.1</span> <span id="boston-diag-production" style="font-family:courier">/boston/diag/production</span></a></li>
+  <li><a href="#bostondiagtransfer" id="toc-bostondiagtransfer" class="nav-link" data-scroll-target="#bostondiagtransfer"><span class="header-section-number">2.4.1.1.2</span> <span id="boston-diag-transfer" style="font-family:courier">/boston/diag/transfer</span></a></li>
+  <li><a href="#bostondiagstaging" id="toc-bostondiagstaging" class="nav-link" data-scroll-target="#bostondiagstaging"><span class="header-section-number">2.4.1.1.3</span> <span id="boston-diag-staging" style="font-family:courier">/boston/diag/staging</span></a></li>
+  </ul></li>
+  <li><a href="#bostonrunscratch" id="toc-bostonrunscratch" class="nav-link" data-scroll-target="#bostonrunscratch"><span class="header-section-number">2.4.1.2</span> <span id="boston-runscratch" style="font-family:courier">/boston/runScratch</span></a></li>
+  </ul></li>
+  <li><a href="#expected-data" id="toc-expected-data" class="nav-link" data-scroll-target="#expected-data"><span class="header-section-number">2.5</span> Expected data</a>
+  <ul>
+  <li><a href="#per-sample" id="toc-per-sample" class="nav-link" data-scroll-target="#per-sample"><span class="header-section-number">2.5.1</span> Per sample</a>
+  <ul>
+  <li><a href="#bcl-convert" id="toc-bcl-convert" class="nav-link" data-scroll-target="#bcl-convert"><span class="header-section-number">2.5.1.1</span> BCL Convert</a></li>
+  <li><a href="#dragen-germline" id="toc-dragen-germline" class="nav-link" data-scroll-target="#dragen-germline"><span class="header-section-number">2.5.1.2</span> DRAGEN Germline</a>
+  <ul class="collapse">
+  <li><a href="#sec-analysis-folder" id="toc-sec-analysis-folder" class="nav-link" data-scroll-target="#sec-analysis-folder"><span class="header-section-number">2.5.1.2.1</span> Pipeline output files per sample</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#per-sequencing-run" id="toc-per-sequencing-run" class="nav-link" data-scroll-target="#per-sequencing-run"><span class="header-section-number">2.5.2</span> Per sequencing run</a>
+  <ul>
+  <li><a href="#single-25b-flowcell-bcl-convert" id="toc-single-25b-flowcell-bcl-convert" class="nav-link" data-scroll-target="#single-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.1</span> Single 25B flowcell; BCL Convert</a></li>
+  <li><a href="#dual-25b-flowcell-bcl-convert" id="toc-dual-25b-flowcell-bcl-convert" class="nav-link" data-scroll-target="#dual-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.2</span> Dual 25B flowcell; BCL Convert</a></li>
+  <li><a href="#dual-25b-flowcell-dragen-germline-allvariantcallers" id="toc-dual-25b-flowcell-dragen-germline-allvariantcallers" class="nav-link" data-scroll-target="#dual-25b-flowcell-dragen-germline-allvariantcallers"><span class="header-section-number">2.5.2.3</span> Dual 25B flowcell; DRAGEN Germline, AllVariantCallers</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.5.2.4</span> </a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="background" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Background</h1>
+<hr>
+<p>GDx at OUSAMG is planning to upscale the WGS production to <code>192</code> samples (<code>4 x 48</code> or <code>2 x 48 + 1 x 96</code>) samples per week. Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?</p>
+<p>The capacity of IT &amp; bioinformatics pipelines can be evaluated from following three aspects:</p>
+<ol type="1">
+<li><a href="https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf.html">Data transfer speed</a></li>
+<li>Data storage</li>
+<li><a href="https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf_pipeline.html">Pipeline capacity</a></li>
+</ol>
+<p><strong>This document will focus on the evaluation of NSC storage capacity.</strong></p>
+</section>
+<section id="nsc-storage-capacity" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> NSC Storage Capacity</h1>
+<hr>
+<section id="capacity-breakdown" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="capacity-breakdown"><span class="header-section-number">2.1</span> Capacity breakdown</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">As of Dec 29, 2024, 12:00 PM</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Total capacity of NSC storage is <code>552.6 TiB</code>. The capability breakdown as of Dec 29, 2024 12:00 PM is as follows:</p>
+</div>
+</div>
+<p><img src="capacity_breakdown.png" class="img-fluid"></p>
+</section>
+<section id="usable-capacity" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="usable-capacity"><span class="header-section-number">2.2</span> Usable capacity</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">As of Dec 29, 2024, 12:00 PM</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usable capacity as of Dec 29, 2024, 12:00 PM is <code>231.2 TiB</code>.</p>
+</div>
+</div>
+<p><img src="usable_capacity.png" class="img-fluid"></p>
+</section>
+<section id="storage-volumes" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="storage-volumes"><span class="header-section-number">2.3</span> Storage volumes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 62%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span style="font-family:courier">/boston</span></td>
+<td>General data area</td>
+</tr>
+<tr class="even">
+<td><span style="font-family:courier">/boston/runScrach</span></td>
+<td>Sequencing runs (Illumina, ONT)</td>
+</tr>
+<tr class="odd">
+<td><span style="font-family:courier">/boston/projects</span></td>
+<td>Research projects</td>
+</tr>
+<tr class="even">
+<td><span style="font-family:courier">/boston/common</span></td>
+<td>Software, and repositories</td>
+</tr>
+<tr class="odd">
+<td><span style="font-family:courier">/boston/diag</span></td>
+<td>Diagnostics production</td>
+</tr>
+<tr class="even">
+<td><span style="font-family:courier">/boston/diag/transfer</span></td>
+<td>Transfer area (for TSD)</td>
+</tr>
+<tr class="odd">
+<td><span style="font-family:courier">/boston/runScratch/demultiplexed/delivery/tsd_sleipnir</span></td>
+<td>Transfer area NSC</td>
+</tr>
+<tr class="even">
+<td><span style="font-family:courier">vm-datastore</span></td>
+<td>VMware datastore (virtual hard disks)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="used-storage" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="used-storage"><span class="header-section-number">2.4</span> Used storage</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">As of Dec 29, 2024, 12:00 PM:</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The used storage as of Dec 29, 2024, 12:00 PM is <code>228 TiB</code>. Details are as follows:</p>
+</div>
+</div>
+<div id="cell-fig-nsc_storage_used" class="cell" data-execution_count="2">
+<div id="fig-nsc_storage_used" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nsc_storage_used-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>                            <div id="daafd516-c489-4386-a38a-3f8f09ecbb8c" class="plotly-graph-div" style="height:900px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("daafd516-c489-4386-a38a-3f8f09ecbb8c")) {                    Plotly.newPlot(                        "daafd516-c489-4386-a38a-3f8f09ecbb8c",                        [{"branchvalues":"remainder","domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})","labels":["boston","diag","runScratch","projects","yvans","paalmbj","home","steffanb","common","repo","tools","runs","20241127_LH00534_0073_A22JMF5LT4","20241220_LH00534_0087_A22JMH2LT4","production","transfer","nscDelivery","staging","diagInternal","data","sw","reference","logs","thirdparty","production ","data ","sw ","reference ","NovaSeqX","analysis","demultiplexed","processed","ONT","UserData","test","PGT","Upgrade_software","mik_data","imm_data"],"name":"","parents":["","boston","boston","boston","projects","projects","boston","home","boston","common","common","diag","runs","runs","diag","diag","diag","diag","diag","production","production","production","production","production","transfer","staging","staging","staging","runScratch","runScratch","runScratch","runScratch","runScratch","runScratch","runScratch","runScratch","runScratch","runScratch","runScratch"],"values":[0.0,0.0,0.0,0.0,3.74,0.138,0.75,2.07,0.253,0.768,0.519,39.53,3.94,3.93,0.0,0.0,10.4,0.0,1.88,33.9,0.297,0.0639,0.557,0.148,15.4,4.54,0.285,0.0675,45.7,37.1,20.7,1.58,1.02,0.254,0.086,0.0205,0.0222,0.0125,0.00453],"type":"sunburst","text":["228 TiB","113 TiB","107 TiB","3.74 TiB","3.74 TiB","138 MiB","2.82 TiB","2.07 TiB","1.54 TiB","768 GiB","519 GiB","47.4 TiB","3.94 TiB","3.93 TiB","34.3 TiB","16.3 TiB","10.4 TiB","4.88 TiB","1.88 TiB","33.9 TiB","297 GiB","63.9 GiB","557 GiB","148 GiB","15.4 TiB","4.54 TiB","285 GiB","67.5 GiB","45.7 TiB","37.1 TiB","20.7 TiB","1.58 TiB","1.02 TiB","254 GiB","86 GiB","20.5 GiB","22.2 GiB","12.5 GiB","4.53 GiB"]}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"legend":{"tracegroupgap":0},"margin":{"t":0,"l":0,"r":0,"b":0},"height":900},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('daafd516-c489-4386-a38a-3f8f09ecbb8c');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nsc_storage_used-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Used storage adn
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="boston-228-tib" class="level3" style="font-family:courier" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="boston-228-tib"><span class="header-section-number">2.4.1</span> <span style="font-family:courier">/boston</span> (228 TiB)</h3>
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/</span><a href="#boston-diag">diag</a></td>
+<td>96.9 TiB</td>
+<td>51.8%</td>
+<td>113 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/</span><a href="#boston-runscratch">runScrach</a></td>
+<td>83.1 TiB</td>
+<td>44.4%</td>
+<td>107 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/</span>projects</td>
+<td>2.87 TiB</td>
+<td>1.5%</td>
+<td>3.74 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/</span>home</td>
+<td>2.77 TiB</td>
+<td>1.5%</td>
+<td>2.82 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/</span>common</td>
+<td>1.42 TiB</td>
+<td>0.8%</td>
+<td>1.54 TiB</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bostondiag" class="level4" data-number="2.4.1.1">
+<h4 data-number="2.4.1.1" class="anchored" data-anchor-id="bostondiag"><span class="header-section-number">2.4.1.1</span> <span id="boston-diag" style="font-family:courier">/boston/diag</span></h4>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span>runs</td>
+<td>35.8 TiB</td>
+<td>37.0%</td>
+<td>47.4 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span><a href="#boston-diag-production">production</a></td>
+<td>33.8 TiB</td>
+<td>34.9%</td>
+<td>34.3 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span><a href="#boston-diag-transfer">transfer</a></td>
+<td>15.6 TiB</td>
+<td>16.1%</td>
+<td>16.3 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span>nscDelivery</td>
+<td>7.82 TiB</td>
+<td>8.1%</td>
+<td>10.4 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span><a href="#boston-diag-staging">staging</a></td>
+<td>3.84 TiB</td>
+<td>4.0%</td>
+<td>4.88 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span>diagInternal</td>
+<td>1.48 GiB</td>
+<td>0.0%</td>
+<td>1.88 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="bostondiagproduction" class="level5" data-number="2.4.1.1.1">
+<h5 data-number="2.4.1.1.1" class="anchored" data-anchor-id="bostondiagproduction"><span class="header-section-number">2.4.1.1.1</span> <span id="boston-diag-production" style="font-family:courier">/boston/diag/production</span></h5>
+<div style="font-family:courier">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/production/</span>data</td>
+<td>33.5 TiB</td>
+<td>99.1%</td>
+<td>33.9 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/production/</span>sw</td>
+<td>238 GiB</td>
+<td>0.7%</td>
+<td>297 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/production/</span>reference</td>
+<td>74.3 GiB</td>
+<td>0.2%</td>
+<td>63.9 GiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/production/</span>logs</td>
+<td>3.32 GiB</td>
+<td>0.0%</td>
+<td>557 MiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/production/</span>.thirdparty</td>
+<td>110 MiB</td>
+<td>0.0%</td>
+<td>148 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bostondiagtransfer" class="level5" data-number="2.4.1.1.2">
+<h5 data-number="2.4.1.1.2" class="anchored" data-anchor-id="bostondiagtransfer"><span class="header-section-number">2.4.1.1.2</span> <span id="boston-diag-transfer" style="font-family:courier">/boston/diag/transfer</span></h5>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/transfer/</span>production</td>
+<td>14.8 TiB</td>
+<td>97.7%</td>
+<td>15.4 TiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bostondiagstaging" class="level5" data-number="2.4.1.1.3">
+<h5 data-number="2.4.1.1.3" class="anchored" data-anchor-id="bostondiagstaging"><span class="header-section-number">2.4.1.1.3</span> <span id="boston-diag-staging" style="font-family:courier">/boston/diag/staging</span></h5>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span>staging/data</td>
+<td>3.53 TiB</td>
+<td>92.0%</td>
+<td>4.54 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span>staging/sw</td>
+<td>237 GiB</td>
+<td>6.0%</td>
+<td>285 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span>staging/reference</td>
+<td>77.5 GiB</td>
+<td>2.0%</td>
+<td>67.5 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="bostonrunscratch" class="level4" data-number="2.4.1.2">
+<h4 data-number="2.4.1.2" class="anchored" data-anchor-id="bostonrunscratch"><span class="header-section-number">2.4.1.2</span> <span id="boston-runscratch" style="font-family:courier">/boston/runScratch</span></h4>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>NovaSeqX</td>
+<td>34.5 TiB</td>
+<td>41.5%</td>
+<td>45.7 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>analysis</td>
+<td>38.8 TiB</td>
+<td>37.0%</td>
+<td>37.1 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>demultiplexed</td>
+<td>15.6 TiB</td>
+<td>18.8%</td>
+<td>20.7 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>processed</td>
+<td>1.03 TiB</td>
+<td>1.2%</td>
+<td>1.58 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>ONT</td>
+<td>738 GiB</td>
+<td>0.9%</td>
+<td>1.02 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>UserData</td>
+<td>244 GiB</td>
+<td>0.3%</td>
+<td>254 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>test</td>
+<td>64.7 GiB</td>
+<td>0.1%</td>
+<td>86.1 GiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>PGT</td>
+<td>16.7 GiB</td>
+<td>0.0%</td>
+<td>20.5 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>Upgrade_software</td>
+<td>16.7 GiB</td>
+<td>0.0%</td>
+<td>22.2 GiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>mik_data</td>
+<td>12.5 GiB</td>
+<td>0.0%</td>
+<td>12.5 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>imm_data</td>
+<td>4.5 GiB</td>
+<td>0.0%</td>
+<td>4.53 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="expected-data" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="expected-data"><span class="header-section-number">2.5</span> Expected data</h2>
+<p>The data generated by NovaSeqX depend on the settings of secondary analysis and the sequencing depth. Current setting is 64 samples per flowcell.</p>
+<section id="per-sample" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="per-sample"><span class="header-section-number">2.5.1</span> Per sample</h3>
+<section id="bcl-convert" class="level4" data-number="2.5.1.1">
+<h4 data-number="2.5.1.1" class="anchored" data-anchor-id="bcl-convert"><span class="header-section-number">2.5.1.1</span> BCL Convert</h4>
+<p>The <code>{R1,R2}.fastq.ora</code> files per sample is about <code>14 GB</code> (<code>18 GB</code> on disk).</p>
+<p>Other files such as BCL files, images, logs, reports, etc. is about <code>47 GB</code> per sample (<code>63 GB</code> on disk).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In total, <code>61 GB</code> per sample (<code>81 GB</code> on disk).</p>
+</div>
+</div>
+</section>
+<section id="dragen-germline" class="level4" data-number="2.5.1.2">
+<h4 data-number="2.5.1.2" class="anchored" data-anchor-id="dragen-germline"><span class="header-section-number">2.5.1.2</span> DRAGEN Germline</h4>
+<p>When secondary analysis is DRAGEN Germline with all variant callers, <em>i.e.</em> doing both demultiplexing and mapping, variant calling with Onboard DRAGEN.</p>
+<p>Each sample has about <code>20 GB</code> pipeline output files (<code>27 GB</code> on disk) in addition. See <a href="#sec-analysis-folder" class="quarto-xref">Section&nbsp;2.5.1.2.1</a> for details.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In total, <code>81 GB</code> per sample (<code>108 GB</code> on disk).</p>
+</div>
+</div>
+<section id="sec-analysis-folder" class="level5" data-number="2.5.1.2.1">
+<h5 data-number="2.5.1.2.1" class="anchored" data-anchor-id="sec-analysis-folder"><span class="header-section-number">2.5.1.2.1</span> Pipeline output files per sample</h5>
+<div style="font-family: courier;font-size:0.7rem">
+<blockquote class="blockquote">
+<p>analysis/wgs435_HB12345678_b08a0667-b221-48c6-8d44-abb516a61a2b/germline_seq<br>
+├── [ 20G] germline_seq<br>
+│&nbsp;&nbsp; ├── [ 2.6M] report.html<br>
+│&nbsp;&nbsp; ├── [ 13M] sv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 6.1M] results<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 44K] stats<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 736] alignmentStatsSummary.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 20K] candidate_metrics.csv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 535] diploidSV.sv_metrics.csv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 4.4K] graph_metrics.csv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 9.0K] svCandidateGenerationStats.tsv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 6.7K] svCandidateGenerationStats.xml<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 1.7K] svLocusGraphStats.tsv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 6.1M] variants<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 4.2M] candidateSV.vcf.gz<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 671K] candidateSV.vcf.gz.tbi<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 1.1M] diploidSV.vcf.gz<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 121K] diploidSV.vcf.gz.tbi<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 6.5M] workspace<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 56K] alignmentStats.xml<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 505] chromDepth.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 59K] edgeRuntimeLog.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 17K] genomeSegmentScanDebugInfo.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 2.3K] logs<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 2.2K] config_log.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 6.4M] svLocusGraph.bin<br>
+│&nbsp;&nbsp; ├── [ 182K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.excluded_intervals.bed.gz<br>
+│&nbsp;&nbsp; ├── [ 457K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.gff3<br>
+│&nbsp;&nbsp; ├── [ 2.8K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.igv_session.xml<br>
+│&nbsp;&nbsp; ├── [ 793] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 70K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.vcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 18K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ <span style="color:red">16G</span>] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cram<br>
+│&nbsp;&nbsp; ├── [ 1.3M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cram.crai<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cram.md5sum<br>
+│&nbsp;&nbsp; ├── [ 302] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cyp2b6.tsv<br>
+│&nbsp;&nbsp; ├── [ 283] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cyp2d6.tsv<br>
+│&nbsp;&nbsp; ├── [ 420K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.fastqc_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 272K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.fragment_length_hist.csv<br>
+│&nbsp;&nbsp; ├── [ 185] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.gba.tsv<br>
+│&nbsp;&nbsp; ├── [ 2.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.gvcf_hethom_ratio_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 2.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.gvcf_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 46M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.baf.bw<br>
+│&nbsp;&nbsp; ├── [ <span style="color:red">3.8G</span>] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.gvcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.gvcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 1.2M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.gvcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 365M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.vcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 1.6M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 16M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.improper.pairs.bw<br>
+│&nbsp;&nbsp; ├── [ 429] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.insert-stats.tab<br>
+│&nbsp;&nbsp; ├── [ 8.9K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.mapping_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 9.2K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.metrics.json<br>
+│&nbsp;&nbsp; ├── [ 39K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.pcr-model-0.log<br>
+│&nbsp;&nbsp; ├── [ 115] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.pcr-model.log<br>
+│&nbsp;&nbsp; ├── [ 1.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy_estimation_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 1.8K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy.vcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 4.0K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 1.9M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.repeats.bam<br>
+│&nbsp;&nbsp; ├── [ 4.3K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.repeats.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 3.9K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.repeats.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 48K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.roh.bed<br>
+│&nbsp;&nbsp; ├── [ 114] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.roh_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 242K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg<br>
+│&nbsp;&nbsp; ├── [ 69K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg.bw<br>
+│&nbsp;&nbsp; ├── [ 247K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg.called<br>
+│&nbsp;&nbsp; ├── [ 259K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg.called.merged<br>
+│&nbsp;&nbsp; ├── [ 223] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.smn.tsv<br>
+│&nbsp;&nbsp; ├── [ 1.7K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.snperror-sampler.log<br>
+│&nbsp;&nbsp; ├── [ 535] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.sv_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 1.1M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.sv.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 121K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.sv.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 19M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.bw<br>
+│&nbsp;&nbsp; ├── [ 22M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.diploid.bw<br>
+│&nbsp;&nbsp; ├── [ 31M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.gc-corrected.gz<br>
+│&nbsp;&nbsp; ├── [ 25M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.gz<br>
+│&nbsp;&nbsp; ├── [ 1.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.targeted.json<br>
+│&nbsp;&nbsp; ├── [ 22M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.tn.bw<br>
+│&nbsp;&nbsp; ├── [ 37M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.tn.tsv.gz<br>
+│&nbsp;&nbsp; ├── [ 1.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.trimmer_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 7.2K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.vc_hethom_ratio_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 2.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.vc_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 2.8K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_contig_mean_cov.csv<br>
+│&nbsp;&nbsp; ├── [ 2.1K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_coverage_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 16K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_fine_hist.csv<br>
+│&nbsp;&nbsp; ├── [ 558] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_hist.csv<br>
+│&nbsp;&nbsp; └── [ 43] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_overall_mean_cov.csv<br>
+└── [ 11K] logs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 258] bcl2fastq.dragen_events.csv<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1.1K] cmdline_1198902.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 608] cmdline_1608030.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1.1K] cmdline_3358454.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 219] DCKR_RG-stderr_1608030.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 461] DCKR_RG-stdout_1608030.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 250] ora.dragen_events.csv<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1] ORA-stderr_1198902.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 3.9K] ORA-stdout_1198902.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1] P2FSW-stderr_3358454.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── [ 2.4K] P2FSW-stdout_3358454.txt</p>
+</blockquote>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>👆 Generated by <code>tree --du</code> which shows the actual file sizes instead of disk space used.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="per-sequencing-run" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="per-sequencing-run"><span class="header-section-number">2.5.2</span> Per sequencing run</h3>
+<p>Each sequencing run can have different set up.</p>
+<ul>
+<li>Side:
+<ul>
+<li>single side (single flowcell)</li>
+<li>both sides (dual flowcell)</li>
+</ul></li>
+<li>Flowcell type:
+<ul>
+<li>1.5B</li>
+<li>10B</li>
+<li>25B</li>
+</ul></li>
+<li>Secondary analysis:
+<ul>
+<li>BCL Convert</li>
+<li>DRAGEN Germline
+<ul>
+<li>None</li>
+<li>SmallVariantCaller</li>
+<li>AllVariantCallers (Small, Structural, CNV, Repeat Expansions, ROH, CYP2D6.)</li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="single-25b-flowcell-bcl-convert" class="level4" data-number="2.5.2.1">
+<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="single-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.1</span> Single 25B flowcell; BCL Convert</h4>
+<p>Single 25B flowcell (64 samples), secondary analysis is BCL Convert, <em>i.e.</em> only demultiplexing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>3.9 TB</code> data (<code>5.1 TB</code> on disk).</p>
+</div>
+</div>
+</section>
+<section id="dual-25b-flowcell-bcl-convert" class="level4" data-number="2.5.2.2">
+<h4 data-number="2.5.2.2" class="anchored" data-anchor-id="dual-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.2</span> Dual 25B flowcell; BCL Convert</h4>
+<p>Dual 25B flowcell (128 samples), secondary analysis is BCL Convert, <em>i.e.</em> only demultiplexing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>7.8 TB</code> data (<code>10.2 TB</code> on disk).</p>
+</div>
+</div>
+</section>
+<section id="dual-25b-flowcell-dragen-germline-allvariantcallers" class="level4" data-number="2.5.2.3">
+<h4 data-number="2.5.2.3" class="anchored" data-anchor-id="dual-25b-flowcell-dragen-germline-allvariantcallers"><span class="header-section-number">2.5.2.3</span> Dual 25B flowcell; DRAGEN Germline, AllVariantCallers</h4>
+<p>Dual 25B flowcell (128 samples), secondary analysis is DRAGEN Germline with all variant callers enabled, <em>i.e.</em> doing both demultiplexing and mapping, variant calling with Onboard DRAGEN.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>10.5 TB</code> data (<code>14.0 TB</code> on disk).</p>
+</div>
+</div>
+</section>
+<section id="section" class="level4" data-number="2.5.2.4">
+<h4 data-number="2.5.2.4" class="anchored" data-anchor-id="section"><span class="header-section-number">2.5.2.4</span> </h4>
+<div id="5fe4ff65" class="cell" data-cache="true" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>                            <div id="1eab338a-0884-4d47-8d98-d1f6b747293b" class="plotly-graph-div" style="height:600px; width:500px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("1eab338a-0884-4d47-8d98-d1f6b747293b")) {                    Plotly.newPlot(                        "1eab338a-0884-4d47-8d98-d1f6b747293b",                        [{"boxpoints":"all","name":"analyses-work","y":[63,63,66,66,66,66,67,67,67,67,67,68,68,68,68,68,68,68,69,69,69,69,69,69,69,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,71,71,71,71,71,71,71,71,71,71,71,71,71,71,72,72,72,72,72,72,72,72,73,73,73,73,73,73,73,73,73,74,74,74,74,74,74,75,75,75,75,75,76,76,76,77,77,77,78,78,80,80,82,143],"type":"box","hovertemplate":"Size: %{y} GB"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(51,51,51)"},"error_y":{"color":"rgb(51,51,51)"},"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"baxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"colorscale":{"sequential":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"sequentialminus":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]]},"colorway":["#F8766D","#A3A500","#00BF7D","#00B0F6","#E76BF3"],"font":{"color":"rgb(51,51,51)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"rgb(237,237,237)","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"rgb(237,237,237)","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","radialaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"baxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","caxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"}}},"title":{"text":"Analysis work directories size (GB)","x":0.5},"yaxis":{"title":{"text":"Size (GB)"}},"height":600,"width":500},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('1eab338a-0884-4d47-8d98-d1f6b747293b');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
