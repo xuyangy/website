@@ -1,0 +1,33 @@
+Folder,Parent,Size,DisplaySize
+boston,"",0,228 TiB
+diag,boston,0,113 TiB
+runScratch,boston,0,107 TiB
+projects,boston,3.74,3.74 TiB
+home,boston,2.82,2.82 TiB
+common,boston,1.54,1.54 TiB
+runs,diag,47.4,47.4 TiB
+production,diag,0,34.3 TiB
+transfer,diag,0,16.3 TiB
+nscDelivery,diag,10.4,10.4 TiB
+staging,diag,0,4.88 TiB
+diagInternal,diag,1.88,1.88 TiB
+data,production,33.9,33.9 TiB
+sw,production,0.297,297 GiB
+reference,production,0.0639,63.9 GiB
+logs,production,0.557,557 GiB
+thirdparty,production,0.148,148 GiB
+production ,transfer,15.4,15.4 TiB
+data ,staging,4.54,4.54 TiB
+sw ,staging,0.285,285 GiB
+reference ,staging,0.0675,67.5 GiB
+NovaSeqX,runScratch,45.7,45.7 TiB
+analysis,runScratch,37.1,37.1 TiB
+demultiplexed,runScratch,20.7,20.7 TiB
+processed,runScratch,1.58,1.58 TiB
+ONT,runScratch,1.02,1.02 TiB
+UserData,runScratch,0.254,254 GiB
+test,runScratch,0.086,86 GiB
+PGT,runScratch,0.0205,20.5 GiB
+Upgrade_software,runScratch,0.0222,22.2 GiB
+mik_data,runScratch,0.0125,12.5 GiB
+imm_data,runScratch,0.00453,4.53 GiB
