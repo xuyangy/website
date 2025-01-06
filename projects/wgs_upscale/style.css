@@ -43,3 +43,7 @@ text.taskTextOutside1 {
 .commonDir {
     color: lightgray;
 }
+
+.mono {
+    font-family: courier;
+}
