@@ -239,7 +239,43 @@ require(['plotly'], function(Plotly) {
   <li><a href="#capacity-breakdown" id="toc-capacity-breakdown" class="nav-link" data-scroll-target="#capacity-breakdown"><span class="header-section-number">2.1</span> Capacity breakdown</a></li>
   <li><a href="#usable-capacity" id="toc-usable-capacity" class="nav-link" data-scroll-target="#usable-capacity"><span class="header-section-number">2.2</span> Usable capacity</a></li>
   <li><a href="#storage-volumes" id="toc-storage-volumes" class="nav-link" data-scroll-target="#storage-volumes"><span class="header-section-number">2.3</span> Storage volumes</a></li>
-  <li><a href="#used-storage-breakdown" id="toc-used-storage-breakdown" class="nav-link" data-scroll-target="#used-storage-breakdown"><span class="header-section-number">2.4</span> Used storage breakdown</a></li>
+  <li><a href="#used-storage-breakdown" id="toc-used-storage-breakdown" class="nav-link" data-scroll-target="#used-storage-breakdown"><span class="header-section-number">2.4</span> Used storage breakdown</a>
+  <ul>
+  <li><a href="#boston-228-tib" id="toc-boston-228-tib" class="nav-link" data-scroll-target="#boston-228-tib"><span class="header-section-number">2.4.1</span> <span style="font-family:courier">/boston</span> (228 TiB)</a></li>
+  <li><a href="#bostondiag" id="toc-bostondiag" class="nav-link" data-scroll-target="#bostondiag"><span class="header-section-number">2.4.1.1</span> <span id="boston-diag" style="font-family:courier">/boston/diag</span></a>
+  <ul>
+  <li><a href="#bostondiagproduction" id="toc-bostondiagproduction" class="nav-link" data-scroll-target="#bostondiagproduction"><span class="header-section-number">2.4.1.1.1</span> <span id="boston-diag-production" style="font-family:courier">/boston/diag/production</span></a></li>
+  <li><a href="#bostondiagtransfer" id="toc-bostondiagtransfer" class="nav-link" data-scroll-target="#bostondiagtransfer"><span class="header-section-number">2.4.1.1.2</span> <span id="boston-diag-transfer" style="font-family:courier">/boston/diag/transfer</span></a></li>
+  <li><a href="#bostondiagstaging" id="toc-bostondiagstaging" class="nav-link" data-scroll-target="#bostondiagstaging"><span class="header-section-number">2.4.1.1.3</span> <span id="boston-diag-staging" style="font-family:courier">/boston/diag/staging</span></a></li>
+  </ul></li>
+  <li><a href="#bostonrunscratch" id="toc-bostonrunscratch" class="nav-link" data-scroll-target="#bostonrunscratch"><span class="header-section-number">2.4.1.2</span> <span id="boston-runscratch" style="font-family:courier">/boston/runScratch</span></a></li>
+  </ul></li>
+  <li><a href="#expected-data" id="toc-expected-data" class="nav-link" data-scroll-target="#expected-data"><span class="header-section-number">2.5</span> Expected data</a>
+  <ul>
+  <li><a href="#per-sample" id="toc-per-sample" class="nav-link" data-scroll-target="#per-sample"><span class="header-section-number">2.5.1</span> Per sample</a>
+  <ul>
+  <li><a href="#bcl-convert" id="toc-bcl-convert" class="nav-link" data-scroll-target="#bcl-convert"><span class="header-section-number">2.5.1.1</span> BCL Convert</a>
+  <ul class="collapse">
+  <li><a href="#novaseqx-generated-data" id="toc-novaseqx-generated-data" class="nav-link" data-scroll-target="#novaseqx-generated-data"><span class="header-section-number">2.5.1.1.1</span> NovaSeqX generated data</a></li>
+  <li><a href="#inhouse-pipelines-on-external-dragen" id="toc-inhouse-pipelines-on-external-dragen" class="nav-link" data-scroll-target="#inhouse-pipelines-on-external-dragen"><span class="header-section-number">2.5.1.1.2</span> Inhouse pipelines on external DRAGEN</a>
+  <ul class="collapse">
+  <li><a href="#analyses-work-folder-size" id="toc-analyses-work-folder-size" class="nav-link" data-scroll-target="#analyses-work-folder-size"><span class="header-section-number">2.5.1.1.2.1</span> analyses-work folder size</a></li>
+  <li><a href="#analyses-results-folder-size" id="toc-analyses-results-folder-size" class="nav-link" data-scroll-target="#analyses-results-folder-size"><span class="header-section-number">2.5.1.1.2.2</span> analyses-results folder size</a></li>
+  <li><a href="#ella-incoming-folder-size" id="toc-ella-incoming-folder-size" class="nav-link" data-scroll-target="#ella-incoming-folder-size"><span class="header-section-number">2.5.1.1.2.3</span> ella-incoming folder size</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#dragen-germline" id="toc-dragen-germline" class="nav-link" data-scroll-target="#dragen-germline"><span class="header-section-number">2.5.1.2</span> DRAGEN Germline</a>
+  <ul class="collapse">
+  <li><a href="#sec-analysis-folder" id="toc-sec-analysis-folder" class="nav-link" data-scroll-target="#sec-analysis-folder"><span class="header-section-number">2.5.1.2.1</span> Pipeline output files per sample</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#per-sequencing-run" id="toc-per-sequencing-run" class="nav-link" data-scroll-target="#per-sequencing-run"><span class="header-section-number">2.5.2</span> Per sequencing run</a>
+  <ul>
+  <li><a href="#single-25b-flowcell-bcl-convert" id="toc-single-25b-flowcell-bcl-convert" class="nav-link" data-scroll-target="#single-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.1</span> Single 25B flowcell; BCL Convert</a></li>
+  <li><a href="#dual-25b-flowcell-bcl-convert" id="toc-dual-25b-flowcell-bcl-convert" class="nav-link" data-scroll-target="#dual-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.2</span> Dual 25B flowcell; BCL Convert</a></li>
+  <li><a href="#dual-25b-flowcell-dragen-germline-allvariantcallers" id="toc-dual-25b-flowcell-dragen-germline-allvariantcallers" class="nav-link" data-scroll-target="#dual-25b-flowcell-dragen-germline-allvariantcallers"><span class="header-section-number">2.5.2.3</span> Dual 25B flowcell; DRAGEN Germline, AllVariantCallers</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -366,13 +402,24 @@ document.addEventListener('DOMContentLoaded', () => {
 </section>
 <section id="used-storage-breakdown" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="used-storage-breakdown"><span class="header-section-number">2.4</span> Used storage breakdown</h2>
-<div id="cell-fig-nsc_storage_used" class="cell" data-execution_count="1">
-<div id="fig-nsc_storage_used" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-nsc_storage_used-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>                            <div id="f103eb74-a18b-4e92-a205-78b776d747dc" class="plotly-graph-div" style="height:900px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("f103eb74-a18b-4e92-a205-78b776d747dc")) {                    Plotly.newPlot(                        "f103eb74-a18b-4e92-a205-78b776d747dc",                        [{"branchvalues":"remainder","domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})","labels":["boston","diag","runScratch","projects","yvans","paalmbj","home","steffanb","common","repo","tools","runs","20241127_LH00534_0073_A22JMF5LT4","20241220_LH00534_0087_A22JMH2LT4","production","transfer","nscDelivery","241213_LH00534.A.Project_Diag-wgs437-2024-12-10","241213_LH00534.B.Project_Diag-wgs435-2024-12-03","staging","diagInternal","data","analyses-work","analyses-results","samples","sw","reference","logs","thirdparty","production ","transferred","normal","urgent","high","data ","sw ","reference ","NovaSeqX","processed ","20241209_LH00770_0001_B22JKHMLT4","20241209_LH00770_0002_A22JMNMLT4","analysis","projects ","Djurovic-DNA1-2024-03-01","tomte","pipelines","demultiplexed","completed","internal","processed","241210_A01447_0591_AHLY27DRX5","241210_A01447_0592_BHM3CMDRX5","241129_M01334_0208_000000000-LRV8G","ONT","UserData","test","PGT","Array_output","DMAP","Upgrade_software","mik_data","imm_data"],"name":"","parents":["","boston","boston","boston","projects","projects","boston","home","boston","common","common","diag","runs","runs","diag","diag","diag","nscDelivery","nscDelivery","diag","diag","production","data","data","data","production","production","production","production","transfer","production ","production ","production ","production ","staging","staging","staging","runScratch","NovaSeqX","NovaSeqX","NovaSeqX","runScratch","analysis","projects ","projects ","analysis","runScratch","demultiplexed","demultiplexed","runScratch","processed","processed","processed","runScratch","runScratch","runScratch","runScratch","PGT","PGT","runScratch","runScratch","runScratch"],"values":[0.0,0.0,0.0,0.0,3.74,0.138,0.75,2.07,0.253,0.768,0.519,39.53,3.94,3.93,0.0,0.9,7.56,1.71,1.23,0.0,1.88,0.0,19.6,13.4,0.924,0.297,0.0639,0.557,0.148,0.0,12.4,1.0,1.0,1.0,4.54,0.285,0.0675,14.5,21.7,4.87,4.6,0.1,3.6,22.0,10.7,0.814,0.1,20.7,0.0613,1.183,0.198,0.183,0.0154,1.02,0.254,0.086,0.001,0.0149,0.0046,0.0222,0.0125,0.00453],"type":"sunburst","text":["228 TiB","113 TiB","107 TiB","3.74 TiB","3.74 TiB","138 MiB","2.82 TiB","2.07 TiB","1.54 TiB","768 GiB","519 GiB","47.4 TiB","3.94 TiB","3.93 TiB","34.3 TiB","16.3 TiB","10.4 TiB","1.71 TiB","1.23 TiB","4.88 TiB","1.88 TiB","33.9 TiB","19.6 TiB","13.4 TiB","924 GiB","297 GiB","63.9 GiB","557 GiB","148 GiB","15.4 TiB","12.4 TiB","1 TiB","1 TiB","1 TiB","4.54 TiB","285 GiB","67.5 GiB","45.7 TiB","21.7 TiB","4.87 TiB","4.6 TiB","37.1 TiB","36.3 TiB","22 TiB","10.7 TiB","814 GiB","20.7 TiB","20.7 TiB","61.3 GiB","1.58 TiB","198 GiB","183 GiB","15.4 GiB","1.02 TiB","254 GiB","86 GiB","20.5 GiB","14.9 GiB","46 GiB","22.2 GiB","12.5 GiB","4.53 GiB"]}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"legend":{"tracegroupgap":0},"margin":{"t":20,"l":0,"r":0,"b":0},"height":900},                        {"responsive": true}                    ).then(function(){
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">As of Dec 29, 2024, 12:00 PM:</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The used storage as of Dec 29, 2024, 12:00 PM is <code>228 TiB</code>. Details are as follows:</p>
+</div>
+</div>
+<div id="025a0274" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>                            <div id="55a4f0cb-0518-4afa-bc6b-865f37763388" class="plotly-graph-div" style="height:900px; width:1050px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("55a4f0cb-0518-4afa-bc6b-865f37763388")) {                    Plotly.newPlot(                        "55a4f0cb-0518-4afa-bc6b-865f37763388",                        [{"branchvalues":"remainder","domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})","labels":["boston","diag","runScratch","projects","yvans","paalmbj","home","steffanb","common","repo","tools","runs","20241127_LH00534_0073_A22JMF5LT4","20241220_LH00534_0087_A22JMH2LT4","production","transfer","nscDelivery","241213_LH00534.A.Project_Diag-wgs437-2024-12-10","241213_LH00534.B.Project_Diag-wgs435-2024-12-03","staging","diagInternal","data","analyses-work","analyses-results","samples","sw","reference","logs","thirdparty","production ","transferred","normal","urgent","high","data ","sw ","reference ","NovaSeqX","processed ","20241209_LH00770_0001_B22JKHMLT4","20241209_LH00770_0002_A22JMNMLT4","analysis","projects ","Djurovic-DNA1-2024-03-01","tomte","pipelines","demultiplexed","completed","internal","processed","241210_A01447_0591_AHLY27DRX5","241210_A01447_0592_BHM3CMDRX5","241129_M01334_0208_000000000-LRV8G","ONT","UserData","test","PGT","Array_output","DMAP","Upgrade_software","mik_data","imm_data"],"name":"","parents":["","boston","boston","boston","projects","projects","boston","home","boston","common","common","diag","runs","runs","diag","diag","diag","nscDelivery","nscDelivery","diag","diag","production","data","data","data","production","production","production","production","transfer","production ","production ","production ","production ","staging","staging","staging","runScratch","NovaSeqX","NovaSeqX","NovaSeqX","runScratch","analysis","projects ","projects ","analysis","runScratch","demultiplexed","demultiplexed","runScratch","processed","processed","processed","runScratch","runScratch","runScratch","runScratch","PGT","PGT","runScratch","runScratch","runScratch"],"values":[0.0,0.0,0.0,0.0,3.74,0.138,0.75,2.07,0.253,0.768,0.519,39.53,3.94,3.93,0.0,0.9,7.56,1.71,1.23,0.0,1.88,0.0,19.6,13.4,0.924,0.297,0.0639,0.557,0.148,0.0,12.4,1.0,1.0,1.0,4.54,0.285,0.0675,14.5,21.7,4.87,4.6,0.1,3.6,22.0,10.7,0.814,0.1,20.7,0.0613,1.183,0.198,0.183,0.0154,1.02,0.254,0.086,0.001,0.0149,0.0046,0.0222,0.0125,0.00453],"type":"sunburst","text":["228 TiB","113 TiB","107 TiB","3.74 TiB","3.74 TiB","138 MiB","2.82 TiB","2.07 TiB","1.54 TiB","768 GiB","519 GiB","47.4 TiB","3.94 TiB","3.93 TiB","34.3 TiB","16.3 TiB","10.4 TiB","1.71 TiB","1.23 TiB","4.88 TiB","1.88 TiB","33.9 TiB","19.6 TiB","13.4 TiB","924 GiB","297 GiB","63.9 GiB","557 GiB","148 GiB","15.4 TiB","12.4 TiB","1 TiB","1 TiB","1 TiB","4.54 TiB","285 GiB","67.5 GiB","45.7 TiB","21.7 TiB","4.87 TiB","4.6 TiB","37.1 TiB","36.3 TiB","22 TiB","10.7 TiB","814 GiB","20.7 TiB","20.7 TiB","61.3 GiB","1.58 TiB","198 GiB","183 GiB","15.4 GiB","1.02 TiB","254 GiB","86 GiB","20.5 GiB","14.9 GiB","46 GiB","22.2 GiB","12.5 GiB","4.53 GiB"]}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"legend":{"tracegroupgap":0},"margin":{"t":20,"l":0,"r":0,"b":20},"height":900,"width":1050},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('f103eb74-a18b-4e92-a205-78b776d747dc');
+var gd = document.getElementById('55a4f0cb-0518-4afa-bc6b-865f37763388');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -396,14 +443,758 @@ if (outputEl) {{
 
                         })                };                });            </script>        </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nsc_storage_used-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Used storage
-</figcaption>
-</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The size of <code>boston/diag/production/data/samples</code> folder (with 255 sample folders in it) is very small (924 GiB) due to the big files (mainly <code>.fastq.ora</code> files) are hardlinks.</p>
+</div>
+</div>
+<section id="boston-228-tib" class="level3" style="font-family:courier" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="boston-228-tib"><span class="header-section-number">2.4.1</span> <span style="font-family:courier">/boston</span> (228 TiB)</h3>
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/</span><a href="#boston-diag">diag</a></td>
+<td>96.9 TiB</td>
+<td>51.8%</td>
+<td>113 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/</span><a href="#boston-runscratch">runScrach</a></td>
+<td>83.1 TiB</td>
+<td>44.4%</td>
+<td>107 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/</span>projects</td>
+<td>2.87 TiB</td>
+<td>1.5%</td>
+<td>3.74 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/</span>home</td>
+<td>2.77 TiB</td>
+<td>1.5%</td>
+<td>2.82 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/</span>common</td>
+<td>1.42 TiB</td>
+<td>0.8%</td>
+<td>1.54 TiB</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bostondiag" class="level4" data-number="2.4.1.1">
+<h4 data-number="2.4.1.1" class="anchored" data-anchor-id="bostondiag"><span class="header-section-number">2.4.1.1</span> <span id="boston-diag" style="font-family:courier">/boston/diag</span></h4>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span>runs</td>
+<td>35.8 TiB</td>
+<td>37.0%</td>
+<td>47.4 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span><a href="#boston-diag-production">production</a></td>
+<td>33.8 TiB</td>
+<td>34.9%</td>
+<td>34.3 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span><a href="#boston-diag-transfer">transfer</a></td>
+<td>15.6 TiB</td>
+<td>16.1%</td>
+<td>16.3 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span>nscDelivery</td>
+<td>7.82 TiB</td>
+<td>8.1%</td>
+<td>10.4 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span><a href="#boston-diag-staging">staging</a></td>
+<td>3.84 TiB</td>
+<td>4.0%</td>
+<td>4.88 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span>diagInternal</td>
+<td>1.48 GiB</td>
+<td>0.0%</td>
+<td>1.88 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="bostondiagproduction" class="level5" data-number="2.4.1.1.1">
+<h5 data-number="2.4.1.1.1" class="anchored" data-anchor-id="bostondiagproduction"><span class="header-section-number">2.4.1.1.1</span> <span id="boston-diag-production" style="font-family:courier">/boston/diag/production</span></h5>
+<div style="font-family:courier">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/production/</span>data</td>
+<td>33.5 TiB</td>
+<td>99.1%</td>
+<td>33.9 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/production/</span>sw</td>
+<td>238 GiB</td>
+<td>0.7%</td>
+<td>297 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/production/</span>reference</td>
+<td>74.3 GiB</td>
+<td>0.2%</td>
+<td>63.9 GiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/production/</span>logs</td>
+<td>3.32 GiB</td>
+<td>0.0%</td>
+<td>557 MiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/production/</span>.thirdparty</td>
+<td>110 MiB</td>
+<td>0.0%</td>
+<td>148 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bostondiagtransfer" class="level5" data-number="2.4.1.1.2">
+<h5 data-number="2.4.1.1.2" class="anchored" data-anchor-id="bostondiagtransfer"><span class="header-section-number">2.4.1.1.2</span> <span id="boston-diag-transfer" style="font-family:courier">/boston/diag/transfer</span></h5>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/transfer/</span>production</td>
+<td>14.8 TiB</td>
+<td>97.7%</td>
+<td>15.4 TiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bostondiagstaging" class="level5" data-number="2.4.1.1.3">
+<h5 data-number="2.4.1.1.3" class="anchored" data-anchor-id="bostondiagstaging"><span class="header-section-number">2.4.1.1.3</span> <span id="boston-diag-staging" style="font-family:courier">/boston/diag/staging</span></h5>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span>staging/data</td>
+<td>3.53 TiB</td>
+<td>92.0%</td>
+<td>4.54 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/diag/</span>staging/sw</td>
+<td>237 GiB</td>
+<td>6.0%</td>
+<td>285 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/diag/</span>staging/reference</td>
+<td>77.5 GiB</td>
+<td>2.0%</td>
+<td>67.5 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="bostonrunscratch" class="level4" data-number="2.4.1.2">
+<h4 data-number="2.4.1.2" class="anchored" data-anchor-id="bostonrunscratch"><span class="header-section-number">2.4.1.2</span> <span id="boston-runscratch" style="font-family:courier">/boston/runScratch</span></h4>
+<div style="font-family:courier">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory</th>
+<th>Logical</th>
+<th>%use of Parent Directory</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>NovaSeqX</td>
+<td>34.5 TiB</td>
+<td>41.5%</td>
+<td>45.7 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>analysis</td>
+<td>38.8 TiB</td>
+<td>37.0%</td>
+<td>37.1 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>demultiplexed</td>
+<td>15.6 TiB</td>
+<td>18.8%</td>
+<td>20.7 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>processed</td>
+<td>1.03 TiB</td>
+<td>1.2%</td>
+<td>1.58 TiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>ONT</td>
+<td>738 GiB</td>
+<td>0.9%</td>
+<td>1.02 TiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>UserData</td>
+<td>244 GiB</td>
+<td>0.3%</td>
+<td>254 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>test</td>
+<td>64.7 GiB</td>
+<td>0.1%</td>
+<td>86.1 GiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>PGT</td>
+<td>16.7 GiB</td>
+<td>0.0%</td>
+<td>20.5 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>Upgrade_software</td>
+<td>16.7 GiB</td>
+<td>0.0%</td>
+<td>22.2 GiB</td>
+</tr>
+<tr class="even">
+<td><span class="commonDir">/boston/runScratch/</span>mik_data</td>
+<td>12.5 GiB</td>
+<td>0.0%</td>
+<td>12.5 GiB</td>
+</tr>
+<tr class="odd">
+<td><span class="commonDir">/boston/runScratch/</span>imm_data</td>
+<td>4.5 GiB</td>
+<td>0.0%</td>
+<td>4.53 GiB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="expected-data" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="expected-data"><span class="header-section-number">2.5</span> Expected data</h2>
+<p>The data generated by NovaSeqX depend on the settings of secondary analysis and the sequencing depth (current setting is 64 samples per flowcell).</p>
+<p>When use Onboard DRAGEN only for demultiplexing, inhouse pipelines must be run on external DRAGEN.</p>
+<section id="per-sample" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="per-sample"><span class="header-section-number">2.5.1</span> Per sample</h3>
+<section id="bcl-convert" class="level4" data-number="2.5.1.1">
+<h4 data-number="2.5.1.1" class="anchored" data-anchor-id="bcl-convert"><span class="header-section-number">2.5.1.1</span> BCL Convert</h4>
+<section id="novaseqx-generated-data" class="level5" data-number="2.5.1.1.1">
+<h5 data-number="2.5.1.1.1" class="anchored" data-anchor-id="novaseqx-generated-data"><span class="header-section-number">2.5.1.1.1</span> NovaSeqX generated data</h5>
+<p>The <code>{R1,R2}.fastq.ora</code> files per sample is about <code>14 GB</code> data (<code>18 GB</code> on disk).</p>
+<p>Other files such as BCL files, images, logs, reports, etc. is about <code>47 GB</code> data per sample (<code>63 GB</code> on disk).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span id="bcl-convert-data-1">In total, <code>61 GB</code> data per sample (<code>81 GB</code> on disk).</span></p>
+</div>
+</div>
+</section>
+<section id="inhouse-pipelines-on-external-dragen" class="level5" data-number="2.5.1.1.2">
+<h5 data-number="2.5.1.1.2" class="anchored" data-anchor-id="inhouse-pipelines-on-external-dragen"><span class="header-section-number">2.5.1.1.2</span> Inhouse pipelines on external DRAGEN</h5>
+<p>With BCL Convert only, we need to run inhouse pipelines on external DRAGEN which requires input data and also generates output data.</p>
+<p>Given the design of the inhouse pipelines, some files are duplicated in different locations.</p>
+<ol type="1">
+<li><p>Only 1 copy of any <em>fastq.ora</em> file is physically stored on boston, <em>i.e.,</em> not duplicated. A <em>fastq.ora</em> file appears in 4 different locations:</p>
+<ol class="example" type="1">
+<li><code>/boston/diag/nscDelivery</code></li>
+<li><code>/boston/diag/transfer/production/{normal,high,urgent}/samples</code> or <code>/boston/daig/transfer/production/transferred/{normal,high,urgent}/samples</code></li>
+<li><code>/boston/diag/production/data/samples</code></li>
+<li><code>/boston/diag/production/data/analyses-work/\*/result/\*/work</code></li>
+</ol>
+<p><span class="mono">1</span>, <span class="mono">2</span> and <span class="mono">3</span> are hardlinks; <span class="mono">4</span> is symlink of <span class="mono">3</span> (within <code>/boston/diag/produciton/data/analyses-work</code>, files are symlinked from the Nextflow <span class="mono">work</span> folder.)</p></li>
+<li><p>Files in <code>/boston/diag/produciton/data/analyses-results/{singles,trios}</code> are copies of that in <code>/boston/diag/produciton/data/analyses-work</code></p></li>
+<li><p>Files in <code>/boston/diag/transfer/production/{normal,high,urgent}/analyses-results/{singles,trios}</code> are copies of that in <code>/boston/diag/produciton/data/analyses-work</code></p></li>
+</ol>
+<section id="analyses-work-folder-size" class="level6" data-number="2.5.1.1.2.1">
+<h6 data-number="2.5.1.1.2.1" class="anchored" data-anchor-id="analyses-work-folder-size"><span class="header-section-number">2.5.1.1.2.1</span> analyses-work folder size</h6>
+<div id="e9858040" class="cell" data-cache="false" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>                            <div id="8280851a-5f11-4724-9fee-cb3daacfdf77" class="plotly-graph-div" style="height:900px; width:1050px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("8280851a-5f11-4724-9fee-cb3daacfdf77")) {                    Plotly.newPlot(                        "8280851a-5f11-4724-9fee-cb3daacfdf77",                        [{"boxpoints":"all","name":"basepipe(data)","y":[63,63,66,66,66,66,67,67,67,67,67,68,68,68,68,68,68,68,69,69,69,69,69,69,69,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,71,71,70,71,71,71,71,71,71,71,71,71,71,71,71,71,71,72,72,72,72,72,72,72,72,73,73,73,73,73,73,73,73,73,74,74,74,74,74,74,75,75,75,75,75,76,76,76,77,77,77,78,78,80,80,82],"type":"box"},{"boxpoints":"all","name":"basepipe(on disk)","y":[61,61,64,64,65,65,65,66,66,67,67,67,67,67,67,67,67,67,68,68,68,68,68,68,68,68,68,68,68,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,70,70,70,70,70,70,70,70,70,70,70,70,70,71,71,71,71,71,71,71,72,72,72,72,72,72,72,72,73,73,73,74,74,74,74,74,74,74,75,75,76,76,77,77,78,78,78,79],"type":"box"},{"boxpoints":"all","name":"triopipe(data)","y":[11,11,11,11,11,11,11,11,11,11,11,11,13],"type":"box"},{"boxpoints":"all","name":"triopipe(on disk)","y":[7.1,7.1,7.1,7.1,7.1,7.1,7.1,7.2,7.2,7.2,7.3,7.3,8.3],"type":"box"},{"boxpoints":"all","name":"annopipe(data)","y":[6.7,6.7,6.7,6.7,6.7,6.7,6.7,6.7,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.8,6.9,6.9,6.9,6.9,6.9,6.9,6.9,6.9,7.0,7.0,7.0,7.0,7.0,7.2,7.3,7.4,7.4,7.4,18,18,18,18,18,18,18,18,18,18,18,19,21],"type":"box"},{"boxpoints":"all","name":"annopipe(on disk)","y":[6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.1,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.2,6.3,6.3,6.3,6.4,6.4,6.4,6.5,6.6,6.7,6.7,6.7,17,17,17,17,17,17,17,17,17,17,17,17,19],"type":"box"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(51,51,51)"},"error_y":{"color":"rgb(51,51,51)"},"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"baxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"colorscale":{"sequential":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"sequentialminus":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]]},"colorway":["#F8766D","#A3A500","#00BF7D","#00B0F6","#E76BF3"],"font":{"color":"rgb(51,51,51)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"rgb(237,237,237)","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"rgb(237,237,237)","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","radialaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"baxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","caxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"}}},"title":{"text":"analyses-work directories size (GB)","x":0.5},"margin":{"t":50,"l":0,"r":0,"b":50},"yaxis":{"title":{"text":"Size (GB)"}},"height":900,"width":1050},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('8280851a-5f11-4724-9fee-cb3daacfdf77');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="1338d2ce" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p>Average analyses-work basepipe folder size is <code>71 GB</code> (<code>70 GB</code> on disk).</p>
+<p>Average analyses-work triopipe folder size is <code>11 GB</code> (<code>7 GB</code> on disk).</p>
+<p>Average analyses-work annopipe folder size is <code>9 GB</code> (<code>8 GB</code> on disk).</p>
+<p><span id="bcl-convert-data-analyses-work">Adding <a href="#bcl-convert-data-1">NovaSeqX generated data</a>, the total data per sample is <code>139 GB</code> (<code>157 GB</code> on disk).</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="analyses-results-folder-size" class="level6" data-number="2.5.1.1.2.2">
+<h6 data-number="2.5.1.1.2.2" class="anchored" data-anchor-id="analyses-results-folder-size"><span class="header-section-number">2.5.1.1.2.2</span> analyses-results folder size</h6>
+<div id="146f6d93" class="cell" data-cache="false" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>                            <div id="e2be444a-a8f2-4b1a-989e-6da09de433fe" class="plotly-graph-div" style="height:600px; width:1050px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("e2be444a-a8f2-4b1a-989e-6da09de433fe")) {                    Plotly.newPlot(                        "e2be444a-a8f2-4b1a-989e-6da09de433fe",                        [{"boxpoints":"all","name":"singles(data)","y":[48,48,51,51,51,51,52,52,52,52,52,52,52,52,53,53,53,53,53,53,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,56,56,56,56,56,56,56,56,56,56,56,57,57,57,57,57,57,58,58,58,58,58,58,58,59,59,59,59,59,60,60,60,60,60,61,61,61,62,62,63],"type":"box","hovertemplate":"Size: %{y} GB"},{"boxpoints":"all","name":"singles(on disk)","y":[48,48,51,51,51,51,52,52,52,52,52,52,52,52,53,53,53,53,53,53,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,56,56,56,56,56,56,56,56,56,56,56,57,57,57,57,57,57,58,58,58,58,58,58,58,59,59,59,59,59,60,60,60,60,60,61,61,61,62,62,63],"type":"box","hovertemplate":"Size: %{y} GB"},{"boxpoints":"all","name":"trios(data)","y":[2.6,2.6,2.6,2.6,2.6,2.6,2.6,2.7,2.7,2.7,2.7,2.7,3.1],"type":"box","hovertemplate":"Size: %{y} GB"},{"boxpoints":"all","name":"trios(on disk)","y":[2.6,2.6,2.6,2.6,2.6,2.6,2.6,2.7,2.7,2.7,2.7,2.7,3.1],"type":"box","hovertemplate":"Size: %{y} GB"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(51,51,51)"},"error_y":{"color":"rgb(51,51,51)"},"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"baxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"colorscale":{"sequential":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"sequentialminus":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]]},"colorway":["#F8766D","#A3A500","#00BF7D","#00B0F6","#E76BF3"],"font":{"color":"rgb(51,51,51)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"rgb(237,237,237)","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"rgb(237,237,237)","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","radialaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"baxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","caxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"}}},"title":{"text":"analyses-results directories size (GB)","x":0.5},"yaxis":{"title":{"text":"Size (GB)"}},"height":600,"width":1050},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('e2be444a-a8f2-4b1a-989e-6da09de433fe');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="5f713587" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p>Average analyses-results singles folder size is <code>55 GB</code> (<code>55 GB</code> on disk).</p>
+<p>Average analyses-results trios folder size is <code>2 GB</code> (<code>2 GB</code> on disk).</p>
+<p>Adding <a href="#bcl-convert-data-analyses-work">NovaSeqX generated data and analyses-work data</a>, and counting in the 2 duplicates of analyses-results, the total data per sample becomes <code>251 GB</code> (<code>269 GB</code> on disk).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ella-incoming-folder-size" class="level6" data-number="2.5.1.1.2.3">
+<h6 data-number="2.5.1.1.2.3" class="anchored" data-anchor-id="ella-incoming-folder-size"><span class="header-section-number">2.5.1.1.2.3</span> ella-incoming folder size</h6>
+<div id="64f3e6d9" class="cell" data-cache="false" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>                            <div id="fb38e1bf-0a29-4adc-abb9-1d0e10f732f5" class="plotly-graph-div" style="height:600px; width:1050px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("fb38e1bf-0a29-4adc-abb9-1d0e10f732f5")) {                    Plotly.newPlot(                        "fb38e1bf-0a29-4adc-abb9-1d0e10f732f5",                        [{"boxpoints":"all","name":"data","y":[3.3,3.4,3.7,4.2,4.4,5.2,5.5,6.3,6.6,7.0,7.2,7.6,7.6,7.8,8.0,9.3,9.5,9.7,9.9,10,11,11,11,12,12,14,15,15,18,25,25,26,28,30,31,34,34,35,36,43,66,66,67,128,128,129,464,469,470,470,470,473,474,475,478,480,481,487,565],"type":"box","hovertemplate":"Size: %{y} MB"},{"boxpoints":"all","name":"on disk","y":[3.9,4.1,4.3,4.8,4.9,5.6,6.1,6.7,7.0,7.4,7.7,8.0,8.0,8.2,8.3,9.7,9.9,9.9,11,11,11,11,11,12,13,14,15,16,18,25,25,26,29,31,31,34,34,35,36,43,67,67,68,128,129,130,466,470,471,471,471,475,475,477,479,482,482,489,566],"type":"box","hovertemplate":"Size: %{y} MB"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(51,51,51)"},"error_y":{"color":"rgb(51,51,51)"},"marker":{"line":{"color":"rgb(237,237,237)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"baxis":{"endlinecolor":"rgb(51,51,51)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(51,51,51)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"},"colorscale":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"tickcolor":"rgb(237,237,237)","ticklen":6,"ticks":"inside"}},"colorscale":{"sequential":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]],"sequentialminus":[[0,"rgb(20,44,66)"],[1,"rgb(90,179,244)"]]},"colorway":["#F8766D","#A3A500","#00BF7D","#00B0F6","#E76BF3"],"font":{"color":"rgb(51,51,51)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"rgb(237,237,237)","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"rgb(237,237,237)","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","radialaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"rgb(237,237,237)","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","zerolinecolor":"white"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"baxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"},"bgcolor":"rgb(237,237,237)","caxis":{"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside"}},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","showgrid":true,"tickcolor":"rgb(51,51,51)","ticks":"outside","title":{"standoff":15},"zerolinecolor":"white"}}},"title":{"text":"ella-incoming directories size (MB)","x":0.5},"yaxis":{"title":{"text":"Size (MB)"}},"height":600,"width":1050},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('fb38e1bf-0a29-4adc-abb9-1d0e10f732f5');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="78c4b4ab" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p>Average ella-incoming folder size is <code>126 MB</code> (<code>126 MB</code> on disk).</p>
+<p>The ella-incoming folder is small, so the total data per sample remains <code>251 GB</code> (<code>269 GB</code> on disk).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="dragen-germline" class="level4" data-number="2.5.1.2">
+<h4 data-number="2.5.1.2" class="anchored" data-anchor-id="dragen-germline"><span class="header-section-number">2.5.1.2</span> DRAGEN Germline</h4>
+<p>When secondary analysis is DRAGEN Germline with all variant callers, <em>i.e.</em> doing both demultiplexing and mapping, variant calling with Onboard DRAGEN.</p>
+<p>Each sample has about <code>20 GB</code> pipeline output data (<code>27 GB</code> on disk) in addition. See <a href="#sec-analysis-folder" class="quarto-xref">Section&nbsp;2.5.1.2.1</a> for details.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In total, <code>81 GB</code> data per sample (<code>108 GB</code> on disk).</p>
+<p>The inhouse pipeline and nsc-exporter changes to accommodate the DRAGEN Germline pipeline is not yet implemented. Some duplication of NovaSeqX generated data is expected.</p>
+</div>
+</div>
+<section id="sec-analysis-folder" class="level5" data-number="2.5.1.2.1">
+<h5 data-number="2.5.1.2.1" class="anchored" data-anchor-id="sec-analysis-folder"><span class="header-section-number">2.5.1.2.1</span> Pipeline output files per sample</h5>
+<div style="font-family: courier;font-size:0.7rem">
+<blockquote class="blockquote">
+<p>analysis/wgs435_HB12345678_b08a0667-b221-48c6-8d44-abb516a61a2b/germline_seq<br>
+├── [ 20G] germline_seq<br>
+│&nbsp;&nbsp; ├── [ 2.6M] report.html<br>
+│&nbsp;&nbsp; ├── [ 13M] sv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 6.1M] results<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 44K] stats<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 736] alignmentStatsSummary.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 20K] candidate_metrics.csv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 535] diploidSV.sv_metrics.csv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 4.4K] graph_metrics.csv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 9.0K] svCandidateGenerationStats.tsv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 6.7K] svCandidateGenerationStats.xml<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 1.7K] svLocusGraphStats.tsv<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 6.1M] variants<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 4.2M] candidateSV.vcf.gz<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 671K] candidateSV.vcf.gz.tbi<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 1.1M] diploidSV.vcf.gz<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 121K] diploidSV.vcf.gz.tbi<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 6.5M] workspace<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 56K] alignmentStats.xml<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 505] chromDepth.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 59K] edgeRuntimeLog.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 17K] genomeSegmentScanDebugInfo.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── [ 2.3K] logs<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 2.2K] config_log.txt<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── [ 6.4M] svLocusGraph.bin<br>
+│&nbsp;&nbsp; ├── [ 182K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.excluded_intervals.bed.gz<br>
+│&nbsp;&nbsp; ├── [ 457K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.gff3<br>
+│&nbsp;&nbsp; ├── [ 2.8K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.igv_session.xml<br>
+│&nbsp;&nbsp; ├── [ 793] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 70K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.vcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 18K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cnv.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ <span style="color:red">16G</span>] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cram<br>
+│&nbsp;&nbsp; ├── [ 1.3M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cram.crai<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cram.md5sum<br>
+│&nbsp;&nbsp; ├── [ 302] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cyp2b6.tsv<br>
+│&nbsp;&nbsp; ├── [ 283] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.cyp2d6.tsv<br>
+│&nbsp;&nbsp; ├── [ 420K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.fastqc_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 272K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.fragment_length_hist.csv<br>
+│&nbsp;&nbsp; ├── [ 185] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.gba.tsv<br>
+│&nbsp;&nbsp; ├── [ 2.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.gvcf_hethom_ratio_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 2.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.gvcf_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 46M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.baf.bw<br>
+│&nbsp;&nbsp; ├── [ <span style="color:red">3.8G</span>] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.gvcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.gvcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 1.2M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.gvcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 365M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.vcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 1.6M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.hard-filtered.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 16M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.improper.pairs.bw<br>
+│&nbsp;&nbsp; ├── [ 429] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.insert-stats.tab<br>
+│&nbsp;&nbsp; ├── [ 8.9K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.mapping_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 9.2K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.metrics.json<br>
+│&nbsp;&nbsp; ├── [ 39K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.pcr-model-0.log<br>
+│&nbsp;&nbsp; ├── [ 115] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.pcr-model.log<br>
+│&nbsp;&nbsp; ├── [ 1.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy_estimation_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 1.8K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 32] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy.vcf.gz.md5sum<br>
+│&nbsp;&nbsp; ├── [ 4.0K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.ploidy.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 1.9M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.repeats.bam<br>
+│&nbsp;&nbsp; ├── [ 4.3K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.repeats.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 3.9K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.repeats.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 48K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.roh.bed<br>
+│&nbsp;&nbsp; ├── [ 114] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.roh_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 242K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg<br>
+│&nbsp;&nbsp; ├── [ 69K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg.bw<br>
+│&nbsp;&nbsp; ├── [ 247K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg.called<br>
+│&nbsp;&nbsp; ├── [ 259K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.seg.called.merged<br>
+│&nbsp;&nbsp; ├── [ 223] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.smn.tsv<br>
+│&nbsp;&nbsp; ├── [ 1.7K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.snperror-sampler.log<br>
+│&nbsp;&nbsp; ├── [ 535] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.sv_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 1.1M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.sv.vcf.gz<br>
+│&nbsp;&nbsp; ├── [ 121K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.sv.vcf.gz.tbi<br>
+│&nbsp;&nbsp; ├── [ 19M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.bw<br>
+│&nbsp;&nbsp; ├── [ 22M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.diploid.bw<br>
+│&nbsp;&nbsp; ├── [ 31M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.gc-corrected.gz<br>
+│&nbsp;&nbsp; ├── [ 25M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.target.counts.gz<br>
+│&nbsp;&nbsp; ├── [ 1.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.targeted.json<br>
+│&nbsp;&nbsp; ├── [ 22M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.tn.bw<br>
+│&nbsp;&nbsp; ├── [ 37M] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.tn.tsv.gz<br>
+│&nbsp;&nbsp; ├── [ 1.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.trimmer_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 7.2K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.vc_hethom_ratio_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 2.4K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.vc_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 2.8K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_contig_mean_cov.csv<br>
+│&nbsp;&nbsp; ├── [ 2.1K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_coverage_metrics.csv<br>
+│&nbsp;&nbsp; ├── [ 16K] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_fine_hist.csv<br>
+│&nbsp;&nbsp; ├── [ 558] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_hist.csv<br>
+│&nbsp;&nbsp; └── [ 43] wgs435_HB12345678_3c52f4e7-826d-40dd-bd98-f4356deeb098.wgs_overall_mean_cov.csv<br>
+└── [ 11K] logs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 258] bcl2fastq.dragen_events.csv<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1.1K] cmdline_1198902.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 608] cmdline_1608030.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1.1K] cmdline_3358454.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 219] DCKR_RG-stderr_1608030.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 461] DCKR_RG-stdout_1608030.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 250] ora.dragen_events.csv<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1] ORA-stderr_1198902.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 3.9K] ORA-stdout_1198902.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── [ 1] P2FSW-stderr_3358454.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── [ 2.4K] P2FSW-stdout_3358454.txt</p>
+</blockquote>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>👆 Generated by <code>tree --du</code> which shows the actual file sizes instead of disk space used.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="per-sequencing-run" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="per-sequencing-run"><span class="header-section-number">2.5.2</span> Per sequencing run</h3>
+<p>Each sequencing run can have different set up.</p>
+<ul>
+<li>Flowcell side:
+<ul>
+<li>single side (single flowcell)</li>
+<li>both sides (dual flowcell)</li>
+</ul></li>
+<li>Flowcell type:
+<ul>
+<li>1.5B</li>
+<li>10B</li>
+<li>25B</li>
+</ul></li>
+<li>Secondary analysis:
+<ul>
+<li>BCL Convert</li>
+<li>DRAGEN Germline
+<ul>
+<li>variant calling mode = None</li>
+<li>variant calling mode = SmallVariantCaller</li>
+<li>variant calling mode = AllVariantCallers <em>(Small, Structural, CNV, Repeat Expansions, ROH, CYP2D6 etc.)</em></li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="single-25b-flowcell-bcl-convert" class="level4" data-number="2.5.2.1">
+<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="single-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.1</span> Single 25B flowcell; BCL Convert</h4>
+<p>Single 25B flowcell (64 samples), secondary analysis is BCL Convert, <em>i.e.</em> only demultiplexing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>3.9 TB</code> data (<code>5.1 TB</code> on disk).</p>
+</div>
+</div>
+</section>
+<section id="dual-25b-flowcell-bcl-convert" class="level4" data-number="2.5.2.2">
+<h4 data-number="2.5.2.2" class="anchored" data-anchor-id="dual-25b-flowcell-bcl-convert"><span class="header-section-number">2.5.2.2</span> Dual 25B flowcell; BCL Convert</h4>
+<p>Dual 25B flowcell (128 samples), secondary analysis is BCL Convert, <em>i.e.</em> only demultiplexing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>7.8 TB</code> data (<code>10.2 TB</code> on disk).</p>
+</div>
+</div>
+</section>
+<section id="dual-25b-flowcell-dragen-germline-allvariantcallers" class="level4" data-number="2.5.2.3">
+<h4 data-number="2.5.2.3" class="anchored" data-anchor-id="dual-25b-flowcell-dragen-germline-allvariantcallers"><span class="header-section-number">2.5.2.3</span> Dual 25B flowcell; DRAGEN Germline, AllVariantCallers</h4>
+<p>Dual 25B flowcell (128 samples), secondary analysis is DRAGEN Germline with all variant callers enabled, <em>i.e.</em> doing both demultiplexing and mapping, variant calling with Onboard DRAGEN.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>10.5 TB</code> data (<code>14.0 TB</code> on disk).</p>
 </div>
 </div>
 
 
+</section>
+</section>
 </section>
 </section>
 
