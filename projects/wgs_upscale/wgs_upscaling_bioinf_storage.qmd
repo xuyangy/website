@@ -34,6 +34,26 @@ execute:
     warning: false
 ---
 
+
+```{=html}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const targetElements = document.querySelectorAll('[id]');
+  targetElements.forEach(el => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && window.location.hash === '#' + el.id) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+    observer.observe(el);
+  });
+});
+</script>
+```
+
+
 # Background
 <hr>
 
