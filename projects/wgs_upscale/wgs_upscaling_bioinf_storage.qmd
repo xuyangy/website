@@ -25,10 +25,12 @@ format:
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+jupyter: python3
 comments: 
     hypothesis: false
 execute: 
-    cache: true
+    cleanup: false
+    cache: false
     echo: false
     message: false
     warning: false
@@ -264,7 +266,7 @@ Given the design of the inhouse pipelines, some files are duplicated in differen
 
 ###### analyses-work folder size
 ```{python}
-#| cache: true
+#| cache: false
 import plotly.graph_objects as go
 from numpy import mean
 
@@ -355,7 +357,7 @@ display(
 
 ###### analyses-results folder size
 ```{python}
-#| cache: true
+#| cache: false
 import plotly.graph_objects as go
 
 analyses_results_singles_data = [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
