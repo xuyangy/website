@@ -29,7 +29,6 @@ jupyter: python3
 comments: 
     hypothesis: false
 execute: 
-    cleanup: false
     cache: false
     echo: false
     message: false
