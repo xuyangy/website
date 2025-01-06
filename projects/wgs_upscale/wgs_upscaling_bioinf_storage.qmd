@@ -202,26 +202,42 @@ Current setting is 64 samples per flowcell.
 ### Per sample
 
 #### BCL Convert
-The `{R1,R2}.fastq.ora` files per sample is about `14 GB` (`18 GB` on disk).
+The `{R1,R2}.fastq.ora` files per sample is about `14 GB` data (`18 GB` on disk).
 
-Other files such as BCL files, images, logs, reports, etc. is about `47 GB` per sample (`63 GB` on disk).
+Other files such as BCL files, images, logs, reports, etc. is about `47 GB` data per sample (`63 GB` on disk).
 
 ::: {.callout-important}
 ### Data
-In total, `61 GB` per sample (`81 GB` on disk).
+In total, `61 GB` data per sample (`81 GB` on disk).
 :::
+
+Run pipeline on external DRAGEN.  
+The _fastq.ora_ file is not duplicated. Once _fastq.ora_ file appears in 4 different locations:  
+
+(@) `/boston/diag/nscDelivery`
+(@) `/boston/diag/transfer/production/{normal,high,urgent}/samples` or `/boston/daig/transfer/production/transferred/{normal,high,urgent}/samples`
+(@) `/boston/diag/production/data/samples`
+(@) `/boston/diag/production/data/analyses-work/\*/result/\*/work`
+
+`1`, `2`, `3` are hardlinks; `4` is symlink of `3`.
+
+Files in `/boston/diag/produciton/data/analyses-results/{singles,trios}` are copies of that in `/boston/diag/produciton/data/analyses-work`
+
+Files in `/boston/diag/transfer/production/{normal,high,urgent}/analyses-results/{singles,trios}` are copies of that in `/boston/diag/produciton/data/analyses-work`
+
+Within `/boston/diag/produciton/data/analyses-work`, files are symlinked from the Nextflow work folder.
 
 
 #### DRAGEN Germline
 When secondary analysis is DRAGEN Germline with all variant callers, _i.e._ doing both demultiplexing and mapping, variant
 calling with Onboard DRAGEN.
 
-Each sample has about `20 GB` pipeline output files (`27 GB` on disk) in addition.
+Each sample has about `20 GB` pipeline output data (`27 GB` on disk) in addition.
 See @sec-analysis-folder for details.
 
 ::: {.callout-important}
 ### Data
-In total, `81 GB` per sample (`108 GB` on disk).
+In total, `81 GB` data per sample (`108 GB` on disk).
 :::
 
 ##### Pipeline output files per sample{#sec-analysis-folder}
@@ -378,119 +394,172 @@ demultiplexing and mapping, variant calling with Onboard DRAGEN.
 `10.5 TB` data (`14.0 TB` on disk).
 :::
 
-#### 
+#### analyses-work folder size
+```{python}
+#| cache: false
+import plotly.graph_objects as go
+from numpy import mean
+
+analyses_work_dirs_basepipe_data = [63, 63, 66, 66, 66, 66, 67, 67, 67, 67, 67, 68, 68, 68, 68, 68, 68, 68, 69, 69, 69, 69, 69, 69, 69, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 71, 71, 70, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 72, 72, 72, 72, 72, 72, 72, 72, 73, 73, 73, 73, 73, 73, 73, 73, 73, 74, 74, 74, 74, 74, 74, 75, 75, 75, 75, 75, 76, 76, 76, 77, 77, 77, 78, 78, 80, 80, 82]
+mean_analyses_work_dirs_basepipe_data = mean(analyses_work_dirs_basepipe_data)
+analyses_work_dirs_basepipe_disk= [61, 61, 64, 64, 65, 65, 65, 66, 66, 67, 67, 67, 67, 67, 67, 67, 67, 67, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 71, 71, 71, 71, 71, 71, 71, 72, 72, 72, 72, 72, 72, 72, 72, 73, 73, 73, 74, 74, 74, 74, 74, 74, 74, 75, 75, 76, 76, 77, 77, 78, 78, 78, 79]
+analyses_work_dirs_triopipe_data = [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 13]
+analyses_work_dirs_triopipe_disk=[7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.2, 7.2, 7.2, 7.3, 7.3, 8.3]
+analyses_work_dirs_annopipe_data = [6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 7.0, 7.0, 7.0, 7.0, 7.0, 7.2, 7.3, 7.4, 7.4, 7.4, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 21]
+analyses_work_dirs_annopipe_disk=[6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.3, 6.3, 6.3, 6.4, 6.4, 6.4, 6.5, 6.6, 6.7, 6.7, 6.7, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 19]
+
+analyses_results_singles_data = [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
+analyses_results_singles_disk= [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
+analyses_results_trios_data = [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
+analyses_results_trios_disk= [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
+
+ella_incoming_disk = [3.9, 4.1, 4.3, 4.8, 4.9, 5.6, 6.1, 6.7, 7.0, 7.4, 7.7, 8.0, 8.0, 8.2, 8.3, 9.7, 9.9, 9.9, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 18, 25, 25, 26, 29, 31, 31, 34, 34, 35, 36, 43, 67, 67, 68, 128, 129, 130, 466, 470, 471, 471, 471, 475, 475, 477, 479, 482, 482, 489, 566]
+ella_incoming_data =  [3.3, 3.4, 3.7, 4.2, 4.4, 5.2, 5.5, 6.3, 6.6, 7.0, 7.2, 7.6, 7.6, 7.8, 8.0, 9.3, 9.5, 9.7, 9.9, 10, 11, 11, 11, 12, 12, 14, 15, 15, 18, 25, 25, 26, 28, 30, 31, 34, 34, 35, 36, 43, 66, 66, 67, 128, 128, 129, 464, 469, 470, 470, 470, 473, 474, 475, 478, 480, 481, 487, 565]
+
+
+fig1 = go.Figure(
+    data=[
+        go.Box(y=analyses_work_dirs_basepipe_data, boxpoints="all", name="basepipe(data)"),
+        go.Box(y=analyses_work_dirs_basepipe_disk, boxpoints="all", name="basepipe(on disk)"),
+        go.Box(y=analyses_work_dirs_triopipe_data, boxpoints="all", name="triopipe(data)"),
+        go.Box(y=analyses_work_dirs_triopipe_disk, boxpoints="all", name="triopipe(on disk)"),
+        go.Box(y=analyses_work_dirs_annopipe_data, boxpoints="all", name="annopipe(data)"),
+        go.Box(y=analyses_work_dirs_annopipe_disk, boxpoints="all", name="annopipe(on disk)"),
+    ]
+)
+fig1 = fig1.update_layout(
+    title="analyses-work directories size (GB)",
+    yaxis_title="Size (GB)",
+    height=900,
+    width=1050,
+    title_x=0.5,
+    margin=dict(t=50, l=0, r=0, b=50),
+    template="ggplot2",
+)
+# fig1 = fig1.update_traces(hovertemplate="Size: %{y} GB")
+fig1.show()
+
+```
+
+::: {.callout-important}
+### Data
+```{python}
+from IPython.display import display, Markdown
+
+display(
+    Markdown(
+        "Average analyses-work basepipe folder size is `%d GB` (`%d GB` on disk).\n\n"
+        "Average analyses-work triopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
+        "Average analyses-work annopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
+        % (
+            mean(analyses_work_dirs_basepipe_data),
+            mean(analyses_work_dirs_basepipe_disk),
+            mean(analyses_work_dirs_triopipe_data),
+            mean(analyses_work_dirs_triopipe_disk),
+            mean(analyses_work_dirs_annopipe_data),
+            mean(analyses_work_dirs_annopipe_disk),
+        )
+    )
+)
+```
+:::
+
+#### analyses-results folder size
 ```{python}
 #| cache: false
 import plotly.graph_objects as go
 
-analyses_work_dirs = [
-    63,
-    63,
-    66,
-    66,
-    66,
-    66,
-    67,
-    67,
-    67,
-    67,
-    67,
-    68,
-    68,
-    68,
-    68,
-    68,
-    68,
-    68,
-    69,
-    69,
-    69,
-    69,
-    69,
-    69,
-    69,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    70,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    71,
-    72,
-    72,
-    72,
-    72,
-    72,
-    72,
-    72,
-    72,
-    73,
-    73,
-    73,
-    73,
-    73,
-    73,
-    73,
-    73,
-    73,
-    74,
-    74,
-    74,
-    74,
-    74,
-    74,
-    75,
-    75,
-    75,
-    75,
-    75,
-    76,
-    76,
-    76,
-    77,
-    77,
-    77,
-    78,
-    78,
-    80,
-    80,
-    82,
-    143,
-]
-fig = go.Figure(
-    data=[go.Box(y=analyses_work_dirs, boxpoints="all", name="analyses-work")]
+analyses_results_singles_data = [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
+analyses_results_singles_disk= [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
+analyses_results_trios_data = [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
+analyses_results_trios_disk= [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
+
+ella_incoming_disk = [3.9, 4.1, 4.3, 4.8, 4.9, 5.6, 6.1, 6.7, 7.0, 7.4, 7.7, 8.0, 8.0, 8.2, 8.3, 9.7, 9.9, 9.9, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 18, 25, 25, 26, 29, 31, 31, 34, 34, 35, 36, 43, 67, 67, 68, 128, 129, 130, 466, 470, 471, 471, 471, 475, 475, 477, 479, 482, 482, 489, 566]
+ella_incoming_data =  [3.3, 3.4, 3.7, 4.2, 4.4, 5.2, 5.5, 6.3, 6.6, 7.0, 7.2, 7.6, 7.6, 7.8, 8.0, 9.3, 9.5, 9.7, 9.9, 10, 11, 11, 11, 12, 12, 14, 15, 15, 18, 25, 25, 26, 28, 30, 31, 34, 34, 35, 36, 43, 66, 66, 67, 128, 128, 129, 464, 469, 470, 470, 470, 473, 474, 475, 478, 480, 481, 487, 565]
+
+
+fig1 = go.Figure(
+    data=[
+        go.Box(y=analyses_results_singles_data, boxpoints="all", name="singles(data)"),
+        go.Box(y=analyses_results_singles_disk, boxpoints="all", name="singles(on disk)"),
+        go.Box(y=analyses_results_trios_data, boxpoints="all", name="trios(data)"),
+        go.Box(y=analyses_results_trios_disk, boxpoints="all", name="trios(on disk)"),
+    ]
 )
-fig.update_layout(
-    title="Analysis work directories size (GB)",
+fig1.update_layout(
+    title="analyses-results directories size (GB)",
     yaxis_title="Size (GB)",
     height=600,
-    width=500,
+    width=1050,
     title_x=0.5,
     template="ggplot2",
 )
-fig.update_traces(hovertemplate="Size: %{y} GB")
-fig.show()
+fig1.update_traces(hovertemplate="Size: %{y} GB")
+fig1.show()
 ```
+
+
+::: {.callout-important}
+### Data
+```{python}
+from IPython.display import display, Markdown
+
+display(
+    Markdown(
+        "Average analyses-results singles folder size is `%d GB` (`%d GB` on disk).\n\n"
+        "Average analyses-results trios folder size is `%d GB` (`%d GB` on disk).\n\n"
+        % (
+            mean(analyses_results_singles_data),
+            mean(analyses_results_singles_disk),
+            mean(analyses_results_trios_data),
+            mean(analyses_results_trios_disk),
+        )
+    )
+)
+```
+:::
+
+
+#### ella-incoming folder size
+```{python}
+#| cache: false
+import plotly.graph_objects as go
+
+ella_incoming_data =  [3.3, 3.4, 3.7, 4.2, 4.4, 5.2, 5.5, 6.3, 6.6, 7.0, 7.2, 7.6, 7.6, 7.8, 8.0, 9.3, 9.5, 9.7, 9.9, 10, 11, 11, 11, 12, 12, 14, 15, 15, 18, 25, 25, 26, 28, 30, 31, 34, 34, 35, 36, 43, 66, 66, 67, 128, 128, 129, 464, 469, 470, 470, 470, 473, 474, 475, 478, 480, 481, 487, 565]
+ella_incoming_disk = [3.9, 4.1, 4.3, 4.8, 4.9, 5.6, 6.1, 6.7, 7.0, 7.4, 7.7, 8.0, 8.0, 8.2, 8.3, 9.7, 9.9, 9.9, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 18, 25, 25, 26, 29, 31, 31, 34, 34, 35, 36, 43, 67, 67, 68, 128, 129, 130, 466, 470, 471, 471, 471, 475, 475, 477, 479, 482, 482, 489, 566]
+
+
+fig1 = go.Figure(
+    data=[
+        go.Box(y=ella_incoming_data, boxpoints="all", name="data"),
+        go.Box(y=ella_incoming_disk, boxpoints="all", name="on disk"),
+    ]
+)
+fig1.update_layout(
+    title="ella-incoming directories size (MB)",
+    yaxis_title="Size (MB)",
+    height=600,
+    width=1050,
+    title_x=0.5,
+    template="ggplot2",
+)
+fig1.update_traces(hovertemplate="Size: %{y} MB")
+fig1.show()
+```
+
+::: {.callout-important}
+### Data
+```{python}
+from IPython.display import display, Markdown
+
+display(
+    Markdown(
+        "Average ella-incoming folder size is `%d MB` (`%d MB` on disk).\n\n"
+        % (
+            mean(ella_incoming_data),
+            mean(ella_incoming_disk),
+        )
+    )
+)
+```
+:::
