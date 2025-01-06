@@ -203,6 +203,8 @@ Current setting is 64 samples per flowcell.
 ### Per sample
 
 #### BCL Convert
+
+##### NovaSeqX generated data
 The `{R1,R2}.fastq.ora` files per sample is about `14 GB` data (`18 GB` on disk).
 
 Other files such as BCL files, images, logs, reports, etc. is about `47 GB` data per sample (`63 GB` on disk).
@@ -212,7 +214,7 @@ Other files such as BCL files, images, logs, reports, etc. is about `47 GB` data
 [In total, `61 GB` data per sample (`81 GB` on disk).]{#bcl-convert-data-1}
 :::
 
-With BCL Convert only, we need to run inhouse pipelines on external DRAGEN.
+With BCL Convert only, we need to run inhouse pipelines on external DRAGEN which requires input data and also generates output data.
 
 Given the design of the inhouse pipelines, some files are duplicated in different locations.
 
@@ -238,29 +240,47 @@ from numpy import mean
 
 analyses_work_dirs_basepipe_data = [63, 63, 66, 66, 66, 66, 67, 67, 67, 67, 67, 68, 68, 68, 68, 68, 68, 68, 69, 69, 69, 69, 69, 69, 69, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 71, 71, 70, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 72, 72, 72, 72, 72, 72, 72, 72, 73, 73, 73, 73, 73, 73, 73, 73, 73, 74, 74, 74, 74, 74, 74, 75, 75, 75, 75, 75, 76, 76, 76, 77, 77, 77, 78, 78, 80, 80, 82]
 mean_analyses_work_dirs_basepipe_data = mean(analyses_work_dirs_basepipe_data)
-analyses_work_dirs_basepipe_disk= [61, 61, 64, 64, 65, 65, 65, 66, 66, 67, 67, 67, 67, 67, 67, 67, 67, 67, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 71, 71, 71, 71, 71, 71, 71, 72, 72, 72, 72, 72, 72, 72, 72, 73, 73, 73, 74, 74, 74, 74, 74, 74, 74, 75, 75, 76, 76, 77, 77, 78, 78, 78, 79]
+analyses_work_dirs_basepipe_disk = [61, 61, 64, 64, 65, 65, 65, 66, 66, 67, 67, 67, 67, 67, 67, 67, 67, 67, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 68, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 71, 71, 71, 71, 71, 71, 71, 72, 72, 72, 72, 72, 72, 72, 72, 73, 73, 73, 74, 74, 74, 74, 74, 74, 74, 75, 75, 76, 76, 77, 77, 78, 78, 78, 79]
 analyses_work_dirs_triopipe_data = [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 13]
-analyses_work_dirs_triopipe_disk=[7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.2, 7.2, 7.2, 7.3, 7.3, 8.3]
+analyses_work_dirs_triopipe_disk = [7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.2, 7.2, 7.2, 7.3, 7.3, 8.3]
 analyses_work_dirs_annopipe_data = [6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 7.0, 7.0, 7.0, 7.0, 7.0, 7.2, 7.3, 7.4, 7.4, 7.4, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 21]
-analyses_work_dirs_annopipe_disk=[6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.3, 6.3, 6.3, 6.4, 6.4, 6.4, 6.5, 6.6, 6.7, 6.7, 6.7, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 19]
+analyses_work_dirs_annopipe_disk = [6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.3, 6.3, 6.3, 6.4, 6.4, 6.4, 6.5, 6.6, 6.7, 6.7, 6.7, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 19]
+mean_analyses_work_data = \
+    mean(analyses_work_dirs_basepipe_data) \
+    + sum(analyses_work_dirs_triopipe_data) / len(analyses_work_dirs_basepipe_data) \
+    + sum(analyses_work_dirs_annopipe_data) / len(analyses_work_dirs_basepipe_data),
 
-analyses_results_singles_data = [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
-analyses_results_singles_disk= [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
-analyses_results_trios_data = [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
-analyses_results_trios_disk= [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
-
-ella_incoming_disk = [3.9, 4.1, 4.3, 4.8, 4.9, 5.6, 6.1, 6.7, 7.0, 7.4, 7.7, 8.0, 8.0, 8.2, 8.3, 9.7, 9.9, 9.9, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 18, 25, 25, 26, 29, 31, 31, 34, 34, 35, 36, 43, 67, 67, 68, 128, 129, 130, 466, 470, 471, 471, 471, 475, 475, 477, 479, 482, 482, 489, 566]
-ella_incoming_data =  [3.3, 3.4, 3.7, 4.2, 4.4, 5.2, 5.5, 6.3, 6.6, 7.0, 7.2, 7.6, 7.6, 7.8, 8.0, 9.3, 9.5, 9.7, 9.9, 10, 11, 11, 11, 12, 12, 14, 15, 15, 18, 25, 25, 26, 28, 30, 31, 34, 34, 35, 36, 43, 66, 66, 67, 128, 128, 129, 464, 469, 470, 470, 470, 473, 474, 475, 478, 480, 481, 487, 565]
-
+mean_analyses_work_disk = \
+    mean(analyses_work_dirs_basepipe_disk) \
+    + sum(analyses_work_dirs_triopipe_disk) / len(analyses_work_dirs_basepipe_disk) \
+    + sum(analyses_work_dirs_annopipe_disk) / len(analyses_work_dirs_basepipe_disk),
 
 fig1 = go.Figure(
     data=[
-        go.Box(y=analyses_work_dirs_basepipe_data, boxpoints="all", name="basepipe(data)"),
-        go.Box(y=analyses_work_dirs_basepipe_disk, boxpoints="all", name="basepipe(on disk)"),
-        go.Box(y=analyses_work_dirs_triopipe_data, boxpoints="all", name="triopipe(data)"),
-        go.Box(y=analyses_work_dirs_triopipe_disk, boxpoints="all", name="triopipe(on disk)"),
-        go.Box(y=analyses_work_dirs_annopipe_data, boxpoints="all", name="annopipe(data)"),
-        go.Box(y=analyses_work_dirs_annopipe_disk, boxpoints="all", name="annopipe(on disk)"),
+        go.Box(
+            y=analyses_work_dirs_basepipe_data, boxpoints="all", name="basepipe(data)"
+        ),
+        go.Box(
+            y=analyses_work_dirs_basepipe_disk,
+            boxpoints="all",
+            name="basepipe(on disk)",
+        ),
+        go.Box(
+            y=analyses_work_dirs_triopipe_data, boxpoints="all", name="triopipe(data)"
+        ),
+        go.Box(
+            y=analyses_work_dirs_triopipe_disk,
+            boxpoints="all",
+            name="triopipe(on disk)",
+        ),
+        go.Box(
+            y=analyses_work_dirs_annopipe_data, boxpoints="all", name="annopipe(data)"
+        ),
+        go.Box(
+            y=analyses_work_dirs_annopipe_disk,
+            boxpoints="all",
+            name="annopipe(on disk)",
+        ),
     ]
 )
 fig1 = fig1.update_layout(
@@ -274,7 +294,6 @@ fig1 = fig1.update_layout(
 )
 # fig1 = fig1.update_traces(hovertemplate="Size: %{y} GB")
 fig1.show()
-
 ```
 
 ::: {.callout-important}
@@ -287,7 +306,7 @@ display(
         "Average analyses-work basepipe folder size is `%d GB` (`%d GB` on disk).\n\n"
         "Average analyses-work triopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
         "Average analyses-work annopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
-        "Adding [NovaSeqX generated data](#bcl-convert-data-1), the total data per sample is `%d GB` (`%d GB` on disk)."
+        "[Adding [NovaSeqX generated data](#bcl-convert-data-1), the total data per sample is `%d GB` (`%d GB` on disk).]{#bcl-convert-data-analyses-work}"
         % (
             mean(analyses_work_dirs_basepipe_data),
             mean(analyses_work_dirs_basepipe_disk),
@@ -295,18 +314,8 @@ display(
             mean(analyses_work_dirs_triopipe_disk),
             mean(analyses_work_dirs_annopipe_data),
             mean(analyses_work_dirs_annopipe_disk),
-            61
-            + mean(analyses_work_dirs_basepipe_data)
-            + sum(analyses_work_dirs_triopipe_data)
-            / len(analyses_work_dirs_basepipe_data)
-            + sum(analyses_work_dirs_annopipe_data)
-            / len(analyses_work_dirs_basepipe_data),
-            81
-            + mean(analyses_work_dirs_basepipe_disk)
-            + sum(analyses_work_dirs_triopipe_disk)
-            / len(analyses_work_dirs_basepipe_disk)
-            + sum(analyses_work_dirs_annopipe_disk)
-            / len(analyses_work_dirs_basepipe_disk),
+            61 + mean_analyses_work_data[0],
+            81 + mean_analyses_work_disk[0],
         )
     )
 )
@@ -323,10 +332,8 @@ analyses_results_singles_data = [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52,
 analyses_results_singles_disk= [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
 analyses_results_trios_data = [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
 analyses_results_trios_disk= [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
-
-ella_incoming_disk = [3.9, 4.1, 4.3, 4.8, 4.9, 5.6, 6.1, 6.7, 7.0, 7.4, 7.7, 8.0, 8.0, 8.2, 8.3, 9.7, 9.9, 9.9, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 18, 25, 25, 26, 29, 31, 31, 34, 34, 35, 36, 43, 67, 67, 68, 128, 129, 130, 466, 470, 471, 471, 471, 475, 475, 477, 479, 482, 482, 489, 566]
-ella_incoming_data =  [3.3, 3.4, 3.7, 4.2, 4.4, 5.2, 5.5, 6.3, 6.6, 7.0, 7.2, 7.6, 7.6, 7.8, 8.0, 9.3, 9.5, 9.7, 9.9, 10, 11, 11, 11, 12, 12, 14, 15, 15, 18, 25, 25, 26, 28, 30, 31, 34, 34, 35, 36, 43, 66, 66, 67, 128, 128, 129, 464, 469, 470, 470, 470, 473, 474, 475, 478, 480, 481, 487, 565]
-
+mean_analyses_results_data = mean(analyses_results_singles_data) + sum(analyses_results_trios_data) / len(analyses_results_singles_data)
+mean_analyses_results_disk = mean(analyses_results_singles_disk) + sum(analyses_results_trios_disk) / len(analyses_results_singles_disk)
 
 fig1 = go.Figure(
     data=[
@@ -358,11 +365,15 @@ display(
     Markdown(
         "Average analyses-results singles folder size is `%d GB` (`%d GB` on disk).\n\n"
         "Average analyses-results trios folder size is `%d GB` (`%d GB` on disk).\n\n"
+        "Adding [NovaSeqX generated data and analyses-work data](#bcl-convert-data-analyses-work),"
+        " and counting in the duplicates, the total data per sample becomes `%d GB` (`%d GB` on disk)."
         % (
             mean(analyses_results_singles_data),
             mean(analyses_results_singles_disk),
             mean(analyses_results_trios_data),
             mean(analyses_results_trios_disk),
+            61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
+            81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
         )
     )
 )
@@ -405,9 +416,12 @@ from IPython.display import display, Markdown
 display(
     Markdown(
         "Average ella-incoming folder size is `%d MB` (`%d MB` on disk).\n\n"
+        "The ella-incoming folder is small, so the total data per sample remains `%d GB` (`%d GB` on disk)."
         % (
             mean(ella_incoming_data),
             mean(ella_incoming_disk),
+            61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
+            81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
         )
     )
 )
@@ -425,6 +439,9 @@ See @sec-analysis-folder for details.
 ::: {.callout-important}
 ### Data
 In total, `81 GB` data per sample (`108 GB` on disk).
+
+The inhouse pipeline and nsc-exporter changes to accommodate the DRAGEN Germline pipeline is not yet implemented.
+Some duplication of NovaSeqX generated data is expected.
 :::
 
 ##### Pipeline output files per sample{#sec-analysis-folder}
@@ -541,7 +558,7 @@ In total, `81 GB` data per sample (`108 GB` on disk).
 ### Per sequencing run
 Each sequencing run can have different set up.
 
-- Side: 
+- Flowcell side: 
   - single side (single flowcell) 
   - both sides (dual flowcell)
 - Flowcell type: 
@@ -551,9 +568,9 @@ Each sequencing run can have different set up.
 - Secondary analysis:
   - BCL Convert
   - DRAGEN Germline
-    - None
-    - SmallVariantCaller
-    - AllVariantCallers (Small, Structural, CNV, Repeat Expansions, ROH, CYP2D6.)
+    - variant calling mode = None
+    - variant calling mode = SmallVariantCaller
+    - variant calling mode = AllVariantCallers _(Small, Structural, CNV, Repeat Expansions, ROH, CYP2D6 etc.)_
 
 #### Single 25B flowcell; BCL Convert
 Single 25B flowcell (64 samples), secondary analysis is BCL Convert, _i.e._ only demultiplexing.
