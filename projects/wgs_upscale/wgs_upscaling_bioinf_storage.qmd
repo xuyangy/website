@@ -28,7 +28,7 @@ format:
 comments: 
     hypothesis: false
 execute: 
-    cache: false
+    cache: true
     echo: false
     message: false
     warning: false
@@ -84,7 +84,7 @@ Total capacity of NSC storage is `552.6 TiB`. The capability breakdown as of Dec
 ## Usable capacity
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM]{style="color:red"}
-Usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
+The usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
 :::
 
 ![](usable_capacity.png)
@@ -133,6 +133,12 @@ fig.update_traces(
 )
 fig.update_layout(margin=dict(t=20, l=0, r=0, b=0), height=900)
 ```
+
+::: {.callout-tip}
+The size of `boston/diag/production/data/samples` folder (with 255 sample folders in it) is very small (924 GiB) due to
+the big files (mainly `.fastq.ora` files) are hardlinks.
+:::
+
 
 ::: {style="font-family:courier"}
     
@@ -258,7 +264,7 @@ Given the design of the inhouse pipelines, some files are duplicated in differen
 
 ###### analyses-work folder size
 ```{python}
-#| cache: false
+#| cache: true
 import plotly.graph_objects as go
 from numpy import mean
 
@@ -349,7 +355,7 @@ display(
 
 ###### analyses-results folder size
 ```{python}
-#| cache: false
+#| cache: true
 import plotly.graph_objects as go
 
 analyses_results_singles_data = [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
