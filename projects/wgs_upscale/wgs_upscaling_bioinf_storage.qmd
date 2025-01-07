@@ -25,7 +25,7 @@ format:
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-jupyter: python3
+knitr: true
 comments: 
     hypothesis: false
 execute: 
@@ -128,7 +128,7 @@ fig = px.sunburst(
     df, names="Folder", parents="Parent", values="Size", branchvalues="remainder"
 )
 disp = list(df["DisplaySize"])
-fig.update_traces(
+fig = fig.update_traces(
     hovertemplate="Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})",
     text=disp,
 )
@@ -327,29 +327,36 @@ fig1 = fig1.update_layout(
 fig1.show()
 ```
 
+```{r} 
+library(reticulate)
+r_mean_analyses_work_data <- py$mean_analyses_work_data
+```
+
+The mean are <code>`{r} r_mean_analyses_work_data`</code>
+
 ::: {.callout-important}
 ### Data
 ```{python}
-from IPython.display import display, Markdown
+# from IPython.display import display, Markdown
 
-display(
-    Markdown(
-        "Average analyses-work basepipe folder size is `%d GB` (`%d GB` on disk).\n\n"
-        "Average analyses-work triopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
-        "Average analyses-work annopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
-        "[Adding [NovaSeqX generated data](#bcl-convert-data-1), the total data per sample is `%d GB` (`%d GB` on disk).]{#bcl-convert-data-analyses-work}"
-        % (
-            mean(analyses_work_dirs_basepipe_data),
-            mean(analyses_work_dirs_basepipe_disk),
-            mean(analyses_work_dirs_triopipe_data),
-            mean(analyses_work_dirs_triopipe_disk),
-            mean(analyses_work_dirs_annopipe_data),
-            mean(analyses_work_dirs_annopipe_disk),
-            61 + mean_analyses_work_data[0],
-            81 + mean_analyses_work_disk[0],
-        )
-    )
-)
+# display(
+#     Markdown(
+#         "Average analyses-work basepipe folder size is `%d GB` (`%d GB` on disk).\n\n"
+#         "Average analyses-work triopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
+#         "Average analyses-work annopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
+#         "[Adding [NovaSeqX generated data](#bcl-convert-data-1), the total data per sample is `%d GB` (`%d GB` on disk).]{#bcl-convert-data-analyses-work}"
+#         % (
+#             mean(analyses_work_dirs_basepipe_data),
+#             mean(analyses_work_dirs_basepipe_disk),
+#             mean(analyses_work_dirs_triopipe_data),
+#             mean(analyses_work_dirs_triopipe_disk),
+#             mean(analyses_work_dirs_annopipe_data),
+#             mean(analyses_work_dirs_annopipe_disk),
+#             61 + mean_analyses_work_data[0],
+#             81 + mean_analyses_work_disk[0],
+#         )
+#     )
+# )
 ```
  
 :::
@@ -374,7 +381,7 @@ fig1 = go.Figure(
         go.Box(y=analyses_results_trios_disk, boxpoints="all", name="trios(on disk)"),
     ]
 )
-fig1.update_layout(
+fig1 = fig1.update_layout(
     title="analyses-results directories size (GB)",
     yaxis_title="Size (GB)",
     height=600,
@@ -382,7 +389,7 @@ fig1.update_layout(
     title_x=0.5,
     template="ggplot2",
 )
-fig1.update_traces(hovertemplate="Size: %{y} GB")
+fig1 = fig1.update_traces(hovertemplate="Size: %{y} GB")
 fig1.show()
 ```
 
@@ -390,24 +397,24 @@ fig1.show()
 ::: {.callout-important}
 ### Data
 ```{python}
-from IPython.display import display, Markdown
+# from IPython.display import display, Markdown
 
-display(
-    Markdown(
-        "Average analyses-results singles folder size is `%d GB` (`%d GB` on disk).\n\n"
-        "Average analyses-results trios folder size is `%d GB` (`%d GB` on disk).\n\n"
-        "Adding [NovaSeqX generated data and analyses-work data](#bcl-convert-data-analyses-work),"
-        " and counting in the 2 duplicates of analyses-results, the total data per sample becomes `%d GB` (`%d GB` on disk)."
-        % (
-            mean(analyses_results_singles_data),
-            mean(analyses_results_singles_disk),
-            mean(analyses_results_trios_data),
-            mean(analyses_results_trios_disk),
-            61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
-            81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
-        )
-    )
-)
+# display(
+#     Markdown(
+#         "Average analyses-results singles folder size is `%d GB` (`%d GB` on disk).\n\n"
+#         "Average analyses-results trios folder size is `%d GB` (`%d GB` on disk).\n\n"
+#         "Adding [NovaSeqX generated data and analyses-work data](#bcl-convert-data-analyses-work),"
+#         " and counting in the 2 duplicates of analyses-results, the total data per sample becomes `%d GB` (`%d GB` on disk)."
+#         % (
+#             mean(analyses_results_singles_data),
+#             mean(analyses_results_singles_disk),
+#             mean(analyses_results_trios_data),
+#             mean(analyses_results_trios_disk),
+#             61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
+#             81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
+#         )
+#     )
+# )
 ```
 :::
 
@@ -427,7 +434,7 @@ fig1 = go.Figure(
         go.Box(y=ella_incoming_disk, boxpoints="all", name="on disk"),
     ]
 )
-fig1.update_layout(
+fig1 = fig1.update_layout(
     title="ella-incoming directories size (MB)",
     yaxis_title="Size (MB)",
     height=600,
@@ -435,27 +442,27 @@ fig1.update_layout(
     title_x=0.5,
     template="ggplot2",
 )
-fig1.update_traces(hovertemplate="Size: %{y} MB")
+fig1 = fig1.update_traces(hovertemplate="Size: %{y} MB")
 fig1.show()
 ```
 
 ::: {.callout-important}
 ### Data
 ```{python}
-from IPython.display import display, Markdown
+# from IPython.display import display, Markdown
 
-display(
-    Markdown(
-        "Average ella-incoming folder size is `%d MB` (`%d MB` on disk).\n\n"
-        "The ella-incoming folder is small, so the total data per sample remains `%d GB` (`%d GB` on disk)."
-        % (
-            mean(ella_incoming_data),
-            mean(ella_incoming_disk),
-            61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
-            81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
-        )
-    )
-)
+# display(
+#     Markdown(
+#         "Average ella-incoming folder size is `%d MB` (`%d MB` on disk).\n\n"
+#         "The ella-incoming folder is small, so the total data per sample remains `%d GB` (`%d GB` on disk)."
+#         % (
+#             mean(ella_incoming_data),
+#             mean(ella_incoming_disk),
+#             61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
+#             81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
+#         )
+#     )
+# )
 ```
 :::
 
