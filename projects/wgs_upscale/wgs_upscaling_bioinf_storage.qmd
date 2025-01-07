@@ -114,7 +114,7 @@ The used storage as of Dec 29, 2024, 12:00 PM is `228 TiB`. Details are as follo
 
 ```{python}
 #| label: fig-nsc_storage_used
-#| fig-cap: Used storage
+#| fig-cap: sunburst chart of used boston storage as of Dec 29, 2024 12:00 PM
 
 import pandas as pd
 import plotly.express as px
@@ -132,11 +132,11 @@ fig = fig.update_traces(
     hovertemplate="Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})",
     text=disp,
 )
-fig.update_layout(margin=dict(t=20, l=0, r=0, b=0), height=900)
+fig.update_layout(margin=dict(t=20, l=0, r=0, b=20), height=900)
 ```
 
 ::: {.callout-tip}
-The size of `boston/diag/production/data/samples` folder (with 255 sample folders in it) is very small (924 GiB) due to
+The size of `boston/diag/production/data/samples` folder is very small (924 GiB) for 255 sample folders in it due to
 the big files (mainly `.fastq.ora` files) are hardlinks.
 :::
 
@@ -232,16 +232,16 @@ When use Onboard DRAGEN only for demultiplexing, inhouse pipelines must be run o
 
 ### Per sample
 
-#### BCL Convert
+#### BCL Convert only
 
 ##### NovaSeqX generated data
-The `{R1,R2}.fastq.ora` files per sample is about `14 GB` data (`18 GB` on disk).
+The `{R1,R2}.fastq.ora` files per sample is about `14 GB` logical data (`18 GB` on disk).
 
-Other files such as BCL files, images, logs, reports, etc. is about `47 GB` data per sample (`63 GB` on disk).
+Other files such as BCL files, images, logs, reports, etc. is about `47 GB` logical data per sample (`63 GB` on disk).
 
 ::: {.callout-important}
-### Data
-[In total, `61 GB` data per sample (`81 GB` on disk).]{#bcl-convert-data-1}
+### Subtotal
+[In total, `61 GB` logical data per sample (`81 GB` on disk).]{#bcl-convert-data-1}
 :::
 
 ##### Inhouse pipelines on external DRAGEN
@@ -256,7 +256,7 @@ Given the design of the inhouse pipelines, some files are duplicated in differen
     (@) `/boston/diag/production/data/samples`
     (@) `/boston/diag/production/data/analyses-work/\*/result/\*/work`
 
-    [1]{.mono}, [2]{.mono} and [3]{.mono} are hardlinks; [4]{.mono} is symlink of [3]{.mono} (within `/boston/diag/produciton/data/analyses-work`, files are symlinked from the Nextflow [work]{.mono} folder.)
+    > [1]{.mono}, [2]{.mono} and [3]{.mono} are hardlinks; [4]{.mono} is symlink of [3]{.mono} (within `/boston/diag/produciton/data/analyses-work`, files are symlinked from the Nextflow [work]{.mono} folder.)
 
 2. Files in `/boston/diag/produciton/data/analyses-results/{singles,trios}` are copies of that in `/boston/diag/produciton/data/analyses-work`
 
@@ -276,41 +276,49 @@ analyses_work_dirs_triopipe_data = [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 
 analyses_work_dirs_triopipe_disk = [7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.1, 7.2, 7.2, 7.2, 7.3, 7.3, 8.3]
 analyses_work_dirs_annopipe_data = [6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.7, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.8, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 6.9, 7.0, 7.0, 7.0, 7.0, 7.0, 7.2, 7.3, 7.4, 7.4, 7.4, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 21]
 analyses_work_dirs_annopipe_disk = [6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.1, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.3, 6.3, 6.3, 6.4, 6.4, 6.4, 6.5, 6.6, 6.7, 6.7, 6.7, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 19]
+mean_analyses_work_dirs_basepipe_data = mean(analyses_work_dirs_basepipe_data)
+mean_analyses_work_dirs_basepipe_disk = mean(analyses_work_dirs_basepipe_disk)
+mean_analyses_work_dirs_triopipe_data = mean(analyses_work_dirs_triopipe_data)
+mean_analyses_work_dirs_triopipe_disk = mean(analyses_work_dirs_triopipe_disk)
+mean_analyses_work_dirs_annopipe_data = mean(analyses_work_dirs_annopipe_data)
+mean_analyses_work_dirs_annopipe_disk = mean(analyses_work_dirs_annopipe_disk)
 mean_analyses_work_data = \
     mean(analyses_work_dirs_basepipe_data) \
     + sum(analyses_work_dirs_triopipe_data) / len(analyses_work_dirs_basepipe_data) \
     + sum(analyses_work_dirs_annopipe_data) / len(analyses_work_dirs_basepipe_data),
+mean_analyses_work_data = mean_analyses_work_data[0]
 
 mean_analyses_work_disk = \
     mean(analyses_work_dirs_basepipe_disk) \
     + sum(analyses_work_dirs_triopipe_disk) / len(analyses_work_dirs_basepipe_disk) \
     + sum(analyses_work_dirs_annopipe_disk) / len(analyses_work_dirs_basepipe_disk),
+mean_analyses_work_disk = mean_analyses_work_disk[0]
 
 fig1 = go.Figure(
     data=[
         go.Box(
-            y=analyses_work_dirs_basepipe_data, boxpoints="all", name="basepipe(data)"
+            y=analyses_work_dirs_basepipe_data, boxpoints="all", name="basepipe (logical)"
         ),
         go.Box(
             y=analyses_work_dirs_basepipe_disk,
             boxpoints="all",
-            name="basepipe(on disk)",
+            name="basepipe (on disk)",
         ),
         go.Box(
-            y=analyses_work_dirs_triopipe_data, boxpoints="all", name="triopipe(data)"
+            y=analyses_work_dirs_triopipe_data, boxpoints="all", name="triopipe (logical)"
         ),
         go.Box(
             y=analyses_work_dirs_triopipe_disk,
             boxpoints="all",
-            name="triopipe(on disk)",
+            name="triopipe (on disk)",
         ),
         go.Box(
-            y=analyses_work_dirs_annopipe_data, boxpoints="all", name="annopipe(data)"
+            y=analyses_work_dirs_annopipe_data, boxpoints="all", name="annopipe (logical)"
         ),
         go.Box(
             y=analyses_work_dirs_annopipe_disk,
             boxpoints="all",
-            name="annopipe(on disk)",
+            name="annopipe (on disk)",
         ),
     ]
 )
@@ -329,35 +337,34 @@ fig1.show()
 
 ```{r} 
 library(reticulate)
+r_mean_analyses_work_dirs_basepipe_data <- round(py$mean_analyses_work_dirs_basepipe_data)
+r_mean_analyses_work_dirs_basepipe_disk <- round(py$mean_analyses_work_dirs_basepipe_disk)
+r_mean_analyses_work_dirs_triopipe_data <- round(py$mean_analyses_work_dirs_triopipe_data)
+r_mean_analyses_work_dirs_triopipe_disk <- round(py$mean_analyses_work_dirs_triopipe_disk)
+r_mean_analyses_work_dirs_annopipe_data <- round(py$mean_analyses_work_dirs_annopipe_data)
+r_mean_analyses_work_dirs_annopipe_disk <- round(py$mean_analyses_work_dirs_annopipe_disk)
 r_mean_analyses_work_data <- py$mean_analyses_work_data
+r_mean_analyses_work_disk <- py$mean_analyses_work_disk
+
 ```
-
-The mean are <code>`{r} r_mean_analyses_work_data`</code>
-
 ::: {.callout-important}
-### Data
-```{python}
-# from IPython.display import display, Markdown
+### Subtotal
 
-# display(
-#     Markdown(
-#         "Average analyses-work basepipe folder size is `%d GB` (`%d GB` on disk).\n\n"
-#         "Average analyses-work triopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
-#         "Average analyses-work annopipe folder size is `%d GB` (`%d GB` on disk).\n\n"
-#         "[Adding [NovaSeqX generated data](#bcl-convert-data-1), the total data per sample is `%d GB` (`%d GB` on disk).]{#bcl-convert-data-analyses-work}"
-#         % (
-#             mean(analyses_work_dirs_basepipe_data),
-#             mean(analyses_work_dirs_basepipe_disk),
-#             mean(analyses_work_dirs_triopipe_data),
-#             mean(analyses_work_dirs_triopipe_disk),
-#             mean(analyses_work_dirs_annopipe_data),
-#             mean(analyses_work_dirs_annopipe_disk),
-#             61 + mean_analyses_work_data[0],
-#             81 + mean_analyses_work_disk[0],
-#         )
-#     )
-# )
-```
+Average analyses-work basepipe folder size is
+<code>`{r} r_mean_analyses_work_dirs_basepipe_data` GiB</code> 
+(<code>`{r} r_mean_analyses_work_dirs_basepipe_disk` GiB</code>  on disk)
+
+Average analyses-work triopipe folder size is
+<code>`{r} r_mean_analyses_work_dirs_triopipe_data` GiB</code>
+(<code>`{r} r_mean_analyses_work_dirs_triopipe_disk` GiB</code> on disk)
+
+Average analyses-work annopipe folder size is 
+<code>`{r} r_mean_analyses_work_dirs_annopipe_data` GiB</code>
+(<code>`{r} r_mean_analyses_work_dirs_annopipe_disk` GiB</code> on disk)
+
+[Adding [NovaSeqX generated data](#bcl-convert-data-1),
+the total data per sample is <code>`{r} round(61 + r_mean_analyses_work_data)` GiB</code>
+(<code>`{r} round(81 + r_mean_analyses_work_disk)` GiB</code> on disk).]{#bcl-convert-data-analyses-work}
  
 :::
 
@@ -370,15 +377,19 @@ analyses_results_singles_data = [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52,
 analyses_results_singles_disk= [48, 48, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 61, 61, 61, 62, 62, 63]
 analyses_results_trios_data = [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
 analyses_results_trios_disk= [2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.6, 2.7, 2.7, 2.7, 2.7, 2.7, 3.1]
+mean_analyses_results_singles_data = mean(analyses_results_singles_data)
+mean_analyses_results_singles_disk = mean(analyses_results_singles_disk)
+mean_analyses_results_trios_data =   mean(analyses_results_trios_data)
+mean_analyses_results_trios_disk =   mean(analyses_results_trios_disk)
 mean_analyses_results_data = mean(analyses_results_singles_data) + sum(analyses_results_trios_data) / len(analyses_results_singles_data)
 mean_analyses_results_disk = mean(analyses_results_singles_disk) + sum(analyses_results_trios_disk) / len(analyses_results_singles_disk)
 
 fig1 = go.Figure(
     data=[
-        go.Box(y=analyses_results_singles_data, boxpoints="all", name="singles(data)"),
-        go.Box(y=analyses_results_singles_disk, boxpoints="all", name="singles(on disk)"),
-        go.Box(y=analyses_results_trios_data, boxpoints="all", name="trios(data)"),
-        go.Box(y=analyses_results_trios_disk, boxpoints="all", name="trios(on disk)"),
+        go.Box(y=analyses_results_singles_data, boxpoints="all", name="singles (logical)"),
+        go.Box(y=analyses_results_singles_disk, boxpoints="all", name="singles (on disk)"),
+        go.Box(y=analyses_results_trios_data, boxpoints="all", name="trios (logical)"),
+        go.Box(y=analyses_results_trios_disk, boxpoints="all", name="trios (on disk)"),
     ]
 )
 fig1 = fig1.update_layout(
@@ -393,31 +404,33 @@ fig1 = fig1.update_traces(hovertemplate="Size: %{y} GB")
 fig1.show()
 ```
 
+```{r} 
+r_mean_analyses_results_singles_data <- round(py$mean_analyses_results_singles_data)
+r_mean_analyses_results_singles_disk <- round(py$mean_analyses_results_singles_disk)
+r_mean_analyses_results_trios_data <-   round(py$mean_analyses_results_trios_data )
+r_mean_analyses_results_trios_disk <-   round(py$mean_analyses_results_trios_disk )
+r_mean_analyses_results_data <- py$mean_analyses_results_data
+r_mean_analyses_results_disk <- py$mean_analyses_results_disk
+```
+
 
 ::: {.callout-important}
-### Data
-```{python}
-# from IPython.display import display, Markdown
+### Subtotal
 
-# display(
-#     Markdown(
-#         "Average analyses-results singles folder size is `%d GB` (`%d GB` on disk).\n\n"
-#         "Average analyses-results trios folder size is `%d GB` (`%d GB` on disk).\n\n"
-#         "Adding [NovaSeqX generated data and analyses-work data](#bcl-convert-data-analyses-work),"
-#         " and counting in the 2 duplicates of analyses-results, the total data per sample becomes `%d GB` (`%d GB` on disk)."
-#         % (
-#             mean(analyses_results_singles_data),
-#             mean(analyses_results_singles_disk),
-#             mean(analyses_results_trios_data),
-#             mean(analyses_results_trios_disk),
-#             61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
-#             81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
-#         )
-#     )
-# )
-```
+Average analyses-results singles folder size is
+<code>`{r} r_mean_analyses_results_singles_data` GiB</code>
+(<code>`{r} r_mean_analyses_results_singles_disk` GiB</code> on disk).
+
+Average analyses-results trios folder size is 
+<code>`{r} r_mean_analyses_results_trios_data` GiB</code>
+(<code>`{r} r_mean_analyses_results_trios_disk` GiB</code> on disk).
+
+[Adding [NovaSeqX generated data and analyses-work data](#bcl-convert-data-analyses-work)
+and counting in the 2 duplicates of analyses-results, the total data per sample becomes
+<code>`{r} round(61 + r_mean_analyses_work_data + r_mean_analyses_results_data*2)` GiB</code>
+(<code>`{r} round(81 + r_mean_analyses_work_disk + r_mean_analyses_results_disk*2)` GiB</code> on disk).]{#bcl-convert-data-analyses-work-results}
+
 :::
-
 
 ###### ella-incoming folder size
 ```{python}
@@ -427,11 +440,13 @@ import plotly.graph_objects as go
 ella_incoming_data =  [3.3, 3.4, 3.7, 4.2, 4.4, 5.2, 5.5, 6.3, 6.6, 7.0, 7.2, 7.6, 7.6, 7.8, 8.0, 9.3, 9.5, 9.7, 9.9, 10, 11, 11, 11, 12, 12, 14, 15, 15, 18, 25, 25, 26, 28, 30, 31, 34, 34, 35, 36, 43, 66, 66, 67, 128, 128, 129, 464, 469, 470, 470, 470, 473, 474, 475, 478, 480, 481, 487, 565]
 ella_incoming_disk = [3.9, 4.1, 4.3, 4.8, 4.9, 5.6, 6.1, 6.7, 7.0, 7.4, 7.7, 8.0, 8.0, 8.2, 8.3, 9.7, 9.9, 9.9, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 18, 25, 25, 26, 29, 31, 31, 34, 34, 35, 36, 43, 67, 67, 68, 128, 129, 130, 466, 470, 471, 471, 471, 475, 475, 477, 479, 482, 482, 489, 566]
 
+mean_ella_incoming_data = mean(ella_incoming_data)
+mean_ella_incoming_disk = mean(ella_incoming_disk)
 
 fig1 = go.Figure(
     data=[
-        go.Box(y=ella_incoming_data, boxpoints="all", name="data"),
-        go.Box(y=ella_incoming_disk, boxpoints="all", name="on disk"),
+        go.Box(y=ella_incoming_data, boxpoints="all", name="ella-incoming (logical)"),
+        go.Box(y=ella_incoming_disk, boxpoints="all", name="ella-incoming (on disk)"),
     ]
 )
 fig1 = fig1.update_layout(
@@ -446,37 +461,37 @@ fig1 = fig1.update_traces(hovertemplate="Size: %{y} MB")
 fig1.show()
 ```
 
-::: {.callout-important}
-### Data
-```{python}
-# from IPython.display import display, Markdown
 
-# display(
-#     Markdown(
-#         "Average ella-incoming folder size is `%d MB` (`%d MB` on disk).\n\n"
-#         "The ella-incoming folder is small, so the total data per sample remains `%d GB` (`%d GB` on disk)."
-#         % (
-#             mean(ella_incoming_data),
-#             mean(ella_incoming_disk),
-#             61 + mean_analyses_work_data[0] + mean_analyses_results_data*2,
-#             81 + mean_analyses_work_disk[0] + mean_analyses_results_disk*2,
-#         )
-#     )
-# )
+```{r} 
+r_mean_ella_incoming_data <- round(py$mean_ella_incoming_data)
+r_mean_ella_incoming_disk <- round(py$mean_ella_incoming_disk)
 ```
+
+::: {.callout-important}
+### Total
+
+Average ella-incoming folder size is
+<code>`{r} r_mean_ella_incoming_data` MB</code>
+(<code>`{r} r_mean_ella_incoming_disk` MB</code> on disk).
+
+
+Adding [NovaSeqX generated data, analyses-work data and analyses-results data](#bcl-convert-data-analyses-work-results),
+the total data per sample becomes
+<code>`{r} round(61 + r_mean_analyses_work_data + r_mean_analyses_results_data*2 + r_mean_ella_incoming_data/1000)` GiB</code>
+(<code>`{r} round(81 + r_mean_analyses_work_disk + r_mean_analyses_results_disk*2 + r_mean_ella_incoming_disk/1000)` GiB</code> on disk).
+
 :::
 
-
-#### DRAGEN Germline
-When secondary analysis is DRAGEN Germline with all variant callers, _i.e._ doing both demultiplexing and mapping, variant
+#### DRAGEN Germline (AllVariantCallers)
+When secondary analysis is DRAGEN Germline with all variant callers, _i.e._ doing both demultiplexing and variant
 calling with Onboard DRAGEN.
 
-Each sample has about `20 GB` pipeline output data (`27 GB` on disk) in addition.
+Each sample has about `20 GB` pipeline output logical data (`27 GB` on disk) in addition.
 See @sec-analysis-folder for details.
 
 ::: {.callout-important}
-### Data
-In total, `81 GB` data per sample (`108 GB` on disk).
+### Total
+In total, `81 GB` logical data per sample (`108 GB` on disk).
 
 The inhouse pipeline and nsc-exporter changes to accommodate the DRAGEN Germline pipeline is not yet implemented.
 Some duplication of NovaSeqX generated data is expected.
@@ -610,29 +625,29 @@ Each sequencing run can have different set up.
     - variant calling mode = SmallVariantCaller
     - variant calling mode = AllVariantCallers _(Small, Structural, CNV, Repeat Expansions, ROH, CYP2D6 etc.)_
 
-#### Single 25B flowcell; BCL Convert
+#### Single 25B flowcell; BCL Convert only
 Single 25B flowcell (64 samples), secondary analysis is BCL Convert, _i.e._ only demultiplexing.
 
 ::: {.callout-important}
-### Data
-`3.9 TB` data (`5.1 TB` on disk).
+### Total
+`3.9 TB` logical data (`5.1 TB` on disk).
 :::
 
-#### Dual 25B flowcell; BCL Convert
+#### Dual 25B flowcell; BCL Convert only
 Dual 25B flowcell (128 samples), secondary analysis is BCL Convert, _i.e._ only demultiplexing.
 
 ::: {.callout-important}
-### Data
-`7.8 TB` data (`10.2 TB` on disk).
+### Total
+`7.8 TB` logical data (`10.2 TB` on disk).
 :::
 
 
-#### Dual 25B flowcell; DRAGEN Germline, AllVariantCallers
+#### Dual 25B flowcell; DRAGEN Germline (AllVariantCallers)
 Dual 25B flowcell (128 samples), secondary analysis is DRAGEN Germline with all variant callers enabled, _i.e._ doing both
 demultiplexing and mapping, variant calling with Onboard DRAGEN.
 
 ::: {.callout-important}
-### Data
-`10.5 TB` data (`14.0 TB` on disk).
+### Total
+`10.5 TB` logical data (`14.0 TB` on disk).
 :::
 
