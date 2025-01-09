@@ -185,21 +185,30 @@ fig_miami.update_layout(margin=dict(t=20, l=0, r=0, b=20), height=900)
 ```
 
 ::: {.callout-warning}
-Even after the routine diagnostics cleanup, diag still uses a large volume storage.
+### Warning diag
+Even after the routine diagnostics production cleanup, diag still uses a large volume storage.
 
-The following folders take up `90 TiB` in total:  
+The following folders take ~`80 TiB` in total, which can be considered for cleanup:
 
 | Folder                                   | Size       |
 | :--------                                | ---:       |
-| `/boston/diag/runs/veriseq`              | `13.2 TiB` |
-| `/boston/diag/transfer/dev`              | `11.6 TiB` |
-| `/boston/diag/transfer/lost-and-found`   | `9.6 TiB`  |
-| `/boston/diag/diagInternal/ying_temp`    | `24.0 TiB` |
-| `/boston/diag/diagInternal/verification` | `4.1 TiB`  |
-| `/boston/diag/staging/data`              | `12.5 TiB` |
-| `/boston/diag/staging/transfer`          | `4.0 TiB`  |
-| `/boston/diag/transfer/dev/p22-yingsh`   | `11.3 TiB` |
+| `/miami/diag/diagInternal/ying_temp`    | `24.0 TiB` |
+| `/miami/diag/runs/veriseq`              | `13.2 TiB` |
+| `/miami/diag/staging/data`              | `12.5 TiB` |
+| `/miami/diag/transfer/dev/p22-yingsh`   | `11.3 TiB` |
+| `/miami/diag/transfer/lost-and-found`   | `9.6 TiB`  |
+| `/miami/diag/diagInternal/verification` | `4.1 TiB`  |
+| `/miami/diag/staging/transfer`          | `4.0 TiB`  |
 
+:::
+
+
+::: {.callout-warning}
+### Warning NSC
+
+The `/miami/projects` folder takes `104 TiB`.
+
+The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 :::
 
 
