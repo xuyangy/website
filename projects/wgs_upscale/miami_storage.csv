@@ -1,0 +1,86 @@
+Folder,Parent,Size,DisplaySize
+miami,"",0,385 TiB
+diag,miami,0,138 TiB
+runs,diag,25.1,46.6 TiB
+veriseq,runs,13.2,13.2 TiB
+20241115_LH00534_0068_B22CJG2LT4,runs,4.17,4.17 TiB
+20241030_LH00534_0060_A22CJCGLT4,runs,4.11,4.11 TiB
+transfer,diag,1.32,29.1 TiB
+dev,transfer,0.3,11.6 TiB
+p22-yingsh,dev,11.3,11.3 TiB
+lost-and-found,transfer,9.59,9.59 TiB
+production ,transfer,0,4.07 TiB
+transferred,production ,4.07,4.07 TiB
+production_od,transfer,1.73,1.73 TiB
+temp,transfer,0.549,549 GiB
+failing-postcmd,transfer,0.238,238 GiB
+diagInternal,diag,0.03,28.4 TiB
+ying_temp,diagInternal,24,24 TiB
+verification,diagInternal,4.05,4.05 TiB
+blasnBlankSample,diagInternal,0.326,326 GiB
+staging,diag,0.37,17 TiB
+data ,staging,12.5,12.5 TiB
+transfer ,staging,4.03,4.03 TiB
+sw ,staging,0.285,285 GiB
+reference ,staging,0.104,104 GiB
+nscDelivery,diag,5.40,11.5 TiB
+240628_LH00534.A.Project_Diag-wgsTest7Watchmaker-2024-06-19,nscDelivery,2.44,2.44 TiB
+for_Ksenia,nscDelivery,2.07,2.07 TiB
+240912_LH00534.B.Project_Diag-wgs412-2024-09-09,nscDelivery,1.59,1.59 TiB
+production,diag,0,4.91 TiB
+data,production,0,4.15 TiB
+analyses-work,data,2.25,2.25 TiB
+analyses-results,data,1.69,1.69 TiB
+samples,data,0.213,213 GiB
+sw,production,0.676,676 GiB
+reference,production,0.0995,99.5 GiB
+runScratch,miami,0,138 TiB
+NovaSeqX,runScratch,0,65.0 TiB
+processed ,NovaSeqX,57.7,57.7 TiB
+20241112_LH00534_0071_B22JKHMLT4,NovaSeqX,3.64,3.64 TiB
+20241112_LH00534_0072_A22JMNMLT4,NovaSeqX,3.6,3.6 TiB
+analysis,runScratch,0.1,57 TiB
+projects ,analysis,12.14,55.2 TiB
+arvindsu,projects ,9.59,9.59 TiB
+Diag_RNA-seq,projects ,9.2,9.2 TiB
+Eirik_Doriana_RNA-seq,projects ,7.37,7.37 TiB
+2023,projects ,6.9,6.9 TiB
+2021,projects ,4.27,4.27 TiB
+2022,projects ,3.41,3.41 TiB
+Lazado-RNA12-2024-08-20,projects ,2.32,2.32 TiB
+pipelines,analysis,0.764,764 GiB
+processed,runScratch,2.82,6.96 TiB
+240903_A00943_0931_BHHWFMDSXC,processed,1.42,1.42 TiB
+240927_A00943_0940_AHMM53DSXC,processed,1.42,1.42 TiB
+240903_A00943_0932_AHHVJ3DSXC,processed,1.30,1.30 TiB
+ONT,runScratch,0.19,3.96 TiB
+analysis ,ONT,1.79,1.79 TiB
+runs ,ONT,1.75,1.75 TiB
+basecalling,ONT,0.234,234 GiB
+demultiplexed,runScratch,0.192,1.97 TiB
+completed,demultiplexed,1.02,1.02 TiB
+internal,demultiplexed,0.758,758 GiB
+UserData,runScratch,0.05,1.81 TiB
+arvindsu,UserData,1.72,1.72 TiB
+paalmbj,UserData,0.0416,41.6 GiB
+test,runScratch,0.086,86 GiB
+PGT,runScratch,0.001,20.5 GiB
+Array_output,PGT,0.0149,14.9 GiB
+DMAP,PGT,0.0046,46 GiB
+Upgrade_software,runScratch,0.0222,22.2 GiB
+mik_data,runScratch,0.0125,12.5 GiB
+imm_data,runScratch,0.00453,4.53 GiB
+projects,miami,0.67,104 TiB
+ibrahiaa,projects,39.1,39.1 TiB
+yings,projects,22.8,22.8 TiB
+timothyh,projects,18.2,18.2 TiB
+steffanb,projects,9.77,9.77 TiB
+yvans,projects,6.09,6.09 TiB
+patrikv,projects,3.9,3.9 TiB
+simonray,projects,2.37,2.37 TiB
+home,miami,0.46,3.65 TiB
+steffanb,home,2.86,2.86 TiB
+salimg,home,0.327,327 GiB
+common,miami,0.41,1.95 TiB
+repo,common,0.789,789 GiB
+tools,common,0.750,750 GiB

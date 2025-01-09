@@ -141,6 +141,53 @@ the big files (mainly `.fastq.ora` files) are hardlinks.
 :::
 
 
+## Miami used storage breakdown
+::: {.callout-warning}
+### [As of Nov 24, 2024, 12:06 PM:]{style="color:red"}
+The used storage as of Nov 24, 204, 12:06 PM is `385 TiB`. Details are as follows:
+:::
+
+
+```{python}
+#| label: fig-miami_storage_used
+#| fig-cap: sunburst chart of used miami storage as of Nov 24, 2024 12:06 PM
+
+import pandas as pd
+import plotly.express as px
+
+df_miami = pd.read_csv(
+    "miami_storage.csv",
+    dtype={"Folder": str, "Parent": str, "Size": float, "DisplaySize": str},
+)
+df_miami = df_miami.fillna("")
+fig_miami = px.sunburst(
+    df_miami, names="Folder", parents="Parent", values="Size", branchvalues="remainder"
+)
+disp_miami = list(df_miami["DisplaySize"])
+fig_miami = fig_miami.update_traces(
+    hovertemplate="Folder: %{currentPath}%{label}<br>Size: %{text} (%{percentParent:.1%})",
+    text=disp_miami,
+)
+fig_miami.update_layout(margin=dict(t=20, l=0, r=0, b=20), height=900)
+```
+
+::: {.callout-tip}
+Even after the routine diagnostics cleanup, still large volume of used storage by diagnostics.
+
+The following folders take up ~100 TiB:
+
+- /boston/diag/runs/veriseq 13.2 TiB
+- /boston/diag/transfer/dev 11.6 TiB
+- /boston/diag/transfer/lost-and-found 9.59 TiB
+- /boston/diag/diagInternal/ying_temp 24 TiB
+- /boston/diag/diagInternal/verification 4.05 TiB
+- /boston/diag/staging/data 12.5 TiB
+- /boston/diag/staging/transfer 4.03 TiB
+- /boston/diag/transfer/dev/p22-yingsh 11.3 TiB
+- /boston/diag/transfer/lost-and-found 9.59 TiB
+:::
+
+
 ::: {style="font-family:courier"}
     
 ### [/boston]{style="font-family:courier"} (228 TiB)    
@@ -487,7 +534,7 @@ When secondary analysis is DRAGEN Germline with all variant callers, _i.e._ doin
 calling with Onboard DRAGEN.
 
 Each sample has about `20 GB` pipeline output logical data (`27 GB` on disk) in addition.
-See @sec-analysis-folder for details.
+See @sec-analysis-folder for pipeline output files and their sizes per sample.
 
 ::: {.callout-important}
 ### Total
