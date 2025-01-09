@@ -144,11 +144,12 @@ the big files (mainly `.fastq.ora` files) are hardlinks.
 
 ## Miami (old boston) Storage Capacity
 <hr>
+Total capacity of miami storage is `519 TiB`. 
 
 ### Miami capacity breakdown
 ::: {.callout-warning}
 #### [As of Nov 24, 2024, 12:06 PM]{style="color:red"}
-Total capacity of miami storage is `519 TiB`. The capability breakdown as of Nov 24, 2024 12:06 PM is as follows:
+The capability breakdown as of Nov 24, 2024 12:06 PM is as follows:
 :::
 
 ![](miami_storage_20241124.png){width="950"}
@@ -552,6 +553,36 @@ the total data per sample becomes
 (<code>`{r} round(81 + r_mean_analyses_work_disk + r_mean_analyses_results_disk*2 + r_mean_ella_incoming_disk/1000)` GiB</code> on disk).
 
 :::
+
+##### Number of samples
+
+```{ojs}
+//| echo: false
+//| panel: sidebar
+md`Assuming diagnostics usable storage (<code>TiB</code>):`
+viewof diag_storage = Inputs.range([0, 500], {value: 155, step: 5})
+```
+
+```{ojs}
+//| echo: false
+import {textcolor} from "@observablehq/text-color-annotations-in-markdown"
+
+num_samples = diag_storage*1000/269
+f_num_samples = num_samples.toFixed(0)
+num_projects = num_samples/48
+f_num_projects = num_projects.toFixed(1)
+num_weeks = num_samples/192
+f_num_weeks = num_weeks.toFixed(1)
+num_25b_flowcells = num_samples/64
+f_num_25b_flowcells = num_25b_flowcells.toFixed(1)
+
+md`Which equals to the total data of:`
+md`<code style="font-family: monospace;">${textcolor(f_num_samples.toString().padStart(5, '\u00A0'), 'MediumSeaGreen')}</code> samples`
+md`<code style="font-family: monospace;">${textcolor(f_num_projects.toString().padStart(5, '\u00A0'), 'SlateBlue')}</code> projects (48 samples each project)`
+md`<code style="font-family: monospace;">${textcolor(f_num_weeks.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> weeks (192 samples per week)`
+md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> 25B flowcells (64 samples per flowcell)`
+```
+
 
 #### DRAGEN Germline (AllVariantCallers)
 When secondary analysis is DRAGEN Germline with all variant callers, _i.e._ doing both demultiplexing and variant
