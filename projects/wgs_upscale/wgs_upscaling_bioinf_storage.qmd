@@ -25,6 +25,10 @@ format:
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+        grid:
+            sidebar-width: 100px
+            body-width: 1100px
+            margin-width: 420px
 knitr: true
 comments: 
     hypothesis: false
@@ -70,11 +74,10 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 **This document will focus on the evaluation of NSC storage capacity.**
 
-# Boston capacity
-<hr>
+# Boston capacity breakdown
+
 Total capacity of boston is `552.6 TiB`. 
 
-## Boston capacity breakdown
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM]{style="color:red"}
 The capability breakdown as of Dec 29, 2024 12:00 PM is as follows:
@@ -83,7 +86,7 @@ The capability breakdown as of Dec 29, 2024 12:00 PM is as follows:
 ![](capacity_breakdown.png){width="750"}
 
 
-## Boston usable capacity
+# Boston usable capacity
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM]{style="color:red"}
 The usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
@@ -92,7 +95,7 @@ The usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
 ![](usable_capacity.png){width="550"}
 
 
-## Boston storage volumes
+# Boston storage volumes
 
 | Name                                                                                  | Purpose                               |
 | -----                                                                                 | ---                                   |
@@ -106,7 +109,7 @@ The usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
 | [vm-datastore]{style="font-family:courier"}                                           | VMware datastore (virtual hard disks) |
 
 
-## Boston used storage breakdown
+# Boston used storage breakdown
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM:]{style="color:red"}
 The used storage as of Dec 29, 2024, 12:00 PM is `228 TiB`. Details are as follows:
@@ -142,20 +145,19 @@ the big files (mainly `.fastq.ora` files) are hardlinks.
 :::
 
 
-## Miami (old boston) Storage Capacity
-<hr>
+# Miami (old boston) capacity breakdown
+
 Total capacity of miami storage is `519 TiB`. 
 
-### Miami capacity breakdown
 ::: {.callout-warning}
-#### [As of Nov 24, 2024, 12:06 PM]{style="color:red"}
+### [As of Nov 24, 2024, 12:06 PM]{style="color:red"}
 The capability breakdown as of Nov 24, 2024 12:06 PM is as follows:
 :::
 
 ![](miami_storage_20241124.png){width="950"}
 
 
-## Miami used storage breakdown
+# Miami (old boston) used storage breakdown
 ::: {.callout-warning}
 ### [As of Nov 24, 2024, 12:06 PM:]{style="color:red"}
 The used storage as of Nov 24, 204, 12:06 PM is `385 TiB`. Details are as follows:
@@ -212,10 +214,13 @@ The `/miami/projects` folder takes `104 TiB`.
 The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 :::
 
+# Boston used storage table
+<hr>
 
 ::: {style="font-family:courier"}
-    
-### [/boston]{style="font-family:courier"} (228 TiB)    
+
+## [/boston]{style="font-family:courier"} (228 TiB)    
+
 | Directory                                             | Logical  | %use of Parent Directory | Physical |
 | -----------                                           | -----    | --------                 | -----    |
 | [/boston/]{.commonDir}[diag](#boston-diag)            | 96.9 TiB | 51.8%                    | 113 TiB  |
@@ -227,7 +232,7 @@ The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 
 :::
 
-#### [/boston/diag]{#boston-diag style="font-family:courier"}
+### [/boston/diag]{#boston-diag style="font-family:courier"}
 
 ::: {style="font-family:courier"}
 | Directory                                                        | Logical  | %use of Parent Directory | Physical |
@@ -242,7 +247,7 @@ The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 :::
 
 
-##### [/boston/diag/production]{#boston-diag-production style="font-family:courier"}
+#### [/boston/diag/production]{#boston-diag-production style="font-family:courier"}
 
 
 ::: {style="font-family:courier"}
@@ -256,7 +261,7 @@ The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 :::
 
 
-##### [/boston/diag/transfer]{#boston-diag-transfer style="font-family:courier"}
+#### [/boston/diag/transfer]{#boston-diag-transfer style="font-family:courier"}
 ::: {style="font-family:courier"}
 | Directory                                      | Logical  | %use of Parent Directory | Physical |
 | -----------                                    | -----    | --------                 | -----    |
@@ -265,7 +270,7 @@ The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 :::
 
 
-##### [/boston/diag/staging]{#boston-diag-staging style="font-family:courier"}
+#### [/boston/diag/staging]{#boston-diag-staging style="font-family:courier"}
 ::: {style="font-family:courier"}
 | Directory                                    | Logical  | %use of Parent Directory | Physical |
 | -----------                                  | -----    | --------                 | -----    |
@@ -276,7 +281,7 @@ The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 :::
 
 
-#### [/boston/runScratch]{#boston-runscratch style="font-family:courier"}
+### [/boston/runScratch]{#boston-runscratch style="font-family:courier"}
 ::: {style="font-family:courier"}
 | Directory                                         | Logical  | %use of Parent Directory | Physical |
 | -----------                                       | -----    | --------                 | -----    |
@@ -295,18 +300,18 @@ The `/miami/runScratch/analysis/projects` folder takes `55 TiB`.
 :::
 
 
-## Expected data
+# Expected data
 The data generated by NovaSeqX depend on the settings of secondary analysis and 
 the sequencing depth (current setting is 64 samples per flowcell).
 
 When use Onboard DRAGEN only for demultiplexing, inhouse pipelines must be run on external DRAGEN.
 
 
-### Per sample
+## Per sample estimation
 
-#### BCL Convert only
+### BCL Convert only
 
-##### NovaSeqX generated data
+#### NovaSeqX generated data
 The `{R1,R2}.fastq.ora` files per sample is about `14 GB` logical data (`18 GB` on disk).
 
 Other files such as BCL files, images, logs, reports, etc. is about `47 GB` logical data per sample (`63 GB` on disk).
@@ -316,7 +321,7 @@ Other files such as BCL files, images, logs, reports, etc. is about `47 GB` logi
 [In total, `61 GB` logical data per sample (`81 GB` on disk).]{#bcl-convert-data-1}
 :::
 
-##### Inhouse pipelines on external DRAGEN
+#### Inhouse pipelines on external DRAGEN
 With BCL Convert only, we need to run inhouse pipelines on external DRAGEN which requires input data and also generates output data.
 
 Given the design of the inhouse pipelines, some files are duplicated in different locations.
@@ -335,7 +340,7 @@ Given the design of the inhouse pipelines, some files are duplicated in differen
 3. Files in `/boston/diag/transfer/production/{normal,high,urgent}/analyses-results/{singles,trios}` are copies of that in `/boston/diag/produciton/data/analyses-work`
 
 
-###### analyses-work folder size
+##### analyses-work folder size
 ```{python}
 #| cache: false
 import plotly.graph_objects as go
@@ -440,7 +445,7 @@ the total data per sample is <code>`{r} round(61 + r_mean_analyses_work_data)` G
  
 :::
 
-###### analyses-results folder size
+##### analyses-results folder size
 ```{python}
 #| cache: false
 import plotly.graph_objects as go
@@ -504,7 +509,7 @@ and counting in the 2 duplicates of analyses-results, the total data per sample 
 
 :::
 
-###### ella-incoming folder size
+##### ella-incoming folder size
 ```{python}
 #| cache: false
 import plotly.graph_objects as go
@@ -554,13 +559,13 @@ the total data per sample becomes
 
 :::
 
-##### Number of samples
+#### Number of samples BCL Convert only
 
 ```{ojs}
 //| echo: false
 //| panel: sidebar
 md`Assuming diagnostics usable storage (<code>TiB</code>):`
-viewof diag_storage = Inputs.range([0, 500], {value: 155, step: 5})
+viewof diag_storage = Inputs.range([0, 500], {value: 155, step: 1})
 ```
 
 ```{ojs}
@@ -584,7 +589,7 @@ md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells.toStrin
 ```
 
 
-#### DRAGEN Germline (AllVariantCallers)
+### DRAGEN Germline (AllVariantCallers)
 When secondary analysis is DRAGEN Germline with all variant callers, _i.e._ doing both demultiplexing and variant
 calling with Onboard DRAGEN.
 
@@ -599,7 +604,7 @@ The inhouse pipeline and nsc-exporter changes to accommodate the DRAGEN Germline
 Some duplication of NovaSeqX generated data is expected.
 :::
 
-##### Pipeline output files per sample{#sec-analysis-folder}
+#### Pipeline output files per sample{#sec-analysis-folder}
 
 ::: {style="font-family: courier;font-size:0.7rem"}
 >analysis/wgs435_HB12345678_b08a0667-b221-48c6-8d44-abb516a61a2b/germline_seq    
@@ -709,13 +714,13 @@ Some duplication of NovaSeqX generated data is expected.
 👆 Generated by `tree --du` which shows the actual file sizes instead of disk space used.
 :::
 
-##### Number of samples
+#### Number of samples DRGEN Germline
 
 ```{ojs}
 //| echo: false
 //| panel: sidebar
 md`Assuming diagnostics usable storage (<code>TiB</code>):`
-viewof germ_diag_storage = Inputs.range([0, 500], {value: 155, step: 5})
+viewof germ_diag_storage = Inputs.range([0, 500], {value: 155, step: 1})
 ```
 
 ```{ojs}
@@ -739,7 +744,7 @@ md`<code style="font-family: monospace;">${textcolor(f_germ_num_25b_flowcells.to
 
 
 
-### Per sequencing run
+## Per sequencing run
 Each sequencing run can have different set up.
 
 - Flowcell side: 
@@ -756,7 +761,9 @@ Each sequencing run can have different set up.
     - variant calling mode = SmallVariantCaller
     - variant calling mode = AllVariantCallers _(Small, Structural, CNV, Repeat Expansions, ROH, CYP2D6 etc.)_
 
-#### Single 25B flowcell; BCL Convert only
+We normally run a single or dual 25B flowcell with BCL Convert only or DRAGEN Germline with all variant callers enabled.
+
+### Single 25B flowcell; BCL Convert only
 Single 25B flowcell (64 samples), secondary analysis is BCL Convert, _i.e._ only demultiplexing.
 
 ::: {.callout-important}
@@ -764,7 +771,7 @@ Single 25B flowcell (64 samples), secondary analysis is BCL Convert, _i.e._ only
 `3.9 TB` logical data (`5.1 TB` on disk).
 :::
 
-#### Dual 25B flowcell; BCL Convert only
+### Dual 25B flowcell; BCL Convert only
 Dual 25B flowcell (128 samples), secondary analysis is BCL Convert, _i.e._ only demultiplexing.
 
 ::: {.callout-important}
@@ -773,7 +780,7 @@ Dual 25B flowcell (128 samples), secondary analysis is BCL Convert, _i.e._ only 
 :::
 
 
-#### Dual 25B flowcell; DRAGEN Germline (AllVariantCallers)
+### Dual 25B flowcell; DRAGEN Germline (AllVariantCallers)
 Dual 25B flowcell (128 samples), secondary analysis is DRAGEN Germline with all variant callers enabled, _i.e._ doing both
 demultiplexing and mapping, variant calling with Onboard DRAGEN.
 
