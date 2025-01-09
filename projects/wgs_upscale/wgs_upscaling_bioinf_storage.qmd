@@ -70,28 +70,29 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 **This document will focus on the evaluation of NSC storage capacity.**
 
-# NSC Storage Capacity
+# Boston capacity
 <hr>
+Total capacity of boston is `552.6 TiB`. 
 
-## Capacity breakdown
+## Boston capacity breakdown
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM]{style="color:red"}
-Total capacity of NSC storage is `552.6 TiB`. The capability breakdown as of Dec 29, 2024 12:00 PM is as follows:
+The capability breakdown as of Dec 29, 2024 12:00 PM is as follows:
 :::
 
-![](capacity_breakdown.png)
+![](capacity_breakdown.png){width="750"}
 
 
-## Usable capacity
+## Boston usable capacity
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM]{style="color:red"}
 The usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
 :::
 
-![](usable_capacity.png)
+![](usable_capacity.png){width="550"}
 
 
-## Storage volumes
+## Boston storage volumes
 
 | Name                                                                                  | Purpose                               |
 | -----                                                                                 | ---                                   |
@@ -105,7 +106,7 @@ The usable capacity as of Dec 29, 2024, 12:00 PM is `231.2 TiB`.
 | [vm-datastore]{style="font-family:courier"}                                           | VMware datastore (virtual hard disks) |
 
 
-## Used storage breakdown
+## Boston used storage breakdown
 ::: {.callout-warning}
 ### [As of Dec 29, 2024, 12:00 PM:]{style="color:red"}
 The used storage as of Dec 29, 2024, 12:00 PM is `228 TiB`. Details are as follows:
@@ -141,6 +142,18 @@ the big files (mainly `.fastq.ora` files) are hardlinks.
 :::
 
 
+## Miami (old boston) Storage Capacity
+<hr>
+
+### Miami capacity breakdown
+::: {.callout-warning}
+#### [As of Nov 24, 2024, 12:06 PM]{style="color:red"}
+Total capacity of miami storage is `519 TiB`. The capability breakdown as of Nov 24, 2024 12:06 PM is as follows:
+:::
+
+![](miami_storage_20241124.png){width="950"}
+
+
 ## Miami used storage breakdown
 ::: {.callout-warning}
 ### [As of Nov 24, 2024, 12:06 PM:]{style="color:red"}
@@ -171,20 +184,22 @@ fig_miami = fig_miami.update_traces(
 fig_miami.update_layout(margin=dict(t=20, l=0, r=0, b=20), height=900)
 ```
 
-::: {.callout-tip}
-Even after the routine diagnostics cleanup, still large volume of used storage by diagnostics.
+::: {.callout-warning}
+Even after the routine diagnostics cleanup, diag still uses a large volume storage.
 
-The following folders take up ~100 TiB:
+The following folders take up `90 TiB` in total:  
 
-- /boston/diag/runs/veriseq 13.2 TiB
-- /boston/diag/transfer/dev 11.6 TiB
-- /boston/diag/transfer/lost-and-found 9.59 TiB
-- /boston/diag/diagInternal/ying_temp 24 TiB
-- /boston/diag/diagInternal/verification 4.05 TiB
-- /boston/diag/staging/data 12.5 TiB
-- /boston/diag/staging/transfer 4.03 TiB
-- /boston/diag/transfer/dev/p22-yingsh 11.3 TiB
-- /boston/diag/transfer/lost-and-found 9.59 TiB
+| Folder                                   | Size       |
+| :--------                                | ---:       |
+| `/boston/diag/runs/veriseq`              | `13.2 TiB` |
+| `/boston/diag/transfer/dev`              | `11.6 TiB` |
+| `/boston/diag/transfer/lost-and-found`   | `9.6 TiB`  |
+| `/boston/diag/diagInternal/ying_temp`    | `24.0 TiB` |
+| `/boston/diag/diagInternal/verification` | `4.1 TiB`  |
+| `/boston/diag/staging/data`              | `12.5 TiB` |
+| `/boston/diag/staging/transfer`          | `4.0 TiB`  |
+| `/boston/diag/transfer/dev/p22-yingsh`   | `11.3 TiB` |
+
 :::
 
 
