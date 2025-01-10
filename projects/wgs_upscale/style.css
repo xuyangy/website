@@ -20,6 +20,10 @@ h6,
     margin-top: 20px;
 }
 
+.nav-tabs .nav-link {
+    border-color: orange;
+}
+
 text.sectionTitle {
     fill-opacity: .8;
     fill: gray !important;

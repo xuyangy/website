@@ -198,7 +198,7 @@ This table shows the time for a single run on 2024-11-18.
 :::
 
 
-## Dual 25B flowcell; 2nd Analysis = BCL Convert only
+## Dual 25B flowcell; 2nd Analysis 🟰 BCL Convert only
 
 The time taken by each step of each Novaseq X run differs. Numbers listed here is from a specific run 20241209.
 
@@ -292,7 +292,7 @@ This table shows the time for a single run on 20241209.
 Sequencing starts to samples ready for running pipleline takes `57h`.
 
 
-#### Flowcell B Flowcell A
+#### Flowcell B Flowcell A <i class="bi bi-layout-split"></i>
 
 :::{.panel-tabset}
 
@@ -422,7 +422,7 @@ This table shows the time for a single run on 2024-12-09.
 :::
 
 
-#### Time sorted
+#### Time sorted <i class="bi bi-hourglass-top"></i>
 
 ::: {.panel-tabset}
 
@@ -602,7 +602,7 @@ Analysis file transfer to external storage completed ➕0h:2024-12-13 22:49:42, 
 Sequencing starts to samples ready for running pipleline takes `68h`.
 
 
-#### Flowcell B Flowcell A
+#### Flowcell B Flowcell A <i class="bi bi-layout-split"></i>
 
 :::{.panel-tabset}
 ##### Diagram
@@ -720,7 +720,7 @@ This table shows the time for a single run on 2024-12-09.
 :::
 
 
-#### Time sorted
+#### Time sorted <i class="bi bi-hourglass-top"></i>
 
 :::{.panel-tabset}
 ##### Diagram
