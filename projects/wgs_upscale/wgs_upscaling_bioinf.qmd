@@ -262,7 +262,7 @@ Next, we would like to know the how does file size affect transfer speed and tra
 
 <!-- read data from csv file -->
 ```{python}
-#| cache: true
+#| cache: false
 #| include: false
 def deHumanReadable(bandwidth_string):
     k = 1024  # s3cmd uses 1024 
@@ -292,7 +292,7 @@ However, the best speed is observed for files with size around 200 MB (zoom in o
 ```{python} 
 #| label: fig-correlation-filesize-speed-all
 #| fig-cap: Transfer speed VS file size (all files)
-#| cache: true
+#| cache: false
 import pandas as pd
 from datetime import datetime
 import re
@@ -852,12 +852,16 @@ performance o both ends etc.
 
 
 @fig-small-files-count show the number of small files and the number of large files using different boundaries.
+
 @fig-small-files-tot-time shows that the time used to transfer small files is neglectable. 
+
+::: {layout-ncol=2}
 
 ```{python} 
 #| label: fig-small-files-count
 #| fig-cap: total number of small files vs large files
 #| cache: true
+#| fig-width: 6
 boundary = [100000, 1000000, 10000000, 100000000, 1000000000]
 small = []
 large = []
@@ -869,7 +873,7 @@ for threshold in boundary:
 filecount_df = pd.DataFrame(
     {
         "boundary": map(
-            lambda x: "<" + r.humanReadable(x, standard="SI", digits=0),
+            lambda x: r.humanReadable(x, standard="SI", digits=0),
             boundary,
         ),
         "small": small,
@@ -882,7 +886,7 @@ px.bar(
     x="boundary",
     y=["small", "large"],
     labels={
-        'boundary': 'how small is small?',
+        'boundary': 'small file definition',
         'value': 'number of files',
         'variable': 'category',
     },
@@ -903,7 +907,7 @@ for threshold in boundary:
 time_df = pd.DataFrame(
     {
         "boundary": map(
-            lambda x: "<" + r.humanReadable(x, standard="SI", digits=0),
+            lambda x: r.humanReadable(x, standard="SI", digits=0),
             boundary,
         ),
         "small": small_tot_time,
@@ -915,7 +919,7 @@ px.bar(
     x="boundary",
     y=["small", "large"],
     labels={
-        "boundary": "how small is small?",
+        "boundary": "small file definition",
         "value": "total time used (seconds)",
         "variable": "category",
     },
@@ -923,6 +927,8 @@ px.bar(
     color_discrete_map={"small": "seagreen", "large": "orangered"},
 )
 ```
+
+:::
 
 ::: {.callout-tip collapse="true"}
 #### Total time (seconds) used to transfer small vs larger files (raw data)
@@ -965,7 +971,7 @@ cat(md_table(
 ```{ojs}
 //| echo: false
 //| panel: sidebar
-md`Assuming continuous transfer at speed (**MB/s**):`
+md`Assuming continuous transfer at speed (<code>MB/s</code>):`
 viewof speed = Inputs.range([1, 500], {value: 80, step: 1})
 ```
 ```{ojs}
@@ -985,30 +991,26 @@ volume_hour= formatBytes(speed*60*60*1000*1000, 1)
 volume_day= formatBytes(speed*24*60*60*1000*1000 , 1)
 volume_week = formatBytes(speed*7*24*60*60*1000*1000, 1)
 volume_month = formatBytes(speed*30*24*60*60*1000*1000, 1)
-md`${textcolor(volume_hour, 'MediumSeaGreen')} data can be transferred per **hour**.`
-md`${textcolor(volume_day, 'SlateBlue')} data can be transferred per **day**.`
-md`${textcolor(volume_week, 'Chocolate')} data can be transferred per **week**.`
-md`${textcolor(volume_month, 'Crimson')} data can be transferred per **month**.`
+md`<code>${textcolor(volume_hour.toString().padStart(9,'\u00A0'), 'MediumSeaGreen')}</code> data can be transferred per **hour**.`
+md`<code>${textcolor(volume_day.toString().padStart(9,'\u00A0'), 'SlateBlue')}</code> data can be transferred per **day**.`
+md`<code>${textcolor(volume_week.toString().padStart(9,'\u00A0'), 'Chocolate')}</code> data can be transferred per **week**.`
+md`<code>${textcolor(volume_month.toString().padStart(9,'\u00A0'), 'Crimson')}</code> data can be transferred per **month**.`
 ```
 
 ### Debugging
 
-1. **Does [`tacl`](https://github.com/unioslo/tsd-api-client) transfer data at a higher speed?**
-
+1. **Does [`tacl`](https://github.com/unioslo/tsd-api-client) transfer data at a higher speed?**  
 The [`tacl`](https://github.com/unioslo/tsd-api-client) tool transfers speed is actually lower than `s3cmd`.
 The `tacl` tool transfers data at around 65 MB/s.
 
-2. **CPU performance on NSC side**
-
+2. **CPU performance on NSC side**  
 CPU usage on NSC side (sleipnir) is high during data transfer. It can reach 90% of a single core.
 
-3. **Does increasing the chunk size of `s3cmd` improve the transfer speed?**
-
+3. **Does increasing the chunk size of `s3cmd` improve the transfer speed?**  
 The 200MB chunk size is almost the optimal size for the current setup. 2500MB chunk size is slightly 
 better (+10%) than 200MB chunk size for very large files.
 
-4. **Does parallelizing the transfer improve the transfer speed?**
-
+4. **Does parallelizing the transfer improve the transfer speed?**  
 With two parallel `nsc-exporter` processes, we can achieve around **1.6x - 1.8x** the transfer speed of a single process.
 
 
