@@ -568,6 +568,12 @@ the total data per sample becomes
 //| panel: sidebar
 md`Assuming diagnostics usable storage for **production data** (<code>TiB</code>):`
 viewof diag_storage = Inputs.range([0, 500], {value: 155, step: 1})
+md`samples per project:`
+viewof samples_per_project = Inputs.range([0, 500], {value: 96, step: 1})
+md`samples per week:`
+viewof samples_per_week = Inputs.range([0, 500], {value: 192, step: 1})
+md`samples per 25B flowcell:`
+viewof samples_per_25b_flowcell = Inputs.range([0, 500], {value: 64, step: 1})
 
 html`<br><br><em><span style="font-size: 0.75em; color: #999;"> <i class="bi bi-chat-dots"></i> see <a href="#sec-miami-storage-used">miami usage breakdown</a> for possible non-production data accumulated over time.</span></em>`
 ```
@@ -578,18 +584,18 @@ import {textcolor} from "@observablehq/text-color-annotations-in-markdown"
 
 num_samples = diag_storage*1000/269
 f_num_samples = num_samples.toFixed(0)
-num_projects = num_samples/48
+num_projects = num_samples/samples_per_project
 f_num_projects = num_projects.toFixed(1)
-num_weeks = num_samples/192
+num_weeks = num_samples/samples_per_week
 f_num_weeks = num_weeks.toFixed(1)
-num_25b_flowcells = num_samples/64
+num_25b_flowcells = num_samples/samples_per_25b_flowcell
 f_num_25b_flowcells = num_25b_flowcells.toFixed(1)
 
 md`It equals to the total data of:`
-md`<code style="font-family: monospace;">${textcolor(f_num_samples.toString().padStart(5, '\u00A0'), 'MediumSeaGreen')}</code> samples`
-md`<code style="font-family: monospace;">${textcolor(f_num_projects.toString().padStart(5, '\u00A0'), 'SlateBlue')}</code> projects _(48 samples each project)_`
-md`<code style="font-family: monospace;">${textcolor(f_num_weeks.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> weeks _(192 samples per week)_`
-md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> 25B flowcells _(64 samples per flowcell)_`
+md`<code style="font-family: monospace;">${textcolor(f_num_samples.toString().padStart(8, '\u00A0'), 'MediumSeaGreen')}</code> samples`
+md`<code style="font-family: monospace;">${textcolor(f_num_projects.toString().padStart(8, '\u00A0'), 'SlateBlue')}</code> projects _(${samples_per_project} samples per project)_`
+md`<code style="font-family: monospace;">${textcolor(f_num_weeks.toString().padStart(8, '\u00A0'), 'Chocolate')}</code> weeks _(${samples_per_week} samples per week)_`
+md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells.toString().padStart(8, '\u00A0'), 'Crimson')}</code> 25B flowcells _(${samples_per_25b_flowcell} samples per flowcell)_`
 ```
 
 
@@ -725,6 +731,14 @@ Some duplication of NovaSeqX generated data is expected.
 //| panel: sidebar
 md`Assuming diagnostics usable storage for **production data** (<code>TiB</code>):`
 viewof germ_diag_storage = Inputs.range([0, 500], {value: 155, step: 1})
+md`samples per project:`
+viewof germ_samples_per_project = Inputs.range([0, 500], {value: 96, step: 1})
+md`samples per week:`
+
+viewof germ_samples_per_week = Inputs.range([0, 500], {value: 192, step: 1})
+md`samples per 25B flowcell:`
+viewof germ_samples_per_25b_flowcell = Inputs.range([0, 500], {value: 64, step: 1})
+
 
 html`<br><br><em><span style="font-size: 0.75em; color: #999;"> <i class="bi bi-chat-dots"></i> see <a href="#sec-miami-storage-used">miami usage breakdown</a> for possible non-production data accumulated over time.</span></em>`
 ```
@@ -734,18 +748,18 @@ html`<br><br><em><span style="font-size: 0.75em; color: #999;"> <i class="bi bi-
 
 germ_num_samples = germ_diag_storage*1000/108
 f_germ_num_samples = germ_num_samples.toFixed(0)
-germ_num_projects = germ_num_samples/48
+germ_num_projects = germ_num_samples/germ_samples_per_project
 f_germ_num_projects = germ_num_projects.toFixed(1)
-germ_num_weeks = germ_num_samples/192
+germ_num_weeks = germ_num_samples/germ_samples_per_week
 f_germ_num_weeks = germ_num_weeks.toFixed(1)
-germ_num_25b_flowcells = germ_num_samples/64
+germ_num_25b_flowcells = germ_num_samples/germ_samples_per_25b_flowcell
 f_germ_num_25b_flowcells = germ_num_25b_flowcells.toFixed(1)
 
 md`It equals to the total data of:`
-md`<code style="font-family: monospace;">${textcolor(f_germ_num_samples.toString().padStart(5, '\u00A0'), 'MediumSeaGreen')}</code> samples`
-md`<code style="font-family: monospace;">${textcolor(f_germ_num_projects.toString().padStart(5, '\u00A0'), 'SlateBlue')}</code> projects _(48 samples each project)_`
-md`<code style="font-family: monospace;">${textcolor(f_germ_num_weeks.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> weeks _(192 samples per week)_`
-md`<code style="font-family: monospace;">${textcolor(f_germ_num_25b_flowcells.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> 25B flowcells _(64 samples per flowcell)_`
+md`<code style="font-family: monospace;">${textcolor(f_germ_num_samples.toString().padStart(8, '\u00A0'), 'MediumSeaGreen')}</code> samples`
+md`<code style="font-family: monospace;">${textcolor(f_germ_num_projects.toString().padStart(8, '\u00A0'), 'SlateBlue')}</code> projects _(${germ_samples_per_project} samples per project)_`
+md`<code style="font-family: monospace;">${textcolor(f_germ_num_weeks.toString().padStart(8, '\u00A0'), 'Chocolate')}</code> weeks _(${germ_samples_per_week} samples per week)_`
+md`<code style="font-family: monospace;">${textcolor(f_germ_num_25b_flowcells.toString().padStart(8, '\u00A0'), 'Crimson')}</code> 25B flowcells _(${germ_samples_per_25b_flowcell} samples per flowcell)_`
 ```
 
 
