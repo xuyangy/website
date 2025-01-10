@@ -59,10 +59,7 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 
 **This document will focus on the evaluation of pipeline capacity.**
 
-# Pipeline Capacity
-<hr>
-
-## Available hardware
+# Available hardware
 
 ::: {#hardware}
 
@@ -80,18 +77,18 @@ b. _stormfly_ and _toothless_
 
 :::
 
-## Sequencing ➕ Demultiplexing ➕ Delivery data to bioinformatics pipeline
+# Sequencing ➕ Demultiplexing ➕ NSC delivery data for bioinformatics pipeline
 This section will evaluate the time needed for sequencing, demultiplexing and copying data from NovaSeq X to external
 storage (Boston).
 
 
-### Single 25B flowcell 2nd Analysis BCL Convert only
+## Single 25B flowcell, 2nd Analysis 🟰 BCLConvert only
 
-#### NovaSeq X reported time
+### NovaSeq X reported time
 
 
 :::{.panel-tabset}
-##### Diagram
+#### Diagram
 
 ```{mermaid}
 %%| label: fig-single-25B-flowcell-2nd-analysis-bcl-convert-only
@@ -118,7 +115,7 @@ Analysis file transfer to external storage completed ➕0h: 2024-11-18 19:32:45,
 
 ```
 
-##### Table
+#### Table
 
 | Status                                                 | Started             | Completed           |
 | -----                                                  | ---                 | ---                 |
@@ -130,7 +127,7 @@ Analysis file transfer to external storage completed ➕0h: 2024-11-18 19:32:45,
 
 :::
 
-#### Detailed steps time
+### Detailed steps time
 
 The time taken by each step of each Novaseq X run differs. Numbers listed here is "close to" the medians.
 
@@ -149,7 +146,7 @@ The time taken by each step of each Novaseq X run differs. Numbers listed here i
 Sequencing starts to samples ready for running pipleline takes `52h`.
 
 :::{.panel-tabset}
-##### Diagram
+#### Diagram
 
 ```{mermaid}
 gantt
@@ -179,7 +176,7 @@ NSC automation (md5sum+deliver): 2024-11-20 14:05:02, 2024-11-20 14:15:05
 
 ```
 
-##### Table
+#### Table
 
 | Status                           | Started             | Completed           |
 | :----                            | :--                 | :--                 |
@@ -195,21 +192,21 @@ NSC automation (md5sum+deliver): 2024-11-20 14:05:02, 2024-11-20 14:15:05
 : Example run 20241118 {#tbl-20241118-detail .hover .bordered .striped}
 
 ::::{.callout-caution}
-This is a specific run on 2024-11-18.
+This table shows the time for a single run on 2024-11-18.
 ::::
 
 :::
 
 
-### Dual 25B flowcell; 2nd Analysis = BCL Convert only
+## Dual 25B flowcell; 2nd Analysis = BCL Convert only
 
 The time taken by each step of each Novaseq X run differs. Numbers listed here is from a specific run 20241209.
 
-#### NovaSeq X reported time
+### NovaSeq X reported time
 
 :::{.panel-tabset}
 
-##### Diagram
+#### Diagram
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
 %%| fig-cap: NovaSeq X reported time, Dual 25B flowcell, 2nd Analysis BCL Convert only
@@ -240,7 +237,7 @@ Analysis completed ➕10h:2024-12-09 18:02:38,2024-12-11 19:28:08
 Analysis file transfer to external storage completed ➕0h:2024-12-09 18:02:40,2024-12-11 19:28:08
 ```
 
-##### Table
+#### Table
 
 :::: {#tbl-dual-25B-flowcell layout-nrow=2}
 | Status                                                 | Started             | Completed           | Duration |
@@ -267,13 +264,13 @@ NovaSeq X reported time example run 20241209
 ::::
 
 :::: {.callout-caution}
-This is a specific run 20241209.
+This table shows the time for a single run on 20241209.
 ::::
 
 :::
 
 
-#### Detailed steps time
+### Detailed steps time
 
 - Sequencing of dual 25B flowcell takes `44h`. 
 - Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
@@ -295,11 +292,11 @@ This is a specific run 20241209.
 Sequencing starts to samples ready for running pipleline takes `57h`.
 
 
-##### Grouped A and B
+#### Flowcell B Flowcell A
 
 :::{.panel-tabset}
 
-###### Diagram
+##### Diagram
 
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
@@ -361,7 +358,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 
 ```
 
-###### Table
+##### Table
 
 :::: {#tbl-dual-25B-flowcell-bcl-detailed layout-ncol=2 }
 
@@ -419,17 +416,17 @@ Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time, run 20241
 ::::
 
 :::: {.callout-caution}
-This is a specific run on 2024-12-09.
+This table shows the time for a single run on 2024-12-09.
 ::::
 
 :::
 
 
-##### Time sorted
+#### Time sorted
 
 ::: {.panel-tabset}
 
-###### Diagram
+##### Diagram
 
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-sorted
@@ -488,7 +485,7 @@ Analysis file transfer to boston (A): 2024-12-11 18:00:00, 2024-12-11 19:27:00
 NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 ```
 
-###### Table
+##### Table
 
 :::: {#tbl-dual-25B-flowcell-bcl-detailed-sorted}
 
@@ -537,7 +534,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 ::::
 
 :::: {.callout-caution}
-This is a specific run on 2024-12-09.
+This table shows the time for a single run on 2024-12-09.
 ::::
 
 
@@ -545,16 +542,16 @@ This is a specific run on 2024-12-09.
 
 
 
-### Dual 25B flowcell; 2nd Analysis = WGS Germline
+## Dual 25B flowcell; 2nd Analysis 🟰 WGS Germline
 Dual 25B flowcell (128 samples). 2nd Analysis is WGS Germline (mapping and variant calling).
 The time taken by each step of each Novaseq X run differs. 
 Numbers listed here is from a specific run 20241213.
 
-#### NovaSeq X reported time
+### NovaSeq X reported time
 
 :::{.panel-tabset}
 
-##### Diagram
+#### Diagram
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-wgs-germline
 
@@ -585,12 +582,12 @@ Analysis completed ➕22h:2024-12-13 22:49:42, 2024-12-16 11:42:00
 Analysis file transfer to external storage completed ➕0h:2024-12-13 22:49:42,  2024-12-16 11:42:00
 ```
 
-##### Table
+#### Table
 
 :::
 
 
-#### Detailed steps time
+### Detailed steps time
 
 - Sequencing of dual 25B flowcell takes `44h`. 
 - Sequencing file transfer to external storage starts `7h` after sequencing start and finishes `2h` after sequencing finishes. 
@@ -605,6 +602,7 @@ Analysis file transfer to external storage completed ➕0h:2024-12-13 22:49:42, 
 Sequencing starts to samples ready for running pipleline takes `68h`.
 
 
+#### Flowcell B Flowcell A
 
 :::{.panel-tabset}
 ##### Diagram
@@ -636,11 +634,11 @@ RunEndTime (B): milestone, 2024-12-15 13:35:06, 0d
 8 sample pipeline (B)(msg_001): 2024-12-15 02:14:40,  2024-12-15 06:12:10
 8 sample pipeline (B)(msg_002): 2024-12-15 02:16:03,  2024-12-15 06:08:38
 8 sample pipeline (B)(msg_003): 2024-12-15 02:21:34,  2024-12-15 06:02:43
-8 sample pipeline (B)(msg_004) (waiting for board access ~1.7h): 2024-12-15 02:30:31,  2024-12-15 07:21:59
+(waiting for board access 1.7h) 8 sample pipeline (B)(msg_004): 2024-12-15 02:30:31,  2024-12-15 07:21:59
 8 sample pipeline (B)(msg_005): 2024-12-15 06:02:54,  2024-12-15 09:27:04
 8 sample pipeline (B)(msg_006): 2024-12-15 06:09:01,  2024-12-15 10:15:17
-8 sample pipeline (B)(msg_007) (waiting for board access ~1.2h): 2024-12-15 06:12:43,  2024-12-15 11:00:17
-8 sample pipeline (B)(msg_008) (waiting for board access ~2h): 2024-12-15 07:22:41,  2024-12-15 12:21:11
+(waiting for board access 1.2h) 8 sample pipeline (B)(msg_007): 2024-12-15 06:12:43,  2024-12-15 11:00:17
+(waiting for board access 2h) 8 sample pipeline (B)(msg_008): 2024-12-15 07:22:41,  2024-12-15 12:21:11
 FastQC etc. report generation (B): 2024-12-15 17:33:00, 2024-12-15 20:27:00
 Analysis file transfer to boston (B): 2024-12-15 22:10:00, 2024-12-16 01:10:00
 NSC automation (md5sum+deliver) (B):  2024-12-16 01:15:01, 2024-12-16 01:22:02
@@ -654,7 +652,7 @@ bcl2fastq (A): 2024-12-15 15:36:32, 2024-12-15 15:55:22
 8 sample pipeline (A) (msg_001): 2024-12-15 12:35:29,  2024-12-15 16:20:28
 8 sample pipeline (A) (msg_002): 2024-12-15 12:41:54,  2024-12-15 15:59:51
 8 sample pipeline (A) (msg_003): 2024-12-15 12:46:44,  2024-12-15 16:29:28
-8 sample pipeline (A) (msg_004) (waiting for board access ~3h): 2024-12-15 12:57:58,  2024-12-15 19:40:46
+(waiting for board access 3h) 8 sample pipeline (A) (msg_004): 2024-12-15 12:57:58,  2024-12-15 19:40:46
 8 sample pipeline (A) (msg_005): 2024-12-15 15:59:59,  2024-12-15 20:09:04
 8 sample pipeline (A) (msg_006): 2024-12-15 16:21:01,  2024-12-15 20:12:05
 8 sample pipeline (A) (msg_007): 2024-12-15 16:29:32,  2024-12-15 20:44:58
@@ -700,7 +698,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-16 11:50:01, 2024-12-16 11:56:58
 | 8 sample pipeline(msg_001)                                | 2024-12-15 12:35:29 | 2024-12-15 16:20:28 |
 | 8 sample pipeline(msg_002)                                | 2024-12-15 12:41:54 | 2024-12-15 15:59:51 |
 | 8 sample pipeline(msg_003)                                | 2024-12-15 12:46:44 | 2024-12-15 16:29:28 |
-| 8 sample pipeline(msg_004) (waiting for board access ~3h) | 2024-12-15 12:57:58 | 2024-12-15 19:40:46 |
+| (waiting for board access 3h) 8 sample pipeline(msg_004)  | 2024-12-15 12:57:58 | 2024-12-15 19:40:46 |
 | 8 sample pipeline(msg_005)                                | 2024-12-15 15:59:59 | 2024-12-15 20:09:04 |
 | 8 sample pipeline(msg_006)                                | 2024-12-15 16:21:01 | 2024-12-15 20:12:05 |
 | 8 sample pipeline(msg_007)                                | 2024-12-15 16:29:32 | 2024-12-15 20:44:58 |
@@ -716,7 +714,110 @@ Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time, run 20241
 ::::
 
 :::: {.callout-caution}
-This is a specific run on 2024-12-09.
+This table shows the time for a single run on 2024-12-09.
+::::
+
+:::
+
+
+#### Time sorted
+
+:::{.panel-tabset}
+##### Diagram
+
+```{mermaid}
+%%| label: fig-dual-25B-flowcell-2nd-analysis-wgs-germline-sorted
+%%| fig-cap: Dual 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
+gantt
+%%{ 
+  init: { 
+    'theme': 'forest' ,
+    'gantt': {
+      'barHeight': 30,
+      'fontSize': 12,
+      'sectionFontSize': 18
+    }
+  } 
+}%%
+dateFormat YYYY-MM-DD HH:mm:ss
+axisFormat %d/%b %H:%M
+title NovaSeq X Sequenicing ➡  Ready for lims-exporter
+RunStartTime (B): milestone, 2024-12-13 15:22:38, 0d
+RunStartTime (A): milestone, 2024-12-13 15:22:39, 0d
+Instrument Analytics Cycle 1 - 320 (B): 2024-12-13 21:32:07, 2024-12-15 10:39:45 
+Instrument Analytics Cycle 1 - 320 (A): 2024-12-13 21:32:38, 2024-12-15 10:43:37
+BCL CONVERSION (B): 2024-12-14 09:20:26, 2024-12-15 01:58:22
+BCL CONVERSION (A): 2024-12-14 09:23:44, 2024-12-15 02:03:05
+8 sample pipeline (B)(msg_001): 2024-12-15 02:14:40,  2024-12-15 06:12:10
+8 sample pipeline (B)(msg_002): 2024-12-15 02:16:03,  2024-12-15 06:08:38
+8 sample pipeline (B)(msg_003): 2024-12-15 02:21:34,  2024-12-15 06:02:43
+(waiting for board access 1.7h) 8 sample pipeline (B)(msg_004): 2024-12-15 02:30:31,  2024-12-15 07:21:59
+bcl2fastq (B): 2024-12-15 04:41:06, 2024-12-15 04:55:58
+8 sample pipeline (B)(msg_005): 2024-12-15 06:02:54,  2024-12-15 09:27:04
+8 sample pipeline (B)(msg_006): 2024-12-15 06:09:01,  2024-12-15 10:15:17
+(waiting for board access 1.2h) 8 sample pipeline (B)(msg_007): 2024-12-15 06:12:43,  2024-12-15 11:00:17
+(waiting for board access 2h) 8 sample pipeline (B)(msg_008): 2024-12-15 07:22:41,  2024-12-15 12:21:11
+Post Run (B): 2024-12-15 11:39:46, 2024-12-15 13:31:14
+Post Run (A): 2024-12-15 11:43:38, 2024-12-15 13:35:06
+8 sample pipeline (A) (msg_001): 2024-12-15 12:35:29,  2024-12-15 16:20:28
+8 sample pipeline (A) (msg_002): 2024-12-15 12:41:54,  2024-12-15 15:59:51
+8 sample pipeline (A) (msg_003): 2024-12-15 12:46:44,  2024-12-15 16:29:28
+(waiting for board access 3h) 8 sample pipeline (A) (msg_004): 2024-12-15 12:57:58,  2024-12-15 19:40:46
+RunEndTime (B): milestone, 2024-12-15 13:35:06, 0d
+RunEndTime (A): milestone, 2024-12-15 13:35:06, 0d
+bcl2fastq (A): 2024-12-15 15:36:32, 2024-12-15 15:55:22
+8 sample pipeline (A) (msg_005): 2024-12-15 15:59:59,  2024-12-15 20:09:04
+8 sample pipeline (A) (msg_006): 2024-12-15 16:21:01,  2024-12-15 20:12:05
+8 sample pipeline (A) (msg_007): 2024-12-15 16:29:32,  2024-12-15 20:44:58
+FastQC etc. report generation (B): 2024-12-15 17:33:00, 2024-12-15 20:27:00
+8 sample pipeline (A) (msg_008): 2024-12-15 19:40:54,  2024-12-15 22:53:59
+Analysis file transfer to boston (B): 2024-12-15 22:10:00, 2024-12-16 01:10:00
+NSC automation (md5sum+deliver) (B):  2024-12-16 01:15:01, 2024-12-16 01:22:02
+FastQC etc. report generation (A): 2024-12-16 04:20:00, 2024-12-16 07:00:00
+Analysis file transfer to boston (A): 2024-12-16 08:40:00, 2024-12-16 11:40:00
+NSC automation (md5sum+deliver) (A):  2024-12-16 11:50:01, 2024-12-16 11:56:58
+```
+
+##### Table
+
+| Job                                                           | Started             | Completed           |
+| :---------                                                    | ---                 | ---                 |
+| RunStartTime (B)                                              | 2024-12-13 15:22:38 |                     |
+| RunStartTime (A)                                              | 2024-12-13 15:22:39 |                     |
+| Instrument Analytics Cycle 1 - 320 (B)                        | 2024-12-13 21:32:07 | 2024-12-15 10:39:45 |
+| Instrument Analytics Cycle 1 - 320 (A)                        | 2024-12-13 21:32:38 | 2024-12-15 10:43:37 |
+| BCL CONVERSION (B)                                            | 2024-12-14 09:20:26 | 2024-12-15 01:58:22 |
+| BCL CONVERSION (A)                                            | 2024-12-14 09:23:44 | 2024-12-15 02:03:05 |
+| 8 sample pipeline (B)(msg_001)                                | 2024-12-15 02:14:40 | 2024-12-15 06:12:10 |
+| 8 sample pipeline (B)(msg_002)                                | 2024-12-15 02:16:03 | 2024-12-15 06:08:38 |
+| 8 sample pipeline (B)(msg_003)                                | 2024-12-15 02:21:34 | 2024-12-15 06:02:43 |
+| 8 sample pipeline (B)(msg_004)                                | 2024-12-15 02:30:31 | 2024-12-15 07:21:59 |
+| 8 sample pipeline (B)(msg_005)                                | 2024-12-15 06:02:54 | 2024-12-15 09:27:04 |
+| 8 sample pipeline (B)(msg_006)                                | 2024-12-15 06:09:01 | 2024-12-15 10:15:17 |
+| 8 sample pipeline (B)(msg_007)                                | 2024-12-15 06:12:43 | 2024-12-15 11:00:17 |
+| 8 sample pipeline (B)(msg_008)                                | 2024-12-15 07:22:41 | 2024-12-15 12:21:11 |
+| Post Run (B)                                                  | 2024-12-15 11:39:46 | 2024-12-15 13:31:14 |
+| Post Run (A)                                                  | 2024-12-15 11:43:38 | 2024-12-15 13:35:06 |
+| 8 sample pipeline (A)(msg_001)                                | 2024-12-15 12:35:29 | 2024-12-15 16:20:28 |
+| 8 sample pipeline (A)(msg_002)                                | 2024-12-15 12:41:54 | 2024-12-15 15:59:51 |
+| 8 sample pipeline (A)(msg_003)                                | 2024-12-15 12:46:44 | 2024-12-15 16:29:28 |
+| (waiting for board access 3h) 8 sample pipeline (A)(msg_004)  | 2024-12-15 12:57:58 | 2024-12-15 19:40:46 |
+| RunEndTime (B)                                                |                     | 2024-12-15 13:35:06 |
+| RunEndTime (A)                                                |                     | 2024-12-15 13:35:06 |
+| 8 sample pipeline (A)(msg_005)                                | 2024-12-15 15:59:59 | 2024-12-15 20:09:04 |
+| 8 sample pipeline (A)(msg_006)                                | 2024-12-15 16:21:01 | 2024-12-15 20:12:05 |
+| 8 sample pipeline (A)(msg_007)                                | 2024-12-15 16:29:32 | 2024-12-15 20:44:58 |
+| FastQC etc. report generation (B)                             | 2024-12-15 17:33:00 | 2024-12-15 20:27:00 |
+| 8 sample pipeline (A)(msg_008)                                | 2024-12-15 19:40:54 | 2024-12-15 22:53:59 |
+| Analysis file transfer to boston (B)                          | 2024-12-15 22:10:00 | 2024-12-16 01:10:00 |
+| NSC automation (md5sum+deliver) (B)                           | 2024-12-16 01:15:01 | 2024-12-16 01:22:02 |
+| FastQC etc. report generation (A)                             | 2024-12-16 04:20:00 | 2024-12-16 07:00:00 |
+| Analysis file transfer to boston (A)                          | 2024-12-16 08:40:00 | 2024-12-16 11:40:00 |
+| NSC automation (md5sum+deliver) (A)                           | 2024-12-16 11:50:01 | 2024-12-16 11:56:58 |
+: Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time, run 20241209 {#tbl-dual-25B-flowcell-detailed-germline-sorted .striped .hover}
+
+:::: {.callout-caution}
+This table shows the time for a single run on 2024-12-09.
 ::::
 
 :::
@@ -724,17 +825,17 @@ This is a specific run on 2024-12-09.
 
 
 
-## Pipeline capacity evaluation
+# Pipeline capacity evaluation
 DRAGEN is "single-threaded". 
 The pipeline capacity is determined by the number of DRAGENs available. 
 And the time needed to process a sample.
 
 
 
-### Pipeline real-time monitoring (1 or 2 NSC DRAGEN in use)
+## Pipeline real-time monitoring (1 or 2 NSC DRAGEN in use)
 With 1 or 2 NSC DRAGENs in use, the pipeline can process up to `36` or `72` samples in 24 hours.
 
-#### 2024-11-10 (Sun)
+### 2024-11-10 (Sun)
 ```{mermaid}
 ---
 config:
@@ -775,7 +876,7 @@ wgs418_48 (38m 46s): 2024-10-10 23:45:52.665,2024-10-11 00:25:02.730
 ☪: milestone, end, 2024-10-10 23:59:59.999, 0d
 ```
 
-#### 2024-11-11 (Mon)
+### 2024-11-11 (Mon)
 
 ```{mermaid}
 ---
@@ -834,7 +935,7 @@ wgs418_25 (31m 57s): 2024-10-11 18:00:16.227,2024-10-11 18:32:41.280
 ☪: milestone, end, 2024-10-11 23:59:59.999, 0d
 ```
 
-#### 2024-11-12 (Tue)^idle^
+### 2024-11-12 (Tue)^idle^
 
 ```{mermaid}
 ---
@@ -857,7 +958,7 @@ No DRAGEN run on 2024-11-12.
 :::
 
 
-#### 2024-11-13 (Wed)
+### 2024-11-13 (Wed)
 
 ```{mermaid}
 ---
@@ -899,7 +1000,7 @@ wgs419_34 (58m 10s): 2024-10-13 23:54:14.168,2024-10-14 00:52:34.258
 ☪: milestone, end, 2024-10-13 23:59:59.999, 0d
 ```
 
-#### 2024-11-14 (Thu)
+### 2024-11-14 (Thu)
 
 ```{mermaid}
 ---
@@ -950,7 +1051,7 @@ wgs419_7 (38m 55s): 2024-10-14 10:57:14.761,2024-10-14 11:35:55.091
 ☪: milestone, end, 2024-10-14 23:59:59.999, 0d
 ```
 
-#### 2024-11-15 (Fri)^idle^
+### 2024-11-15 (Fri)^idle^
 
 ```{mermaid}
 ---
@@ -974,7 +1075,7 @@ wgs420_12 (26m 45s): 2024-10-15 17:02:28.239,2024-10-15 17:29:13.338
 Just 2 DRAGEN runs on 2024-11-12.
 :::
 
-#### 2024-11-16 (Sat)
+### 2024-11-16 (Sat)
 
 ```{mermaid}
 ---
@@ -1011,7 +1112,7 @@ wgs420_41 (33m 38s): 2024-10-16 23:45:51.300,2024-10-17 00:19:11.366
 ☪: milestone, end, 2024-10-16 23:59:59.999, 0d
 ```
 
-#### 2024-11-17 (Sun)^full^
+### 2024-11-17 (Sun)^full^
 
 ```{mermaid}
 ---
@@ -1118,7 +1219,7 @@ A full day of DRAGEN runs on 2024-11-17.
 :::
 
 
-#### 2024-11-18 (Mon)
+### 2024-11-18 (Mon)
 
 ```{mermaid}
 ---
@@ -1160,7 +1261,7 @@ wgs420_17 (30m 2s): 2024-10-18 06:19:25.875,2024-10-18 06:49:40.910
 ```
 
 
-#### 2024-11-19 (Tue)^idle^
+### 2024-11-19 (Tue)^idle^
 
 
 ```{mermaid}
@@ -1185,7 +1286,7 @@ No DRAGEN run on 2024-11-12.
 
 
 
-#### 2024-11-20 (Wed)^idle^
+### 2024-11-20 (Wed)^idle^
 
 
 ```{mermaid}
@@ -1210,7 +1311,7 @@ No DRAGEN run on 2024-11-12.
 
 
 
-#### 2024-11-21 (Thu)
+### 2024-11-21 (Thu)
 
 ```{mermaid}
 ---
