@@ -35,7 +35,7 @@ samples,data,0.213,213 GiB
 sw,production,0.676,676 GiB
 reference,production,0.0995,99.5 GiB
 runScratch,miami,0,138 TiB
-NovaSeqX,runScratch,0,65.0 TiB
+NovaSeqX,runScratch,0.06,65.0 TiB
 processed ,NovaSeqX,57.7,57.7 TiB
 20241112_LH00534_0071_B22JKHMLT4,NovaSeqX,3.64,3.64 TiB
 20241112_LH00534_0072_A22JMNMLT4,NovaSeqX,3.6,3.6 TiB

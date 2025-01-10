@@ -157,7 +157,7 @@ The capability breakdown as of Nov 24, 2024 12:06 PM is as follows:
 ![](miami_storage_20241124.png){width="950"}
 
 
-# Miami (old boston) used storage breakdown
+# Miami (old boston) used storage breakdown{#sec-miami-storage-used}
 ::: {.callout-warning}
 ### [As of Nov 24, 2024, 12:06 PM:]{style="color:red"}
 The used storage as of Nov 24, 204, 12:06 PM is `385 TiB`. Details are as follows:
@@ -564,8 +564,10 @@ the total data per sample becomes
 ```{ojs}
 //| echo: false
 //| panel: sidebar
-md`Assuming diagnostics usable storage (<code>TiB</code>):`
+md`Assuming diagnostics usable storage for **production data** (<code>TiB</code>):`
 viewof diag_storage = Inputs.range([0, 500], {value: 155, step: 1})
+
+html`<br><br><span style="font-size: 0.75em; color: #999;">See <a href="#sec-miami-storage-used">miami usage breakdown</a> for possible non-production data accumulated over time</span>`
 ```
 
 ```{ojs}
@@ -581,11 +583,11 @@ f_num_weeks = num_weeks.toFixed(1)
 num_25b_flowcells = num_samples/64
 f_num_25b_flowcells = num_25b_flowcells.toFixed(1)
 
-md`Which equals to the total data of:`
+md`It equals to the total data of:`
 md`<code style="font-family: monospace;">${textcolor(f_num_samples.toString().padStart(5, '\u00A0'), 'MediumSeaGreen')}</code> samples`
-md`<code style="font-family: monospace;">${textcolor(f_num_projects.toString().padStart(5, '\u00A0'), 'SlateBlue')}</code> projects (48 samples each project)`
-md`<code style="font-family: monospace;">${textcolor(f_num_weeks.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> weeks (192 samples per week)`
-md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> 25B flowcells (64 samples per flowcell)`
+md`<code style="font-family: monospace;">${textcolor(f_num_projects.toString().padStart(5, '\u00A0'), 'SlateBlue')}</code> projects _(48 samples each project)_`
+md`<code style="font-family: monospace;">${textcolor(f_num_weeks.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> weeks _(192 samples per week)_`
+md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> 25B flowcells _(64 samples per flowcell)_`
 ```
 
 
@@ -719,8 +721,10 @@ Some duplication of NovaSeqX generated data is expected.
 ```{ojs}
 //| echo: false
 //| panel: sidebar
-md`Assuming diagnostics usable storage (<code>TiB</code>):`
+md`Assuming diagnostics usable storage for **production data** (<code>TiB</code>):`
 viewof germ_diag_storage = Inputs.range([0, 500], {value: 155, step: 1})
+
+html`<br><br><span style="font-size: 0.75em; color: #999;">See <a href="#sec-miami-storage-used">miami usage breakdown</a> for possible non-production data accumulated over time</span>`
 ```
 
 ```{ojs}
@@ -735,17 +739,19 @@ f_germ_num_weeks = germ_num_weeks.toFixed(1)
 germ_num_25b_flowcells = germ_num_samples/64
 f_germ_num_25b_flowcells = germ_num_25b_flowcells.toFixed(1)
 
-md`Which equals to the total data of:`
+md`It equals to the total data of:`
 md`<code style="font-family: monospace;">${textcolor(f_germ_num_samples.toString().padStart(5, '\u00A0'), 'MediumSeaGreen')}</code> samples`
-md`<code style="font-family: monospace;">${textcolor(f_germ_num_projects.toString().padStart(5, '\u00A0'), 'SlateBlue')}</code> projects (48 samples each project)`
-md`<code style="font-family: monospace;">${textcolor(f_germ_num_weeks.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> weeks (192 samples per week)`
-md`<code style="font-family: monospace;">${textcolor(f_germ_num_25b_flowcells.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> 25B flowcells (64 samples per flowcell)`
+md`<code style="font-family: monospace;">${textcolor(f_germ_num_projects.toString().padStart(5, '\u00A0'), 'SlateBlue')}</code> projects _(48 samples each project)_`
+md`<code style="font-family: monospace;">${textcolor(f_germ_num_weeks.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> weeks _(192 samples per week)_`
+md`<code style="font-family: monospace;">${textcolor(f_germ_num_25b_flowcells.toString().padStart(5, '\u00A0'), 'Chocolate')}</code> 25B flowcells _(64 samples per flowcell)_`
 ```
 
 
 
 ## Per sequencing run
 Each sequencing run can have different set up.
+
+::: {style="font-size:0.8rem"}
 
 - Flowcell side: 
   - single side (single flowcell) 
@@ -761,6 +767,7 @@ Each sequencing run can have different set up.
     - variant calling mode = SmallVariantCaller
     - variant calling mode = AllVariantCallers _(Small, Structural, CNV, Repeat Expansions, ROH, CYP2D6 etc.)_
 
+:::
 We normally run a single or dual 25B flowcell with BCL Convert only or DRAGEN Germline with all variant callers enabled.
 
 ### Single 25B flowcell; BCL Convert only
