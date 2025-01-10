@@ -22,13 +22,13 @@ format:
         grid:
             sidebar-width: 10px
             body-width: 1200px
-            margin-width: 320px
+            margin-width: 420px
             gutter-width: 1.5rem
         toc: true
-        toc-depth: 4
+        toc-depth: 5
         toc-expand: true
         number-sections: true
-        number-depth: 4
+        number-depth: 5
         float: true
         header-includes: |
             <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -295,10 +295,11 @@ This is a specific run 20241209.
 Sequencing starts to samples ready for running pipleline takes `57h`.
 
 
+##### Grouped A and B
 
 :::{.panel-tabset}
 
-##### Diagram A/B
+###### Diagram
 
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
@@ -360,9 +361,9 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 
 ```
 
-##### Table
+###### Table
 
-:::: {#tbl-dual-25B-flowcell-detailed layout-ncol=2 }
+:::: {#tbl-dual-25B-flowcell-bcl-detailed layout-ncol=2 }
 
 | Job                                    | Started             | Completed           |
 | ----                                   | ---                 | ---                 |
@@ -386,7 +387,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 | Analysis file transfer to boston (B)   | 2024-12-11 12:40:00 | 2024-12-11 14:02:00 |
 | NSC automation (md5sum+deliver) (B)    | 2024-12-11 14:10:02 | 2024-12-11 14:16:49 |
 
-: Flowcell B {#tbl-dual-25B-flowcell-b-detailed .striped .hover style="font-size: 0.7em;"}
+: Flowcell B {#tbl-dual-25B-flowcell-bcl-b-detailed .striped .hover style="font-size: 0.7em;"}
 
 
 | Job                                    | Started             | Completed           |
@@ -411,7 +412,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 | Analysis file transfer to boston (A)   | 2024-12-11 18:00:00 | 2024-12-11 19:27:00 |
 | NSC automation (md5sum+deliver) (A)    | 2024-12-11 19:35:01 | 2024-12-11 19:42:11 |
 
-: Flowcell A {#tbl-dual-25B-flowcell-a-detailed .striped .hover style="font-size: 0.7em;"}
+: Flowcell A {#tbl-dual-25B-flowcell-bcl-a-detailed .striped .hover style="font-size: 0.7em;"}
 
 Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time, run 20241209
 
@@ -423,7 +424,12 @@ This is a specific run on 2024-12-09.
 
 :::
 
-##### Diagram sorted
+
+##### Time sorted
+
+::: {.panel-tabset}
+
+###### Diagram
 
 ```{mermaid}
 %%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-sorted
@@ -444,6 +450,10 @@ axisFormat %d/%b %H:%M
 title NovaSeq X Sequenicing ➡  Ready for lims-exporter
 RunStartTime (A): milestone, 2024-12-09 11:03:52, 0d
 RunStartTime (B): milestone, 2024-12-09 11:03:53, 0d
+Sequencing 44h (A): seq, 2024-12-09 11:30:37, 2024-12-11 07:12:55
+Sequencing 44h (B): seq, 2024-12-09 11:30:41, 2024-12-11 07:09:03
+Instrument Analytics Cycle 1 - 320 (B): 2024-12-09 17:01:58, 2024-12-11 06:09:02
+Instrument Analytics Cycle 1 - 320 (A): 2024-12-09 17:02:34, 2024-12-11 06:12:54
 BCL CONVERSION A: convA, 2024-12-10 04:49:52, 2024-12-10 21:29:01
 BCL CONVERSION B: convB, 2024-12-10 04:52:36, 2024-12-10 21:33:20
 bcl2fastq (B): 2024-12-10 21:33:21, 2024-12-10 23:39:08
@@ -453,37 +463,85 @@ bcl2fastq (B): 2024-12-10 21:33:21, 2024-12-10 23:39:08
 FastQC (map-align) (B) msg_001: 2024-12-10 23:39:09, 2024-12-11 01:16:52
 FastQC (map-align) (B) msg_004: 2024-12-10 23:39:09, 2024-12-11 01:21:20
 FastQC (map-align) (B) msg_003: 2024-12-10 23:39:09, 2024-12-11 01:21:56
-16 sample ora compress (B): 2024-12-11 00:36:40, 2024-12-11 01:33:13
 FastQC (map-align) (B) msg_002: 2024-12-10 23:39:09, 2024-12-11 02:49:01
+16 sample ora compress (B): 2024-12-11 00:36:40, 2024-12-11 01:33:13
 bcl2fastq (A): 2024-12-11 02:51:04, 2024-12-11 04:54:52
 16 sample ora compress (A): 2024-12-11 04:54:52, 2024-12-11 06:00:23
 16 sample ora compress (A): 2024-12-11 04:54:52, 2024-12-11 06:03:44
 16 sample ora compress (A): 2024-12-11 04:54:52, 2024-12-11 06:04:37
-Instrument Analytics Cycle 1 - 320 (B): 2024-12-09 17:01:58, 2024-12-11 06:09:02
-Instrument Analytics Cycle 1 - 320 (A): 2024-12-09 17:02:34, 2024-12-11 06:12:54
 FastQC (map-align) (A) msg_002: 2024-12-11 04:54:52, 2024-12-11 06:32:46
 FastQC (map-align) (A) msg_003: 2024-12-11 04:54:52, 2024-12-11 06:34:32
 FastQC (map-align) (A) msg_004: 2024-12-11 04:54:52, 2024-12-11 06:35:42
-16 sample ora compress (A): 2024-12-11 06:00:23, 2024-12-11 06:57:40
-Sequencing 44h (B): seq, 2024-12-09 11:30:41, 2024-12-11 07:09:03
-Sequencing 44h (A): seq, 2024-12-09 11:30:37, 2024-12-11 07:12:55
-fastq generation complete (B): milestone, 2024-12-11 07:39:08, 0d
 FastQC (map-align) (A) msg_001: 2024-12-11 04:54:52, 2024-12-11 08:11:00
+16 sample ora compress (A): 2024-12-11 06:00:23, 2024-12-11 06:57:40
+fastq generation complete (B): milestone, 2024-12-11 07:39:08, 0d
 Post Run (B): 2024-12-11 07:47:48, 2024-12-11 09:00:31
 Post Run (A): 2024-12-11 07:54:00, 2024-12-11 09:04:23
 RunEndTime (B): milestone, 2024-12-11 09:04:23, 0d
 RunEndTime (A): milestone, 2024-12-11 09:04:23, 0d
 FastQC report generation (B): 2024-12-11 09:12:00, 2024-12-11 10:50:00
-fastq generation complete (A): milestone, 2024-12-11 12:54:52, 0d
 Analysis file transfer to boston (B): 2024-12-11 12:40:00, 2024-12-11 14:02:00
+fastq generation complete (A): milestone, 2024-12-11 12:54:52, 0d
 NSC automation (md5sum+deliver) (B):  2024-12-11 14:10:02, 2024-12-11 14:16:49
 FastQC report generation (A): 2024-12-11 14:33:00, 2024-12-11 16:12:00
 Analysis file transfer to boston (A): 2024-12-11 18:00:00, 2024-12-11 19:27:00
 NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 ```
 
+###### Table
+
+:::: {#tbl-dual-25B-flowcell-bcl-detailed-sorted}
+
+| Job                                    | Started             | Completed           |
+| :----                                  | :---                | :---                |
+| RunStartTime (A)                       | 2024-12-09 11:03:52 |                     | 
+| RunStartTime (B)                       | 2024-12-09 11:03:53 |                     |
+| Sequencing completed (A)               | 2024-12-09 11:30:37 | 2024-12-11 07:12:55 |
+| Sequencing completed (B)               | 2024-12-09 11:30:41 | 2024-12-11 07:09:03 |
+| Instrument Analytics Cycle 1 - 320 (B) | 2024-12-09 17:01:58 | 2024-12-11 06:09:02 |
+| Instrument Analytics Cycle 1 - 320 (A) | 2024-12-09 17:02:34 | 2024-12-11 06:12:54 |
+| BCL CONVERSION A                       | 2024-12-10 04:49:52 | 2024-12-10 21:29:01 |
+| BCL CONVERSION B                       | 2024-12-10 04:52:36 | 2024-12-10 21:33:20 |
+| bcl2fastq (B)                          | 2024-12-10 21:33:21 | 2024-12-10 23:39:08 |
+| 16 sample ora compress (B)             | 2024-12-10 23:39:09 | 2024-12-11 00:36:40 |
+| 16 sample ora compress (B)             | 2024-12-10 23:39:09 | 2024-12-11 00:40:27 |
+| 16 sample ora compress (B)             | 2024-12-10 23:39:09 | 2024-12-11 00:47:16 |
+| FastQC (map-align) (B) msg_001         | 2024-12-10 23:39:09 | 2024-12-11 01:16:52 |
+| FastQC (map-align) (B) msg_004         | 2024-12-10 23:39:09 | 2024-12-11 01:21:20 |
+| FastQC (map-align) (B) msg_003         | 2024-12-10 23:39:09 | 2024-12-11 01:21:56 |
+| FastQC (map-align) (B) msg_002         | 2024-12-10 23:39:09 | 2024-12-11 02:49:01 |
+| 16 sample ora compress (B)             | 2024-12-11 00:36:40 | 2024-12-11 01:33:13 |
+| bcl2fastq (A)                          | 2024-12-11 02:51:04 | 2024-12-11 04:54:52 |
+| 16 sample ora compress (A)             | 2024-12-11 04:54:52 | 2024-12-11 06:00:23 |
+| 16 sample ora compress (A)             | 2024-12-11 04:54:52 | 2024-12-11 06:03:44 |
+| 16 sample ora compress (A)             | 2024-12-11 04:54:52 | 2024-12-11 06:04:37 |
+| FastQC (map-align) (A) msg_002         | 2024-12-11 04:54:52 | 2024-12-11 06:32:46 |
+| FastQC (map-align) (A) msg_003         | 2024-12-11 04:54:52 | 2024-12-11 06:34:32 |
+| FastQC (map-align) (A) msg_004         | 2024-12-11 04:54:52 | 2024-12-11 06:35:42 |
+| FastQC (map-align) (A) msg_001         | 2024-12-11 04:54:52 | 2024-12-11 08:11:00 |
+| 16 sample ora compress (A)             | 2024-12-11 06:00:23 | 2024-12-11 06:57:40 |
+| fastq generation complete (B)          |                     | 2024-12-11 07:39:08 |
+| Post Run (B)                           | 2024-12-11 07:47:48 | 2024-12-11 09:00:31 |
+| Post Run (A)                           | 2024-12-11 07:54:00 | 2024-12-11 09:04:23 |
+| RunEndTime (B)                         |                     | 2024-12-11 09:04:23 |
+| RunEndTime (A)                         |                     | 2024-12-11 09:04:23 |
+| FastQC report generation (B)           | 2024-12-11 09:12:00 | 2024-12-11 10:50:00 |
+| Analysis file transfer to boston (B)   | 2024-12-11 12:40:00 | 2024-12-11 14:02:00 |
+| fastq generation complete (A)          |                     | 2024-12-11 12:54:52 |
+| NSC automation (md5sum+deliver) (B)    | 2024-12-11 14:10:02 | 2024-12-11 14:16:49 |
+| FastQC report generation (A)           | 2024-12-11 14:33:00 | 2024-12-11 16:12:00 |
+| Analysis file transfer to boston (A)   | 2024-12-11 18:00:00 | 2024-12-11 19:27:00 |
+| NSC automation (md5sum+deliver) (A)    | 2024-12-11 19:35:01 | 2024-12-11 19:42:11 |
+: Dual 25B flowcell, 2nd Analysis BCL Convert only, detailed steps time, time sorted, run 20241209 {.striped .hover style="font-size: 0.7em;"}
+
+::::
+
+:::: {.callout-caution}
+This is a specific run on 2024-12-09.
+::::
 
 
+:::
 
 
 
@@ -608,7 +666,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-16 11:50:01, 2024-12-16 11:56:58
 
 ##### Table
 
-:::: {#tbl-dual-25B-flowcell-detailed layout-ncol=2 }
+:::: {#tbl-dual-25B-flowcell-detailed-germline layout-ncol=2 }
 
 | Job                                    | Started             | Completed           |
 | ----                                   | ---                 | ---                 |
