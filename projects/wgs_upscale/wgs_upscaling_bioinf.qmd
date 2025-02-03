@@ -193,7 +193,7 @@ ggplot(
 ```
 :::
 ::::
-### Transfer Speed
+### Per File Transfer Speed
 The transfer speed ranges 
   from [`r humanReadable(min(data$speed))`/s]{style="font-family:Quicksand;"}
   to [`r humanReadable(max(data$speed))`/s]{style="font-family:Quicksand;"}.
@@ -223,7 +223,7 @@ ggplot(
 ```
 :::
 ::::
-### Transfer Time
+### Per File Transfer Time
 The transfer time ranges 
   from [`r round(min(data$seconds), 1)`]{style="font-family:Quicksand;"} seconds 
   to [`r round(max(data$seconds), 1)`]{style="font-family:Quicksand;"} seconds.
