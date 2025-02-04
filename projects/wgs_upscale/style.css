@@ -55,3 +55,7 @@ text.taskTextOutside1 {
 .mono {
     font-family: courier;
 }
+
+.panel-sidebar {
+  width: 600px !important;
+}
