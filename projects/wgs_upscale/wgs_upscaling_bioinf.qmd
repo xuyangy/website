@@ -30,10 +30,14 @@ format:
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+        grid:
+            sidebar-width: 100px
+            body-width: 1100px
+            margin-width: 420px
 comments: 
     hypothesis: true
 execute: 
-    cache: true
+    cache: false
     echo: false
     message: false
     warning: false
@@ -466,8 +470,8 @@ You can turn off a project by clicking it in the legend to the right of the figu
 For easier visualization, the data is grouped in months.
 
 ```{python} 
-#| cache: true
 #| include: false
+#| cache: false
 import humanize
 from pathlib import Path
 py_df['datetime_shifted']= py_df["datetime"].shift(1)
@@ -488,6 +492,8 @@ py_df["md5_check"] = py_df.apply(md5, axis=1)
 ```
 ### September
 <hr>
+
+#### Per file transfer time
 
 ```{python} 
 #| label: fig-timeseries-sep-trans-time
@@ -543,6 +549,8 @@ See in Full Screen
 r_py_df_sep <- py$py_df_sep
 ```
 
+#### Idle time
+
 ```{python} 
 #| label: fig-gap-sep
 #| fig-cap: Idle time in September (transfer gaps)
@@ -560,6 +568,45 @@ px.scatter(
     height=600,
 )
 ```
+
+#### Daily total
+
+```{python} 
+#| label: fig-per-day-total-transfer-sep
+#| fig-cap: Daily total data transferred in September
+#| cache: false
+# Convert bytes to TB
+def bytes_to_tb(bytes_value):
+    return round(bytes_value / (1000 ** 4), 3)
+
+py_df_sep_copy = py_df_sep.copy()
+py_df_sep_copy['datetime'] = pd.to_datetime(py_df_sep_copy['datetime'])
+daily_sums_sep = py_df.groupby(py_df_sep_copy['datetime'].dt.date)['bytes'].sum().reset_index()
+daily_sums_sep['size_tb'] = daily_sums_sep['bytes'].apply(bytes_to_tb)
+
+# Create the bar plot
+fig = px.bar(
+    daily_sums_sep,
+    x='datetime',
+    y='size_tb',
+    title='Daily total data transferred (TB)',
+    labels={
+        'datetime': 'Day',
+        'size_tb': f'Data transferred (TB)'
+    }
+)
+
+# Update layout for better readability
+fig = fig.update_layout(
+    xaxis_tickangle=-45,
+    bargap=0.2
+)
+
+# Show the plot
+fig.show()
+```
+
+#### md5 check time
 
 ```{python} 
 import datetime
@@ -601,6 +648,9 @@ r_py_df_sep %>%
     theme_minimal()
 ```
 
+
+#### Summary
+
 ```{r}
 #| cache: true
 r_ttt_sep_humanize <- py$ttt_sep_humanize
@@ -629,6 +679,8 @@ The total time used for md5sum checking in September is [`r r_ttmd5_sep_humanize
 ### October
 <hr>
 
+#### Per file transfer time
+
 ```{python} 
 #| label: fig-timeseries-oct-trans-time
 #| fig-cap: Transfer time of all files in October
@@ -651,6 +703,8 @@ px.scatter(
 r_py_df_oct <- py$py_df_oct
 ```
 
+#### Idle time
+
 ```{python} 
 #| label: fig-gap-oct
 #| fig-cap: Idle time in October (transfer gaps)
@@ -667,6 +721,41 @@ px.scatter(
     height=600,
 )
 ```
+
+#### Daily total
+
+```{python} 
+#| label: fig-per-day-total-transfer-oct
+#| fig-cap: Daily total data transferred in October
+#| cache: false
+py_df_oct_copy = py_df_oct.copy()
+py_df_oct_copy['datetime'] = pd.to_datetime(py_df_oct_copy['datetime'])
+daily_sums_oct = py_df.groupby(py_df_oct_copy['datetime'].dt.date)['bytes'].sum().reset_index()
+daily_sums_oct['size_tb'] = daily_sums_oct['bytes'].apply(bytes_to_tb)
+
+# Create the bar plot
+fig = px.bar(
+    daily_sums_oct,
+    x='datetime',
+    y='size_tb',
+    title='Daily total data transferred (TB)',
+    labels={
+        'datetime': 'Day',
+        'size_tb': f'Data transferred (TB)'
+    }
+)
+
+# Update layout for better readability
+fig = fig.update_layout(
+    xaxis_tickangle=-45,
+    bargap=0.2
+)
+
+# Show the plot
+fig.show()
+```
+
+#### md5 check time
 
 ```{python} 
 import humanize
@@ -712,6 +801,8 @@ r_py_df_oct %>%
       theme_minimal()
 ```
 
+#### Summary
+
 ```{r}
 #| cache: true
 library(reticulate)
@@ -738,6 +829,8 @@ In total [`r r_ttdata_oct`]{style="font-family:Krona One;"} data was transferred
 ### November
 <hr>
 
+#### Per file transfer time
+
 ```{python} 
 #| label: fig-timeseries-nov-trans-time
 #| fig-cap: Transfer time of all files in November
@@ -760,6 +853,8 @@ px.scatter(
 r_py_df_nov <- py$py_df_nov
 ```
 
+#### Idle time
+
 ```{python} 
 #| label: fig-gap-nov
 #| fig-cap: Idle time in November (transfer gaps)
@@ -776,6 +871,43 @@ px.scatter(
     height=600,
 )
 ```
+
+#### Daily total
+
+```{python} 
+#| label: fig-per-day-total-transfer-nov
+#| fig-cap: Daily total data transferred in November
+#| cache: false
+
+py_df_nov_copy = py_df_nov.copy()
+py_df_nov_copy['datetime'] = pd.to_datetime(py_df_nov_copy['datetime'])
+daily_sums_nov = py_df.groupby(py_df_nov_copy['datetime'].dt.date)['bytes'].sum().reset_index()
+daily_sums_nov['size_tb'] = daily_sums_nov['bytes'].apply(bytes_to_tb)
+
+# Create the bar plot
+fig = px.bar(
+    daily_sums_nov,
+    x='datetime',
+    y='size_tb',
+    title='Daily total data transferred (TB)',
+    labels={
+        'datetime': 'Day',
+        'size_tb': f'Data transferred (TB)'
+    }
+)
+
+# Update layout for better readability
+fig = fig.update_layout(
+    xaxis_tickangle=-45,
+    bargap=0.2
+)
+
+# Show the plot
+fig.show()
+```
+
+#### md5 check time
+
 
 ```{python} 
 import humanize
@@ -816,6 +948,8 @@ r_py_df_nov %>%
     )) +
     theme_minimal()
 ```
+
+#### Summary
 
 ```{r}
 #| cache: true
@@ -997,7 +1131,7 @@ md`<code>${textcolor(volume_week.toString().padStart(9,'\u00A0'), 'Chocolate')}<
 md`<code>${textcolor(volume_month.toString().padStart(9,'\u00A0'), 'Crimson')}</code> data can be transferred per **month**.`
 ```
 
-### Debugging
+### Other questions
 
 1. **Does [`tacl`](https://github.com/unioslo/tsd-api-client) transfer data at a higher speed?**  
 The [`tacl`](https://github.com/unioslo/tsd-api-client) tool transfers speed is actually lower than `s3cmd`.
@@ -1023,46 +1157,6 @@ With two parallel `nsc-exporter` processes, we can achieve around **1.6x - 1.8x*
 * We are waiting or the investigation of the low transfer speed on TSD side, e.g. TCP Proxy, MinIO performance,
      storage I/O etc.
 
-# Data storage
-<hr>
-
-WGS produces large amount of data. The data storage capacity is critical for the upscaling. 
-
-
-## NSC
-
-
-On NSC side, the data is stored in on **boston** at `/boston/diag`. 
-Boston has a total capacity of 1.5 PB, and the usable capacity is 320TB at the moment.
-
-
-## TSD
-
-
-On TSD side, the data is stored in `/cluster/projects/p22`. 
-The total capacity is 1.8 PB, and the usable capacity is 1.2 PB at the moment.
-
-
-
-# Pipeline capacity (Illumina DRAGEN)
-<hr>
-
-Illunima DRAGEN is a bioinformatics pipeline server that can be used to process WGS data. 
-It takes around 1 hours to process a 30x WGS sample.
-
-To be extended ...
-
-
-# Discussion
-<hr>
-
-To be added...
-
-
-# Conclusion
-<hr>
-
-To be added... 
 
 
 [^1]: The nsc-exporter log and sequencer overview html files are very small files and do not belong to any projects.
