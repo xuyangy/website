@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Xuyang Yuan">
-<meta name="dcterms.date" content="2025-02-03">
+<meta name="dcterms.date" content="2025-02-11">
 <meta name="description" content="DRAEN pipeline capacity">
 
 <title>WGS Upscaling - Pipeline Capacity – Robot Genome</title>
@@ -204,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 3, 2025</p>
+        <p class="date">February 11, 2025</p>
       </div>
     </div>
     
@@ -281,14 +281,20 @@ ul.task-list li input[type="checkbox"] {
 <section id="background" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Background</h1>
 <hr>
-<p>GDx at OUSAMG is planning to upscale the WGS production to <code>192</code> samples (<code>4 x 48</code> or <code>2 x 48 + 1 x 96</code>) samples per week. Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?</p>
+<p>GDx at OUSAMG is planning to upscale the WGS production to:</p>
+<ul>
+<li><code>192</code> samples (<code>4 proj x 48</code> or <code>2 proj x 48 + 1 proj x 96</code>) per week<br>
+</li>
+<li><code><code>{r} 5.5*48</code></code> samples (<code>2 fc x 48</code> + <code>3.5 fc x 48</code>) per week<br>
+</li>
+<li><code><code>{r} 6.5*48</code></code> samples (<code>2 fc x 48</code> + <code>4.5 fc x 48</code>) per week</li>
+</ul>
 <p>The capacity of IT &amp; bioinformatics pipelines can be evaluated from following three aspects:</p>
 <ol type="1">
 <li><a href="https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf.html">Data transfer speed</a></li>
 <li><a href="https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf_storage.html">Data storage</a></li>
-<li>Pipeline capacity</li>
+<li>Pipeline capacity (this report)</li>
 </ol>
-<p><strong>This document will focus on the evaluation of pipeline capacity.</strong></p>
 </section>
 <section id="available-hardware" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Available hardware</h1>
