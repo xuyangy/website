@@ -561,7 +561,7 @@ the total data per sample becomes
 
 :::
 
-#### Number of samples (BCL Convert only) <i class="bi bi-calculator-fill"></i>
+#### Number of samples (BCL Convert only, NSC all pipelines) <i class="bi bi-calculator-fill"></i>
 
 ```{ojs}
 //| echo: false
@@ -597,6 +597,44 @@ md`<code style="font-family: monospace;">${textcolor(f_num_projects.toString().p
 md`<code style="font-family: monospace;">${textcolor(f_num_weeks.toString().padStart(8, '\u00A0'), 'Chocolate')}</code> weeks _(${samples_per_week} samples per week)_`
 md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells.toString().padStart(8, '\u00A0'), 'Crimson')}</code> 25B flowcells _(${samples_per_25b_flowcell} samples per flowcell)_`
 ```
+
+
+#### Number of samples (BCL Convert only, NSC basepipe only) <i class="bi bi-calculator-fill"></i>
+
+```{ojs}
+//| echo: false
+//| panel: sidebar
+md`<div style="margin-bottom: 3px; line-height: 1">Assuming diagnostics usable storage for **production data** (<code>TiB</code>):</div>`
+viewof diag_storage_b = Inputs.range([0, 500], {value: 155, step: 1})
+md`<div style="margin-top: 18px; line-height: 1; margin-bottom: 3px;">Assuming samples per project:</div>`
+viewof samples_per_project_b = Inputs.range([0, 500], {value: 96, step: 1})
+md`<div style="margin-top: 18px; line-height: 1; margin-bottom: 3px;">Assuming samples per week:</div>`
+viewof samples_per_week_b = Inputs.range([0, 1000], {value: 192, step: 1})
+md`<div style="margin-top: 18px; line-height: 1; margin-bottom: 3px;">Assuming samples per 25B flowcell:</div>`
+viewof samples_per_25b_flowcell_b = Inputs.range([0, 500], {value: 64, step: 1})
+
+html`<br><br><em><span style="font-size: 0.75em; color: #999;"> <i class="bi bi-chat-dots"></i> see <a href="#sec-miami-storage-used">miami usage breakdown</a> for possible non-production data accumulated over time.</span></em>`
+```
+
+```{ojs}
+//| echo: false
+
+num_samples_b = diag_storage_b*1000/158
+f_num_samples_b = num_samples_b.toFixed(0)
+num_projects_b = num_samples_b/samples_per_project_b
+f_num_projects_b = num_projects_b.toFixed(1)
+num_weeks_b = num_samples_b/samples_per_week_b
+f_num_weeks_b = num_weeks_b.toFixed(1)
+num_25b_flowcells_b = num_samples_b/samples_per_25b_flowcell_b
+f_num_25b_flowcells_b = num_25b_flowcells_b.toFixed(1)
+
+md`It equals to the total data of:`
+md`<code style="font-family: monospace;">${textcolor(f_num_samples_b.toString().padStart(8, '\u00A0'), 'MediumSeaGreen')}</code> samples`
+md`<code style="font-family: monospace;">${textcolor(f_num_projects_b.toString().padStart(8, '\u00A0'), 'SlateBlue')}</code> projects _(${samples_per_project_b} samples per project)_`
+md`<code style="font-family: monospace;">${textcolor(f_num_weeks_b.toString().padStart(8, '\u00A0'), 'Chocolate')}</code> weeks _(${samples_per_week_b} samples per week)_`
+md`<code style="font-family: monospace;">${textcolor(f_num_25b_flowcells_b.toString().padStart(8, '\u00A0'), 'Crimson')}</code> 25B flowcells _(${samples_per_25b_flowcell_b} samples per flowcell)_`
+```
+
 
 
 ### DRAGEN Germline (AllVariantCallers)
