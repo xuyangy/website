@@ -52,7 +52,7 @@ GDx at OUSAMG is planning to upscale the WGS production to:
 - <code>`{r} 5.5*48`</code> samples (`2 fc x 48` + `3.5 fc x 48`)  per week  
 - <code>`{r} 6.5*48`</code> samples (`2 fc x 48` + `4.5 fc x 48`)  per week  
 
-The capacity of IT & bioinformatics pipelines can be evaluated from following three aspects:
+The capacity of IT & bioinformatics pipelines can be accessed in three key areas:
 
 1. Data transfer speed (this report)
 2. [Data storage](https://robotgenome.com/projects/wgs_upscale/wgs_upscaling_bioinf_storage.html)
@@ -62,11 +62,9 @@ The capacity of IT & bioinformatics pipelines can be evaluated from following th
 # Data transfer speed
 <hr>
 
-Both _sequencing data_ and _NSC pipeline results_ are stored at the NSC and need to be transferred to the TSD.
-The amount of data to be transferred is very large.
-
-The data transfer is done by the **nsc-exporter** software which uses TSD s3api, a wrapper of s3cmd. 
-The nsc-exporter will check for new data to transfer every 10 minutes and uses `s3cmd put` to transfer the data.
+Sequencing data and NSC pipeline results are stored at NSC and must be transferred to TSD. Due to the large data volume,
+the transfer is managed by `nsc-exporter`, which checks for new data every 10 minutes and transfers it using `s3cmd put` via
+TSD's `s3api` wrapper.
 
 <br>
 
@@ -129,14 +127,17 @@ data <- mutate(data, speed = sapply(speed, recognize_bandwidth))
 
 ## Data Collection
 
-To evaluate the data transfer speed from NSC to TSD, we collected the historical data transfer records
-  between [`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} 
-  and [`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} 
-  from the nsc-exporter log. 
+To assess the data transfer speed from NSC to TSD, we analyzed historical transfer records from the `nsc-exporter` log
+between 
+[`r strptime(min(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} 
+and 
+[`r strptime(max(data$datetime), "%Y-%m-%d %H:%M:%S")`]{style="font-family:Quicksand;"} 
+
 
 ::: {.callout-tip collapse="true"}
 
-### expand to see examples of collected file transfer records
+### Examples
+Expand to view examples of collected file transfer records
 
 
 ```{r}
@@ -153,7 +154,8 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 :::
 
 ::: {.callout-note}
-### The nsc-exporter log files and the sequencer overview html files were ignored for simplicity. [^1]
+### Excluded files
+The `nsc-exporter` log files and the sequencer overview html files were excluded for simplicity. [^1]
 
 
 :::
@@ -164,12 +166,12 @@ for (extension in c(".bam", ".fastq.gz", ".vcf", ".sample", ".pdf")) {
 #| cache: false
 library(gdata)
 ```
-The size of transferred files ranges from 
+The transferred file sizes ranges from 
   [`r humanReadable(min(data$bytes))`]{style="font-family:Quicksand;"} to 
-  [`r humanReadable(max(data$bytes))`]{style="font-family:Quicksand;"}. 
-The average file size is [`r humanReadable(mean(data$bytes))`]{style="font-family:Quicksand;"}. 
-The median file size is [`r humanReadable(median(data$bytes))`]{style="font-family:Quicksand;"}. 
-The standard deviation is [`r humanReadable(sd(data$bytes))`]{style="font-family:Quicksand;"}.
+  [`r humanReadable(max(data$bytes))`]{style="font-family:Quicksand;"},
+with an average of [`r humanReadable(mean(data$bytes))`]{style="font-family:Quicksand;"},
+a median of [`r humanReadable(median(data$bytes))`]{style="font-family:Quicksand;"},
+and a standard deviation of [`r humanReadable(sd(data$bytes))`]{style="font-family:Quicksand;"}.
 
 :::: {.columns}
 ::: {.column width="30%"}
