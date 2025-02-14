@@ -98,7 +98,7 @@ storage (Boston).
 gantt
 %%{ 
   init: { 
-    'theme': 'forest' ,
+    'theme': 'default',
     'gantt': {
       'barHeight': 30,
       'fontSize': 12,
@@ -301,7 +301,7 @@ Sequencing starts to samples ready for running pipleline takes `57h`.
 ##### Diagram
 
 ```{mermaid}
-%%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only
+%%| label: fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-nox
 %%| fig-cap: Dual 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
 gantt
 %%{ 
@@ -610,7 +610,7 @@ Sequencing starts to samples ready for running pipleline takes `68h`.
 ##### Diagram
 
 ```{mermaid}
-%%| label: fig-dual-25B-flowcell-2nd-analysis-wgs-germline
+%%| label: fig-dual-25B-flowcell-2nd-analysis-wgs-germline-nox
 %%| fig-cap: Dual 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
 gantt
 %%{ 
