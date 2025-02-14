@@ -37,7 +37,7 @@ format:
 comments: 
     hypothesis: true
 execute: 
-    cache: false
+    cache: true
     echo: false
     message: false
     warning: false
@@ -501,6 +501,7 @@ py_df["md5_check"] = py_df.apply(md5, axis=1)
 ```{python} 
 #| label: fig-timeseries-sep-trans-time
 #| fig-cap: Transfer time of all files in September
+#| cache: false
 py_df_sep = py_df[(pd.to_datetime("2023-09-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-10-01"))]
 px.scatter(
     py_df_sep,
@@ -687,6 +688,7 @@ The total time used for md5sum checking in September is [`r r_ttmd5_sep_humanize
 ```{python} 
 #| label: fig-timeseries-oct-trans-time
 #| fig-cap: Transfer time of all files in October
+#| cache: false
 py_df_oct = py_df[(pd.to_datetime("2023-10-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-11-01"))]
 px.scatter(
     py_df_oct,
@@ -837,6 +839,7 @@ In total [`r r_ttdata_oct`]{style="font-family:Krona One;"} data was transferred
 ```{python} 
 #| label: fig-timeseries-nov-trans-time
 #| fig-cap: Transfer time of all files in November
+#| cache: false
 py_df_nov = py_df[(pd.to_datetime("2023-11-01") <= pd.to_datetime(py_df["datetime"])) & (pd.to_datetime(py_df["datetime"]) < pd.to_datetime("2023-12-01"))]
 px.scatter(
     py_df_nov,
