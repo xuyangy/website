@@ -136,8 +136,7 @@ and
 
 ::: {.callout-tip collapse="true"}
 
-### Examples
-Expand to view examples of collected file transfer records
+### Click to view examples of collected file transfer records
 
 
 ```{r}
