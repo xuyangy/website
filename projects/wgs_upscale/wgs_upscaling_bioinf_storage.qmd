@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 GDx at OUSAMG is planning to upscale the WGS production to:
 
-- `192` samples (`4 proj x 48` or `2 proj x 48 + 1 proj x 96`) per week  
-- <code>`{r} 5.5*48`</code> samples (`2 fc x 48` + `3.5 fc x 48`)  per week  
-- <code>`{r} 6.5*48`</code> samples (`2 fc x 48` + `4.5 fc x 48`)  per week  
+- `192` samples (`4 proj x 48` or `2 proj x 48 + 1 proj x 96`) per week (<code>`{r} formatC(192*4*12, format="f", digits=0, big.mark=",")`</code> per year), with 2 _NovaSeq 6000_.
+- <code>`{r} 5.5*64`</code> samples (`2 fc x 64` + `3.5 fc x 64`)  per week, (<code>`{r} formatC(5.5*64*4*12, format="f", digits=0, big.mark=",")`</code> per year), with 2 _NovaSeq X Plus_
+- <code>`{r} 6.5*64`</code> samples (`2 fc x 64` + `4.5 fc x 64`)  per week, (<code>`{r} formatC(6.5*64*4*12, format="f", digits=0, big.mark=",")`</code> per year), with 2 _NovaSeq X Plus_ and weekend work.
 
 Do we have enough capacity in IT and bioinformatics pipelines for this upscaling?
 
