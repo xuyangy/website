@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Xuyang Yuan">
-<meta name="dcterms.date" content="2025-02-12">
+<meta name="dcterms.date" content="2025-03-13">
 <meta name="description" content="DRAEN pipeline capacity">
 
 <title>WGS Upscaling - Pipeline Capacity – Robot Genome</title>
@@ -204,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 12, 2025</p>
+        <p class="date">March 13, 2025</p>
       </div>
     </div>
     
@@ -283,11 +283,9 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <p>GDx at OUSAMG is planning to upscale the WGS production to:</p>
 <ul>
-<li><code>192</code> samples (<code>4 proj x 48</code> or <code>2 proj x 48 + 1 proj x 96</code>) per week<br>
-</li>
-<li><code><code>{r} 5.5*48</code></code> samples (<code>2 fc x 48</code> + <code>3.5 fc x 48</code>) per week<br>
-</li>
-<li><code><code>{r} 6.5*48</code></code> samples (<code>2 fc x 48</code> + <code>4.5 fc x 48</code>) per week</li>
+<li><code>192</code> samples (<code>4 proj x 48</code> or <code>2 proj x 48 + 1 proj x 96</code>) per week (<code>9,216</code> per year), with 2 <em>NovaSeq 6000</em>.</li>
+<li><code>352</code> samples (<code>2 fc x 64</code> + <code>3.5 fc x 64</code>) per week, (<code>16,896</code> per year), with 2 <em>NovaSeq X Plus</em></li>
+<li><code>416</code> samples (<code>2 fc x 64</code> + <code>4.5 fc x 64</code>) per week, (<code>19,968</code> per year), with 2 <em>NovaSeq X Plus</em> and weekend work.</li>
 </ul>
 <p>The capacity of IT &amp; bioinformatics pipelines can be accessed in three key areas:</p>
 <ol type="1">
@@ -378,7 +376,7 @@ Table&nbsp;1: Available DRAGENs
 <pre class="mermaid mermaid-js" data-label="fig-single-25B-flowcell-2nd-analysis-bcl-convert-only">gantt
 %%{ 
   init: { 
-    'theme': 'forest' ,
+    'theme': 'default',
     'gantt': {
       'barHeight': 30,
       'fontSize': 12,
@@ -832,11 +830,11 @@ Caution
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
-<div id="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-nox" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-nox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only">gantt
+<pre class="mermaid mermaid-js" data-label="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-nox">gantt
 %%{ 
   init: { 
     'theme': 'forest' ,
@@ -894,7 +892,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-11 19:35:01,  2024-12-11 19:42:11
 </pre>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dual-25B-flowcell-2nd-analysis-bcl-convert-only-nox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Dual 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
 </figcaption>
 </figure>
@@ -1568,11 +1566,11 @@ Figure&nbsp;5
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
-<div id="fig-dual-25B-flowcell-2nd-analysis-wgs-germline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-dual-25B-flowcell-2nd-analysis-wgs-germline-nox" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dual-25B-flowcell-2nd-analysis-wgs-germline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-dual-25B-flowcell-2nd-analysis-wgs-germline-nox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-dual-25B-flowcell-2nd-analysis-wgs-germline">gantt
+<pre class="mermaid mermaid-js" data-label="fig-dual-25B-flowcell-2nd-analysis-wgs-germline-nox">gantt
 %%{ 
   init: { 
     'theme': 'forest' ,
@@ -1625,7 +1623,7 @@ NSC automation (md5sum+deliver) (A):  2024-12-16 11:50:01, 2024-12-16 11:56:58
 </pre>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dual-25B-flowcell-2nd-analysis-wgs-germline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dual-25B-flowcell-2nd-analysis-wgs-germline-nox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: Dual 25B flowcell 2nd Analysis BCL Convert only NovaSeq X reported time
 </figcaption>
 </figure>
