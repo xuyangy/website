@@ -37,6 +37,8 @@ website:
                     href: projects/NIPT/overview.svg
                   - text: "PGT"
                     href: projects/PGT/PGT.qmd
+                  - text: "Steps"
+                    href: projects/Steps/organizations.svg
 format:
     html:
         theme:

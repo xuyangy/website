@@ -1,0 +1,29 @@
+---
+title: Steps
+title-block-banner: false
+description: "Diagrams of Steps workflow"
+image: "cover.png"
+format: html
+author:
+    - name: Xuyang Yuan
+      email: "xuyangy@uio.no"
+      affiliation: "GDx OUSAMG"
+      url: "https://www.robotgenome.com"
+      role: "collect data"
+date: last-modified
+---
+
+# Overview
+<a href="organizations.svg" target="_blank">
+  <img src="organizations.svg" alt="Overview" width="1050" />
+</a>
+
+# NSC Simplified
+<a href="nsc.simple.svg" target="_blank">
+  <img src="nsc.simple.svg" alt="NSC Simplified" width="1050" />
+</a>
+
+# NSC Detailed
+<a href="nsc.svg" target="_blank">
+  <img src="nsc.svg" alt="NSC Detailed" width="1050" />
+</a>
