@@ -4,7 +4,7 @@ title-block-banner: false
 description: "Diagrams of NIPT project"
 image: "cover.png"
 format: html
-author: 
+author:
     - name: Xuyang Yuan
       email: "xuyangy@uio.no"
       affiliation: "GDx OUSAMG"
@@ -16,16 +16,21 @@ date: last-modified
 
 # NIPT Interpretation
 <hr>
-![](interp.svg)
+<a href="interp.svg" target="_blank">
+  <img src="interp.svg" alt="Interpretation diagram" width="1050" />
+</a>
+
 
 # NIPT Workflow Overview
 <hr>
-
-![](./overview.svg)
+<a href="overview.svg" target="_blank">
+  <img src="overview.svg" alt="Workflow Overview diagram" width="1050" />
+</a>
 
 
 # NIPT Whole Workflow
 <hr>
-![](whole_workflow_sequence_diagram.svg)
-
+<a href="whole_workflow_sequence_diagram.svg" target="_blank">
+  <img src="whole_workflow_sequence_diagram.svg" alt="Whole Workflow sequence diagram" width="1050" />
+</a>
 
