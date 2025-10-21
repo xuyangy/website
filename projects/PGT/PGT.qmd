@@ -1,0 +1,111 @@
+---
+title: Preimplantation Genetic Testing (PGT)
+image: pgt.png
+author: Xuyang Yuan
+date: last-modified
+footer: PGT in AMG
+format:
+  revealjs:
+    theme:
+      - beige
+      - custom.scss
+    progress: true
+    incremental: false
+    link-external-icon: false
+    link-external-newwindow: true
+    transition: convex
+    background-transition: convex
+    background-speed: slow
+    controls: true
+    touch: true
+    slide-number: true
+    chalkboard:
+      theme: chalkboard
+      boardmarker-width: 5
+      chalk-width: 2
+      chalk-effect: 1.0
+---
+
+## What is PGT?
+
+PGT is a technique used to identify genetic defects in embryos created through in vitro fertilization (IVF) before pregnancy.
+Typically, a few cells are biopsied from the embryo at the blastocyst stage (day 5-7 of development) for genetic analysis.
+
+## Why Consider PGT? {.column-smaller-lightblue}
+-   To screen for aneuploidy (extra or missing chromosomes, e.g., trisomy 21 causing Down syndrome).
+-   To identify monogenic disorders (mutations in a single gene, such as Cystic Fibrosis, Huntington\'s disease, or Sickle Cell Anemia.)
+-   To detect chromosomal structural rearrangements ( individuals can carry balanced chromosomal rearrangements (like translocations or inversions) without any health problems, but they may produce embryos with unbalanced chromosomal material, leading to implantation failure, miscarriage, or a child with congenital anomalies.)
+-   To increase the chances of a successful pregnancy.
+-   To reduce the risk of genetic disorders in the offspring.
+
+## Types of PGT {.column-smaller-lightblue}
+
+There are several types of PGT, including:
+
+-   **PGT-A (Aneuploidy)**: Screens embryos for the correct number of chromosomes. It helps select euploid (chromosomally normal) embryos for transfer, potentially reducing miscarriage rates and increasing implantation rates, especially in certain patient populations.
+-   **PGT-M (Monogenic/Single Gene Defects)**: Designed for couples at risk of passing on a specific inherited monogenic disorder. It identifies embryos that are unaffected by the condition.
+-   **PGT-SR (Chromosomal Structural Rearrangements)**: Used for patients who are carriers of a balanced chromosomal abnormality (e.g., translocations, inversions). It helps identify embryos that have a correct balance of chromosomal material.
+
+## The PGT Process: A Step-by-Step Overview (part1) {.column-smaller-lightblue}
+
+-   **Ovarian Stimulation & Egg Retrieval**: Part of the IVF process where ovaries are stimulated to produce multiple eggs, which are then retrieved.
+-   **Fertilization**: Eggs are fertilized with sperm in the laboratory, often using Intracytoplasmic Sperm Injection (ICSI) to ensure fertilization.
+-   **Embryo Culture**: Fertilized eggs develop into embryos and are cultured for 5-7 days to reach the blastocyst stage (typically 100-250 cells).
+-   **Embryo Biopsy**: A small number of cells (usually 5-10 trophectoderm cells, which will form the placenta) are carefully removed from each blastocyst.
+-   **Whole Genome Amplification (WGA)**: The minute amount of DNA from the biopsied cells is amplified to generate sufficient quantities for comprehensive genetic testing.
+-   **Genetic Analysis**: The amplified DNA is analyzed using specific PGT techniques, like SNP arrays or Next-Generation Sequencing (NGS).
+
+## The PGT Process: A Step-by-Step Overview (part 2) {.column-smaller-lightblue}
+-   **Embryo Selection**: Based on the genetic test results, embryos that are identified as chromosomally normal (euploid for PGT-A) or unaffected by the specific genetic condition (for PGT-M/SR) are selected for transfer.
+-   **Embryo Transfer**: One or more selected embryos are transferred into the patient's uterus, aiming for implantation and pregnancy.
+-   **Cryopreservation**: Any remaining suitable embryos that were not transferred can be frozen (vitrified) for potential future use.
+
+## PGT in AMG {.column-smaller-lightblue}
+- Legal Basis and National Mandate
+- AMG Project Overview
+- Implementation Strategy and Supplier
+- Future Developments and Accreditation
+
+## Legal Basis and National Mandate {.column-smaller-lightblue}
+In a new Biotechnology Act on 26.5.20, it was decided that PGT shall be offered in Norway. AMG was chosen to establish PGT in Norway.
+
+PGT can only be offered to couples where:
+
+- one or both are carriers of severe monogenic (PGT-M) or structural rearrangement (PGT-SR) hereditary disease and there is a high risk that the disease could be passed on to a future child.
+- to obtain a tissue type-like child who can be a stem cell donor for a sibling with a severe, hereditary disease (PGT-HLA).
+
+## AMG Project Overview {.column-smaller-lightblue}
+
+- The planning phase in the period from 15.11.20 to 31.8.23.
+- The implementation phase is from 1.9.23 to now, focus on implementing methods for PGT-M, PGT-SR.
+- Additionally, PGT-A will be implemented as a quality indicator for PGT-SR and PGT-M.
+- PGT-HLA will be at the final stage of the project
+
+
+## Implementation Strategy and Supplier {.column-smaller-lightblue}
+
+#### PGT-M/PGT-A
+Vitrolife has been selected as the supplier. Their KaryoMap suite covers PGT-M/PGT-A using our NextSeq 550 sequencer to scan the beadchip array and their cloud-based software for analysis and reporting. A new lab was constructed at AMG to support this project, and the following steps are performed:
+
+- lab prep including WGA
+- Beadchip array scanning using NextSeq 550 sequencer
+- Upload scanned data to KaryoMap cloud
+- Analysis and reporting using KaryoMap cloud-based software
+- Reporting of results to the clinic
+
+## Implementation Strategy and Supplier {.column-smaller-lightblue}
+
+#### PGT-SR
+Revity has been selected as the supplier. Their PG-Seq Rapid v2 kit and PG-Find software covers PGT-SR. Samples are sequenced on our NovaSeq X Plus, and mapped to hg19 reference genome with NovaSeq X Plug onboard DRAGEN.
+
+- lab prep including WGA following Revity's PG-Seq Rapid v2 kit protocol
+- NovsaSeq X Plus is used for sequencing
+- PG-Find software uses bam files as input
+- DRAGEN is used for mapping to hg19 reference genome
+- DRAGEN also generates a coverage report
+- PG-Find software is locally installed on a OUS Windows computer
+- It's recommended to by Revity to do contamination detection and sample swap check.
+- Deliver bam files and the coverage report.
+
+## Future Developments and Accreditation {.column-smaller-lightblue}
+While Whole Genome Sequencing (WGS) is considered promising for future PGT applications, it is not yet sufficiently established internationally. Therefore, the current implementation will use well-established commercial kits. Development of WGS-based PGT and method accreditation are planned for the project's final phase, though methods will be validated during the current implementation phase, with efforts to participate in external quality controls to facilitate early accreditation.

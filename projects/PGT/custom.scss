@@ -1,0 +1,55 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Shadows+Into+Light&display=swap');
+
+/*-- scss:rules --*/
+
+.highlight-last {
+  font-family: monospace;
+  color: white;
+
+  .current-fragment {
+    color: #5500ff;
+  }
+}
+
+.mono {
+  font-family: monospace;
+  font-size: 0.4em;
+}
+
+.smallsmall {
+  font-size: 0.3em;
+}
+
+.rem7 {
+  font-size: 0.7em;
+}
+
+.rem6 {
+  font-size: 0.6em;
+}
+
+a.no-external-icon::after {
+  content: none !important;
+}
+
+.reveal.overview .slides section.present {
+  outline: 10px solid #FFCC00;
+}
+
+.side-bullets {
+  font-size: 0.65em;
+  font-family: 'Caveat', cursive;
+  color: #000080;
+  margin: 0
+}
+
+.column-smaller-lightblue {
+  font-size: 0.7em;
+  background-color: #F0F8FF;
+}
+
+.column-smaller-lightgreen {
+  font-size: 0.6em;
+  background-color: #F0FFF0;
+}

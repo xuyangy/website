@@ -35,6 +35,8 @@ website:
                     href: ./projects/NIPT/whole_workflow_sequence_diagram.svg
                   - text: NIPT Overview Workflow
                     href: projects/NIPT/overview.svg
+                  - text: "PGT"
+                    href: projects/PGT/PGT.qmd
 format:
     html:
         theme:
