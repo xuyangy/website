@@ -21,8 +21,10 @@ website:
                     href: projects/wgs_upscale/wgs_upscaling_bioinf_pipeline.qmd
                   - text: "WGS Upcaling - NSC Storage"
                     href: projects/wgs_upscale/wgs_upscaling_bioinf_storage.qmd
-                  - text: "Workflow Tracker"
-                    href: projects/workflow_tracker/index.html
+                  - text: "Workflow Tracker Normal"
+                    href: projects/workflow_tracker_A_normal/index.html
+                  - text: "Workflow Tracker High"
+                    href: projects/workflow_tracker_B_high/index.html
                   - text: "UUID"
                     href: projects/UUID/uuid.qmd
                   - text: "PGDIS 2024"
